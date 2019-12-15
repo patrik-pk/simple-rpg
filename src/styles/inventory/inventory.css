@@ -1,0 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* a {
+  text-decoration: none;
+  color: black;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* a {
+  text-decoration: none;
+  color: black;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+.menu_section, .inventory_section {
+  height: calc(100vh - 70px);
+  max-height: calc(100vh - 70px);
+}
+
+.menu_section .dark_overlay, .inventory_section .dark_overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.menu_section .container, .inventory_section .container {
+  width: 60%;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.menu_section .container .box, .inventory_section .container .box {
+  position: relative;
+  background: #ccc;
+  border: 1px black solid;
+  height: calc(100vh - 70px - 2 * 50px);
+  border: 2px black solid;
+}
+
+.menu_section .container .box .content, .inventory_section .container .box .content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.menu_section .container .box .menu_btn, .inventory_section .container .box .menu_btn {
+  width: 150px;
+  padding: 10px 0;
+  background: black;
+  color: white;
+  text-align: center;
+  border: 0;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.menu_section .container .box .menu_btn:hover, .inventory_section .container .box .menu_btn:hover {
+  color: orangered;
+}
+
+.menu_section .container .box .content#main_menu .start_btn, .inventory_section .container .box .content#main_menu .start_btn {
+  margin-bottom: 10px;
+  background: white;
+  color: black;
+  border: 1px black solid;
+}
+
+.menu_section .container .box .content#main_menu .start_btn.active, .inventory_section .container .box .content#main_menu .start_btn.active {
+  background: black;
+  color: white;
+}
+
+.menu_section .container .box .content#main_menu .start_btn.active:hover, .inventory_section .container .box .content#main_menu .start_btn.active:hover {
+  color: orangered !important;
+}
+
+.inventory_section .content#inventory {
+  width: 100%;
+  height: 100%;
+}
+
+.inventory_section .content#inventory .inv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+
+.inventory_section .content#inventory .inv .current_equipment {
+  background: #aaa;
+  border: 2px black solid;
+}
+
+.inventory_section .content#inventory .inv .current_equipment .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.inventory_section .content#inventory .inv .current_equipment .wrapper ul li {
+  margin: 0 0 5px 0;
+}
+
+.inventory_section .content#inventory .inv .current_equipment .wrapper ul li:last-child {
+  margin-bottom: 0;
+}
+
+.inventory_section .content#inventory .inv .current_equipment ul:first-child {
+  margin-right: 10px;
+}
+
+.inventory_section .content#inventory .inv .player_stats {
+  width: 120px;
+}
+
+.inventory_section .content#inventory .inv .player_stats .wrapper hr {
+  border: 1px black solid;
+  margin-bottom: 5px;
+}
+
+.inventory_section .content#inventory .inv .player_stats .wrapper ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 3px;
+}
+
+.inventory_section .content#inventory .inv .items_container {
+  position: relative;
+  background: #aaa;
+  border: 2px black solid;
+}
+
+.inventory_section .content#inventory .inv .items_container .wrapper {
+  padding: 10px;
+}
+
+.inventory_section .content#inventory .inv .items_container .wrapper .items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.inventory_section .content#inventory .inv .items_container .wrapper .items ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.inventory_section .content#inventory .inv .items_container .wrapper .items ul li {
+  margin: 0 5px 5px 0;
+}
+
+.inventory_section .content#inventory .inv .items_container .wrapper .items ul li:last-child {
+  margin-right: 0;
+}
+
+.inventory_section .content#inventory .inv .items_container .options {
+  position: absolute;
+  right: -10px;
+  bottom: -60px;
+}
+
+.inventory_section .content#inventory .inv .items_container .options button {
+  width: 80px;
+  padding: 8px 0;
+  background: white;
+  color: black;
+  border: 2px black solid;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.inventory_section .content#inventory .inv .items_container .options button:hover {
+  color: orangered !important;
+}
+
+.inventory_section .content#inventory .inv .items_container .options .equip_btn {
+  margin-right: 10px;
+}
+
+.inventory_section .content#inventory .shop_container {
+  width: 200px;
+  margin-left: 10%;
+  background: #aaa;
+  border: 2px black solid;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper {
+  padding: 10px;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .items ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .items ul li {
+  margin: 0 5px 0 0;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .items ul li:last-child {
+  margin-right: 0;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .options {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .options button {
+  width: 150px;
+  padding: 10px 0;
+  background: black;
+  color: white;
+  text-align: center;
+  border: 0;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  width: 62px;
+  padding: 10px 0;
+  background: white;
+  color: black;
+  border: 2px black solid;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .options button:hover {
+  color: orangered;
+}
+
+.inventory_section .content#inventory .shop_container .wrapper .options button:first-child {
+  margin-right: 10px;
+}
+
+.inventory_section .content#inventory .money_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-right: 10%;
+}
+
+.inventory_section .content#inventory .money_container p:first-child {
+  padding-right: 10px;
+}
+
+.inventory_section .content#inventory .back_btn {
+  margin: auto;
+}
+/*# sourceMappingURL=inventory.css.map */

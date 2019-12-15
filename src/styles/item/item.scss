@@ -1,0 +1,86 @@
+
+@import "../style.scss";
+
+.item_container {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: #eee;
+    border: 1px black solid;
+    
+    .item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        box-sizing: border-box;
+        border: 2px white solid;
+        transition: all 500ms; 
+        outline: 0;
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+        }
+    
+        .stats {
+            display: none;
+            min-width: 140px;
+            min-height: 100px;
+            margin-bottom: 100px;
+            margin-left: 210px;
+            padding: 5px 0 5px 10px;
+            background: #ccc;
+            border: 1px black solid;
+            color: white;
+            z-index: 100;
+            text-align: left;
+            font-size: 14px;
+
+            p {
+                font-weight: normal!important;
+            }
+
+            #name {
+                text-align: center;
+                margin-bottom: 5px;
+                font-weight: bold!important;
+                font-size: 16px;
+            }
+            #name.legendary { color: orangered; }
+            #name.epic { color: purple; }
+            #name.rare { color: blue; }
+            #name.uncommon { color: green; }
+            #name.common { color: #666; }
+
+            #stats_heading, #bonuses_heading {
+                font-weight: bold!important;
+                font-size: 16px;
+            }
+
+            #value {
+                margin-top: 5px;
+
+                #value_heading {
+                    font-weight: bold!important;
+                }
+            }
+        }
+        .stats.active {
+            display: inline-block;
+        }
+    }
+    .item.active { border: 2px black solid; }
+    .item.legendary { background: orangered; }
+    .item.epic { background: purple; }
+    .item.rare { background: blue; }
+    .item.uncommon { background: green; }
+    .item.common { background: white; }
+}

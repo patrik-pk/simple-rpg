@@ -1,0 +1,392 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* a {
+  text-decoration: none;
+  color: black;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+.battle_section {
+  height: calc(100vh - 70px);
+  overflow: hidden !important;
+}
+
+.battle_section .dark_overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.battle_section .container {
+  position: relative;
+  height: 100%;
+}
+
+.battle_section .container .characters {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.battle_section .container .characters .character_container {
+  position: relative;
+  width: 250px;
+  height: 400px;
+  margin-top: 50px;
+  background: #ccc;
+  border: 1px black solid;
+}
+
+.battle_section .container .characters .character_container .top_container {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.battle_section .container .characters .character_container .top_container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px black solid;
+}
+
+.battle_section .container .characters .character_container .top_container .info {
+  width: 150px;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  text-align: center;
+  font-size: 14px;
+}
+
+.battle_section .container .characters .character_container .top_container .info .name {
+  width: 100%;
+  background: rgba(100, 100, 100, 0.7);
+  border: 1px black solid;
+  color: white;
+}
+
+.battle_section .container .characters .character_container .top_container .info .hp {
+  width: 100%;
+  margin-top: 3px;
+  background: white;
+  color: white;
+  border: 1px black solid;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.battle_section .container .characters .character_container .top_container #score {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  color: #ffdc00;
+}
+
+.battle_section .container .characters .character_container .top_container .art_by {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  font-size: 12px;
+}
+
+.battle_section .container .characters .character_container .top_container .art_by a {
+  padding-left: 2px;
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.battle_section .container .characters .character_container .top_container .art_by a:hover {
+  text-decoration: underline;
+}
+
+.battle_section .container .characters .character_container .top_container .floating_damage {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  color: white;
+  font-weight: bold;
+}
+
+.battle_section .container .characters .character_container .top_container .floating_damage.crit {
+  color: red;
+}
+
+.battle_section .container .characters .character_container .top_container #fl_dmg_player, .battle_section .container .characters .character_container .top_container #fl_dmg_enemy {
+  -webkit-animation: floatOut 1.3s linear forwards;
+          animation: floatOut 1.3s linear forwards;
+}
+
+@-webkit-keyframes floatOut {
+  0% {
+    bottom: 70px;
+  }
+  75% {
+    bottom: 130px;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    bottom: 130px;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes floatOut {
+  0% {
+    bottom: 70px;
+  }
+  75% {
+    bottom: 130px;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    bottom: 130px;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.battle_section .container .characters .character_container .stats {
+  width: 100%;
+  height: 50%;
+  padding: 5px;
+  padding-bottom: 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+}
+
+.battle_section .container .characters .character_container .stats .wrapper {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px black solid;
+}
+
+.battle_section .container .characters .character_container .stats .wrapper ul {
+  margin-top: 10px;
+}
+
+.battle_section .container .characters .character_container .stats .wrapper ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2px 0 2px 20px;
+}
+
+.battle_section .container .characters .character_container .stats .wrapper ul li p:nth-child(2) {
+  margin-left: 10px;
+}
+
+.battle_section .container .characters .character_container .stats .wrapper ul:nth-child(2) li {
+  padding: 2px 20px 2px 0;
+}
+
+.battle_section .container .characters .character_container .actions {
+  position: absolute;
+  top: 0;
+  right: -130px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: auto;
+  height: 100%;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column, .battle_section .container .characters .character_container .actions .ranged_column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action, .battle_section .container .characters .character_container .actions .ranged_column .action {
+  margin-bottom: 10px;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button, .battle_section .container .characters .character_container .actions .ranged_column .action button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: #ddd;
+  border: 1px black solid;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance {
+  display: none !important;
+  position: absolute;
+  top: -40px;
+  right: -110px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100px;
+  height: 50px;
+  background: #ccc;
+  border: 1px black solid;
+  z-index: 100;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance p:nth-child(2), .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance p:nth-child(2) {
+  margin-left: 5px;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance.active, .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance.active {
+  display: block !important;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button:last-child, .battle_section .container .characters .character_container .actions .ranged_column .action button:last-child {
+  margin-bottom: 0;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column {
+  margin-right: 10px;
+}
+
+.battle_section .container .characters #player {
+  margin-left: 150px;
+}
+
+.battle_section .container .characters #enemy {
+  margin-right: 150px;
+}
+
+.battle_section .container .game_over {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 300px;
+  padding: 20px 0;
+  text-align: center;
+  background: #ccc;
+  border: 1px black solid;
+}
+
+.battle_section .container .game_over .end_text {
+  font-weight: bold;
+}
+
+.battle_section .container .game_over .reward {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 5px;
+}
+
+.battle_section .container .game_over .reward p {
+  font-weight: bold;
+}
+
+.battle_section .container .game_over .reward p {
+  margin-right: 10px;
+}
+
+.battle_section .container .game_over .confirm_container {
+  margin-top: 10px;
+}
+
+.battle_section .container .game_over .confirm_container .confirm_btn {
+  padding: 5px 10px;
+  background: black;
+  color: white;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.battle_section .container .game_over .confirm_container .confirm_btn:hover {
+  color: orangered;
+}
+/*# sourceMappingURL=gamepage.css.map */

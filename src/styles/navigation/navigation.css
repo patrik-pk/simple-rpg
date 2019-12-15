@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* a {
+  text-decoration: none;
+  color: black;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 70px;
+  padding: 0 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: black;
+  -webkit-transition: all 1000ms;
+  transition: all 1000ms;
+  border-bottom: 1px white solid;
+}
+
+.nav .logo {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.nav .logo:hover {
+  color: orangered;
+}
+
+.nav ul li {
+  display: inline;
+  padding: 0 10px;
+}
+
+.nav ul li .link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.nav ul li .link:hover {
+  color: orangered;
+}
+/*# sourceMappingURL=navigation.css.map */

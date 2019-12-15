@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* a {
+  text-decoration: none;
+  color: black;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+.menu_section, .inventory_section {
+  height: calc(100vh - 70px);
+  max-height: calc(100vh - 70px);
+}
+
+.menu_section .dark_overlay, .inventory_section .dark_overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.menu_section .container, .inventory_section .container {
+  width: 60%;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.menu_section .container .box, .inventory_section .container .box {
+  position: relative;
+  background: #ccc;
+  border: 1px black solid;
+  height: calc(100vh - 70px - 2 * 50px);
+  border: 2px black solid;
+}
+
+.menu_section .container .box .content, .inventory_section .container .box .content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.menu_section .container .box .menu_btn, .inventory_section .container .box .menu_btn {
+  width: 150px;
+  padding: 10px 0;
+  background: black;
+  color: white;
+  text-align: center;
+  border: 0;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.menu_section .container .box .menu_btn:hover, .inventory_section .container .box .menu_btn:hover {
+  color: orangered;
+}
+
+.menu_section .container .box .content#main_menu .start_btn, .inventory_section .container .box .content#main_menu .start_btn {
+  margin-bottom: 10px;
+  background: white;
+  color: black;
+  border: 1px black solid;
+}
+
+.menu_section .container .box .content#main_menu .start_btn.active, .inventory_section .container .box .content#main_menu .start_btn.active {
+  background: black;
+  color: white;
+}
+
+.menu_section .container .box .content#main_menu .start_btn.active:hover, .inventory_section .container .box .content#main_menu .start_btn.active:hover {
+  color: orangered !important;
+}
+/*# sourceMappingURL=menu.css.map */

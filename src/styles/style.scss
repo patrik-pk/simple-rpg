@@ -1,0 +1,58 @@
+
+// Variables
+
+$nav_height: 70px;
+
+$character_side_margin: 150px;
+
+
+@mixin dark_overlay($opacity) {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - #{$nav_height});
+    background-color: rgba(0, 0, 0, $opacity);
+}
+
+@mixin menu_button {
+    width: 150px;
+    padding: 10px 0;
+    background: black;
+    color: white;
+    text-align: center;
+    border: 0;
+    transition: all 500ms;
+    &:hover {
+        color: orangered;
+    }
+}
+
+// Global
+
+* {
+    margin: 0;
+    padding: 0;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    button {
+        outline: 0;
+        border: 1px black solid;
+        background: none;
+        cursor: pointer;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .coloured {
+        color: orangered;
+    }
+}

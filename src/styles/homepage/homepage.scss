@@ -1,0 +1,46 @@
+
+@import "../style.scss";
+
+.home_page {
+
+    header {
+        position: relative;
+        height: calc(100vh - #{$nav_height});
+
+        .dark_overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            position: absolute;
+            top: 250px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-weight: normal;
+            color: white;
+            opacity: 1;
+            font-size: 48px;
+        }
+
+        .register_btn {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            padding: 7px 15px;
+            transform: translate(-50%, 0);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px white solid;
+            transition: all 500ms, border 1000ms;
+            &:hover {
+                color: orangered;
+                padding: 10px 20px;
+                letter-spacing: 2px;
+                border: 2px orangered solid;
+            }
+        }
+    }
+}
