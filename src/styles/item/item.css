@@ -1,0 +1,329 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+  border-spacing: 0 !important;
+}
+
+* a {
+  text-decoration: none;
+  color: white;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+* .stat_cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+* .stat_cont p:nth-child(2) {
+  margin-left: 10px;
+}
+
+* .loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: black;
+  color: white;
+}
+
+* .loading {
+  width: 100vw;
+  height: 100vh;
+}
+
+* .loading .circle-loading {
+  width: 100px;
+  height: 100px;
+  border: 4px rgba(255, 69, 0, 0.25) solid;
+  border-top: 4px orangered solid;
+  border-radius: 50%;
+  -webkit-animation: loading 500ms infinite linear;
+          animation: loading 500ms infinite linear;
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+  * .loading .circle-loading {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 767px) {
+  * .loading .circle-loading {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+.item_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  background: #999;
+  border: 1px black solid;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+@media (max-width: 767px) {
+  .item_container {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.item_container .item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  outline: 0;
+}
+
+@media (max-width: 767px) {
+  .item_container .item {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+.item_container .item img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 767px) {
+  .item_container .item img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.item_container .item .stats {
+  display: none;
+  min-width: 200px;
+  margin-bottom: -15px;
+  margin-left: 320px;
+  padding: 10px 15px;
+  background: black;
+  border: 1px white solid;
+  color: white;
+  z-index: 100;
+  text-align: left;
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .item_container .item .stats {
+    min-width: 150px;
+    margin-left: 210px;
+    font-size: 10px;
+    padding: 5px;
+  }
+}
+
+.item_container .item .stats .bonus_container, .item_container .item .stats .stat_container, .item_container .item .stats .name_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item_container .item .stats .bonus_container p, .item_container .item .stats .stat_container p, .item_container .item .stats .name_container p {
+  font-weight: normal !important;
+}
+
+.item_container .item .stats .stat_container p {
+  font-weight: bold !important;
+}
+
+.item_container .item .stats .bonuses .bonus_container {
+  margin-top: 1px;
+}
+
+.item_container .item .stats #name {
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: bold !important;
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  .item_container .item .stats #name {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+}
+
+.item_container .item .stats #name.legendary {
+  color: orangered;
+}
+
+.item_container .item .stats #name.epic {
+  color: purple;
+}
+
+.item_container .item .stats #name.rare {
+  color: blue;
+}
+
+.item_container .item .stats #name.uncommon {
+  color: green;
+}
+
+.item_container .item .stats #name.common {
+  color: #555;
+}
+
+.item_container .item .stats #stats_heading, .item_container .item .stats #bonuses_heading {
+  font-weight: bold !important;
+  font-size: 16px;
+}
+
+.item_container .item .stats #value {
+  margin-top: 5px;
+}
+
+.item_container .item .stats #value #value_heading {
+  font-weight: bold !important;
+}
+
+.item_container .item .stats.active {
+  display: inline-block;
+}
+
+.item_container .item.legendary {
+  background: orangered;
+}
+
+.item_container .item.epic {
+  background: purple;
+}
+
+.item_container .item.rare {
+  background: blue;
+}
+
+.item_container .item.uncommon {
+  background: green;
+}
+
+.item_container .item.common {
+  background: #555;
+}
+
+.item_container.active {
+  background: white !important;
+  border: 1px white solid;
+}
+
+.item_container.legendary {
+  background: orangered;
+}
+
+.item_container.epic {
+  background: purple;
+}
+
+.item_container.rare {
+  background: blue;
+}
+
+.item_container.uncommon {
+  background: green;
+}
+
+.item_container.common {
+  background: #555;
+}
+/*# sourceMappingURL=item.css.map */

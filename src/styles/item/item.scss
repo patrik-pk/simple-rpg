@@ -1,0 +1,151 @@
+
+@import "../style.scss";
+
+$item_bg: #999;
+$item_active_color: white;
+
+$common: #555;
+$uncommon: green;
+$rare: blue;
+$epic: purple;
+$legendary: orangered;
+
+.item_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: $item_bg;
+    border: 1px black solid;
+    transition: 500ms all;
+
+    @include mobile {
+        width: 26px;
+        height: 26px;
+    }
+    
+    
+    .item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        transition: all 500ms; 
+        outline: 0;
+
+        @include mobile {
+            width: 23px;
+            height: 23px;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+
+            @include mobile {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    
+        .stats {
+            display: none;
+            min-width: 200px;
+            margin-bottom: -15px;
+            margin-left: 320px;
+            padding: 10px 15px;
+            background: black;
+            border: 1px white solid;
+            color: white;
+            z-index: 100;
+            text-align: left;
+            font-size: 14px;
+            @include mobile {
+                min-width: 150px;
+                margin-left: 210px;
+                font-size: 10px;
+                padding: 5px;
+            }
+
+            .bonus_container, .stat_container, .name_container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+                p {
+                    font-weight: normal!important;
+                }
+            }
+
+            .stat_container {
+                p {
+                    font-weight: bold!important;
+                }
+            }
+
+            .bonuses {
+
+                .bonus_container {
+                    margin-top: 1px;
+                }
+            }
+
+            #name {
+                text-align: center;
+                margin-bottom: 8px;
+                font-weight: bold!important;
+                font-size: 16px;
+                @include mobile { 
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                }
+            }
+            #name.legendary { color: $legendary; }
+            #name.epic { color: $epic; }
+            #name.rare { color: $rare; }
+            #name.uncommon { color: $uncommon; }
+            #name.common { color: $common; }
+
+            #stats_heading, #bonuses_heading {
+                font-weight: bold!important;
+                font-size: 16px;
+            }
+
+            #value {
+                margin-top: 5px;
+
+                #value_heading {
+                    font-weight: bold!important;
+                }
+            }
+        }
+        .stats.active {
+            display: inline-block;
+        }
+    }
+    .item.legendary { background: $legendary; }
+    .item.epic { background: $epic; }
+    .item.rare { background: $rare; }
+    .item.uncommon { background: $uncommon; }
+    .item.common { background: $common; }
+}
+
+.item_container.active { 
+    background: $item_active_color!important; 
+    border: 1px $item_active_color solid; 
+}
+.item_container.legendary { background: $legendary; }
+.item_container.epic { background: $epic; }
+.item_container.rare { background: $rare; }
+.item_container.uncommon { background: $uncommon; }
+.item_container.common { background: $common; }

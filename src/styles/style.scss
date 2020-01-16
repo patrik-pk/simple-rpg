@@ -1,0 +1,135 @@
+
+// Variables
+
+$character_side_margin: 150px;
+
+
+@mixin dark_overlay($opacity) {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, $opacity);
+}
+
+@mixin menu_button {
+    width: 150px;
+    padding: 10px 0;
+    background: black;
+    color: white;
+    border: 1px white solid;
+    text-align: center;
+    transition: all 500ms;
+    &:hover {
+        background: black;
+        color: orangered;
+        border: 1px orangered solid;
+    }
+
+    @include mobile {
+        width: 80px;
+        padding: 4px 0;
+        font-size: 12px;
+    }
+
+    @include tablet {
+        width: 135px;
+        padding: 8px 0;
+    }
+}
+
+// Media Queries
+
+$mobile: 767px;
+$tablet: 1200px;
+
+@mixin mobile {
+    @media(max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$mobile}) and (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+// Global
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    border-spacing: 0!important;
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    button {
+        outline: 0;
+        border: 1px black solid;
+        background: none;
+        cursor: pointer;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .coloured {
+        color: orangered;
+    }
+
+    .stat_cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+        p:nth-child(2) {
+            margin-left: 10px;
+        }
+    }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        color: white;
+    }
+    
+    .loading{
+        width: 100vw;
+        height: 100vh;
+
+        .circle-loading {
+            width: 100px;
+            height: 100px;
+	        border: 4px rgba(orangered, 0.25) solid;
+	        border-top: 4px rgba(orangered, 1) solid;
+	        border-radius: 50%;
+            animation: loading 500ms infinite linear;
+
+            @include tablet {
+                width: 75px;
+                height: 75px;
+            }
+
+            @include mobile {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @keyframes loading {
+	        from { transform: rotate(0deg); }
+	        to { transform: rotate(359deg); }
+        }
+    }
+}

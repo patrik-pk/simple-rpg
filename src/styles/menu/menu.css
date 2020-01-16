@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+  border-spacing: 0 !important;
+}
+
+* a {
+  text-decoration: none;
+  color: white;
+}
+
+* li {
+  list-style: none;
+}
+
+* button {
+  outline: 0;
+  border: 1px black solid;
+  background: none;
+  cursor: pointer;
+}
+
+* .bold {
+  font-weight: bold;
+}
+
+* .coloured {
+  color: orangered;
+}
+
+* .stat_cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+* .stat_cont p:nth-child(2) {
+  margin-left: 10px;
+}
+
+* .loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: black;
+  color: white;
+}
+
+* .loading {
+  width: 100vw;
+  height: 100vh;
+}
+
+* .loading .circle-loading {
+  width: 100px;
+  height: 100px;
+  border: 4px rgba(255, 69, 0, 0.25) solid;
+  border-top: 4px orangered solid;
+  border-radius: 50%;
+  -webkit-animation: loading 500ms infinite linear;
+          animation: loading 500ms infinite linear;
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+  * .loading .circle-loading {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 767px) {
+  * .loading .circle-loading {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+.menu {
+  background: black !important;
+}
+
+.menu .home_btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 767px) {
+  .menu .home_btn {
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.menu .home_btn a img {
+  width: 100%;
+  height: 100%;
+}
+
+.menu .home_btn a img:hover {
+  content: url("../../resources/icons/home_colored.svg");
+}
+
+.menu .content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.menu .content .menu_btn {
+  width: 150px;
+  padding: 10px 0;
+  background: black;
+  color: white;
+  border: 1px white solid;
+  text-align: center;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+.menu .content .menu_btn:hover {
+  background: black;
+  color: orangered;
+  border: 1px orangered solid;
+}
+
+@media (max-width: 767px) {
+  .menu .content .menu_btn {
+    width: 80px;
+    padding: 4px 0;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+  .menu .content .menu_btn {
+    width: 135px;
+    padding: 8px 0;
+  }
+}
+
+.menu .content .start_btn, .menu .content .dungeon_btn {
+  margin-bottom: 10px;
+}
+
+.menu .content .start_btn {
+  background: white;
+  color: black;
+}
+
+.menu .content .start_btn:hover {
+  background: white;
+  color: black;
+  border: 1px white solid;
+}
+
+.menu .content .start_btn.active {
+  background: black;
+  color: white;
+}
+
+.menu .content .start_btn.active:hover {
+  color: orangered !important;
+  border: 1px orangered solid;
+}
+
+.menu .tip {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+  .menu .tip {
+    margin-right: 7px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+  .menu .tip {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=menu.css.map */

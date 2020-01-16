@@ -1,0 +1,79 @@
+
+@import "../style.scss";
+
+.menu {
+    background: black!important;
+
+    .home_btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 28px;
+        height: 28px;
+        @include mobile {
+            top: 10px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        a {
+            img {
+                width: 100%;
+                height: 100%;
+                &:hover {
+                    content: url("../../resources/icons/home_colored.svg");
+                }
+            }
+        }
+    }
+
+    .content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+
+        .menu_btn {
+            @include menu_button;
+        }
+
+        .start_btn, .dungeon_btn {
+            margin-bottom: 10px;
+        }
+
+        .start_btn { // inactive
+            background: white;
+            color: black;
+            &:hover {
+                background: white;
+                color: black;
+                border: 1px white solid;
+            }
+        }
+
+        .start_btn.active {
+            background: black;
+            color: white;
+            &:hover { 
+                color: orangered!important;
+                border: 1px orangered solid;
+            }
+        }
+    }
+    
+    .tip {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        margin-right: 15px;
+
+        @include mobile { 
+            margin-right: 7px;
+            font-size: 12px; 
+        }
+        @include tablet { font-size: 14px; }
+    }
+}
