@@ -3,5 +3,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Getting started
 * Clone this repo
 * `npm install` to install all required dependencies
-* `npm start to start the local server (this project uses create-react-app)
+* `npm start` to start the local server
 
