@@ -16,14 +16,14 @@ There are six different stats - HP, Armor, Melee damage, Ranged damage, Crit cha
 
 The are two types of currency - gold and diamonds. Gold is used for buying items and diamonds are used for rolling for better items.
 
-Items have 5 types of rarity - Common, Uncommon, Rare, Epic and Legendary. The player starts off with Common items.
+Items have 5 types of rarity - Common, Uncommon, Rare, Epic and Legendary. The Player starts off with Common items.
 
 ## Game system
-The whole game system is based around one varibale called "gameFlow". The gameFlow is tied up with level, meaning everytime the Player level's up, the gameFlow increases. Both items and enemies stats are multiplied by gameFlow. Bosses stats are calculated by their own level gameFlow.
+The whole game system is based around one variable called "gameFlow". The gameFlow is tied up with level, meaning everytime the Player level's up, the gameFlow increases. Both items and enemies stats are multiplied by gameFlow. Bosses stats are calculated by their own level gameFlow.
 
 Up to level 5, the gameFlow is lower than one. This is for enemies to be easier on the start, so that the Player can defeat them without good items. For items, the minimal gameFlow is set to 1, meaning Player rolls the same items until then.
 
-The Enemy HP (Classic enemy) is 6-7 times higher than Player base damage(base = Common item). Player's damage is then increased by weapon rarity and bonuses, each bonus point increasing his damage by 1% (after fully equipped the bonus value ranges between 100-150). Player can increase his damage also by critting and strength of attack. This way the Classic fights should last somewhere between 2-4 hits and boss fights 2 times longer than that
+The Enemy HP (Classic enemy) is 6-7 times higher than Player base damage(base = Common item). Player's damage is then increased by weapon rarity and bonuses, each bonus point increasing his damage by 1% (after fully equipped the bonus value usually ranges between 100-150). Player can increase his damage also by critting and strength of attack. This way the Classic fights should last somewhere between 2-4 hits and boss fights 2 times longer than that.
 
 Player HP is made up by two item's - Necklace and Earring. Along with weapons, these two items have to be replaced the most as the Player progresses.
 
