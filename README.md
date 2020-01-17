@@ -1,68 +1,34 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Getting started
+* Clone this repository
+* `npm install` to install all required dependencies
+* `npm start` to start the local server
 
-In the project directory, you can run:
+## Overview
+SimpleRPG is a single player RPG game made in React.js. Player can reach up to level 30. Total playtime is around 1 hour.
 
-### `npm start`
+You fight with 2 weapons - Melee and Ranged. Each weapon has 3 types of attack - light, medium and strong. Their difference is in the damage and hit chance. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can find 15 unique enemies in the game split into 5 species. There are 2 types of enemies - Classic and Boss. There are 25 bosses in the Dungeon (5 species x 5 bosses). Defeating the Boss grants you a legendary item. Bosses have one type of armor stronger that the other, so the Player has to choose right which weapon to use. The last two bosses are dragons. In order to defeat them Player has to optimize his equipment against dragons. It involves a lot of RNG too.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+There are six different stats - HP, Armor, Melee damage, Ranged damage, Crit chance and Block chance. And 5 types of bonuses increasing Player's damage against the given specie. Enemy can dodge the attack and Player can block it.
 
-### `npm test`
+The are two types of currency - gold and diamonds. Gold is used for buying items and diamonds are used for rolling for better items.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Items have 5 types of rarity - Common, Uncommon, Rare, Epic and Legendary. The Player starts off with Common items.
 
-### `npm run build`
+## Game system
+The whole game system is based around one variable called "gameFlow". The gameFlow is tied up with level, meaning everytime the Player level's up, the gameFlow increases. Both items and enemies stats are multiplied by gameFlow. Bosses stats are calculated by their own level gameFlow.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Up to level 5, the gameFlow is lower than one. This is for enemies to be easier on the start, so that the Player can defeat them without good items. For items, the minimal gameFlow is set to 1, meaning Player rolls the same items until then.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The Enemy HP (Classic enemy) is 6-7 times higher than Player base damage(base = Common item). Player's damage is then increased by weapon rarity and bonuses, each bonus point increasing his damage by 1% (after fully equipped the bonus value usually ranges between 100-150). Player can increase his damage also by critting and strength of attack. This way the Classic fights should last somewhere between 2-4 hits and boss fights 2 times longer than that.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Player HP is made up by two item's - Necklace and Earring. Along with weapons, these two items have to be replaced the most as the Player progresses.
 
-### `npm run eject`
+Crit chance is made up by Ring and Belt, block chance by Shield. These 3 items are not influenced by gameFlow, meaning they don't scale with level.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Armor is made up by five items - Helmet, Chestplate, Pants, Gloves and Boots. Armor decreases the damage the Player takes. Chestplates gives you the most armor and Gloves alongside with Boots give the least. Armor items dont't have to be replaced that frequently.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
