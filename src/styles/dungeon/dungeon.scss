@@ -10,6 +10,13 @@
         position: absolute;
         left: 10px;
         bottom: 10px;
+
+        @include mobile { 
+            margin-right: 7px;
+            font-size: 12px; 
+        }
+        
+        @include tablet { font-size: 14px; }
     }
     
     #page_name {

@@ -123,6 +123,19 @@
   bottom: 10px;
 }
 
+@media (max-width: 767px) {
+  .dungeon #tip {
+    margin-right: 7px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+  .dungeon #tip {
+    font-size: 14px;
+  }
+}
+
 .dungeon #page_name {
   padding-top: 20px;
   text-align: center;
