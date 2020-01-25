@@ -39,7 +39,7 @@ class HomePage extends React.Component {
                         <h4>
                             written in pure 
                             <span className="bold coloured"> React.js </span> 
-                            by  <a href="htttps://www.patrikpk.com" target="_blank" rel="noopener noreferrer">patrikpk.com</a>
+                            by  <a href="https://www.patrikpk.com" target="_blank" rel="noopener noreferrer">patrikpk.com</a>
                         </h4>
                     </div>
                 </section>
