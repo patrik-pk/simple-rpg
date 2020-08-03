@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Getting started
 * Clone this repository
 * `npm install` to install all required dependencies
-* react-router should be installed to, but in case it isn't use `npm install --save react-router-dom`
+* react-router should be installed too, but in case it isn't use `npm install --save react-router-dom`
 * `npm start` to start the local server
 
 ## Overview
