@@ -1,8 +1,10 @@
 
 import React from "react"
-import Stat from "./Stat"
-
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
+import Stat from "./Stat"
 
 class DungeonItem extends React.Component {
 
@@ -25,7 +27,7 @@ class DungeonItem extends React.Component {
     
             // boss's name color is set based on differe between Player level and Boss level
             const enemyStyle = () => {
-                const diff = this.props.boss.level - this.props.level.currentLevel
+                const diff = this.props.boss.level - this.props.currentLevel
                 if(diff >= 2) return { color: "red" }
                 if (diff < 2 && diff >= 1) return { color: "orange" }
                 if (diff < 1 && diff >= -1) return { color: "yellow" }
@@ -77,4 +79,12 @@ class DungeonItem extends React.Component {
     }
 }
 
-export default DungeonItem
+DungeonItem.propTypes = {
+    currentLevel: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+    currentLevel: state.character.currentLevel
+})
+
+export default connect(mapStateToProps)(DungeonItem)

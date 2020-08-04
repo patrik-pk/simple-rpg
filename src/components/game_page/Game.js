@@ -1,6 +1,7 @@
-
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import Enemy from "./Enemy"
 import Player from "./Player"
@@ -10,7 +11,7 @@ import "../../styles/gamepage/gamepage.css"
 import "../../styles/item/item.css"
 
 
-export default class Game extends React.Component {
+class Game extends React.Component {
 
     state = {
         isLoading: true
@@ -77,7 +78,7 @@ export default class Game extends React.Component {
                                         </div>
                                         <div>
                                             <p>Experience:</p>
-                                            <p>{this.props.level.acquiredXp}</p>
+                                            <p>{this.props.acquiredXp}</p>
                                         </div>
                                     </div>
                                     <div className="right">
@@ -107,3 +108,13 @@ export default class Game extends React.Component {
         }
     }
 }
+
+Game.propTypes = {
+    acquiredXp: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+    acquiredXp: state.character.acquiredXp
+})
+
+export default connect(mapStateToProps)(Game)

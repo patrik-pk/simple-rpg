@@ -1,6 +1,8 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
@@ -40,8 +42,8 @@ class Inventory extends React.Component {
             } else return ""
         }
 
-        const level = this.props.level.currentLevel
-        const levelProgress = (this.props.level.experience / this.props.levelTresholds[level].xp * 100).toFixed(2)
+        const level = this.props.currentLevel
+        const levelProgress = (this.props.experience / this.props.levelTresholds[level].xp * 100).toFixed(2)
     
         return(
             <div className="inventory">
@@ -131,4 +133,14 @@ class Inventory extends React.Component {
     }
 }
 
-export default Inventory
+Inventory.propTypes = {
+    currentLevel: PropTypes.number.isRequired,
+    experience: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+    currentLevel: state.character.currentLevel,
+    experience: state.character.experience
+})
+
+export default connect(mapStateToProps)(Inventory)

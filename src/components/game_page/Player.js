@@ -1,6 +1,9 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import Action from "./Action"
 import Stat from "../Stat"
 
@@ -36,11 +39,11 @@ class Player extends React.Component {
 
     render() {
 
-        const currentLevel = this.props.level.currentLevel
+        const currentLevel = this.props.currentLevel
 
         // HP and XP fill
         const hpPerc = (this.props.player.currentHp / this.props.player.maxHp) * 100
-        const xpPerc = (this.props.level.experience / levelTresholds[currentLevel].xp) * 100
+        const xpPerc = (this.props.experience / levelTresholds[currentLevel].xp) * 100
 
         const hpFillColor = "rgb(220, 0, 0)" 
         const xpFillColor = "rgb(0, 191, 255)" 
@@ -122,4 +125,14 @@ class Player extends React.Component {
     }
 }
 
-export default Player
+Player.propTypes = {
+    currentLevel: PropTypes.number.isRequired,
+    experience: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+    currentLevel: state.character.currentLevel,
+    experience: state.character.experience,
+})
+
+export default connect(mapStateToProps)(Player)

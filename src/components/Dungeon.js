@@ -1,6 +1,7 @@
-
 import React from "react"
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import DungeonItem from "./DungeonItem"
 
@@ -20,7 +21,7 @@ class Dungeon extends React.Component {
         return (
             <div className="dungeon">
                 <h2 id="page_name">Dungeon</h2>
-                <p id="current_level">Your level: {this.props.level.currentLevel}</p>
+                <p id="current_level">Your level: {this.props.currentLevel}</p>
                 <div className="dungeon_container">
                     <DungeonItem boss={currentBeast} dungeon={"Beast"} count={this.props.bosses.beasts} {...this.props} startGame={this.props.startGame}/>
                     <DungeonItem boss={currentDragon} dungeon={"Dragon"} count={this.props.bosses.dragons} {...this.props} startGame={this.props.startGame}/>
@@ -37,4 +38,12 @@ class Dungeon extends React.Component {
     }
 }
 
-export default Dungeon
+Dungeon.propTypes = {
+    currentLevel: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+    currentLevel: state.character.currentLevel
+})
+
+export default connect(mapStateToProps)(Dungeon)
