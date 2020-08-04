@@ -1,5 +1,7 @@
 
-import React from 'react';
+import React from 'react'
+import { Provider } from 'react-redux'
+import store from './store'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import "./styles/style.css"
@@ -117,52 +119,54 @@ export default class App extends React.Component {
   // RENDER
   render() {
     return (
-      <div className="App">
-        <Router>
-          {/* Home */}
-          <Route exact path="/" component={HomePage} />
-          {/* Game */}
-          <Route path="/game"
-            render={(props) =>
-              <Game
-                {...this.state}
-                startGame={this.startGame}
-                gameManager={this.gameManager}
-                itemHandleClick={this.itemHandleClick}
-              />
-            }
-          />
-          {/* Menu */}
-          <Route path="/menu"
-            render={(props) =>
-              <Container sectionClass="menu_page" page={<Menu {...this.state} startGame={this.startGame} />} />
-            }
-          />
-          {/* Dungeon */}
-          <Route path="/dungeon"
-            render={(props) =>
-              <Container sectionClass="dungeon_page" page={<Dungeon {...this.state} startGame={this.startGame} />} />
-            }
-          />
-          {/* Inventory */}
-          <Route path="/inventory"
-            render={(props) =>
-              <Container sectionClass="inventory_page" page={
-                <Inventory 
+      <Provider store={store} >
+        <div className="App">
+          <Router>
+            {/* Home */}
+            <Route exact path="/" component={HomePage} />
+            {/* Game */}
+            <Route path="/game"
+              render={(props) =>
+                <Game
                   {...this.state}
+                  startGame={this.startGame}
+                  gameManager={this.gameManager}
                   itemHandleClick={this.itemHandleClick}
-                  equipItem={this.equipItem}
-                  sellItem={this.sellItem}
-                  reroll={this.reroll}
-                  buyItem={this.buyItem}
-                  inventoryOnUnmount={this.inventoryOnUnmount}
                 />
-              } 
-              />
-            }
-          />
-        </Router>
-      </div>
+              }
+            />
+            {/* Menu */}
+            <Route path="/menu"
+              render={(props) =>
+                <Container sectionClass="menu_page" page={<Menu {...this.state} startGame={this.startGame} />} />
+              }
+            />
+            {/* Dungeon */}
+            <Route path="/dungeon"
+              render={(props) =>
+                <Container sectionClass="dungeon_page" page={<Dungeon {...this.state} startGame={this.startGame} />} />
+              }
+            />
+            {/* Inventory */}
+            <Route path="/inventory"
+              render={(props) =>
+                <Container sectionClass="inventory_page" page={
+                  <Inventory 
+                    {...this.state}
+                    itemHandleClick={this.itemHandleClick}
+                    equipItem={this.equipItem}
+                    sellItem={this.sellItem}
+                    reroll={this.reroll}
+                    buyItem={this.buyItem}
+                    inventoryOnUnmount={this.inventoryOnUnmount}
+                  />
+                } 
+                />
+              }
+            />
+          </Router>
+        </div>
+      </Provider>
     )
   }
 }
