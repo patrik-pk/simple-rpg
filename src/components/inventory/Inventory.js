@@ -36,7 +36,6 @@ class Inventory extends React.Component {
 
             return mapped
         }
-        mappedRows()
     
         const selectedInvItems = this.props.invItems.filter(item => item.isSelected)
         const selectedShopItems = this.props.shopItems.filter(item => item.isSelected)

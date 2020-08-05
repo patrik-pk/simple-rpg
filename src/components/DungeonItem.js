@@ -41,7 +41,7 @@ class DungeonItem extends React.Component {
                         <div className="dark_overl"></div>
                     </div>
                     <div className="name" onMouseEnter={() => this.handleHover("Enter")} onMouseLeave={() => this.handleHover("Leave")} >
-                        <p id="dungeon">{this.props.dungeon} ({this.props.count + 1}/5)</p>
+                        <p id="dungeon">{this.props.dungeonName} ({this.props.count + 1}/5)</p>
                         <p id="enemy" style={enemyStyle()}>{this.props.boss.currentEnemy.name} ({this.props.boss.level})</p>
                     </div>
                     <div className={"stats " + activeClass} >
@@ -70,7 +70,7 @@ class DungeonItem extends React.Component {
                 <div className="dungeon_item finished" style={finished_style}>
                     <div className="dark-overlay"></div>
                     <div className="text">
-                        <p id="dungeon">{this.props.dungeon}</p>
+                        <p id="dungeon">{this.props.dungeonName}</p>
                         <p>Finished</p>
                     </div>
                 </div>
