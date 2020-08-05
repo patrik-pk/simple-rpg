@@ -1,29 +1,27 @@
-
 import React from "react"
-
 import ItemComponent from "./ItemComponent"
 
-class InventoryRow extends React.Component {
-
-    getItem = index => {
-        if(this.props.items[index]) {
-            return this.props.items[index]
+export default function InventoryRow(props) {
+ 
+    // Custom map function to map items from props
+    const mapItems = () => {
+        const mapped = []
+        // Loop 6 times
+        for(let i = 0; i < 6; i++) {
+            // If the item[i] exists, add <ItemComponent/> with data of item[i] to array
+            if (props.items[i]) {
+                mapped.push(<ItemComponent key={props.items[i].key} data={props.items[i]} {...props} handleClick={props.itemHandleClick} />)
+            }
+            // else add <ItemComponent/> with null data to array - empty item
+            else mapped.push(<ItemComponent key={i} data={null} />)
         }
-        return null
+
+        return mapped
     }
 
-    render() {
-        return (
-            <ul>
-                <ItemComponent data={this.getItem(0)} {...this.props} handleClick={this.props.itemHandleClick}/>
-                <ItemComponent data={this.getItem(1)} {...this.props} handleClick={this.props.itemHandleClick}/>
-                <ItemComponent data={this.getItem(2)} {...this.props} handleClick={this.props.itemHandleClick}/>
-                <ItemComponent data={this.getItem(3)} {...this.props} handleClick={this.props.itemHandleClick}/>
-                <ItemComponent data={this.getItem(4)} {...this.props} handleClick={this.props.itemHandleClick}/>
-                <ItemComponent data={this.getItem(5)} {...this.props} handleClick={this.props.itemHandleClick}/>
-            </ul>
-        )
-    }
+    return (
+        <ul>
+        { mapItems() }
+        </ul>
+    )
 }
-
-export default InventoryRow
