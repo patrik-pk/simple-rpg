@@ -2,13 +2,13 @@ import {
 
 } from '../actions/types'
 
-const initialState = {
-    beasts: 0,
-    dragons: 0,
-    insect: 0,
-    monsters: 0,
-    reptiles: 0,
-}
+const initialState = [
+    { type: 'beasts', current: 0 },
+    { type: 'dragons', current: 0 },
+    { type: 'insect', current: 0 },
+    { type: 'monsters', current: 0 },
+    { type: 'reptiles', current: 0 },
+]
 
 export default (state = initialState, action) => {
     switch(action.type) {
