@@ -1,18 +1,15 @@
-
 import generateEnemy from "./generateEnemy"
-
 
 export default function startGame(gameType, props, boss) {
 
-    const generatedEnemyFc = () => {
+    const generatedEnemy = (() => {
         if(gameType === "Classic") return generateEnemy(gameType, props.level.currentLevel)
         if(gameType === "Boss") { 
             let genEnemy = JSON.parse(JSON.stringify(boss)) // getting copy of the object to prevent bug that changes environmentSrc in possibleEnemies.js 
             genEnemy.currentEnemy.environmentSrc = require("../../resources/environment/dungeon.jpg")
             return genEnemy
         }
-    }
-    const generatedEnemy = generatedEnemyFc()
+    })()
 
     return {
         player: { // reset player
