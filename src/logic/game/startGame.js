@@ -19,7 +19,6 @@ export default function startGame(gameType, props, boss) {
         },
         enemy: generatedEnemy,
         environmentSrc: generatedEnemy.currentEnemy.environmentSrc, // set environment img based on generated enemy
-        gameText: "", // reset end game text
         battleStatus: "inBattle",
         canAttack: true,
         currency: {

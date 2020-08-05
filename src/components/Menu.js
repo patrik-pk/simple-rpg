@@ -26,17 +26,26 @@ class Menu extends React.Component {
     }
 
     render() {
-        const haveSpaceInv = () => {
-            if(this.props.invItems.length <= 35) return true
-            else if(this.props.invItems.length > 35) return false
-        }
+        
+        const haveSpaceInv = this.props.invItems.length <= 35 ? true : false
+        const startActiveStyle = haveSpaceInv ? " active" : ""
 
-        const canStartGame = () => {
-            if(haveSpaceInv()) return true
-            else return false
-        }
+        // Implementing Redux
+        const reduxStartGame = () => {
 
-        const startActiveStyle = canStartGame() ? " active" : ""
+            // Reset Player - damage taken, hp
+
+            // Generate Enemy - update state
+
+            // Generate Environment Image
+
+            // Set Battle Status - inBattle
+
+            // canAttack true
+
+            // Acquired gold a diamonds null
+
+        }
         
         return (
             <div className="menu">
@@ -48,7 +57,7 @@ class Menu extends React.Component {
 
                 <div className="content">
                     <Link 
-                    to={canStartGame() ? "/game" : "/menu"} 
+                    to={haveSpaceInv ? "/game" : "/menu"} 
                     className={"menu_btn start_btn" + startActiveStyle} 
                     onClick={() => { this.props.startGame("Classic", this.props) }}
                     >
