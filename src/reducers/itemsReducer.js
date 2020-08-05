@@ -1,3 +1,5 @@
+import icons from '../data/icons'
+import emptyBonuses from '../data/emptyBonuses'
 import {
 
 } from '../actions/types'
