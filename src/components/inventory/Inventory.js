@@ -25,6 +25,18 @@ class Inventory extends React.Component {
             if(type === "equipped") return equippedItems.slice(min, max) 
             else if (type === "inventory") return invItems.slice(min, max)
         }
+
+        // Custom map for creating 6 InventoryRow components
+        const mappedRows = () => {
+            const mapped = []
+
+            for(let i = 0; i < 6; i++) {
+                mapped.push(<InventoryRow key={i} items={getItems("inventory", i * 6, (i * 6) + 6)} itemHandleClick={this.props.itemHandleClick} {...this.props} />)
+            }
+
+            return mapped
+        }
+        mappedRows()
     
         const selectedInvItems = this.props.invItems.filter(item => item.isSelected)
         const selectedShopItems = this.props.shopItems.filter(item => item.isSelected)
@@ -80,12 +92,7 @@ class Inventory extends React.Component {
                         <div className="items_container">
                             <div className="wrapper">
                                 <div className="items">
-                                    <InventoryRow items={getItems("inventory", 0, 6)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
-                                    <InventoryRow items={getItems("inventory", 6, 12)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
-                                    <InventoryRow items={getItems("inventory", 12, 18)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
-                                    <InventoryRow items={getItems("inventory", 18, 24)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
-                                    <InventoryRow items={getItems("inventory", 24, 30)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
-                                    <InventoryRow items={getItems("inventory", 30, 36)} itemHandleClick={this.props.itemHandleClick} {...this.props}/>
+                                    { mappedRows() }
                                 </div>
                             </div>
                             <div className="options">
