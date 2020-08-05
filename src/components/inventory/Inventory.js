@@ -8,6 +8,7 @@ import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
 
+import levelTresholds from '../../data/levelTresholds'
 import "../../styles/inventory/inventory.css"
 
 class Inventory extends React.Component {
@@ -54,7 +55,7 @@ class Inventory extends React.Component {
         }
 
         const level = this.props.currentLevel
-        const levelProgress = (this.props.experience / this.props.levelTresholds[level].xp * 100).toFixed(2)
+        const levelProgress = (this.props.experience / levelTresholds[level].xp * 100).toFixed(2)
     
         return(
             <div className="inventory">

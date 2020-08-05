@@ -15,7 +15,7 @@ import Inventory from "./components/inventory/Inventory"
 import Game from "./components/game_page/Game"
 
 // data
-import mainData from "./data/_mainData"
+import md from "./data/_mainData"
 import levelTresholds from "./data/levelTresholds"
 import playerTemplate from "./data/playerTemplate"
 import enemyTemplate from "./data/enemyTemplate"
@@ -51,19 +51,17 @@ export default class App extends React.Component {
         monsters: 0,
         reptiles: 0
       },
-      timer: mainData.global.gameTimer,
-      levelTresholds: levelTresholds,
-      equippedItems: mainData.equippedItems,
-      invItems: mainData.invItems,
-      shopItems: mainData.shopItems,
+      equippedItems: md.equippedItems,
+      invItems: md.invItems,
+      shopItems: md.shopItems,
       player: playerTemplate,
       enemy: enemyTemplate,
       battleStatus: "",
       canAttack: true,
       environmentSrc: "",
       currency: {
-        gold: mainData.startingCurrency.gold,
-        diamonds: mainData.startingCurrency.diamonds,
+        gold: md.startingCurrency.gold,
+        diamonds: md.startingCurrency.diamonds,
         acquiredGold: null,
         acquiredDiamonds: null
       },
@@ -84,22 +82,22 @@ export default class App extends React.Component {
     // player attacks enemy
     this.playerAttackEnemy(typeOfAttack, strengthOfAttack)
     // then enemy attacks player after x seconds
-    setTimeout(() => { this.enemyAttackPlayer() }, this.state.timer)
+    setTimeout(() => { this.enemyAttackPlayer() }, md.global.gameTimer)
     // then repeat all over again after x*2 seconds - if both are still alive
-    setTimeout(() => { this.playerCanAttackAgain() }, this.state.timer * 2)
+    setTimeout(() => { this.playerCanAttackAgain() }, md.global.gameTimer * 2)
   }
 
   // typeOfAttack = melee/ranged, strengthOfAttack = light/medium/strong
   playerAttackEnemy = (typeOfAttack, strengthOfAttack) => {
     this.setState(attackEnemy(this.state, typeOfAttack, strengthOfAttack))
-    setTimeout(() => { this.setState(resetDamageTaken(this._isMounted, this.state.enemy, "Enemy")) }, this.state.timer * 2)
+    setTimeout(() => { this.setState(resetDamageTaken(this._isMounted, this.state.enemy, "Enemy")) }, md.global.gameTimer * 2)
   }
 
   enemyAttackPlayer = () => {
     // if Player didn't defeat the Enemy with his previous attack => Enemy attacks
     if (this.state.battleStatus === "inBattle") {
       this.setState(attackPlayer(this.state))
-      setTimeout(() => { this.setState(resetDamageTaken(this._isMounted, this.state.player, "Player")) }, this.state.timer * 2)      
+      setTimeout(() => { this.setState(resetDamageTaken(this._isMounted, this.state.player, "Player")) }, md.global.gameTimer * 2)      
     }
   }
 
