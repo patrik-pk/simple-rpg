@@ -1,118 +1,107 @@
-
 import randomGenerator from "../randomGenerator"
 import gameHandler from "../game/gameHandler"
+import md from "../../data/_mainData"
 
-import mainData from "../../data/_mainData"
+export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack) {
 
-export default function attackEnemy(props, typeOfAttack, strengthOfAttack) {
-
-    // set damage based on typeOfAttack (melee or ranged)
-    const typeOfAtt = () => {
-      switch (typeOfAttack) {
-        case "melee": return { 
-          dmg: props.player.meleeDamage, 
-          dodge: props.enemy.meleeDodgeChance, 
-          armor: props.enemy.meleeArmor 
-        };
-        case "ranged": return { 
-          dmg: props.player.rangedDamage, 
-          dodge: props.enemy.rangedDodgeChance, 
-          armor: props.enemy.rangedArmor 
-        };
-        default: break;
+  // Based on typeOfAttack (melee / ranged) return weapon dmg, enemy dodge and enemy armor
+  const typeOfAtt = (() => {
+    switch (typeOfAttack) {
+      case "melee": return { 
+        dmg: player.meleeDamage, 
+        dodge: enemy.meleeDodgeChance, 
+        armor: enemy.meleeArmor 
       }
-    }
-
-    // set multiplier based on strengthOfAttack
-    const typeMultiplier = () => {
-      let dmg
-      switch (strengthOfAttack) {
-        case "light": dmg = mainData.playerBase.attackTypes.damage.light; return {
-          dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-          hitChance: mainData.playerBase.attackTypes.hitChance.light
-        }
-        case "medium": dmg = mainData.playerBase.attackTypes.damage.medium; return {
-          dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-          hitChance: mainData.playerBase.attackTypes.hitChance.medium
-        }
-        case "strong": dmg = mainData.playerBase.attackTypes.damage.strong; return {
-          dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-          hitChance: mainData.playerBase.attackTypes.hitChance.strong
-        }
-        default: break;
+      case "ranged": return { 
+        dmg: player.rangedDamage, 
+        dodge: enemy.rangedDodgeChance, 
+        armor: enemy.rangedArmor 
       }
+      default: break;
     }
+  })()
 
-    // bonus multiplier
-    const bonusMultiplier = () => {
-      const specie = props.enemy.currentEnemy.specie
-      const playerBonuses = props.player.bonuses
-      let bonusValue = 1
-
-      playerBonuses.forEach(bonus => {
-        if(bonus.name === specie) {
-          bonusValue = 1 + bonus.value * 0.01
-        }
-      })
-      return bonusValue
+  // Based on strengthOfAttack (light / medium / ranged) return dmg and hitChance
+  const strengthOfAtt = (() => {
+    let dmg
+    switch (strengthOfAttack) {
+      case "light": dmg = md.playerBase.attackTypes.damage.light; return {
+        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
+        hitChance: md.playerBase.attackTypes.hitChance.light
+      }
+      case "medium": dmg = md.playerBase.attackTypes.damage.medium; return {
+        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
+        hitChance: md.playerBase.attackTypes.hitChance.medium
+      }
+      case "strong": dmg = md.playerBase.attackTypes.damage.strong; return {
+        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
+        hitChance: md.playerBase.attackTypes.hitChance.strong
+      }
+      default: break;
     }
+  })()
 
-    // crit
-    const critFc = () => {
-      const critMultiplier = mainData.playerBase.critMult
-      const critChance = props.player.critChance
-      const random = randomGenerator(0, 100, 1)
+  // Calculate Enemy dodge based on his dodgeChance, return true or false
+  const dodged = (() => {
+    // Enemy dodge chance
+    let dodgeChance = typeOfAtt.dodge
+    // Mulitply dodgeChance by strengthOfAtt hitChance, which is value to make it easier to
+    // hit for light attack and harder for strong attack, you can check the values in mainData
+    // e.g  50% dodge chance * 0.2 light attack hit Chance => 10% real chance for enemy to dodge
+    // e.g  50% dodge chance * 1.8 strong attack hit Chance => 90% real chance for enemy to dodge
+    dodgeChance = (dodgeChance * strengthOfAtt.hitChance).toFixed(2)
 
-      if(critChance > random) return critMultiplier
-      else return 1
-    }
+    // Finally return true / false based on comparing to random value
+    const random = randomGenerator(0, 100, 1)
+    return dodgeChance > random ? true : false
+  })()
 
-    const dmg = typeOfAtt().dmg
-    const typeDmgMult = typeMultiplier().dmg
-    const typeHitChanceMult = typeMultiplier().hitChance
-    const bonusMult = bonusMultiplier()
-    const crit = critFc()
+  // If enemy dodged, return 'dodged' and don't continue
+  if(dodged) return 'dodged'
 
-    const enemyArmor = typeOfAtt().armor
+  // Specie bonus multiplier
+  const bonusMultiplier = (() => {
+    const specie = enemy.currentEnemy.specie
+    const playerBonuses = player.bonuses
+    let bonusValue = 1
 
-    // calculate damage and round to a whole number
-    const minDmg = mainData.global.minDmg
-    const md = mainData.global.minDmgDisp // min dmg dispersion
+    playerBonuses.forEach(bonus => {
+      if(bonus.name === specie) {
+        bonusValue = 1 + bonus.value * 0.01
+      }
+    })
+    return bonusValue
+  })()
 
-    let damageDealtToEnemy = (dmg * typeDmgMult * bonusMult) - enemyArmor
-    // if damage dealt is less than minDmg => set damage dealt to random * minDmg
-    damageDealtToEnemy = damageDealtToEnemy < minDmg ? minDmg * randomGenerator(md.min, md.max, md.perc) : damageDealtToEnemy
-    damageDealtToEnemy *= typeDmgMult // multiply by type of attack mult
-    damageDealtToEnemy *= crit // then apply crit
-    damageDealtToEnemy = Math.round(damageDealtToEnemy) // and round to a whole number
+  // Crit - calculate crit based on critChance and return object with multiplier value & didCrit boolean
+  const crit = (() => {
+    const critMultiplier = md.playerBase.critMult
+    const critChance = player.critChance
+    const random = randomGenerator(0, 100, 1)
 
-    const didDodge = () => {
-      let dodgeChance = typeOfAtt().dodge
-      dodgeChance = (dodgeChance * typeHitChanceMult).toFixed(2)
-      const random = randomGenerator(0, 100, 1)
+    if(critChance > random) return { didCrit: true, value: critMultiplier }
+    else return { didCrit: false, value: 1 }
+  })()
 
-      if (dodgeChance > random) return true
-      else return false
-    }
+  // Calculate Damage Dealt
+  const damageDealt = (() => {
+    const minDmg = md.global.minDmg // min DMG base that characters does when armor is too high
+    const min_dmg_disp = md.global.minDmgDisp // min dmg dispersion - to randomize the dmg, when armor si too high
 
-    const dodged = didDodge()
+    // Damage Dealt = (TypeOfAttack DMG (coming from weapon Melee / Ranged) 
+    // * StrengthOfAttack Multiplier (light/medium/strong) 
+    // * Specie Bonus Multiplier) - Enemy Armor
+    let dmgDealt = (typeOfAtt.dmg * strengthOfAtt.dmg * bonusMultiplier) - typeOfAtt.armor
+    // apply crit to dmgDealt substracted by Enemy Armor
+    dmgDealt *= crit.value
+    // if dmgDealt is less than minDmg, set damage dealt to random * minDmg, or let it be as it is
+    dmgDealt = dmgDealt < minDmg ? minDmg * randomGenerator(min_dmg_disp.min, min_dmg_disp.max, min_dmg_disp.perc) : dmgDealt
+    // finally round dmgDealt to a whole number
+    dmgDealt = Math.round(dmgDealt)
+    // and return it
+    return dmgDealt
+  })()
 
-    const receivedCrit = () => {
-      if (crit !== 1 && dodged === false) {
-        return true
-      } 
-      else return false
-    }
-
-    const didReceiveCrit = receivedCrit()
-
-    const currentHp = props.enemy.currentHp
-    const newHp = dodged ? currentHp : currentHp - damageDealtToEnemy
-    const damageTaken = dodged ? "Dodged" : damageDealtToEnemy
-
-    const realDmgDealt = dodged ? 0 : damageDealtToEnemy
-
-    // Handle - if HP is 0 or less => end game, if not => continue
-    if(props.enemy.currentHp - realDmgDealt <= 0) return gameHandler(props, "Player", "End", newHp, damageTaken, didReceiveCrit) 
-    else return gameHandler(props, "Player", "Continue", newHp, damageTaken, didReceiveCrit)
+  // Finally return damageDealt
+  return damageDealt
 }
