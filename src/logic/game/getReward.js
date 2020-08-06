@@ -1,107 +1,116 @@
-
-import mainData from "../../data/_mainData"
+import md from "../../data/_mainData"
 import levelTresholds from "../../data/levelTresholds"
-
 import randomGenerator from "../randomGenerator"
 
+export default function getReward(enemy, character, currency, status, enemyType) {
 
-export default function getReward(props, status, enemyType) {
-
-    // GOLD & DIAMONDS
-    const acquiredMultiplier = (status) => {
+    // WIN / LOSE MULTIPLIER
+    const statusMultiplier = ((status) => {
         if(enemyType === "Boss") {
-            if (status === "Victory") return mainData.rewardBase.boss.winMult
-            if (status === "Defeat") return mainData.rewardBase.boss.loseMult
+            if (status === "Victory") return md.rewardBase.boss.winMult
+            if (status === "Defeat") return md.rewardBase.boss.loseMult
         }
         if(enemyType === "Classic") {
-            if (status === "Victory") return mainData.rewardBase.status.winMult
-            if (status === "Defeat") return mainData.rewardBase.status.loseMult
+            if (status === "Victory") return md.rewardBase.status.winMult
+            if (status === "Defeat") return md.rewardBase.status.loseMult
         }
-    }
+    })(status)
 
-    const difficultyMultiplier = () => {
-        if (enemyType === "Boss") return mainData.rewardBase.difficulty.hard
+    // ENEMY DIFFICULTY MULTIPLIER
+    const difficultyMultiplier = (() => {
+        if (enemyType === "Boss") return md.rewardBase.difficulty.hard
         else {
-            switch(props.enemy.difficulty) {
-                case 1: return mainData.rewardBase.difficulty.easy; 
-                case 2: return mainData.rewardBase.difficulty.medium;
-                case 3: return mainData.rewardBase.difficulty.hard;
+            switch(enemy.difficulty) {
+                case 1: return md.rewardBase.difficulty.easy; 
+                case 2: return md.rewardBase.difficulty.medium;
+                case 3: return md.rewardBase.difficulty.hard;
                 default: break;
             }
         }
-    }
+    })()
 
-    // Global
-    const statusMult = acquiredMultiplier(status)
-    const difficultyMult = difficultyMultiplier()
-
+    // GameFlow
+    const gameFlow = character.gameFlow < 1 ? 1 : character.gameFlow
+    
     // Gold
-    const baseGold = mainData.rewardBase.gold
-    const gameFlow = props.level.gameFlow < 1 ? 1 : props.level.gameFlow
+    const baseGold = md.rewardBase.gold
 
-    const rgm = mainData.rewardBase.goldMult
+    // Random Gold Multiplier
+    const rgm = md.rewardBase.goldMult
     const randomGoldMult = randomGenerator(rgm.min, rgm.max, rgm.perc)
 
     // Diamonds
-    const baseDiamonds = mainData.rewardBase.diamonds
+    const baseDiamonds = md.rewardBase.diamonds
 
-    const rdm = mainData.rewardBase.diamondsMult
+    // Random Diamonds Multiplier
+    const rdm = md.rewardBase.diamondsMult
     const randomDiamondsMult = randomGenerator(rdm.min, rdm.max, rdm.perc)
 
     // Calculations
-    const acquiredGold = Math.round(baseGold * gameFlow * randomGoldMult * statusMult * difficultyMult)
-    const acquiredDiamonds = Math.round(baseDiamonds * randomDiamondsMult * statusMult * difficultyMult)
-    const gold = props.currency.gold + acquiredGold
-    const diamonds = props.currency.diamonds + acquiredDiamonds
+    const acquiredGold = Math.round(baseGold * gameFlow * randomGoldMult * statusMultiplier * difficultyMultiplier)
+    const acquiredDiamonds = Math.round(baseDiamonds * randomDiamondsMult * statusMultiplier * difficultyMultiplier)
+    const gold = currency.gold + acquiredGold
+    const diamonds = currency.diamonds + acquiredDiamonds
 
 
     // EXPERIENCE
 
-    const currentXp = props.level.experience
-    const currentLevel = props.level.currentLevel
+    const currentXp = character.experience
+    const currentLevel = character.currentLevel
     const nextLevelXp = levelTresholds[currentLevel].xp
 
     const fightsNeededToLvl = levelTresholds[currentLevel].fightsNeededToLevel
 
-    const xpDisp = mainData.global.xpDispersion
-    const gainedXpFc = () => {
+    const xpDisp = md.global.xpDispersion
+
+    // Gained XP
+    const gainedXp = (() => {
         if (enemyType === "Classic") {
             return Math.round((nextLevelXp / fightsNeededToLvl) * randomGenerator(xpDisp.min, xpDisp.max, xpDisp.perc))
         }
         if (enemyType === "Boss") {
             if(status === "Victory") {
-                return Math.round((nextLevelXp / 100 * mainData.enemyBase.boss.xp) * randomGenerator(xpDisp.min, xpDisp.max, xpDisp.perc))
+                return Math.round((nextLevelXp / 100 * md.enemyBase.boss.xp) * randomGenerator(xpDisp.min, xpDisp.max, xpDisp.perc))
             }
             if(status === "Defeat") return 0
         }
-    }
-    const gainedXp = gainedXpFc()
+    })()
 
-    const newExp = () => {
+    // New XP = currentXp + gainedXp
+    const newExp = (() => {
         if (status === "Victory") return currentXp + gainedXp
-        if (status === "Defeat") return Math.round(currentXp + (gainedXp * mainData.global.loseMult))
-    }
+        if (status === "Defeat") return Math.round(currentXp + (gainedXp * md.global.loseMult))
+    })()
 
-    const setXp = (newXp) => {
-        if (newXp >= nextLevelXp) {
-            let currXp = newXp
+    // Set Xp
+    const setXp = ((newExp) => {
+        // If Player overleveled
+        if (newExp >= nextLevelXp) {
+            let currXp = newExp
             let currLevel = currentLevel
             let nextXp = levelTresholds[currLevel].xp
             while (currXp > nextXp) {
-                // If currLevel is max level => set currXp to nextXp and keep level the same
+                // If currLevel is not maxLevel
                 if (currLevel !== levelTresholds[levelTresholds.length - 1].level) {
-                    currXp -= nextXp
+                    // Increase level by 1
                     currLevel += 1
+                    // Substract next level XP from current XP
+                    currXp -= nextXp
+                    // Set next level XP to the next level (current level)
                     nextXp = levelTresholds[currLevel].xp
-                } else {
+                } 
+                // If currLevel is max level => set currXp to nextXp and keep level the same
+                else {
                     currXp = nextXp
                 }
             }
             return { xp: currXp, level: currLevel }
-        } else {
-            return { xp: newXp, level: currentLevel }
+        } 
+        // Else return newExp and currentLevel
+        else {
+            return { xp: newExp, level: currentLevel }
         }
-    }
+    })(newExp)
 
     // FINAL RETURN
     return {
@@ -112,9 +121,9 @@ export default function getReward(props, status, enemyType) {
             diamonds
         },
         level: {
-            experience: setXp(newExp()).xp,
-            currentLevel: setXp(newExp()).level,
-            gameFlow: levelTresholds[setXp(newExp()).level].gameFlow,
+            experience: setXp.xp,
+            currentLevel: setXp.level,
+            gameFlow: levelTresholds[setXp.level].gameFlow,
             acquiredXp: gainedXp
         }
     }

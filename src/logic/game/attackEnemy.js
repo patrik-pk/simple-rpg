@@ -57,7 +57,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
   })()
 
   // If enemy dodged, return 'dodged' and don't continue
-  if(dodged) return 'dodged'
+  if(dodged) return { dmgDealt: 'dodged', didCrit: null }
 
   // Specie bonus multiplier
   const bonusMultiplier = (() => {
@@ -102,6 +102,9 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
     return dmgDealt
   })()
 
-  // Finally return damageDealt
-  return damageDealt
+  // Final return
+  return {
+    dmgDealt: damageDealt,
+    didCrit: crit.didCrit
+  }
 }

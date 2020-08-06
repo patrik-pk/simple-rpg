@@ -14,7 +14,9 @@ import "../../styles/item/item.css"
 
 function Game(props) {
     const { reduxEnemy, endGame } = props 
-    const { acquiredXp, acquiredGold, acquiredDiamonds, battleStatus, generatedItem } = props.gameStatus
+    const { battleStatus, generatedItem } = props.gameStatus
+    const { acquiredXp } = props.character
+    const { acquiredGold, acquiredDiamonds } = props.currency
 
     const bg_style = {
         backgroundImage: "url(" + reduxEnemy.currentEnemy.environmentSrc + ")",
@@ -43,7 +45,7 @@ function Game(props) {
                 <div className="game_over" style={{ display: battleStatus === "inBattle" ? "none" : "block" }}>
                     <div className="cont">
                         <div className="end_text">
-                            <p>{props.battleStatus === 'Victory' ? winText : loseText}</p>
+                            <p>{battleStatus === 'Victory' ? winText : loseText}</p>
                         </div>
                         <div className="reward">
                             <div className="left">
@@ -82,11 +84,15 @@ function Game(props) {
 
 Game.propTypes = {
     gameStatus: PropTypes.object.isRequired,
+    currency: PropTypes.object.isRequired,
+    character: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
     reduxEnemy: state.enemy,
-    gameStatus: state.game    
+    gameStatus: state.game,
+    currency: state.currency,
+    character: state.character    
 })
 
 export default connect(mapStateToProps, { endGame })(Game)

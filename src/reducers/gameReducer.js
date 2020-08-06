@@ -1,32 +1,44 @@
 import {
-    START_GAME, END_GAME
+    START_GAME, 
+    END_GAME,
+    SET_CAN_ATTACK,
+    GAME_WON
 } from '../actions/types'
 
 const initialState = {
     battleStatus: '',
     canAttack: true,
-    acquiredXp: 0,
-    acquiredGold: 0,
-    acquiredDiamonds: 0,
     generatedItem: null,
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
+        // Start Game
         case START_GAME:
             return {
                 ...state,
                 battleStatus: 'inBattle',
                 canAttack: true,
-                acquiredGold: 0,
-                acquiredDiamonds: 0,
-                acquiredXp: 0,
                 generatedItem: null
             }
+        // End Game
         case END_GAME:
             return {
                 battleStatus: ''
             }
+        // Set Attack
+        case SET_CAN_ATTACK:
+            return {
+                ...state,
+                canAttack: action.payload
+            }
+        // Game Won
+        case GAME_WON:
+            return {
+                ...state,
+                battleStatus: 'Victory',
+            }
+        // Default
         default:
             return state
     }

@@ -5,6 +5,7 @@ import {
 
 const initialState = {
     experience: 0,
+    acquiredXp: 0,
     currentLevel: 0,
     gameFlow: levelTresholds[0].gameFlow,
 }
