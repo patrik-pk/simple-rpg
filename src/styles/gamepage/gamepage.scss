@@ -289,6 +289,12 @@
                                 margin-bottom: 5px;
                             }
 
+                            &:hover {
+                                .hit_chance {
+                                    display: block!important;
+                                }
+                            }
+
                             button {
                                 position: relative;
                                 display: flex;
@@ -358,9 +364,6 @@
                                     p:nth-child(2) {
                                         margin-left: 5px;
                                     }
-                                }
-                                .hit_chance.active {
-                                    display: block!important;
                                 }
                             }
                             button:hover {

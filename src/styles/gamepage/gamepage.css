@@ -540,6 +540,10 @@
   }
 }
 
+.battle_section .container .characters .character_container .actions .melee_column .action:hover .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action:hover .hit_chance {
+  display: block !important;
+}
+
 .battle_section .container .characters .character_container .actions .melee_column .action button, .battle_section .container .characters .character_container .actions .ranged_column .action button {
   position: relative;
   display: -webkit-box;
@@ -641,10 +645,6 @@
 
 .battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance p:nth-child(2), .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance p:nth-child(2) {
   margin-left: 5px;
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance.active, .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance.active {
-  display: block !important;
 }
 
 .battle_section .container .characters .character_container .actions .melee_column .action button:hover, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover {

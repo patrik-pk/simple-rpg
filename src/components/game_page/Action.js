@@ -1,16 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import mainData from "../../data/_mainData"
 
 function Action(props) {
-    
-    const [hovered, setHovered] = useState(false)
-
-    const handleHover = type => {
-        if (type === "Enter") setHovered(true)
-        if (type === "Leave") setHovered(false)
-    }
-
-    const activeClass = hovered ? " active" : ""
     
     // chance to hit on Action hover
     const hitChanceMult = () => {
@@ -25,12 +16,8 @@ function Action(props) {
 
     return (
         <div className="action">
-            <button 
-            onClick={() => this.props.gameManager(props.data.type, props.data.strength)}
-            onMouseEnter={() => handleHover("Enter")}
-            onMouseLeave={() => handleHover("Leave")}
-            >
-                <div className={"hit_chance" + activeClass}>
+            <button onClick={() => props.gameManager(props.data.type, props.data.strength)}>
+                <div className="hit_chance">
                     <p>Hit chance: </p>
                     <p>{chanceToHit + "%"}</p>
                 </div>
