@@ -1,7 +1,12 @@
 import {
-    IN_BATTLE
+    START_GAME,
+    END_GAME
 } from './types'
 
-export const inBattle = () => ({
-    type: IN_BATTLE
+export const startGame = () => ({
+    type: START_GAME
+})
+
+export const endGame = () => ({
+    type: END_GAME
 })

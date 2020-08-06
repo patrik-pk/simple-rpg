@@ -5,14 +5,14 @@ import { Link } from "react-router-dom"
 
 import { setEnemy } from '../actions/enemyActions'
 import { resetPlayer } from '../actions/playerActions'
-import { inBattle } from '../actions/gameActions'
+import { startGame } from '../actions/gameActions'
 import generateEnemy from "../logic/game/generateEnemy"
 import tips from "../data/tips"
 import home from "../resources/icons/home.svg"
 import "../styles/menu/menu.css"
 
 function Menu(props) {
-    const { resetPlayer, setEnemy, inBattle } = props
+    const { resetPlayer, setEnemy, startGame } = props
 
     const randomTip = tips[Math.floor(Math.random() * tips.length)]
     
@@ -20,14 +20,14 @@ function Menu(props) {
     const startActiveStyle = haveSpaceInv ? 'active' : ''
 
     // Start Game
-    const startGame = () => {
+    const createClassicGame = () => {
         const enemy = generateEnemy('Classic', props.currentLevel)
         // reset player hp, damageTaken
         resetPlayer()
         // generate enemy
         setEnemy(enemy)
         // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
-        inBattle()
+        startGame()
     }
     
     return (
@@ -42,7 +42,7 @@ function Menu(props) {
                 <Link 
                 to={haveSpaceInv ? "/game" : "/menu"} 
                 className={"menu_btn start_btn" + startActiveStyle} 
-                onClick={startGame}
+                onClick={createClassicGame}
                 >
                 Start Game
                 </Link>
@@ -65,4 +65,4 @@ const mapStateToProps = state => ({
     currentLevel: state.character.currentLevel
 })
 
-export default connect(mapStateToProps, { resetPlayer, setEnemy, inBattle })(Menu)
+export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(Menu)
