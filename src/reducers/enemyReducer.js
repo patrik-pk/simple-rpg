@@ -1,5 +1,6 @@
 import {
-
+    SET_ENEMY,
+    CLEAR_ENEMY
 } from '../actions/types'
 
 const initialState = {
@@ -18,6 +19,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
+        case SET_ENEMY:
+            return action.payload
+        case CLEAR_ENEMY:
+            return initialState
         default:
             return state
     }

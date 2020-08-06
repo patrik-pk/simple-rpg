@@ -29,9 +29,9 @@ class Game extends React.Component {
         }, 500)
     }
 
-    render() {         
+    render() {     
         const game_style = {
-            backgroundImage: "url(" + this.props.environmentSrc + ")",
+            backgroundImage: "url(" + this.props.enemy.currentEnemy.environmentSrc + ")",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center"

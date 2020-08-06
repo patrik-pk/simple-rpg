@@ -5,8 +5,6 @@ import {
 const initialState = {
     gold: 150,
     diamonds: 5,
-    acquiredGold: null,
-    acquiredDiamonds: null
 }
 
 export default (state = initialState, action) => {
