@@ -1,6 +1,6 @@
 import levelTresholds from '../data/levelTresholds'
 import {
-
+    ADD_REWARD
 } from '../actions/types'
 
 const initialState = {
@@ -16,6 +16,22 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
+
+        // Add reward
+        case ADD_REWARD:
+            return {
+                ...state,
+                experience: action.payload.experience,
+                acquiredXp: action.payload.acquiredXp,
+                currentLevel: action.payload.currentLevel,
+                gameFlow: action.payload.gameFlow,
+                gold: action.payload.gold,
+                diamonds: action.payload.diamonds,
+                acquiredGold: action.payload.acquiredGold,
+                acquiredDiamonds: action.payload.acquiredDiamonds
+            }
+
+        // Default
         default:
             return state
     }

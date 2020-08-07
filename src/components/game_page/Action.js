@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 
 import { setCanAttack, gameWon } from '../../actions/gameActions'
 import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyActions'
+import { addReward } from '../../actions/characterActions'
 import attackEnemy from '../../logic/game/attackEnemy'
 import attackPlayer from '../../logic/game/attackPlayer'
 import getReward from '../../logic/game/getReward'
+import generateItem from '../../logic/generateItem'
 import md from "../../data/_mainData"
 
 function Action(props) {
@@ -15,19 +17,20 @@ function Action(props) {
         reduxPlayer, 
         reduxEnemy,
         character,
-        currency, 
         setCanAttack,
         gameWon, 
         enemyDodged, 
         enemyHit, 
-        resetEnemyDmgTaken 
+        resetEnemyDmgTaken,
+        addReward
     } = props
 
     // Start Round
     const startRound = () => {
 
-        // Player Attacks Enemy
+        // PLAYER ATTACKS ENEMY
         setCanAttack(false)
+        // calculate damage dealt and return it along with didCrit boolean
         const { dmgDealt, didCrit } = attackEnemy(reduxPlayer, reduxEnemy, props.data.type, props.data.strength)
         
         // if Enemy dodged, just set damageTaken to 'Missed', else substract enemy hp by dmg
@@ -35,12 +38,18 @@ function Action(props) {
             enemyDodged()
         } else {
             enemyHit(dmgDealt, didCrit)
-            // check for end game
+            // check if enemy has 0 or less HP after damage dealt
             if(reduxEnemy.currentHp - dmgDealt <= 0) {
-                // Game Won
-                gameWon() // set battleStatus to Victory
-                console.log(getReward(reduxEnemy, character, currency, 'Victory', 'Classic')) // get reward
-                return // break out of this whole function
+                // Battle won - set battleStatus to 'Victory'
+                gameWon()
+                // generate reward and update state
+                const reward = getReward(reduxEnemy, character, 'Victory', 'Classic')
+                const item = generateItem(character, reduxEnemy, 'Inventory', 1, 'Clasic')
+                console.log(item)
+                // add item to generated Item + add item to inventory items
+                addReward(reward)
+                // break out of this whole function
+                return
             }
         }
 
@@ -87,7 +96,6 @@ const mapStateToProps = state => ({
     reduxPlayer: state.player,
     reduxEnemy: state.enemy,
     character: state.character,
-    currency: state.currency
 })
 
 export default connect(mapStateToProps, { 
@@ -95,5 +103,6 @@ export default connect(mapStateToProps, {
     gameWon, 
     enemyDodged, 
     enemyHit,
-    resetEnemyDmgTaken 
+    resetEnemyDmgTaken,
+    addReward 
 })(Action)

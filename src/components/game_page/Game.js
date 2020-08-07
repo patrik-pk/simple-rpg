@@ -83,14 +83,12 @@ function Game(props) {
 
 Game.propTypes = {
     gameStatus: PropTypes.object.isRequired,
-    currency: PropTypes.object.isRequired,
     character: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
     reduxEnemy: state.enemy,
     gameStatus: state.game,
-    currency: state.currency,
     character: state.character    
 })
 

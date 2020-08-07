@@ -2,7 +2,7 @@ import md from "../../data/_mainData"
 import levelTresholds from "../../data/levelTresholds"
 import randomGenerator from "../randomGenerator"
 
-export default function getReward(enemy, character, currency, status, enemyType) {
+export default function getReward(enemy, character, status, enemyType) {
 
     // WIN / LOSE MULTIPLIER
     const statusMultiplier = ((status) => {
@@ -49,8 +49,8 @@ export default function getReward(enemy, character, currency, status, enemyType)
     // Calculations
     const acquiredGold = Math.round(baseGold * gameFlow * randomGoldMult * statusMultiplier * difficultyMultiplier)
     const acquiredDiamonds = Math.round(baseDiamonds * randomDiamondsMult * statusMultiplier * difficultyMultiplier)
-    const gold = currency.gold + acquiredGold
-    const diamonds = currency.diamonds + acquiredDiamonds
+    const gold = character.gold + acquiredGold
+    const diamonds = character.diamonds + acquiredDiamonds
 
 
     // EXPERIENCE
@@ -114,17 +114,13 @@ export default function getReward(enemy, character, currency, status, enemyType)
 
     // FINAL RETURN
     return {
-        currency: {
-            acquiredGold,
-            acquiredDiamonds,
-            gold,
-            diamonds
-        },
-        level: {
-            experience: setXp.xp,
-            currentLevel: setXp.level,
-            gameFlow: levelTresholds[setXp.level].gameFlow,
-            acquiredXp: gainedXp
-        }
+        acquiredGold,
+        acquiredDiamonds,
+        gold,
+        diamonds,
+        experience: setXp.xp,
+        currentLevel: setXp.level,
+        gameFlow: levelTresholds[setXp.level].gameFlow,
+        acquiredXp: gainedXp
     }
 }

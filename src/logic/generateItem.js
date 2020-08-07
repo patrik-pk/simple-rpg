@@ -1,28 +1,32 @@
-
 import possibleItems from "../data/possibleItems"
 import possibleBonuses from "../data/possibleBonuses"
 import levelTresholds from "../data/levelTresholds"
-
 import randomGenerator from "./randomGenerator"
+import md from "../data/_mainData"
 
-import mainData from "../data/_mainData"
 
+// TODO: Pro specific item pridat dalsi parametr 'specific', coz bude objekt
+// vsech spefikaci, ktere chci automaticky vygenerovat (rarita, typ),
+// napr. specific = { rarity: 'legendary', itemType: 'sword' }
+export default function generateItem(character, enemy, whereToPut, keyPar, gameType) {
 
-export default function generateItem(props, whereToPut, keyPar, gameType) {
-
-    // Rarity thresholds
-    const rt = { // rt = rarity treshold
-        legendary: mainData.itemBase.rarityTresholds.legendary,
-        epic: mainData.itemBase.rarityTresholds.epic,
-        rare: mainData.itemBase.rarityTresholds.rare,
-        uncommon: mainData.itemBase.rarityTresholds.uncommon,
-        common: mainData.itemBase.rarityTresholds.common,
+    // Rarity Thresholds (= rt)
+    const rt = {
+        legendary: md.itemBase.rarityTresholds.legendary,
+        epic: md.itemBase.rarityTresholds.epic,
+        rare: md.itemBase.rarityTresholds.rare,
+        uncommon: md.itemBase.rarityTresholds.uncommon,
+        common: md.itemBase.rarityTresholds.common,
     }
 
-    const gameFlowFc = () => {
+    // Get gameFlow, if it is generated after defeating a Boss,
+    // return gameFlow off that Boss, if its level is higher than Player's,
+    // if Player's is higher, return Player's gameFlow
+    // if it isn't from boss, return Player's gameFlow
+    const gameFlow = (() => {
         if(gameType === "Boss") {
-            const playerLevel = props.level.currentLevel
-            const bossLevel = props.enemy.level
+            const playerLevel = character.currentLevel
+            const bossLevel = enemy.level
             const maxLevel = levelTresholds.length - 1
             if(playerLevel > bossLevel) {
                 return levelTresholds[playerLevel].gameFlow
@@ -35,46 +39,53 @@ export default function generateItem(props, whereToPut, keyPar, gameType) {
                 }
             }
         }
-        else return props.level.gameFlow < 1 ? 1 : props.level.gameFlow
-        
-    } 
-    const gameFlow = gameFlowFc()
+        // IMPORTANT: gameFlow has always minimum value of 1 for items, 
+        // which is equal to level 5
+        else return character.gameFlow < 1 ? 1 : character.gameFlow
+    })()
 
-    // generate random item type from /data/possibleItem.js
+    // Generate random item type from /data/possibleItem.js
     const generatedType = possibleItems[Math.floor(Math.random() * possibleItems.length)]
 
-    const rm = mainData.itemBase.rarMult
-    const rmVal = mainData.itemBase.rarValueMult
+    // Generate item's rarity and set multipliers
+    const genRarity = (() => {
 
-    // generate item's rarity and set multipliers
-    const generatedRarity = () => {
+        // rarMult (rm) is for the Stat itself and rmVal (rarValueMult) is for items gold value
+        const rm = md.itemBase.rarMult
+        const rmVal = md.itemBase.rarValueMult
+
         if (gameType === "Boss") return { rarityName: "Legendary", rarMult: rm.legendary, rarValMult: rmVal.legendary }
         else {
             const genNumber = Math.round(Math.random() * 100)
             if(genNumber <= rt.legendary) return { rarityName: "Legendary", rarMult: rm.legendary, rarValMult: rmVal.legendary }
-            if (genNumber <= rt.epic && genNumber > rt.legendary) return { rarityName: "Epic", rarMult: rm.epic, rarValMult: rmVal.epic }
-            if (genNumber <= rt.rare & genNumber > rt.epic) return { rarityName: "Rare", rarMult: rm.rare, rarValMult: rmVal.rare }
-            if (genNumber <= rt.uncommon && genNumber > rt.rare) return { rarityName: "Uncommon", rarMult: rm.uncommon, rarValMult: rmVal.uncommon }
-            if (genNumber <= rt.common && genNumber > rt.uncommon) return { rarityName: "Common", rarMult: rm.common, rarValMult: rmVal.common }
+            else if (genNumber <= rt.epic && genNumber > rt.legendary) return { rarityName: "Epic", rarMult: rm.epic, rarValMult: rmVal.epic }
+            else if (genNumber <= rt.rare & genNumber > rt.epic) return { rarityName: "Rare", rarMult: rm.rare, rarValMult: rmVal.rare }
+            else if (genNumber <= rt.uncommon && genNumber > rt.rare) return { rarityName: "Uncommon", rarMult: rm.uncommon, rarValMult: rmVal.uncommon }
+            else if (genNumber <= rt.common && genNumber > rt.uncommon) return { rarityName: "Common", rarMult: rm.common, rarValMult: rmVal.common }
             return "Unknown"
         }
-    }
+    })()
 
-    const genRarity = generatedRarity()
+    const rarityName = genRarity.rarityName
     const rarityMultiplier = genRarity.rarMult
     const rarityValueMultiplier = genRarity.rarValMult
     
-    // generate stat
-    const generatedStat = () => {
+    // Generate Stat
+    const generatedStat = (() => {
 
+        // base value for stat (e. g. weapon has 150)
         const base = generatedType.baseStat
+        // multiplier for armor to generate less armor for gloves than chestplate, for other items its 1
         const statMultiplier = generatedType.statMultiplier
-        const randMult = mainData.itemBase.statMultiplier.globalRandom
+        // multiplier to randomize stat a little (ranges between 0.95 and 1.05)
+        const randMult = md.itemBase.statMultiplier.globalRandom
+        // generate that random number
         const randomMultiplier = randomGenerator(randMult.min, randMult.max, randMult.perc)
 
         const statName = generatedType.possibleStat
     
-        const calculatedValue = () => {
+        // calculate for the stat
+        const calculateValue = () => {
             if(statName !== "Crit. chance" && statName !== "Block chance") {
                 const calc = Math.floor(base * statMultiplier * gameFlow * rarityMultiplier * randomMultiplier)
                 return calc
@@ -82,8 +93,8 @@ export default function generateItem(props, whereToPut, keyPar, gameType) {
             if(statName === "Crit. chance" || statName === "Block chance") {
                 if(gameType === "Boss") {
                     const bonusVal = () => {
-                        if(statName === "Crit. chance") return mainData.itemBase.boss.bonusCrit
-                        if (statName === "Block chance") return mainData.itemBase.boss.bonusBlock
+                        if(statName === "Crit. chance") return md.itemBase.boss.bonusCrit
+                        if (statName === "Block chance") return md.itemBase.boss.bonusBlock
                     }
                     const calc = Math.floor((base + bonusVal()) * statMultiplier * rarityMultiplier * randomMultiplier)
                     return calc
@@ -94,19 +105,23 @@ export default function generateItem(props, whereToPut, keyPar, gameType) {
             } 
         } 
 
+        // return statName and stat value
         return {
             statName: statName,
-            value: calculatedValue()
+            value: calculateValue()
         }
-    }
+    })()
 
-    // generate bonuses
-    const generatedBonuses = () => {
-        let allPossibleBonuses = JSON.parse(JSON.stringify(possibleBonuses)) // create copy of an object
+    // Generate Bonuses
+    const generatedBonuses = (() => {
+
+        // create a copy of allPossibleBonuses object
+        let allPossibleBonuses = JSON.parse(JSON.stringify(possibleBonuses))
         let bonusAmount = null
         let genBonuses = []
 
-        switch(genRarity.rarityName) { // set bonus amount based on rarity
+        // set amount of bonuses that item should have based on rarity
+        switch(rarityName) { 
             case "Legendary": bonusAmount = 5; break;
             case "Epic" || "Rare": bonusAmount = 4; break;
             case "Rare": bonusAmount = 3; break;
@@ -115,109 +130,123 @@ export default function generateItem(props, whereToPut, keyPar, gameType) {
             default: break;
         }
 
-        for(let i = 0; i < 5; i++) { // for bonusAmount generate new bonus
+        // every type of bonus is generated, but only for bonusAmount bonuses
+        // there is a generated value, rest is set to 0
+        for(let i = 0; i < 5; i++) { 
 
-            for(let x = 0; x < genBonuses.length; x++) { // remove already existing bonus from allPossibleBonuses to prevent generating same bonus
-                if(allPossibleBonuses.some(bonus => bonus["displayedName"] === genBonuses[x].displayedName)) {
-                    const index = allPossibleBonuses.map(e => e.displayedName).indexOf(genBonuses[x].displayedName)
+            // remove already existing bonus from allPossibleBonuses to prevent generating same bonus
+            for(let x = 0; x < genBonuses.length; x++) {
+                // check if bonus is already generated using some() 
+                if(allPossibleBonuses.some(bonus => bonus === genBonuses[x].name)) {
+                    // get index of matched bonus
+                    const index = allPossibleBonuses.indexOf(genBonuses[x].name)
+                    // and remove it from the array, so that it can't be generated again
                     allPossibleBonuses.splice(index, 1)
                 }
             }   
 
+            // generate random bonus (name) from allPossibleBonus substracted by already generated bonuses
             const randBonus = allPossibleBonuses[Math.floor(Math.random() * allPossibleBonuses.length)]
 
-            let displayedName
-            let value
-            let effectiveAgainst
-
-            displayedName = randBonus.displayedName
-            effectiveAgainst = randBonus.effectiveAgainst
-
-            // set random value to bonusAmount bonuses, set 0 to rest
-            if(i < bonusAmount) {
-                const valueCalc = () => {
+            // calculate value of bonus
+            const calculateValue = () => {
+                // add value only to bonusAmount bonuses (1 to 20)
+                if(i < bonusAmount) {
+                    // boss item has minimum bonus value
                     if(gameType === "Boss") {
-                        return Math.ceil(randomGenerator(mainData.itemBase.boss.bonusMin, mainData.itemBase.bonusMult - 1, 1))
-                    } else return Math.ceil(Math.random() * mainData.itemBase.bonusMult)
+                        return Math.ceil(randomGenerator(md.itemBase.boss.bonusMin, md.itemBase.bonusMult - 1, 1))
+                    }
+                    // normal items don't 
+                    else return Math.ceil(Math.random() * md.itemBase.bonusMult)
                 } 
-                value = valueCalc()
-            } else {
-                value = 0
+                // rest set to 0
+                else return 0
             }
 
-            const bonus = {
-                displayedName,
-                value,
-                effectiveAgainst,
-            }
-
-            genBonuses.push(bonus)
+            // push bonus to generated bonuses
+            genBonuses.push({
+                name: randBonus,
+                value: calculateValue()
+            })
         }
 
-        // Sort bonuses
-        function compare(a, b) {
-            if (a.effectiveAgainst < b.effectiveAgainst) return -1
-            if (a.effectiveAgainst > b.effectiveAgainst) return 1
+        // sort bonuses
+        const compare = (a, b) => {
+            if (a.name < b.name) return -1
+            if (a.name > b.name) return 1
             return 0
         }
 
         genBonuses.sort(compare)
 
+        // finally return generated bonuses
         return genBonuses
-    }
+    })()
 
-    const generatedValue = () => {
-        const base = mainData.itemBase.value
-        const randMult = mainData.itemBase.valueMult
+    // Generate Gold Value
+    const generatedValue = (() => {
+
+        // base gold value of item
+        const base = md.itemBase.value
+        // random multiplier to randomize a little (0.95 to 1.05)
+        const randMult = md.itemBase.valueMult
+        // generate that random number
         const randomMultiplier = randomGenerator(randMult.min, randMult.max, randMult.perc)
-        let destinationMultiplier
 
-        // shop items cost more than received items
-        switch(whereToPut) {
-            case "Shop": destinationMultiplier = mainData.itemBase.destMult.shop; break;
-            case "Game": destinationMultiplier = mainData.itemBase.destMult.game; break;
-            case "Inventory": destinationMultiplier = mainData.itemBase.destMult.inventory; break;
-            default: break;
-        }
+        const destinationMultiplier = (() => {
+            // shop items cost more than received items
+            switch(whereToPut) {
+                case "Shop": return md.itemBase.destMult.shop
+                case "Game": return md.itemBase.destMult.game
+                case "Inventory": return md.itemBase.destMult.inventory
+                default: break
+            }
+        })()
 
-        const valueCalc = () => {
+        // calculate the value
+        const calculateValue = () => {
+            let calc = base * randomMultiplier * rarityValueMultiplier * destinationMultiplier * gameFlow
+            // items generated by boss has 1.5 times more value than normal items
             if(gameType === "Boss") {
-                const bossMult = mainData.itemBase.boss.valueMult
-                return Math.round(base * randomMultiplier * rarityValueMultiplier * destinationMultiplier * gameFlow * bossMult)
-            } else return Math.round(base * randomMultiplier * rarityValueMultiplier * destinationMultiplier * gameFlow)
+                const bossMult = md.itemBase.boss.valueMult
+                return Math.round(calc * bossMult)
+            } 
+            else return Math.round(calc)
         }
 
-        return valueCalc()
-    }
+        // and return it
+        return calculateValue()
+    })()
 
-    const generatedLevel = () => {
-        const setLevel = () => {
-            const playerLevel = props.level.currentLevel
-            const enemyLevel = props.enemy.level
-            // If enemy is boss and has higher level than enemy => return enemyLevel
+    // Generate Item Level
+    const generatedLevel = (() => {
+        let level = (() => {
+            const playerLevel = character.currentLevel
+            const enemyLevel = enemy.level
+            // if enemy is boss and has higher level than player => return enemyLevel
             if(gameType === "Boss" && playerLevel < enemyLevel) return enemyLevel
             else return playerLevel // otherwise return playerLevel
-        }
-        let level = setLevel()
+        })()
         // if level is less than 5 => set item's level to 5 (gameFlow with value 1 is at level 5)
         if(level < 5) level = 5
         return level 
-    }
+    })()
 
-    // assign generated values and return generatedItem
+    // Assign generated values and return generatedItem
     const type = generatedType.type
-    const name = genRarity.rarityName + " " + generatedType.type
-    const rarity = genRarity.rarityName
-    const stats = generatedStat()
-    const bonuses = generatedBonuses()
-    const goldValue = generatedValue()
-    const level = generatedLevel()
+    const name = rarityName + ' ' + generatedType.type
+    const rarity = rarityName
+    const stats = generatedStat
+    const bonuses = generatedBonuses
+    const goldValue = generatedValue
+    const level = generatedLevel
     const isSelected = false
     const destination = whereToPut
     const imgSrc = generatedType.imgSrc
     const key = keyPar
 
-    const generatedItem = {
+    // Final Return
+    return {
         type,
         name,
         rarity,
@@ -230,6 +259,4 @@ export default function generateItem(props, whereToPut, keyPar, gameType) {
         imgSrc,
         key
     }
-
-    return generatedItem
 }
