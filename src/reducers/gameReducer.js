@@ -3,6 +3,7 @@ import {
     END_GAME,
     SET_CAN_ATTACK,
     GAME_WON,
+    GAME_LOST,
     ITEM_OBTAINED
 } from '../actions/types'
 
@@ -44,6 +45,14 @@ export default (state = initialState, action) => {
                 battleStatus: 'Victory',
             }
 
+        // Game Lost
+        case GAME_LOST:
+            return {
+                ...state,
+                battleStatus: 'Defeat'
+            }
+
+        // Item Obtained
         case ITEM_OBTAINED:
             return {
                 ...state,

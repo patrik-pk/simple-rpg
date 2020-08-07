@@ -10,10 +10,14 @@ export const START_GAME = 'START_GAME'
 export const END_GAME = 'END_GAME'
 export const SET_CAN_ATTACK = 'CANT_ATTACK'
 export const GAME_WON = 'GAME_WON'
+export const GAME_LOST = 'GAME_LOST'
 export const ITEM_OBTAINED = 'ITEM_OBTAINED'
 
 // Player
 export const RESET_PLAYER = 'RESET_PLAYER'
+export const PLAYER_BLOCKED = 'PLAYER_BLOCKED'
+export const PLAYER_HIT = 'PLAYER_HIT'
+export const RESET_PLAYER_DMG_TAKEN = 'RESET_PLAYER_DMG_TAKEN'
 
 // Enemy
 export const SET_ENEMY = 'SET_ENEMY'

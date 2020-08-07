@@ -3,6 +3,7 @@ import {
     END_GAME,
     SET_CAN_ATTACK,
     GAME_WON,
+    GAME_LOST,
     ITEM_OBTAINED
 } from './types'
 
@@ -25,6 +26,11 @@ export const setCanAttack = bool => ({
 // GAME WON
 export const gameWon = () => ({
     type: GAME_WON
+})
+
+// GAME LOST
+export const gameLost = () => ({
+    type: GAME_LOST
 })
 
 // ITEM OBTAINED

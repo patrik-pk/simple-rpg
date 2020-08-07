@@ -21,7 +21,8 @@ export default (state = initialState, action) => {
         case ENEMY_DODGED:
             return {
                 ...state,
-                damageTaken: 'Missed'
+                damageTaken: 'Missed',
+                receivedCrit: false
             }
         // Enemy Hit
         case ENEMY_HIT:

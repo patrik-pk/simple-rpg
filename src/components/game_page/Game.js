@@ -14,7 +14,7 @@ import "../../styles/item/item.css"
 
 function Game(props) {
     const { reduxEnemy, endGame } = props 
-    const { battleStatus, generatedItem } = props.gameStatus
+    const { battleStatus, generatedItem } = props.game
     const { acquiredXp, acquiredGold, acquiredDiamonds } = props.character
 
     const bg_style = {
@@ -82,13 +82,13 @@ function Game(props) {
 }
 
 Game.propTypes = {
-    gameStatus: PropTypes.object.isRequired,
+    game: PropTypes.object.isRequired,
     character: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
     reduxEnemy: state.enemy,
-    gameStatus: state.game,
+    game: state.game,
     character: state.character    
 })
 

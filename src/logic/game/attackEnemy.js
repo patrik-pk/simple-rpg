@@ -1,5 +1,4 @@
 import randomGenerator from "../randomGenerator"
-import gameHandler from "../game/gameHandler"
 import md from "../../data/_mainData"
 
 export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack) {
@@ -57,7 +56,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
   })()
 
   // If enemy dodged, return 'dodged' and don't continue
-  if(dodged) return { dmgDealt: 'dodged', didCrit: false }
+  if(dodged) return { p_dmgDealt: 'dodged', p_didCrit: false }
 
   // Specie bonus multiplier
   const bonusMultiplier = (() => {
@@ -104,7 +103,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Final return
   return {
-    dmgDealt: damageDealt,
-    didCrit: crit.didCrit
+    p_dmgDealt: damageDealt,
+    p_didCrit: crit.didCrit
   }
 }

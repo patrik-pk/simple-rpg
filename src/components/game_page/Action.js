@@ -2,8 +2,9 @@ import React from "react"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setCanAttack, gameWon, itemObtained } from '../../actions/gameActions'
+import { setCanAttack, gameWon, gameLost, itemObtained } from '../../actions/gameActions'
 import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyActions'
+import { playerBlocked, playerHit, resetPlayerDmgTaken } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
 import { addItemToInv } from '../../actions/itemsActions'
 import attackEnemy from '../../logic/game/attackEnemy'
@@ -21,30 +22,35 @@ function Action(props) {
         character,
         setCanAttack,
         gameWon,
+        gameLost,
         itemObtained, 
         enemyDodged, 
         enemyHit, 
         resetEnemyDmgTaken,
+        playerBlocked,
+        playerHit,
+        resetPlayerDmgTaken,
         addReward,
         addItemToInv
     } = props
 
-    // Start Round
+    // Start Round - actual game functionality
     const startRound = () => {
 
         // PLAYER ATTACKS ENEMY
 
+        resetPlayerDmgTaken()
         setCanAttack(false)
         // calculate damage dealt and return it along with didCrit boolean
-        const { dmgDealt, didCrit } = attackEnemy(reduxPlayer, reduxEnemy, props.data.type, props.data.strength)
+        const { p_dmgDealt, p_didCrit } = attackEnemy(reduxPlayer, reduxEnemy, props.data.type, props.data.strength)
 
-        // if Enemy dodged, just set damageTaken to 'Missed', else substract enemy hp by dmg
-        if(dmgDealt === 'dodged') {
+        // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
+        if(p_dmgDealt === 'dodged') {
             enemyDodged()
         } else {
-            enemyHit(dmgDealt, didCrit)
-            // check if enemy has 0 or less HP after damage dealt
-            if(reduxEnemy.currentHp - dmgDealt <= 0) {
+            enemyHit(p_dmgDealt, p_didCrit)
+            // check if Enemy has 0 or less HP after damage dealt
+            if(reduxEnemy.currentHp - p_dmgDealt <= 0) {
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
                 // generate reward and update state
@@ -56,37 +62,62 @@ function Action(props) {
                 itemObtained(item)
                 // add item to inventory
                 addItemToInv(item)
-                // break out of this whole function
+                // break out of this function
                 return
             }
         }
 
-        // After X seconds ENEMY ATTACKS PLAYER
+        // ENEMY ATTACKS PLAYER AFTER X SECONDS
+
+        // calculate damage dealt and return it along with didCrit boolean
+        // this function has to fire before setTimeout, because the values are needed in
+        // the second setTimeout
+        const { e_dmgDealt, e_didCrit } = attackPlayer(reduxPlayer, reduxEnemy, character)
 
         setTimeout(() => {
-            // enemy attacks player
+            
+            // if Player blocked, just set damageTaken to 'Blocked', else substract Player hp by dmg
+            if(e_dmgDealt === 'blocked') {
+                playerBlocked()
+            } else {
+                playerHit(e_dmgDealt, e_didCrit)
+                // check if Player has 0 or less HP after damage dealt
+                if (reduxPlayer.currentHp - e_dmgDealt <= 0) {
+                    // Battle Won - set battleStatus to 'Victory'
+                    gameLost()
+                    // generate reward and update state
+                    const reward = getReward(reduxEnemy, character, 'Defeat', 'Classic')
+                    addReward(reward)
+                    // break out of this function
+                    return
+                }
+            }
+
         }, md.global.gameTimer)
 
-
-        // After X * 2 seconds PLAYER CAN ATTACK AGAIN, 
-        // and the whole cycle continues until one has under 0 hp
+        // PLAYER CAN ATTACK AGAIN AFTER X * 2 SECONDS 
 
         setTimeout(() => {
-            setCanAttack(true)
+            // If player didn't lose, he can attack again
+            // and start this function over again
+            if (reduxPlayer.currentHp - e_dmgDealt > 0 || e_dmgDealt === 'blocked') {
+                setCanAttack(true)
+            }
             resetEnemyDmgTaken()
         }, md.global.gameTimer * 2)
+
     }
     
-    // chance to hit on Action hover
-    const hitChanceMult = () => {
+    // Chance to hit on Action hover
+    const hitChanceMult = (() => {
         switch(props.data.strength) {
             case "light": return md.playerBase.attackTypes.hitChance.light
             case "medium": return md.playerBase.attackTypes.hitChance.medium
             case "strong": return md.playerBase.attackTypes.hitChance.strong
             default: return 1;
         }
-    }
-    const chanceToHit = (100 - (props.dodge * hitChanceMult())).toFixed(2)
+    })()
+    const chanceToHit = (100 - (props.dodge * hitChanceMult)).toFixed(2)
 
     return (
         <div className="action">
@@ -120,10 +151,14 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { 
     setCanAttack,
     gameWon,
+    gameLost,
     itemObtained, 
     enemyDodged, 
     enemyHit,
     resetEnemyDmgTaken,
+    playerBlocked,
+    playerHit,
+    resetPlayerDmgTaken,
     addReward,
     addItemToInv 
 })(Action)
