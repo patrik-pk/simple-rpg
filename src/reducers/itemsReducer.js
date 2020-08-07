@@ -1,7 +1,7 @@
 import icons from '../data/icons'
 import emptyBonuses from '../data/emptyBonuses'
 import {
-
+    ADD_ITEM_TO_INV
 } from '../actions/types'
 
 const initialState = {
@@ -29,6 +29,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
+
+        // Add Item To Inventory
+        case ADD_ITEM_TO_INV:
+            return {
+                ...state,
+                invItems: [...state.invItems, action.payload]
+            }
+
+        // Default
         default:
             return state
     }
