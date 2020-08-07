@@ -15,8 +15,7 @@ import "../../styles/item/item.css"
 function Game(props) {
     const { reduxEnemy, endGame } = props 
     const { battleStatus, generatedItem } = props.gameStatus
-    const { acquiredXp } = props.character
-    const { acquiredGold, acquiredDiamonds } = props.currency
+    const { acquiredXp, acquiredGold, acquiredDiamonds } = props.character
 
     const bg_style = {
         backgroundImage: "url(" + reduxEnemy.currentEnemy.environmentSrc + ")",

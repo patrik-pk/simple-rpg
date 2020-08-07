@@ -6,7 +6,6 @@ import itemsReducer from './itemsReducer'
 import playerReducer from './playerReducer'
 import enemyReducer from './enemyReducer'
 import gameReducer from './gameReducer'
-import currencyReducer from './currencyReducer'
 
 export default combineReducers({
     character: characterReducer,
@@ -15,5 +14,4 @@ export default combineReducers({
     player: playerReducer,
     enemy: enemyReducer,
     game: gameReducer,
-    currency: currencyReducer
 })
