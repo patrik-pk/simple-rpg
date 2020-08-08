@@ -37,6 +37,11 @@ $legendary: orangered;
         cursor: pointer;
         transition: all 500ms; 
         outline: 0;
+        &:hover {
+            .stats {
+                display: block;
+            }
+        }
 
         @include mobile {
             width: 23px;

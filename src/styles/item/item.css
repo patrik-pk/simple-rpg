@@ -156,6 +156,10 @@
   outline: 0;
 }
 
+.item_container .item:hover .stats {
+  display: block;
+}
+
 @media (max-width: 767px) {
   .item_container .item {
     width: 23px;
