@@ -20,6 +20,7 @@ function Action(props) {
         reduxPlayer, 
         reduxEnemy,
         character,
+        equippedItems,
         setCanAttack,
         gameWon,
         gameLost,
@@ -57,7 +58,7 @@ function Action(props) {
                 const reward = getReward(reduxEnemy, character, 'Victory', 'Classic')
                 addReward(reward)
                 // generate item
-                const item = generateItem(character, reduxEnemy, 'Inventory', 1, 'Clasic')
+                const item = generateItem(character, reduxEnemy, 'Inventory', equippedItems.length, 'Clasic')
                 // update generatedItem in game reducer - to display at the end of the game
                 itemObtained(item)
                 // add item to inventory
@@ -139,13 +140,15 @@ Action.propTypes = {
     reduxEnemy: PropTypes.object.isRequired,
     character: PropTypes.object.isRequired,
     game: PropTypes.object.isRequired,
+    equippedItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
     reduxPlayer: state.player,
     reduxEnemy: state.enemy,
     character: state.character,
-    game: state.game
+    game: state.game,
+    equippedItems: state.items.equippedItems
 })
 
 export default connect(mapStateToProps, { 
