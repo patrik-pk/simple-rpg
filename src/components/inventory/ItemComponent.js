@@ -5,15 +5,15 @@ import PropTypes from 'prop-types'
 import { setInvItemSelect, unselectShopItems, setShopItemSelect } from '../../actions/itemsActions'
 import "../../styles/item/item.css"
 
-// TODO: vyresit item handle click
 function ItemComponent(props) {
-
+    
     // If item has data & isn't of type 'Empty' (for shop items) render item
     if (props.data && props.data.type !== "Empty") {
 
         // Destructure from props
         const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
         const { type, destination, rarity, goldValue, stats, bonuses, imgSrc, isSelected, key } = data
+
 
         // Item Handle Click
         const handleClick = () => {

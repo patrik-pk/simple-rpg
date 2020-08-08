@@ -1,5 +1,4 @@
-
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -7,6 +6,7 @@ import PropTypes from 'prop-types'
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
+import { unselectInvItems, unselectShopItems } from '../../actions/itemsActions'
 
 import levelTresholds from '../../data/levelTresholds'
 import "../../styles/inventory/inventory.css"
@@ -14,15 +14,20 @@ import "../../styles/inventory/inventory.css"
 function Inventory(props) {
 
     // Destructure from props
+    const { unselectInvItems, unselectShopItems } = props
     const { equippedItems, invItems, shopItems } = props.items
     const { currentLevel, experience, gold, diamonds } = props.character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
-    /*componentWillUnmount() {
-        props.inventoryOnUnmount()
-    }*/
+    // Unselect all Inventory & Shop Items on Unmount
+    useEffect(() => {
+        return () => {
+            unselectInvItems()
+            unselectShopItems()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-    
     // Slice item's into a 6 item array and put them into the InventoryRow Component
     const getItems = (items, min, max) => {
         const sliced = items.slice(min, max) 
@@ -169,4 +174,4 @@ const mapStateToProps = state => ({
     player: state.player
 })
 
-export default connect(mapStateToProps)(Inventory)
+export default connect(mapStateToProps, { unselectInvItems, unselectShopItems })(Inventory)

@@ -26,8 +26,6 @@ import endGame from "./logic/game/endGame"
 import attackEnemy from "./logic/game/attackEnemy"
 import attackPlayer from "./logic/game/attackPlayer"
 import resetDamageTaken from "./logic/game/resetDamageTaken"
-import itemHandleClick from "./logic/inventory/itemHandleClick"
-import inventoryOnUnmount from "./logic/inventory/inventoryOnUnmount"
 import equipItem from "./logic/inventory/equipItem"
 import sellItem from "./logic/inventory/sellItem"
 import reroll from "./logic/inventory/reroll"
@@ -105,12 +103,10 @@ export default class App extends React.Component {
   playerCanAttackAgain = () => {this.setState({ canAttack: this.state.battleStatus === "inBattle" ? true : false }) }
 
   // inventory logic
-  itemHandleClick = (par) => { this.setState(itemHandleClick(par, this.state)) }
   equipItem = () => { this.setState(equipItem(this.state)) }
   sellItem = () => { this.setState(sellItem(this.state)) }
   reroll = () => { this.setState(reroll(this.state)) }
   buyItem = () => { this.setState(buyItem(this.state)) }
-  inventoryOnUnmount = () => { this.setState(inventoryOnUnmount(this.state)) }
 
   calculatePlayerStats = () => { this.setState({ player: calculatePlayerStats(this.state.equippedItems)}) }
 

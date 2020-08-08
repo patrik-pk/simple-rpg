@@ -4,7 +4,8 @@ import {
     ADD_ITEM_TO_INV,
     SET_INV_ITEM_SELECT,
     UNSELECT_SHOP_ITEMS,
-    SET_SHOP_ITEM_SELECT
+    SET_SHOP_ITEM_SELECT,
+    UNSELECT_INV_ITEMS
 } from '../actions/types'
 
 const initialState = {
@@ -44,6 +45,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 invItems: [...state.invItems, action.payload]
+            }
+
+        // Unselect Inventory Items
+        case UNSELECT_INV_ITEMS:
+            return {
+                ...state,
+                invItems: state.invItems.map(item => {
+                    item.isSelected = false
+                    return item
+                })
             }
 
         // Set Inventory Item isSelected
