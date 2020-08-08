@@ -4,6 +4,9 @@ export const ADD_REWARD = 'GET_REWARD'
 
 // Items
 export const ADD_ITEM_TO_INV = 'ADD_ITEM_TO_INV'
+export const SET_INV_ITEM_SELECT = 'SET_INV_ITEM_SELECT'
+export const UNSELECT_SHOP_ITEMS = 'UNSELECT_SHOP_ITEMS'
+export const SET_SHOP_ITEM_SELECT = 'SET_SHOP_ITEM_SELECT'
 
 // Game
 export const START_GAME = 'START_GAME'

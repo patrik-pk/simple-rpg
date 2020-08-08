@@ -1,7 +1,10 @@
 import icons from '../data/icons'
 import emptyBonuses from '../data/emptyBonuses'
 import {
-    ADD_ITEM_TO_INV
+    ADD_ITEM_TO_INV,
+    SET_INV_ITEM_SELECT,
+    UNSELECT_SHOP_ITEMS,
+    SET_SHOP_ITEM_SELECT
 } from '../actions/types'
 
 const initialState = {
@@ -19,11 +22,17 @@ const initialState = {
         { type: "Shield", rarity: "Common", stats: { statName: "Block chance", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 10, level: 0, destination: "Equipped", isSelected: false, imgSrc: icons.shield, key: 10 },
         { type: "Bow", rarity: "Common", stats: { statName: "R-DMG", value: 125 }, bonuses: []/*emptyBonuses*/, goldValue: 10, level: 0, destination: "Equipped", isSelected: false, imgSrc: icons.bow, key: 11 },
     ],
-    invItems: [],
+    invItems: [
+        { type: "Helmet", rarity: "Epic", stats: { statName: "Armor", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.helmet, key: 0 },
+        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 1 },
+    ],
     shopItems: [
-        { type: "Empty", key: 0 },
+        /*{ type: "Empty", key: 0 },
         { type: "Empty", key: 1 },
-        { type: "Empty", key: 2 },
+        { type: "Empty", key: 2 },*/
+        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 0 },
+        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 1 },
+        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: []/*emptyBonuses*/, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 2 },
     ],
 }
 
@@ -35,6 +44,36 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 invItems: [...state.invItems, action.payload]
+            }
+
+        // Set Inventory Item isSelected
+        case SET_INV_ITEM_SELECT:
+            return {
+                ...state,
+                invItems: state.invItems.map(item => {
+                    if(item.key === action.payload) item.isSelected = !item.isSelected
+                    return item
+                })
+            }
+
+        // Unselect Shop Items
+        case UNSELECT_SHOP_ITEMS:
+            return {
+                ...state,
+                shopItems: state.shopItems.map(item => {
+                    item.isSelected = false
+                    return item
+                })
+            }
+
+        // Set Shop Item isSelected
+        case SET_SHOP_ITEM_SELECT:
+            return {
+                ...state,
+                shopItems: state.shopItems.map(item => {
+                    if(item.key === action.payload) item.isSelected = !item.isSelected
+                    return item
+                })
             }
 
         // Default

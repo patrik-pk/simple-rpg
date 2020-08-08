@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import { setInvItemSelect, unselectShopItems, setShopItemSelect } from '../../actions/itemsActions'
 import "../../styles/item/item.css"
 
 // TODO: vyresit item handle click
@@ -10,8 +12,33 @@ function ItemComponent(props) {
     if (props.data && props.data.type !== "Empty") {
 
         // Destructure from props
-        const { data, equippedItems } = props
-        const { type, /*destination: dest,*/ rarity, goldValue, stats, bonuses, imgSrc, isSelected } = data
+        const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
+        const { type, destination, rarity, goldValue, stats, bonuses, imgSrc, isSelected, key } = data
+
+        // Item Handle Click
+        const handleClick = () => {
+            // If clicked item is in the Inventory, set its isSelected value to the opposite
+            if (destination === "Inventory") {
+                setInvItemSelect(key)
+            }
+            // If clicked item is in the Shop, only one can be selected at the same time
+            if (destination === "Shop") {
+                const selectedShopItems = shopItems.filter(item => item.isSelected)
+                
+                const cond1 = selectedShopItems.length === 1 && key === selectedShopItems[0].key
+                const cond2 = selectedShopItems.length === 0
+                
+                // If (condition 1) there is one selected item, and it's the clicked one,
+                // or if (condition 2) there are no selected items => just set items select to the opposite,
+                // else unselect all shop items, and select the clicked one
+                if(cond1 || cond2) {
+                    setShopItemSelect(key)
+                } else {
+                    unselectShopItems()
+                    setShopItemSelect(key)                        
+                }
+            }
+        }
 
         // Classes
         const rarityClass = rarity.toLowerCase()
@@ -96,7 +123,7 @@ function ItemComponent(props) {
         // RENDER
         return ( 
             <li className={`item_container ${rarityClass} ${selectedClass}`}>
-                <div className={`item ${selectedClass}`} onClick={props.handleClick ? () => props.handleClick(this) : null} >
+                <div className={`item ${selectedClass}`} onClick={handleClick} >
 
                     {/* Icon */}
                     <img alt="" src={imgSrc ? imgSrc : null}/>
@@ -121,10 +148,12 @@ function ItemComponent(props) {
 
 ItemComponent.propTypes = {
     equippedItems: PropTypes.array.isRequired,
+    shopItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-    equippedItems: state.items.equippedItems
+    equippedItems: state.items.equippedItems,
+    shopItems: state.items.shopItems
 })
 
-export default connect(mapStateToProps)(ItemComponent)
+export default connect(mapStateToProps, { setInvItemSelect, unselectShopItems, setShopItemSelect })(ItemComponent)
