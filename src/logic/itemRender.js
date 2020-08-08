@@ -2,80 +2,63 @@
 import React from "react"
 
 
-export default function itemRender(props, state) {
-    // logic for displaying item's data
+export default function itemRender(props) {
 
-    // classes
-    const lowerCaseRarityClass = state.data.rarity.toLowerCase()
-    const selectedClass = state.data.isSelected ? " active" : ""
-    const hoveredClass = state.isHovered ? "active" : ""
+    // Classes
+    const rarityClass = props.data.rarity.toLowerCase()
+    const selectedClass = props.data.isSelected ? " active" : ""
 
-    const typeOfCurrentItem = state.data.type
-    let equippedItems = props.equippedItems
-    // loop through array until it finds the matching item
-    let comparedItem = equippedItems.filter(item => {
-        if (item.type === typeOfCurrentItem) return item
-        else return null
-    }) // returns array with a single element
+    // Compared & Current Item (compared item has same type, e. g. compare bow with bow)
+    const comparedItem = props.equippedItems.filter(item => item.type === props.data.type)[0]
+    const currentItem = props.data
 
-    comparedItem = comparedItem[0]
-    const currentItem = state.data
+    // Single Value Comparison
+    const compareSingle = (compared, current) => {
+        const diff = current - compared
 
-    // SINGLE STAT COMPARE - for Stat and Level
-    const compareSingle = (comp, curr) => {
-
-        const diff = curr - comp
-        let value = Math.abs(diff)
-
-        let type
-        if (diff > 0) { type = "better"; value = "+" + value }
-        else if (diff < 0) { type = "worse"; value = "-" + value }
-        else if (diff === 0) { type = "same"; }
-
-        return { type: type, value: value }
+        if (diff > 0) return { type: 'better', value: '+' + Math.abs(diff) }
+        else if (diff < 0) return { type: 'worse', value: '-' + Math.abs(diff) }
+        else if (diff === 0) return { type: 'same', value: diff }
     }
 
-    // COMPARE BONUSES
-    const compareBonuses = () => {
+    // Compare Stat and Level
+    const comparedStat = compareSingle(comparedItem.stats.value, currentItem.stats.value)
+    const comparedLevel = compareSingle(comparedItem.level, currentItem.level)
+
+    // Compare Bonuses
+    const comparedBonuses = (() => {
         const compBonuses = comparedItem.bonuses
         const currBonuses = currentItem.bonuses
-
         let diffArray = []
 
+        // Loop through current and nested bonuses,
+        currBonuses.forEach(current => {
+            const currName = current.name
+            const currVal = current.value
 
-        currBonuses.forEach(bonus => {
-            const currName = bonus.effectiveAgainst
-            const currVal = bonus.value
+            compBonuses.forEach(compared => {
+                const compName = compared.name
+                const compVal = compared.value
 
-            compBonuses.forEach(bon => {
-                const compName = bon.effectiveAgainst
-                const compVal = bon.value
-
+                // if they match, calculate the diff and push to diffArray
                 if (currName === compName) {
                     const diff = currVal - compVal
-                    let value = Math.abs(diff)
 
-                    let type
-                    if (diff > 0) { type = "better"; value = "+" + value }
-                    else if (diff < 0) { type = "worse"; value = "-" + value }
-                    else if (diff === 0) { type = "same"; }
-
-                    diffArray.push({ name: currName, value: value, type })
+                    if (diff > 0) diffArray.push({ type: 'better', value: '+' + Math.abs(diff) })
+                    else if (diff < 0) diffArray.push({ type: 'worse', value: '-' + Math.abs(diff) })
+                    else if (diff === 0) diffArray.push({ type: 'same', value: diff })
                 }
             })
         })
 
         return diffArray
-    }
+    })()
 
-    const comparedStat = compareSingle(comparedItem.stats.value, currentItem.stats.value)
-    const comparedBonuses = compareBonuses()
-    const comparedLevel = compareSingle(comparedItem.level, currentItem.level)
-
-    const dest = state.data.destination
+    // Destination Check
+    const dest = props.data.destination
     const destCheck = (dest === "Inventory" || dest === "Shop" || dest === "Game") ? true : false
 
-    // SET STYLE FUNCTION
+    // Set style function
     const setComparedStyle = (compType) => {
         if (destCheck) {
             const comparedType = compType
@@ -90,26 +73,26 @@ export default function itemRender(props, state) {
 
     // ASSINGMENT
     const itemName = () => {
-        const name = state.data.rarity + " " + state.data.type + " (" + currentItem.level + ")"
+        const name = props.data.rarity + " " + props.data.type + " (" + currentItem.level + ")"
         const comparedValue = destCheck ? comparedLevel.value : null
         return (
             <div className="name_container">
-                <p id="name" className={lowerCaseRarityClass}>{name}</p>
+                <p id="name">{name}</p>
                 <p style={destCheck ? setComparedStyle(comparedLevel.type) : null}>{comparedValue}</p>
             </div>
         )
     }
-    const itemValue = state.data.goldValue 
+    const itemValue = props.data.goldValue 
     const itemStat = () => {
         const comparedValue = destCheck ? comparedStat.value : null
         return (
             <div className="stat_container">
-                <p>{state.data.stats.statName + ": " + state.data.stats.value}</p>
+                <p>{props.data.stats.statName + ": " + props.data.stats.value}</p>
                 <p style={destCheck ? setComparedStyle(comparedStat.type) : null}>{comparedValue}</p>
             </div>
         )
     }
-    const itemBonuses = state.data.bonuses.map((bonus, index) => {
+    const itemBonuses = props.data.bonuses.map((bonus, index) => {
         const comparedValue = destCheck ? comparedBonuses[index].value : null
         return (
             <div key={index} className="bonus_container">
@@ -125,8 +108,7 @@ export default function itemRender(props, state) {
         stat: itemStat(), 
         bonuses: itemBonuses,
         value: itemValue,
-        lowerCaseRarityClass: lowerCaseRarityClass,
+        rarityClass: rarityClass,
         selectedClass: selectedClass,
-        hoveredClass: hoveredClass,
     }
 }

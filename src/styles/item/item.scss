@@ -1,6 +1,7 @@
 
 @import "../style.scss";
 
+// Variables
 $item_bg: #999;
 $item_active_color: white;
 
@@ -10,6 +11,8 @@ $rare: blue;
 $epic: purple;
 $legendary: orangered;
 
+
+// Item Container
 .item_container {
     display: flex;
     justify-content: center;
@@ -21,12 +24,54 @@ $legendary: orangered;
     border: 1px black solid;
     transition: 500ms all;
 
+    // active
+    &.active { 
+        background: $item_active_color!important; 
+        border: 1px $item_active_color solid; 
+    }
+
+    // legendary
+    &.legendary { 
+        background: $legendary; 
+        .item { background: $legendary; }
+        #name { color: $legendary; }  
+    }
+
+    // epic
+    &.epic { 
+        background: $epic; 
+        .item { background: $epic; }
+        #name { color: $epic; }
+    }
+
+    // rare
+    &.rare {
+        background: $rare; 
+        .item { background: $rare; }
+        #name { color: $rare; }
+    }
+
+    // uncommon
+    &.uncommon { 
+        background: $uncommon; 
+        .item { background: $uncommon; }
+        #name { color: $uncommon; }
+    }
+
+    // common
+    &.common { 
+        background: $common; 
+        .item { background: $common; }
+        #name { color: $common; }
+    }
+
+    // mobile
     @include mobile {
         width: 26px;
         height: 26px;
     }
     
-    
+    // Item
     .item {
         position: relative;
         display: flex;
@@ -48,6 +93,7 @@ $legendary: orangered;
             height: 23px;
         }
 
+        // Item icon
         img {
             position: absolute;
             top: 50%;
@@ -62,6 +108,7 @@ $legendary: orangered;
             }
         }
     
+        // Item Stats
         .stats {
             display: none;
             min-width: 200px;
@@ -81,6 +128,7 @@ $legendary: orangered;
                 padding: 5px;
             }
 
+            // Bonus, Stat, Name Container
             .bonus_container, .stat_container, .name_container {
                 display: flex;
                 flex-direction: row;
@@ -115,11 +163,6 @@ $legendary: orangered;
                     margin-bottom: 5px;
                 }
             }
-            #name.legendary { color: $legendary; }
-            #name.epic { color: $epic; }
-            #name.rare { color: $rare; }
-            #name.uncommon { color: $uncommon; }
-            #name.common { color: $common; }
 
             #stats_heading, #bonuses_heading {
                 font-weight: bold!important;
@@ -134,23 +177,5 @@ $legendary: orangered;
                 }
             }
         }
-        .stats.active {
-            display: inline-block;
-        }
     }
-    .item.legendary { background: $legendary; }
-    .item.epic { background: $epic; }
-    .item.rare { background: $rare; }
-    .item.uncommon { background: $uncommon; }
-    .item.common { background: $common; }
 }
-
-.item_container.active { 
-    background: $item_active_color!important; 
-    border: 1px $item_active_color solid; 
-}
-.item_container.legendary { background: $legendary; }
-.item_container.epic { background: $epic; }
-.item_container.rare { background: $rare; }
-.item_container.uncommon { background: $uncommon; }
-.item_container.common { background: $common; }

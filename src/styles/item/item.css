@@ -130,6 +130,71 @@
   transition: 500ms all;
 }
 
+.item_container.active {
+  background: white !important;
+  border: 1px white solid;
+}
+
+.item_container.legendary {
+  background: orangered;
+}
+
+.item_container.legendary .item {
+  background: orangered;
+}
+
+.item_container.legendary #name {
+  color: orangered;
+}
+
+.item_container.epic {
+  background: purple;
+}
+
+.item_container.epic .item {
+  background: purple;
+}
+
+.item_container.epic #name {
+  color: purple;
+}
+
+.item_container.rare {
+  background: blue;
+}
+
+.item_container.rare .item {
+  background: blue;
+}
+
+.item_container.rare #name {
+  color: blue;
+}
+
+.item_container.uncommon {
+  background: green;
+}
+
+.item_container.uncommon .item {
+  background: green;
+}
+
+.item_container.uncommon #name {
+  color: green;
+}
+
+.item_container.common {
+  background: #555;
+}
+
+.item_container.common .item {
+  background: #555;
+}
+
+.item_container.common #name {
+  color: #555;
+}
+
 @media (max-width: 767px) {
   .item_container {
     width: 26px;
@@ -249,26 +314,6 @@
   }
 }
 
-.item_container .item .stats #name.legendary {
-  color: orangered;
-}
-
-.item_container .item .stats #name.epic {
-  color: purple;
-}
-
-.item_container .item .stats #name.rare {
-  color: blue;
-}
-
-.item_container .item .stats #name.uncommon {
-  color: green;
-}
-
-.item_container .item .stats #name.common {
-  color: #555;
-}
-
 .item_container .item .stats #stats_heading, .item_container .item .stats #bonuses_heading {
   font-weight: bold !important;
   font-size: 16px;
@@ -280,54 +325,5 @@
 
 .item_container .item .stats #value #value_heading {
   font-weight: bold !important;
-}
-
-.item_container .item .stats.active {
-  display: inline-block;
-}
-
-.item_container .item.legendary {
-  background: orangered;
-}
-
-.item_container .item.epic {
-  background: purple;
-}
-
-.item_container .item.rare {
-  background: blue;
-}
-
-.item_container .item.uncommon {
-  background: green;
-}
-
-.item_container .item.common {
-  background: #555;
-}
-
-.item_container.active {
-  background: white !important;
-  border: 1px white solid;
-}
-
-.item_container.legendary {
-  background: orangered;
-}
-
-.item_container.epic {
-  background: purple;
-}
-
-.item_container.rare {
-  background: blue;
-}
-
-.item_container.uncommon {
-  background: green;
-}
-
-.item_container.common {
-  background: #555;
 }
 /*# sourceMappingURL=item.css.map */
