@@ -13,7 +13,7 @@ function ItemComponent(props) {
         // Destructure from props
         const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
         const { type, destination, rarity, goldValue, stats, bonuses, imgSrc, isSelected, key } = data
-
+        const currentItem = data
 
         // Item Handle Click
         const handleClick = () => {
@@ -44,78 +44,102 @@ function ItemComponent(props) {
         const rarityClass = rarity.toLowerCase()
         const selectedClass = isSelected ? " active" : ""
 
-        // Compared & Current Item (compared item has same type, e.g. compare bow with bow)
-        const comparedItem = equippedItems.filter(item => item.type === type)[0]
-        const currentItem = data
+        // Destination Check - if Item is equipped, don't compare anything
+        const isEquipped = destination === 'Equipped' ? true : false
 
-        // Single Value Comparison
-        const compareSingle = (compared, current) => {
-            const diff = current - compared
+        // COMPARISON
+        const comparison = (() => {
 
-            if (diff > 0) return { value: '+' + Math.abs(diff), color: "green" }
-            else if (diff < 0) return { value: '-' + Math.abs(diff), color: "red" }
-            else if (diff === 0) return { value: diff, color: "yellow" }
-        }
+            // If Item is equipped, break out of this function
+            if(isEquipped) return {}
 
-        // Compare Stat and Level
-        const comparedStat = compareSingle(comparedItem.stats.value, currentItem.stats.value)
-        const comparedLevel = compareSingle(comparedItem.level, currentItem.level)
-
-        // Compare Bonuses
-        const comparedBonuses = (() => {
-            const compBonuses = comparedItem.bonuses
-            const currBonuses = currentItem.bonuses
-            let diffArray = []
-
-            // Loop through current and nested bonuses,
-            currBonuses.forEach(current => {
-                const currName = current.name
-                const currVal = current.value
-
-                compBonuses.forEach(compared => {
-                    const compName = compared.name
-                    const compVal = compared.value
-
-                    // if they match, calculate the diff and push to diffArray
-                    if (currName === compName) {
-                        const diff = currVal - compVal
-
-                        if (diff > 0) diffArray.push({ value: '+' + Math.abs(diff), color: "green" })
-                        else if (diff < 0) diffArray.push({ value: '-' + Math.abs(diff), color: "red" })
-                        else if (diff === 0) diffArray.push({ value: diff, color: "yellow" })
-                    }
+            // Compared Item (compare current Item with the equipped item of same type, e.g. bow with bow)
+            const comparedItem = equippedItems.filter(item => item.type === type)[0]
+    
+            // Single Value Comparison
+            const compareSingle = (compared, current) => {
+                const diff = current - compared
+    
+                if (diff > 0) return { value: '+' + Math.abs(diff), color: "green" }
+                else if (diff < 0) return { value: '-' + Math.abs(diff), color: "red" }
+                else if (diff === 0) return { value: diff, color: "yellow" }
+            }
+    
+            // Compare Stat and Level
+            const comparedStat = compareSingle(comparedItem.stats.value, currentItem.stats.value)
+            const comparedLevel = compareSingle(comparedItem.level, currentItem.level)
+    
+            // Compare Bonuses
+            const comparedBonuses = (() => {
+                const compBonuses = comparedItem.bonuses
+                const currBonuses = currentItem.bonuses
+                let diffArray = []
+    
+                // Loop through current and nested bonuses,
+                currBonuses.forEach(current => {
+                    const currName = current.name
+                    const currVal = current.value
+    
+                    compBonuses.forEach(compared => {
+                        const compName = compared.name
+                        const compVal = compared.value
+    
+                        // if they match, calculate the diff and push to diffArray
+                        if (currName === compName) {
+                            const diff = currVal - compVal
+    
+                            if (diff > 0) diffArray.push({ value: '+' + Math.abs(diff), color: "green" })
+                            else if (diff < 0) diffArray.push({ value: '-' + Math.abs(diff), color: "red" })
+                            else if (diff === 0) diffArray.push({ value: diff, color: "yellow" })
+                        }
+                    })
                 })
-            })
+    
+                return diffArray
+            })()
 
-            return diffArray
+            // Final Return
+            return { 
+                level: comparedLevel, 
+                stat: comparedStat, 
+                bonuses: comparedBonuses 
+            }
         })()
-
-        // Destination Check
-        //const destCheck = (dest === "Inventory" || dest === "Shop" || dest === "Game") ? true : false
 
         // Item Name
         const itemName = (() => {
             const name = rarity + " " + type + " (" + currentItem.level + ")"
+            const comparedValue = comparison.level ? comparison.level.value : null
+            const style = comparison.level ? { color: comparison.level.color } : null
             return (
                 <div className="name_container">
                     <p id="name">{name}</p>
-                    <p style={{ color: comparedLevel.color }}>{comparedLevel.value}</p>
+                    <p style={style}>{comparedValue}</p>
                 </div>
             )
         })()
 
         // Item Stat
-        const itemStat = <div className="stat_container">
-            <p>{stats.statName + ": " + stats.value}</p>
-            <p style={{ color: comparedStat.color }}>{comparedStat.value}</p>
-        </div>
+        const itemStat = (() => {
+            const comparedValue = comparison.stat ? comparison.stat.value : null
+            const style = comparison.stat ? { color: comparison.stat.color } : null
+            return (
+                <div className="stat_container">
+                    <p>{stats.statName + ": " + stats.value}</p>
+                    <p style={style}>{comparedValue}</p>
+                </div> 
+            )
+        })() 
 
         // Item Bonuses
         const itemBonuses = bonuses.map((bonus, i) => {
+            const name = bonus.name.charAt(0).toUpperCase() + bonus.name.slice(1)
+            const comparedValue = comparison.bonuses ? comparison.bonuses[i].value : null
+            const style = comparison.bonuses ? { color: comparison.bonuses[i].color } : null
             return (
                 <div key={i} className="bonus_container">
-                    <p>{bonus.displayedName + ": " + bonus.value}</p>
-                    <p style={{ color: comparedBonuses[i].color }}>{comparedBonuses[i].value}</p>
+                    <p>{name + ": " + bonus.value}</p>
+                    <p style={style}>{comparedValue}</p>
                 </div>
             )
         })
