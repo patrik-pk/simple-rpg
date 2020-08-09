@@ -5,7 +5,8 @@ import {
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
     REROLL_ITEMS,
-    REMOVE_SHOP_ITEM
+    REMOVE_SHOP_ITEM,
+    REMOVE_INV_ITEMS
 } from './types'
 
 // ADD ITEM TO INV
@@ -46,4 +47,10 @@ export const rerollShopItems = newItems => ({
 export const removeShopItem = item => ({
     type: REMOVE_SHOP_ITEM,
     payload: item
+})
+
+// REMOVE INVENTORY ITEMS
+export const removeInvItems = items => ({
+    type: REMOVE_INV_ITEMS,
+    payload: items
 })

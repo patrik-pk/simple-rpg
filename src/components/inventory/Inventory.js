@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
-import { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem } from '../../actions/itemsActions'
+import { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, removeInvItems } from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
 import generateItem from '../../logic/generateItem'
 
@@ -16,7 +16,18 @@ import "../../styles/inventory/inventory.css"
 function Inventory(props) {
 
     // Destructure from props
-    const { character, items, unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, setDiamonds, setGold } = props
+    const { 
+        character, 
+        items, 
+        unselectInvItems, 
+        unselectShopItems, 
+        rerollShopItems, 
+        addItemToInv, 
+        removeShopItem, 
+        removeInvItems, 
+        setDiamonds, 
+        setGold 
+    } = props
     const { equippedItems, invItems, shopItems } = items
     const { currentLevel, experience, gold, diamonds } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
@@ -93,6 +104,19 @@ function Inventory(props) {
         }
     }
 
+    // Sell Item(s)
+    const sellItem = () => {
+        if(selectedInvItems.length > 0) {
+            let goldVal = 0
+            selectedInvItems.forEach(item => {
+                goldVal += item.goldValue
+            })
+
+            removeInvItems(selectedInvItems)
+            setGold(goldVal)
+        }
+    }
+
     // Set active classes
     const equipActive = selectedInvItems.length === 1 ? "active" : "null"
     const sellActive = selectedInvItems.length >= 1 ? "active" : "null"
@@ -155,7 +179,7 @@ function Inventory(props) {
                         <div className="options">
                             <div className="wrapper">
                                 <button className={"equip_btn " + equipActive} onClick={props.equipItem}>Equip</button>
-                                <button className={"sell_btn " + sellActive} onClick={props.sellItem}>Sell</button>
+                                <button className={"sell_btn " + sellActive} onClick={sellItem}>Sell</button>
                             </div>
                         </div>
                     </div>
@@ -208,4 +232,13 @@ const mapStateToProps = state => ({
     player: state.player
 })
 
-export default connect(mapStateToProps, { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, setDiamonds, setGold })(Inventory)
+export default connect(mapStateToProps, { 
+    unselectInvItems, 
+    unselectShopItems, 
+    rerollShopItems, 
+    addItemToInv, 
+    removeShopItem, 
+    removeInvItems, 
+    setDiamonds, 
+    setGold 
+})(Inventory)

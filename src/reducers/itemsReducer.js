@@ -7,7 +7,8 @@ import {
     SET_SHOP_ITEM_SELECT,
     UNSELECT_INV_ITEMS,
     REROLL_ITEMS,
-    REMOVE_SHOP_ITEM
+    REMOVE_SHOP_ITEM,
+    REMOVE_INV_ITEMS
 } from '../actions/types'
 
 const initialState = {
@@ -28,6 +29,9 @@ const initialState = {
     invItems: [
         { type: "Helmet", rarity: "Epic", stats: { statName: "Armor", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.helmet, key: 0 },
         { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 1 },
+        { type: "Sword", rarity: "Common", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 2 },
+        { type: "Sword", rarity: "Uncommon", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 3 },
+        { type: "Sword", rarity: "Rare", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 4 },
     ],
     shopItems: [
         /*{ type: "Empty", key: 0 },
@@ -105,6 +109,23 @@ export default (state = initialState, action) => {
                         return { type: 'Empty', key: action.payload.key }
                     } else return item
                 })
+            }
+
+        // Remove Inventory Items
+        case REMOVE_INV_ITEMS:
+
+            // create an array of all the keys in payload items that will be removed
+            const mappedPayloadKeys = action.payload.map(payloadItem => payloadItem.key)
+
+            // filter out all the items that include one of the mapped payload id
+            const newItems = state.invItems.filter(item => !mappedPayloadKeys.includes(item.key))
+            
+            // Add correct keys to items
+            newItems.forEach((item, i) => item.key = i)
+
+            return {
+                ...state,
+                invItems: newItems
             }
 
         // Default
