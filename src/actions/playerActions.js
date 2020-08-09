@@ -2,7 +2,8 @@ import {
     RESET_PLAYER,
     PLAYER_BLOCKED,
     PLAYER_HIT,
-    RESET_PLAYER_DMG_TAKEN
+    RESET_PLAYER_DMG_TAKEN,
+    RECALCULATE_PLAYER_STATS
 } from './types'
 
 // RESET PLAYER
@@ -27,4 +28,10 @@ export const playerHit = (dmgDealt, didCrit) => ({
 // RESET PLAYER DAMAGE TAKEN
 export const resetPlayerDmgTaken = () => ({
     type: RESET_PLAYER_DMG_TAKEN
+})
+
+// RECALCULATE PLAYERS STATS
+export const recalculatePlayerStats = values => ({
+    type: RECALCULATE_PLAYER_STATS,
+    payload: values
 })

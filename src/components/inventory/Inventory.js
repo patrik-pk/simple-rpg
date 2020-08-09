@@ -16,7 +16,9 @@ import {
     equipItem 
 } from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
+import { recalculatePlayerStats } from '../../actions/playerActions'
 import generateItem from '../../logic/generateItem'
+import cps from '../../logic/calculatePlayerStats'
 
 import levelTresholds from '../../data/levelTresholds'
 import "../../styles/inventory/inventory.css"
@@ -33,7 +35,8 @@ function Inventory(props) {
         addItemToInv, 
         removeShopItem, 
         removeInvItems,
-        equipItem, 
+        equipItem,
+        recalculatePlayerStats,
         setDiamonds, 
         setGold 
     } = props
@@ -136,6 +139,8 @@ function Inventory(props) {
             //removeInvItems(selectedInvItems)
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])
+            // recalculate player stats - cps (calculatePlayerstats) returns object with new values
+            recalculatePlayerStats(cps(equippedItems))
         }
     }
 
@@ -261,7 +266,8 @@ export default connect(mapStateToProps, {
     addItemToInv, 
     removeShopItem, 
     removeInvItems,
-    equipItem, 
+    equipItem,
+    recalculatePlayerStats,
     setDiamonds, 
     setGold 
 })(Inventory)

@@ -2,7 +2,8 @@ import {
     RESET_PLAYER, 
     PLAYER_BLOCKED,
     PLAYER_HIT,
-    RESET_PLAYER_DMG_TAKEN
+    RESET_PLAYER_DMG_TAKEN,
+    RECALCULATE_PLAYER_STATS
 } from '../actions/types'
 
 const initialState = {
@@ -57,6 +58,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 damageTaken: ''
+            }
+
+        // Recalculate Players Stats
+        case RECALCULATE_PLAYER_STATS:
+            const values = action.payload
+
+            return {
+                ...state,
+                maxHp: values.maxHp,
+                armor: values.armor,
+                meleeDamage: values.meleeDamage,
+                rangedDamage: values.rangedDamage,
+                critChance: values.critChance,
+                blockChance: values.blockChance,
+                bonuses: values.bonuses
             }
         
         // Default
