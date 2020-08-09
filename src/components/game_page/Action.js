@@ -59,10 +59,12 @@ function Action(props) {
                 addReward(reward)
                 // generate item
                 const item = generateItem(character, reduxEnemy, 'Inventory', equippedItems.length, 'Clasic')
-                // update generatedItem in game reducer - to display at the end of the game
-                itemObtained(item)
                 // add item to inventory
                 addItemToInv(item)
+                // update generatedItem in game reducer - to display at the end of the game
+                const itemCopy = JSON.parse(JSON.stringify(item))
+                itemCopy.destination = 'Game'
+                itemObtained(itemCopy)
                 // break out of this function
                 return
             }

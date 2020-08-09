@@ -64,7 +64,7 @@ function Game(props) {
                             <div className="right">
                                 <div className="generated_item">
                                     {
-                                    props.battleStatus === "Victory" ?
+                                    battleStatus === "Victory" ?
                                     <ItemComponent data={generatedItem ? generatedItem : null} {...props} />
                                     : null
                                     }
