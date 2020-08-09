@@ -28,7 +28,9 @@ export default (state = initialState, action) => {
         // End Game
         case END_GAME:
             return {
-                battleStatus: ''
+                ...state,
+                battleStatus: '',
+                generatedItem: null
             }
 
         // Set Attack

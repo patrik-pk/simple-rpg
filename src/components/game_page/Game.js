@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react"
+import { Link, useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -13,20 +13,34 @@ import "../../styles/item/item.css"
 
 
 function Game(props) {
+
+    // Destructure From Props
     const { reduxEnemy, endGame } = props 
     const { battleStatus, generatedItem } = props.game
     const { acquiredXp, acquiredGold, acquiredDiamonds } = props.character
+    const history = useHistory()
+
+    // Game On Mount - if enemy doesn't exist (happens on refresh), redirect to /menu
+    useEffect(() => {
+        !reduxEnemy && history.push('/menu')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    // Style
+    const bg_link = reduxEnemy ? reduxEnemy.currentEnemy.environmentSrc : ''
 
     const bg_style = {
-        backgroundImage: "url(" + reduxEnemy.currentEnemy.environmentSrc + ")",
+        backgroundImage: "url(" + bg_link + ")",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center"
     }
 
+    // Text Variables
     const winText = "Victory"
     const loseText = "Defeat"
 
+    // Render
     return(
         <section className="battle_section" style={bg_style}>
             <div className="dark_overlay"></div>
@@ -65,7 +79,7 @@ function Game(props) {
                                 <div className="generated_item">
                                     {
                                     battleStatus === "Victory" ?
-                                    <ItemComponent data={generatedItem ? generatedItem : null} {...props} />
+                                    <ItemComponent data={generatedItem} {...props} />
                                     : null
                                     }
                                 </div>
