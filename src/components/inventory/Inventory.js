@@ -86,8 +86,8 @@ function Inventory(props) {
                 <div className="left">
                     <div className="current_equipment">
                         <div className="wrapper">
-                            <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} itemHandleClick={props.itemHandleClick} {...props}/>                                        
-                            <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} itemHandleClick={props.itemHandleClick} {...props}/>                                        
+                            <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} {...props}/>                                        
+                            <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} {...props}/>                                        
                         </div>
                     </div>
                     <div className="player_stats">
@@ -133,9 +133,9 @@ function Inventory(props) {
                     <div className="wrapper">
                         <div className="items">
                             <ul>
-                                <ItemComponent data={shopItems[0]} handleClick={props.itemHandleClick} {...props}/>     
-                                <ItemComponent data={shopItems[1]} handleClick={props.itemHandleClick} {...props}/>                                      
-                                <ItemComponent data={shopItems[2]} handleClick={props.itemHandleClick} {...props}/>                                      
+                                <ItemComponent data={shopItems[0]} {...props}/>     
+                                <ItemComponent data={shopItems[1]} {...props}/>                                      
+                                <ItemComponent data={shopItems[2]} {...props}/>                                      
                             </ul>
                         </div>
                         <div className="options">

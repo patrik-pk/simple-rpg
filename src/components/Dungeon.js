@@ -9,18 +9,21 @@ import "../styles/dungeon/dungeon.css"
 
 function Dungeon(props) {
 
+    // Destructure From Props
+    const { dungeon, currentLevel } = props
+
     // Map Dungeon Items
     const dungeonItems = () => {
         // Dungeon is a array of objects, these objects have two 
         // properties - type (string of dungeon name) and current (number representing the current boss). 
-        return props.dungeon.map((item, i) => {
+        return dungeon.map((item, i) => {
             return <DungeonItem 
                 key={i}
                 // if current < 5, return boss from data/bosses.js (array of arrays),
                 // else return 'Finished'
-                boss={props.dungeon[i].current < 5 ? bosses[i][props.dungeon[i].current] : 'Finished'} 
+                boss={dungeon[i].current < 5 ? bosses[i][dungeon[i].current] : 'Finished'} 
                 dungeonName={item.type.charAt(0).toUpperCase() + item.type.slice(1)} 
-                count={props.dungeon[i].current} 
+                count={dungeon[i].current} 
                 {...props} 
                 startGame={props.startGame} />
         })
@@ -29,7 +32,7 @@ function Dungeon(props) {
     return (
         <div className="dungeon">
             <h2 id="page_name">Dungeon</h2>
-            <p id="current_level">Your level: {props.currentLevel}</p>
+            <p id="current_level">Your level: {currentLevel}</p>
             <div className="dungeon_container">
                 { dungeonItems() }
             </div>

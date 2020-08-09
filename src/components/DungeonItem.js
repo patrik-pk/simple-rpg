@@ -1,90 +1,119 @@
-
 import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Stat from "./Stat"
+import { resetPlayer } from '../actions/playerActions'
+import { setEnemy } from '../actions/enemyActions'
+import { startGame } from '../actions/gameActions'
 
-class DungeonItem extends React.Component {
+function DungeonItem(props) {
 
-    state = {
-        isHovered: null
-    }
+    // Not Finished Dungeon
+    if(props.boss !== "Finished") {
 
-    componentDidMount() {
-        this.setState({ isHovered: false })
-    }
+        // Destructure From Props
+        const { 
+            resetPlayer, 
+            setEnemy, 
+            startGame, 
+            invItems, 
+            currentLevel, 
+            boss, 
+            dungeonName, 
+            count 
+        } = props
 
-    handleHover = (type) => {
-        if(type === "Enter") this.setState({ isHovered: true })
-        if (type === "Leave") this.setState({ isHovered: false })
-    }
+        const { 
+            level, 
+            currentEnemy, 
+            maxHp, 
+            meleeArmor, 
+            rangedArmor, 
+            damage, 
+            critChance, 
+            meleeDodgeChance, 
+            rangedDodgeChance 
+        } = boss
 
-    render() {
-        if(this.props.boss !== "Finished") {
-            const activeClass = this.state.isHovered ? " active" : ""
-    
-            // boss's name color is set based on differe between Player level and Boss level
-            const enemyStyle = () => {
-                const diff = this.props.boss.level - this.props.currentLevel
-                if(diff >= 2) return { color: "red" }
-                if (diff < 2 && diff >= 1) return { color: "orange" }
-                if (diff < 1 && diff >= -1) return { color: "yellow" }
-                if (diff < -1) return { color: "green" } 
-            }
+        // Conditions
+        const haveSpaceInv = invItems.length <= 35 ? true : false
+        const startActiveClass = haveSpaceInv ? 'active' : ''
 
-            return (
-                <div className="dungeon_item">
-                    <div className="img_cont">
-                        <img alt="" src={this.props.boss.currentEnemy.imgSrc} />
-                        <div className="dark_overl"></div>
-                    </div>
-                    <div className="name" onMouseEnter={() => this.handleHover("Enter")} onMouseLeave={() => this.handleHover("Leave")} >
-                        <p id="dungeon">{this.props.dungeonName} ({this.props.count + 1}/5)</p>
-                        <p id="enemy" style={enemyStyle()}>{this.props.boss.currentEnemy.name} ({this.props.boss.level})</p>
-                    </div>
-                    <div className={"stats " + activeClass} >
-                        <Stat name="HP:" value={this.props.boss.maxHp} />
-                        <Stat name="M-Armor:" value={this.props.boss.meleeArmor} enemy={this.props.boss} />
-                        <Stat name="R-Armor:" value={this.props.boss.rangedArmor} enemy={this.props.boss} />
-                        <Stat name="Strength:" value={this.props.boss.damage} />
-                        <Stat name="Crit:" value={this.props.boss.critChance} />
-                        <Stat name="M-Dodge:" value={this.props.boss.meleeDodgeChance} />
-                        <Stat name="R-Dodge:" value={this.props.boss.rangedDodgeChance} />
-                    </div>
-                    <Link to="/game" onClick={() => this.props.startGame("Boss", this.props, this.props.boss)} className="enter_btn">Enter</Link>
-                </div>
-            )
+        // Start Game
+        const createBossGame = () => {
+            // reset player hp, damageTaken
+            resetPlayer()
+            // generate enemy
+            setEnemy(boss)
+            // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
+            startGame()
         }
-        if(this.props.boss === "Finished") {
 
-            const finished_style = {
-                backgroundImage: "url('resources/environment/dungeon.jpg')",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center"
-            }
+        // Bosses name color is set based on difference between Player level and Boss level
+        const enemyStyle = () => {
+            const diff = level - currentLevel
+            if(diff >= 2) return { color: "red" }
+            if (diff < 2 && diff >= 1) return { color: "orange" }
+            if (diff < 1 && diff >= -1) return { color: "yellow" }
+            if (diff < -1) return { color: "green" } 
+        }
 
-            return (
-                <div className="dungeon_item finished" style={finished_style}>
-                    <div className="dark-overlay"></div>
-                    <div className="text">
-                        <p id="dungeon">{this.props.dungeonName}</p>
-                        <p>Finished</p>
+        return (
+            <div className="dungeon_item">
+                <div className="img_container">
+                    <img alt="" src={currentEnemy.imgSrc} />
+                    <div className="dark_overl"></div>
+                </div>
+                <div className="heading" >
+                    <p id="dungeon">{dungeonName} ({count + 1}/5)</p>
+                    <p id="enemy" style={enemyStyle()}>{currentEnemy.name} ({level})</p>
+
+                    <div className='stats' >
+                        <Stat name="HP:" value={maxHp} />
+                        <Stat name="M-Armor:" value={meleeArmor} enemy={boss} />
+                        <Stat name="R-Armor:" value={rangedArmor} enemy={boss} />
+                        <Stat name="Strength:" value={damage} />
+                        <Stat name="Crit:" value={critChance} />
+                        <Stat name="M-Dodge:" value={meleeDodgeChance} />
+                        <Stat name="R-Dodge:" value={rangedDodgeChance} />
                     </div>
                 </div>
-            )
+                <Link to="/game" onClick={createBossGame} className={`enter_btn ${startActiveClass}`}>Enter</Link>
+            </div>
+        )
+    }
+    // Finished Dungeon
+    if(props.boss === "Finished") {
+
+        const finished_style = {
+            backgroundImage: "url('resources/environment/dungeon.jpg')",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center"
         }
+
+        return (
+            <div className="dungeon_item finished" style={finished_style}>
+                <div className="dark-overlay"></div>
+                <div className="text">
+                    <p id="dungeon">{props.dungeonName}</p>
+                    <p>Finished</p>
+                </div>
+            </div>
+        )
     }
 }
 
 DungeonItem.propTypes = {
     currentLevel: PropTypes.number.isRequired,
+    invItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-    currentLevel: state.character.currentLevel
+    currentLevel: state.character.currentLevel,
+    invItems: state.items.invItems
 })
 
-export default connect(mapStateToProps)(DungeonItem)
+export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(DungeonItem)

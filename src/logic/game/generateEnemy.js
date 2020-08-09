@@ -1,14 +1,13 @@
-
 import mainData from "../../data/_mainData"
 import possibleEnemies from "../../data/possibleEnemies"
 import levelTresholds from "../../data/levelTresholds"
-
 import randomGenerator from "../randomGenerator"
+import dungeon_img from '../../resources/environment/dungeon.jpg'
 
 export default function generateEnemy(gameType, level, specificEnemy, strongStatIndex, dungeon) {
-    // this is a function that generates both Classic and Boss enemy
 
-    const gameFlowFc = () => {
+    // Gameflow
+    const gameFlow = (() => {
         if(gameType === "Classic") return levelTresholds[level].gameFlow
         if(gameType === "Boss") {
             const maxLevel = levelTresholds.length - 1
@@ -19,32 +18,38 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
                 return result
             }
         }
-    }
-    const gameFlow = gameFlowFc()
+    })()
 
+    // Variables
     const baseHp = mainData.enemyBase.hp
     const baseArmor = mainData.enemyBase.armor
     const baseDamage = mainData.enemyBase.damage
     const baseCrit = mainData.enemyBase.crit
     const baseDodge = mainData.enemyBase.dodge
 
-    // generate random enemy from /data/possibleEnemies.js
-    const generatedEnemyFc = () => {
-        if(specificEnemy === undefined || specificEnemy === null) return possibleEnemies[Math.floor(Math.random() * possibleEnemies.length)]
-        else return possibleEnemies[specificEnemy]
-    }
+    // Generate Enemy Type from possibleEnemies
+    const generatedEnemy = (() => {
+        // If there is no 'specificEnemy', create random
+        if(typeof specificEnemy === 'undefined' || specificEnemy === null) {
+            return possibleEnemies[Math.floor(Math.random() * possibleEnemies.length)]
+        }
+        else {
+            let enemy = JSON.parse(JSON.stringify(possibleEnemies[specificEnemy]))
+            enemy.environmentSrc = dungeon_img
+            return enemy
+        } 
+    })()
 
-    const generatedEnemy = generatedEnemyFc()
 
-    const difficultyFc = () => {
+    // Difficulty
+    const difficulty = (() => {
         if(gameType === "Classic") return Math.ceil(Math.random() * 3)
         if(gameType === "Boss") return 3
-    } 
-    const difficulty = difficultyFc()
+    })() 
     
     let difficultyMultiplier
 
-    // set difficulty multipliers from mainData
+    // Set difficulty multipliers from mainData
     switch(difficulty) {
         case 1: 
             difficultyMultiplier = mainData.enemyBase.diffMult.stats.easy; 
@@ -96,6 +101,7 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
         if(gameType === "Classic") return 1
     }
 
+
     const hp = Math.round(randomGenerator(hpd.min, hpd.max, hpd.perc) * baseHp * difficultyMultiplier * gameFlow * hpMult())
     const meleeArmor = Math.round(randomGenerator(a0.min, a0.max, a0.perc) * baseArmor * difficultyMultiplier * gameFlow)
     const rangedArmor = Math.round(randomGenerator(a1.min, a1.max, a1.perc) * baseArmor * difficultyMultiplier * gameFlow)
@@ -104,6 +110,7 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
     const meleeDodgeChance = (randomGenerator(dp.min, dp.max, dp.perc) * baseDodge * difficultyMultiplier).toFixed(2)
     const rangedDodgeChance = (randomGenerator(dp.min, dp.max, dp.perc) * baseDodge * difficultyMultiplier).toFixed(2)
     const receivedCrit = false
+
 
     return {
         currentHp: hp,

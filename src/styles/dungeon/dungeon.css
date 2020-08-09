@@ -223,7 +223,7 @@
   }
 }
 
-.dungeon .dungeon_container .dungeon_item .img_cont .dark_overl {
+.dungeon .dungeon_container .dungeon_item .img_container .dark_overl {
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -231,7 +231,7 @@
   height: 100%;
 }
 
-.dungeon .dungeon_container .dungeon_item img {
+.dungeon .dungeon_container .dungeon_item .img_container img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -239,7 +239,7 @@
      object-fit: cover;
 }
 
-.dungeon .dungeon_container .dungeon_item .name {
+.dungeon .dungeon_container .dungeon_item .heading {
   width: 100%;
   margin: 0 auto;
   padding: 7px 0;
@@ -250,53 +250,57 @@
   transition: 500ms;
 }
 
-.dungeon .dungeon_container .dungeon_item .name:hover {
+.dungeon .dungeon_container .dungeon_item .heading:hover {
   background: black;
   outline: 1px orangered solid;
 }
 
+.dungeon .dungeon_container .dungeon_item .heading:hover .stats {
+  display: block;
+}
+
 @media (max-width: 767px) {
-  .dungeon .dungeon_container .dungeon_item .name {
+  .dungeon .dungeon_container .dungeon_item .heading {
     padding: 3px 0;
   }
 }
 
-.dungeon .dungeon_container .dungeon_item .name #dungeon {
+.dungeon .dungeon_container .dungeon_item .heading #dungeon {
   font-weight: bold;
 }
 
 @media (max-width: 767px) {
-  .dungeon .dungeon_container .dungeon_item .name #dungeon {
+  .dungeon .dungeon_container .dungeon_item .heading #dungeon {
     font-size: 9px;
   }
 }
 
 @media (min-width: 767px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .name #dungeon {
+  .dungeon .dungeon_container .dungeon_item .heading #dungeon {
     font-size: 12px;
   }
 }
 
-.dungeon .dungeon_container .dungeon_item .name #enemy {
+.dungeon .dungeon_container .dungeon_item .heading #enemy {
   margin-top: 5px;
   font-size: 12px;
   font-weight: bold;
 }
 
 @media (max-width: 767px) {
-  .dungeon .dungeon_container .dungeon_item .name #enemy {
+  .dungeon .dungeon_container .dungeon_item .heading #enemy {
     font-size: 6px;
     margin-top: 0;
   }
 }
 
 @media (min-width: 767px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .name #enemy {
+  .dungeon .dungeon_container .dungeon_item .heading #enemy {
     font-size: 10px;
   }
 }
 
-.dungeon .dungeon_container .dungeon_item .stats {
+.dungeon .dungeon_container .dungeon_item .heading .stats {
   display: none;
   position: absolute;
   bottom: -1px;
@@ -310,7 +314,7 @@
 }
 
 @media (max-width: 767px) {
-  .dungeon .dungeon_container .dungeon_item .stats {
+  .dungeon .dungeon_container .dungeon_item .heading .stats {
     left: 75px;
     width: 75px;
     font-size: 8px;
@@ -318,17 +322,13 @@
 }
 
 @media (min-width: 767px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .stats {
+  .dungeon .dungeon_container .dungeon_item .heading .stats {
     left: 135px;
   }
 }
 
-.dungeon .dungeon_container .dungeon_item .stats .stat_cont.boss p {
+.dungeon .dungeon_container .dungeon_item .heading .stats .stat_cont.boss p {
   color: orangered !important;
-}
-
-.dungeon .dungeon_container .dungeon_item .stats.active {
-  display: block;
 }
 
 .dungeon .dungeon_container .dungeon_item .enter_btn {
@@ -372,6 +372,12 @@
 
 .dungeon .dungeon_container .dungeon_item .enter_btn:hover {
   border: 1px orangered solid;
+}
+
+.dungeon .dungeon_container .dungeon_item .enter_btn:not(.active) {
+  background: white;
+  color: black;
+  border: none;
 }
 
 @media (max-width: 767px) {

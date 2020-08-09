@@ -12,16 +12,16 @@ import home from "../resources/icons/home.svg"
 import "../styles/menu/menu.css"
 
 function Menu(props) {
-    const { resetPlayer, setEnemy, startGame } = props
+    const { resetPlayer, setEnemy, startGame, currentLevel, invItems } = props
 
     const randomTip = tips[Math.floor(Math.random() * tips.length)]
     
-    const haveSpaceInv = props.invItems.length <= 35 ? true : false
+    const haveSpaceInv = invItems.length <= 35 ? true : false
     const startActiveStyle = haveSpaceInv ? 'active' : ''
 
     // Start Game
     const createClassicGame = () => {
-        const enemy = generateEnemy('Classic', props.currentLevel)
+        const enemy = generateEnemy('Classic', currentLevel)
         // reset player hp, damageTaken
         resetPlayer()
         // generate enemy
@@ -59,10 +59,12 @@ function Menu(props) {
 
 Menu.propTypes = {
     currentLevel: PropTypes.number.isRequired,
+    invItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-    currentLevel: state.character.currentLevel
+    currentLevel: state.character.currentLevel,
+    invItems: state.items.invItems
 })
 
 export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(Menu)

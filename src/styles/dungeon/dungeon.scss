@@ -1,11 +1,13 @@
 
 @import "../style.scss";
-       
+     
+// Dungeon
 .dungeon {
     width: 100%;
     height: 100%;
     position: relative;
 
+    // Dungeon Tip
     #tip {
         position: absolute;
         left: 10px;
@@ -19,6 +21,7 @@
         @include tablet { font-size: 14px; }
     }
     
+    // Page Name
     #page_name {
         padding-top: 20px;
         text-align: center;
@@ -34,6 +37,7 @@
         }
     }
 
+    // Current Level
     #current_level {
         text-align: center;
         margin-top: 5px;
@@ -49,6 +53,7 @@
         }
     }
 
+    // Dungeon Container
     .dungeon_container {
         position: absolute;
         top: 50%;
@@ -58,6 +63,7 @@
         flex-direction: row;
         justify-content: space-evenly;
 
+        // Dungeon Item
         .dungeon_item {
             position: relative;
             display: flex;
@@ -79,21 +85,26 @@
                 margin: 0 2px;
             }
 
-            .img_cont {
+            // Image Container
+            .img_container {
+
+                // Dark Overlay
                 .dark_overl {
                     @include dark_overlay(0.3);
                     height: 100%;
                 }
+                
+                // Image
+                img {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
             }
 
-            img {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .name {
+            // Heading
+            .heading {
                 width: 100%;
                 margin: 0 auto;
                 padding: 7px 0;
@@ -104,16 +115,22 @@
                 &:hover {
                     background: black;
                     outline: 1px orangered solid;
+                    .stats {
+                        display: block;
+                    }
                 }
                 @include mobile {
                     padding: 3px 0;
                 }
                 
+                // Dungeon Name
                 #dungeon {
                     font-weight: bold;
                     @include mobile { font-size: 9px; }
                     @include tablet { font-size: 12px; }
                 }
+
+                // Enemy Name
                 #enemy {
                     margin-top: 5px;
                     font-size: 12px;
@@ -124,37 +141,38 @@
                     }
                     @include tablet { font-size: 10px; }
                 }
-                
-            }
-
-            .stats {
-                display: none;
-                position: absolute;
-                bottom: -1px;
-                left: 185px;
-                width: 110px;
-                padding: 10px;
-                background: black;
-                border: 1px orangered solid;
-                z-index: 100!important;
-                font-size: 14px;
-                @include mobile {
-                    left: 75px;
-                    width: 75px;
-                    font-size: 8px;
-                }
-                @include tablet { 
-                    left: 135px;
-                }
-
-                .stat_cont.boss { 
-                    p {
-                        color: orangered!important; 
+    
+                // Dungeon Item Stats (displays on Heading hover)
+                .stats {
+                    display: none;
+                    position: absolute;
+                    bottom: -1px;
+                    left: 185px;
+                    width: 110px;
+                    padding: 10px;
+                    background: black;
+                    border: 1px orangered solid;
+                    z-index: 100!important;
+                    font-size: 14px;
+    
+                    @include mobile {
+                        left: 75px;
+                        width: 75px;
+                        font-size: 8px;
+                    }
+                    @include tablet { 
+                        left: 135px;
+                    }
+    
+                    .stat_cont.boss { 
+                        p {
+                            color: orangered!important; 
+                        }
                     }
                 }
             }
-            .stats.active { display: block; }
 
+            // Enter Button
             .enter_btn {
                 position: absolute;
                 bottom: 5px;
@@ -165,6 +183,11 @@
                 padding: 7px 0;
                 &:hover {
                     border: 1px orangered solid;
+                }
+                &:not(.active) {
+                    background: white;
+                    color: black;
+                    border: none;
                 }
 
                 @include mobile {
@@ -180,6 +203,7 @@
             }
         }
 
+        // Finished Dungeon Item
         .dungeon_item.finished {
             position: relative;
 
@@ -212,6 +236,7 @@
         }
     }
 
+    // Back Button
     .back_btn {
         @include menu_button;
         position: absolute;

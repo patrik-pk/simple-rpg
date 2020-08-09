@@ -10,7 +10,7 @@ const initialState = {
     maxHp: 300,
     armor: 0,
     meleeDamage: 1,
-    rangedDamage: 150,
+    rangedDamage: 15000,
     critChance: 20,
     blockChance: 0,
     bonuses: [

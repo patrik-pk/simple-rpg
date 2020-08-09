@@ -35,6 +35,8 @@ function Action(props) {
         addItemToInv
     } = props
 
+    const gameType = reduxEnemy.type === 'Boss' ? 'Boss' : 'Classic'
+
     // Start Round - actual game functionality
     const startRound = () => {
 
@@ -55,10 +57,10 @@ function Action(props) {
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
                 // generate reward and update state
-                const reward = getReward(reduxEnemy, character, 'Victory', 'Classic')
+                const reward = getReward(reduxEnemy, character, 'Victory', gameType)
                 addReward(reward)
                 // generate item
-                const item = generateItem(character, reduxEnemy, 'Inventory', equippedItems.length, 'Clasic')
+                const item = generateItem(character, reduxEnemy, 'Inventory', equippedItems.length, gameType)
                 // add item to inventory
                 addItemToInv(item)
                 // update generatedItem in game reducer - to display at the end of the game
@@ -89,7 +91,7 @@ function Action(props) {
                     // Battle Won - set battleStatus to 'Victory'
                     gameLost()
                     // generate reward and update state
-                    const reward = getReward(reduxEnemy, character, 'Defeat', 'Classic')
+                    const reward = getReward(reduxEnemy, character, 'Defeat', gameType)
                     addReward(reward)
                     // break out of this function
                     return
