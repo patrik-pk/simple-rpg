@@ -2,6 +2,7 @@
 // Character
 export const ADD_REWARD = 'GET_REWARD'
 export const SET_DIAMONDS = 'SET_DIAMONDS'
+export const SET_GOLD = 'SET_GOLD'
 
 // Items
 export const ADD_ITEM_TO_INV = 'ADD_ITEM_TO_INV'
@@ -10,6 +11,7 @@ export const UNSELECT_SHOP_ITEMS = 'UNSELECT_SHOP_ITEMS'
 export const SET_INV_ITEM_SELECT = 'SET_INV_ITEM_SELECT'
 export const SET_SHOP_ITEM_SELECT = 'SET_SHOP_ITEM_SELECT'
 export const REROLL_ITEMS = 'REROLL_ITEMS'
+export const REMOVE_SHOP_ITEM = 'REMOVE_SHOP_ITEM'
 
 // Game
 export const START_GAME = 'START_GAME'

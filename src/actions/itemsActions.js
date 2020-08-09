@@ -4,7 +4,8 @@ import {
     SET_INV_ITEM_SELECT,
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
-    REROLL_ITEMS
+    REROLL_ITEMS,
+    REMOVE_SHOP_ITEM
 } from './types'
 
 // ADD ITEM TO INV
@@ -39,4 +40,10 @@ export const setShopItemSelect = key => ({
 export const rerollShopItems = newItems => ({
     type: REROLL_ITEMS,
     payload: newItems
+})
+
+// REMOVE SHOP ITEM
+export const removeShopItem = item => ({
+    type: REMOVE_SHOP_ITEM,
+    payload: item
 })

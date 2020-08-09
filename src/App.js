@@ -28,7 +28,6 @@ import attackPlayer from "./logic/game/attackPlayer"
 import resetDamageTaken from "./logic/game/resetDamageTaken"
 import equipItem from "./logic/inventory/equipItem"
 import sellItem from "./logic/inventory/sellItem"
-import reroll from "./logic/inventory/reroll"
 import buyItem from "./logic/inventory/buyItem"
 import calculatePlayerStats from "./logic/calculatePlayerStats"
 
@@ -105,7 +104,6 @@ export default class App extends React.Component {
   // inventory logic
   equipItem = () => { this.setState(equipItem(this.state)) }
   sellItem = () => { this.setState(sellItem(this.state)) }
-  reroll = () => { this.setState(reroll(this.state)) }
   buyItem = () => { this.setState(buyItem(this.state)) }
 
   calculatePlayerStats = () => { this.setState({ player: calculatePlayerStats(this.state.equippedItems)}) }

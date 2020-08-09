@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
-import { unselectInvItems, unselectShopItems, rerollShopItems } from '../../actions/itemsActions'
-import { setDiamonds } from '../../actions/characterActions'
+import { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem } from '../../actions/itemsActions'
+import { setDiamonds, setGold } from '../../actions/characterActions'
 import generateItem from '../../logic/generateItem'
 
 import levelTresholds from '../../data/levelTresholds'
@@ -16,7 +16,7 @@ import "../../styles/inventory/inventory.css"
 function Inventory(props) {
 
     // Destructure from props
-    const { character, items, unselectInvItems, unselectShopItems, rerollShopItems, setDiamonds } = props
+    const { character, items, unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, setDiamonds, setGold } = props
     const { equippedItems, invItems, shopItems } = items
     const { currentLevel, experience, gold, diamonds } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
@@ -57,6 +57,10 @@ function Inventory(props) {
         return mapped
     }
 
+    // Filter out selected Inventory and Shop items
+    const selectedInvItems = invItems.filter(item => item.isSelected)
+    const selectedShopItems = shopItems.filter(item => item.isSelected)
+
     // Reroll Items
     const reroll = () => {
         if(diamonds > 0) {
@@ -71,11 +75,23 @@ function Inventory(props) {
         }
     }
 
-    
+    // Buy Item
+    const buyItem = () => {
+        if(selectedShopItems.length === 1 && invItems.length <= 35) {
+            const selectedItem = selectedShopItems[0]
+            if (gold >= selectedItem.goldValue) {
+                const item = JSON.parse(JSON.stringify(selectedItem))
+                item.destination = 'Inventory'
+                item.isSelected = false
+                item.goldValue = Math.ceil(item.goldValue * 0.75)
+                item.key = invItems.length
 
-    // Filter out selected Inventory and Shop items
-    const selectedInvItems = invItems.filter(item => item.isSelected)
-    const selectedShopItems = shopItems.filter(item => item.isSelected)
+                removeShopItem(selectedItem)
+                addItemToInv(item)
+                setGold(-selectedItem.goldValue)
+            } 
+        }
+    }
 
     // Set active classes
     const equipActive = selectedInvItems.length === 1 ? "active" : "null"
@@ -158,7 +174,7 @@ function Inventory(props) {
                         </div>
                         <div className="options">
                             <button className={"reroll_btn " + rerollActive} onClick={reroll}>Roll (1)</button>
-                            <button className={"buy_btn " + buyActive()} onClick={props.buyItem}>Buy</button>
+                            <button className={"buy_btn " + buyActive()} onClick={buyItem}>Buy</button>
                         </div>
                     </div>
                 </div>
@@ -192,4 +208,4 @@ const mapStateToProps = state => ({
     player: state.player
 })
 
-export default connect(mapStateToProps, { unselectInvItems, unselectShopItems, rerollShopItems, setDiamonds })(Inventory)
+export default connect(mapStateToProps, { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, setDiamonds, setGold })(Inventory)

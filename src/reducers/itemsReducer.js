@@ -6,7 +6,8 @@ import {
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
     UNSELECT_INV_ITEMS,
-    REROLL_ITEMS
+    REROLL_ITEMS,
+    REMOVE_SHOP_ITEM
 } from '../actions/types'
 
 const initialState = {
@@ -93,6 +94,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 shopItems: action.payload
+            }
+
+        // Remove Shop Item
+        case REMOVE_SHOP_ITEM:
+            return {
+                ...state,
+                shopItems: state.shopItems.map(item => {
+                    if(item.key === action.payload.key) {
+                        return { type: 'Empty', key: action.payload.key }
+                    } else return item
+                })
             }
 
         // Default
