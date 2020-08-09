@@ -13,6 +13,7 @@ export const SET_SHOP_ITEM_SELECT = 'SET_SHOP_ITEM_SELECT'
 export const REROLL_ITEMS = 'REROLL_ITEMS'
 export const REMOVE_SHOP_ITEM = 'REMOVE_SHOP_ITEM'
 export const REMOVE_INV_ITEMS = 'REMOVE_INV_ITEMS'
+export const EQUIP_ITEM = 'EQUIP_ITEM'
 
 // Game
 export const START_GAME = 'START_GAME'

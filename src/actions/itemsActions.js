@@ -6,7 +6,8 @@ import {
     SET_SHOP_ITEM_SELECT,
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
-    REMOVE_INV_ITEMS
+    REMOVE_INV_ITEMS,
+    EQUIP_ITEM
 } from './types'
 
 // ADD ITEM TO INV
@@ -53,4 +54,13 @@ export const removeShopItem = item => ({
 export const removeInvItems = items => ({
     type: REMOVE_INV_ITEMS,
     payload: items
+})
+
+// EQUIP ITEM
+export const equipItem = (selectedItem, equippedItem) => ({
+    type: EQUIP_ITEM,
+    payload: {
+        selectedItem,
+        equippedItem
+    }
 })

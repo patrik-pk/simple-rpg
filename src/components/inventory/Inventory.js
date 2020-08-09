@@ -6,7 +6,15 @@ import PropTypes from 'prop-types'
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
-import { unselectInvItems, unselectShopItems, rerollShopItems, addItemToInv, removeShopItem, removeInvItems } from '../../actions/itemsActions'
+import { 
+    unselectInvItems, 
+    unselectShopItems, 
+    rerollShopItems, 
+    addItemToInv, 
+    removeShopItem, 
+    removeInvItems,
+    equipItem 
+} from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
 import generateItem from '../../logic/generateItem'
 
@@ -24,7 +32,8 @@ function Inventory(props) {
         rerollShopItems, 
         addItemToInv, 
         removeShopItem, 
-        removeInvItems, 
+        removeInvItems,
+        equipItem, 
         setDiamonds, 
         setGold 
     } = props
@@ -117,6 +126,19 @@ function Inventory(props) {
         }
     }
 
+    // Equip Item
+    const eqItem = () => {
+        if(selectedInvItems.length === 1) {
+            // find the matching type, that is already equipped
+            const equipped = equippedItems.filter(item => item.type === selectedInvItems[0].type)
+
+            // remove selected item from inventory 
+            //removeInvItems(selectedInvItems)
+            // put selected item into equipped items and put the current equipped item into inventory
+            equipItem(selectedInvItems[0], equipped[0])
+        }
+    }
+
     // Set active classes
     const equipActive = selectedInvItems.length === 1 ? "active" : "null"
     const sellActive = selectedInvItems.length >= 1 ? "active" : "null"
@@ -178,7 +200,7 @@ function Inventory(props) {
                         </div>
                         <div className="options">
                             <div className="wrapper">
-                                <button className={"equip_btn " + equipActive} onClick={props.equipItem}>Equip</button>
+                                <button className={"equip_btn " + equipActive} onClick={eqItem}>Equip</button>
                                 <button className={"sell_btn " + sellActive} onClick={sellItem}>Sell</button>
                             </div>
                         </div>
@@ -238,7 +260,8 @@ export default connect(mapStateToProps, {
     rerollShopItems, 
     addItemToInv, 
     removeShopItem, 
-    removeInvItems, 
+    removeInvItems,
+    equipItem, 
     setDiamonds, 
     setGold 
 })(Inventory)

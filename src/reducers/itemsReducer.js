@@ -8,7 +8,8 @@ import {
     UNSELECT_INV_ITEMS,
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
-    REMOVE_INV_ITEMS
+    REMOVE_INV_ITEMS,
+    EQUIP_ITEM
 } from '../actions/types'
 
 const initialState = {
@@ -34,12 +35,9 @@ const initialState = {
         { type: "Sword", rarity: "Rare", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Inventory", isSelected: false, imgSrc: icons.sword, key: 4 },
     ],
     shopItems: [
-        /*{ type: "Empty", key: 0 },
+        { type: "Empty", key: 0 },
         { type: "Empty", key: 1 },
-        { type: "Empty", key: 2 },*/
-        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 0 },
-        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 1 },
-        { type: "Sword", rarity: "Legendary", stats: { statName: "M-DMG", value: 15 }, bonuses: emptyBonuses, goldValue: 30, level: 5, destination: "Shop", isSelected: false, imgSrc: icons.sword, key: 2 },
+        { type: "Empty", key: 2 },
     ],
 }
 
@@ -119,13 +117,45 @@ export default (state = initialState, action) => {
 
             // filter out all the items that include one of the mapped payload id
             const newItems = state.invItems.filter(item => !mappedPayloadKeys.includes(item.key))
-            
+
             // Add correct keys to items
             newItems.forEach((item, i) => item.key = i)
 
             return {
                 ...state,
                 invItems: newItems
+            }
+
+        // Equip Item
+        case EQUIP_ITEM:
+            const { selectedItem, equippedItem } = action.payload
+
+            return {
+                ...state,
+                equippedItems: state.equippedItems.map(item => {
+                    // if equipped type matches the selected type, replace equipped with selected
+                    if(item.type === selectedItem.type) {
+                        const newItem = JSON.parse(JSON.stringify(selectedItem)) 
+                        newItem.destination = 'Equipped'
+                        newItem.isSelected = false
+                        newItem.key = item.key
+
+                        return newItem
+                    } 
+                    else return item
+                }),
+                invItems: state.invItems.map(item => {
+                    // find the selected item, and replace it with the equipped one
+                    if(item.key === selectedItem.key) {
+                        const newItem = equippedItem
+                        newItem.destination = 'Inventory'
+                        newItem.key = item.key
+                        newItem.isSelected = false
+
+                        return newItem
+                    } 
+                    else return item
+                })
             }
 
         // Default
