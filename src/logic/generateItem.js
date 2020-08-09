@@ -221,6 +221,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
     // Generate Item Level
     const generatedLevel = (() => {
         let level = (() => {
+            if(!gameType) return character.currentLevel
             const playerLevel = character.currentLevel
             const enemyLevel = enemy.level
             // if enemy is boss and has higher level than player => return enemyLevel

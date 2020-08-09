@@ -1,6 +1,7 @@
 import levelTresholds from '../data/levelTresholds'
 import {
-    ADD_REWARD
+    ADD_REWARD,
+    SET_DIAMONDS
 } from '../actions/types'
 
 const initialState = {
@@ -29,6 +30,13 @@ export default (state = initialState, action) => {
                 diamonds: action.payload.diamonds,
                 acquiredGold: action.payload.acquiredGold,
                 acquiredDiamonds: action.payload.acquiredDiamonds
+            }
+
+        // Set diamonds (+ or -)
+        case SET_DIAMONDS:
+            return {
+                ...state,
+                diamonds: state.diamonds + action.payload
             }
 
         // Default

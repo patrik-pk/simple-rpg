@@ -5,7 +5,8 @@ import {
     SET_INV_ITEM_SELECT,
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
-    UNSELECT_INV_ITEMS
+    UNSELECT_INV_ITEMS,
+    REROLL_ITEMS
 } from '../actions/types'
 
 const initialState = {
@@ -85,6 +86,13 @@ export default (state = initialState, action) => {
                     if(item.key === action.payload) item.isSelected = !item.isSelected
                     return item
                 })
+            }
+
+        // Reroll Shop Items
+        case REROLL_ITEMS:
+            return {
+                ...state,
+                shopItems: action.payload
             }
 
         // Default

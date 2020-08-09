@@ -6,7 +6,9 @@ import PropTypes from 'prop-types'
 import InventoryRow from "./InventoryRow"
 import ItemComponent from "./ItemComponent"
 import Stat from "../Stat"
-import { unselectInvItems, unselectShopItems } from '../../actions/itemsActions'
+import { unselectInvItems, unselectShopItems, rerollShopItems } from '../../actions/itemsActions'
+import { setDiamonds } from '../../actions/characterActions'
+import generateItem from '../../logic/generateItem'
 
 import levelTresholds from '../../data/levelTresholds'
 import "../../styles/inventory/inventory.css"
@@ -14,9 +16,9 @@ import "../../styles/inventory/inventory.css"
 function Inventory(props) {
 
     // Destructure from props
-    const { unselectInvItems, unselectShopItems } = props
-    const { equippedItems, invItems, shopItems } = props.items
-    const { currentLevel, experience, gold, diamonds } = props.character
+    const { character, items, unselectInvItems, unselectShopItems, rerollShopItems, setDiamonds } = props
+    const { equippedItems, invItems, shopItems } = items
+    const { currentLevel, experience, gold, diamonds } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
     // Unselect all Inventory & Shop Items on Unmount
@@ -55,6 +57,22 @@ function Inventory(props) {
         return mapped
     }
 
+    // Reroll Items
+    const reroll = () => {
+        if(diamonds > 0) {
+            let newShopItems = []
+            
+            for (let i = 0; i < 3; i++) {
+                newShopItems.push(generateItem(character, null, 'Shop', i))
+            }
+    
+            rerollShopItems(newShopItems)
+            setDiamonds(-1)
+        }
+    }
+
+    
+
     // Filter out selected Inventory and Shop items
     const selectedInvItems = invItems.filter(item => item.isSelected)
     const selectedShopItems = shopItems.filter(item => item.isSelected)
@@ -62,14 +80,14 @@ function Inventory(props) {
     // Set active classes
     const equipActive = selectedInvItems.length === 1 ? "active" : "null"
     const sellActive = selectedInvItems.length >= 1 ? "active" : "null"
-    const rerollActive = props.currency.diamonds >= 1 ? "active" : "null"
+    const rerollActive = diamonds >= 1 ? "active" : "null"
 
     // If Player has 1 selected shop item, has space in Inventory 
     // and has money to buy that items, return active for buy btn class
     const buyActive = () => {
         if (selectedShopItems.length === 1 && invItems.length <= 35) {
             const selectedItem = selectedShopItems[0]
-            if(props.currency.gold >= selectedItem.goldValue) {
+            if(gold >= selectedItem.goldValue) {
                 return "active"
             }
         }
@@ -139,7 +157,7 @@ function Inventory(props) {
                             </ul>
                         </div>
                         <div className="options">
-                            <button className={"reroll_btn " + rerollActive} onClick={props.reroll}>Roll (1)</button>
+                            <button className={"reroll_btn " + rerollActive} onClick={reroll}>Roll (1)</button>
                             <button className={"buy_btn " + buyActive()} onClick={props.buyItem}>Buy</button>
                         </div>
                     </div>
@@ -174,4 +192,4 @@ const mapStateToProps = state => ({
     player: state.player
 })
 
-export default connect(mapStateToProps, { unselectInvItems, unselectShopItems })(Inventory)
+export default connect(mapStateToProps, { unselectInvItems, unselectShopItems, rerollShopItems, setDiamonds })(Inventory)
