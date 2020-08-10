@@ -24,24 +24,24 @@ export default function App() {
           {/* Menu */}
           <Route path='/menu'
             render={(props) =>
-              <Container sectionClass='menu_page' page={<Menu />} />
+              <Container pageClass='menu_page' page={<Menu />} />
             }
           />
 
           {/* Dungeon */}
           <Route path='/dungeon'
             render={(props) =>
-              <Container sectionClass='dungeon_page' page={<Dungeon />} />
+              <Container pageClass='dungeon_page' page={<Dungeon />} />
             }
           />
 
           {/* Inventory */}
           <Route path='/inventory'
             render={(props) =>
-              <Container sectionClass='inventory_page' page={<Inventory/>} />
+              <Container pageClass='inventory_page' page={<Inventory/>} />
             }
           />
-          
+
         </Router>
       </div>
     </Provider>

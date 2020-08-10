@@ -124,6 +124,8 @@
   min-width: 100vw;
   min-height: 100vh;
   width: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container .box {

@@ -2,16 +2,13 @@ import React from 'react'
 import background from '../resources/container_bg.jpg'
 import '../styles/container/container.css'
 
-export default function Container({ page, sectionClass }) {
+export default function Container({ page, pageClass }) {
 
-    const bg_style = {
-        backgroundImage: 'url(' + background + ')',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-    }
+    const pgClass = pageClass ? pageClass : ''
+    const bgUrl = 'url(' + background + ')'
 
     return (
-        <section className={`container ${sectionClass ? sectionClass : ''}`} style={bg_style}>
+        <section className={`container ${pgClass}`} style={{ backgroundImage: bgUrl }}>
             <div className='box'>
                 { page }
             </div>
