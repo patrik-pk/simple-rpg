@@ -18,31 +18,30 @@ export default function App() {
     <Provider store={store} >
       <div className='App'>
         <Router>
-          {/* Home */}
           <Route exact path='/' component={HomePage} />
-          {/* Game */}
-          <Route path='/game'
-            render={(props) => <Game />
-          }
-          />
+          <Route path='/game' component={Game} />
+          
           {/* Menu */}
           <Route path='/menu'
             render={(props) =>
               <Container sectionClass='menu_page' page={<Menu />} />
             }
           />
+
           {/* Dungeon */}
           <Route path='/dungeon'
             render={(props) =>
               <Container sectionClass='dungeon_page' page={<Dungeon />} />
             }
           />
+
           {/* Inventory */}
           <Route path='/inventory'
             render={(props) =>
               <Container sectionClass='inventory_page' page={<Inventory/>} />
             }
           />
+          
         </Router>
       </div>
     </Provider>
