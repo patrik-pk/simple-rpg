@@ -1,6 +1,7 @@
 
 @import "../style.scss";
 
+// Variables
 $box_fill: black;
 $box_border: 1px white solid;
 
@@ -8,12 +9,14 @@ $btn_border_color: white;
 
 $info_color: white;
 
+// Inventory
 .inventory {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 
+    // Top
     .top {
         width: 80%!important;
         display: flex;
@@ -29,10 +32,12 @@ $info_color: white;
             width: 90%!important;
         }
 
+        // Left (equipped items, player stats)
         .left {
             display: flex;
             flex-direction: row;
 
+            // Current Equipment
             .current_equipment {
                 background: $box_fill;
                 border: $box_border;
@@ -63,6 +68,7 @@ $info_color: white;
                 }
             }
 
+            // Player Stats
             .player_stats {
                 min-width: 130px;
                 margin-top: 10px;
@@ -88,13 +94,16 @@ $info_color: white;
             }
         }
 
+        // Right (inventory items)
         .right {
 
+            // Items Container
             .items_container {
                 position: relative;
                 background: $box_fill;
                 border: $box_border;
 
+                // Wrapper
                 .wrapper {
                     padding: 10px;
                     @include mobile { padding: 3px; }
@@ -120,6 +129,7 @@ $info_color: white;
                     }
                 }
 
+                // Options (sell, equip buttons)
                 .options {
                     position: absolute;
                     right: -10px;
@@ -176,6 +186,7 @@ $info_color: white;
         }
     }
 
+    // Bottom (shop, player info)
     .bottom {
         display: flex;
         flex-direction: row;
@@ -193,6 +204,7 @@ $info_color: white;
             margin: 20px auto 0 auto;
         }
 
+        // Shop
         .shop_container {
             width: 200px;
             height: 112px!important;
@@ -207,6 +219,7 @@ $info_color: white;
                 padding: 10px;
                 @include mobile { padding: 5px; }
     
+                // Items
                 .items {
                     
                     ul {
@@ -216,14 +229,14 @@ $info_color: white;
     
                         li {
                             margin: 0 5px 0 0;
-                        }
-    
-                        li:last-child {
-                            margin-right: 0;
+                            &:last-child {
+                                margin-right: 0;
+                            }
                         }
                     }
                 }
     
+                // Options (reroll, buy button)
                 .options {
                     margin-top: 10px;
                     @include mobile { margin-top: 5px; }
@@ -271,6 +284,7 @@ $info_color: white;
             }
         }
     
+        // Money Container (+ level)
         .money_container {
             display: flex;
             flex-direction: row;
@@ -287,6 +301,7 @@ $info_color: white;
                 height: calc(70px - 30px)!important;
             }
 
+            // Info & Money
             .info, .money {
                 display: flex;
                 flex-direction: column;
@@ -303,6 +318,7 @@ $info_color: white;
                 }
             }
     
+            // Info
             .info {
                 margin-left: 15px;
                 @include mobile { margin-left: 5px; }
@@ -312,6 +328,7 @@ $info_color: white;
                 }
             }
 
+            // Money
             .money {
                 margin-right: 15px;
                 @include mobile { margin-right: 5px; }
@@ -319,7 +336,7 @@ $info_color: white;
         }
     }
 
-
+    // Back Button
     .back_btn {
         @include menu_button;
         position: absolute;

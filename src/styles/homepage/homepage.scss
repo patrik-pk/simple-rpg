@@ -1,16 +1,19 @@
 
 @import "../style.scss";
 
+// Home Page
 .home_page {
     position: relative;
     height: 100vh;
 
+    // Dark Overlay
     .dark_overlay {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.6);
     }
 
+    // Content
     .content {
         width: 100%;
         position: absolute;
@@ -19,6 +22,7 @@
         transform: translate(-50%, -50%);
         text-align: center;
 
+        // H1
         h1 {
             font-weight: normal;
             color: white;
@@ -37,6 +41,7 @@
             }
         }
 
+        // Register Btn
         .register_btn {
             padding: 7px 15px;
             color: white;
@@ -61,6 +66,7 @@
         }
     }
 
+    // Corner (created by)
     .corner {
         position: absolute;
         bottom: 20px;

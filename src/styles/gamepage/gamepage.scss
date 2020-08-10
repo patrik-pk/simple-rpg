@@ -1,6 +1,7 @@
 
 @import "../style.scss";
 
+// Game Page
 .battle_section {
     height: 100vh;
     overflow: hidden!important;
@@ -9,11 +10,13 @@
         @include dark_overlay(0.6);
     }
 
+    // Container
     .container {
         display: flex;
         position: relative;
         height: 100%;
         
+        // Characters
         .characters {
             position: absolute;
             top: 40%;
@@ -31,6 +34,7 @@
                 
             }
 
+            // Character Container
             .character_container {
                 position: relative;
                 width: 250px;
@@ -43,6 +47,7 @@
                     height: 200px;
                 }
 
+                // Top Container
                 .top_container {
                     position: relative;
                     width: 100%;
@@ -54,6 +59,7 @@
                         padding: 3px;
                     }
 
+                    // Image
                     img {
                         width: 100%;
                         height: 100%;
@@ -61,6 +67,7 @@
                         border: 1px white solid;
                     }
 
+                    // Info (name, hp, level)
                     .info {
                         width: 150px;
                         position: absolute;
@@ -76,16 +83,18 @@
                             font-size: 8px;
                         }
 
+                        // Name
                         .name {
                             width: 100%;
                             background: rgba(100, 100, 100, 0.7);
                             border: 1px black solid;
                             color: white;
-                        }
-                        .name.boss {
-                            background: rgba(145, 6, 6, 0.8);
+                            &.boss {
+                                background: rgba(145, 6, 6, 0.8);
+                            }
                         }
 
+                        // HP, Level
                         .hp, .level {
                             width: 100%;
                             margin-top: 3px;
@@ -100,6 +109,7 @@
                         }
                     }
 
+                    // Art By
                     .art_by {
                         display: flex;
                         position: absolute;
@@ -123,6 +133,7 @@
                         }
                     }
 
+                    // Floating Damage
                     .floating_damage {
                         position: absolute;
                         bottom: 70px;
@@ -130,14 +141,14 @@
                         transform: translate(-50%, 0);
                         color: white;
                         font-weight: bold;
+                        &.crit {
+                            color: red;
+                        }
+
                         @include mobile {
                             bottom: 35px;
                             font-size: 8px;
                         }
-                    }
-
-                    .floating_damage.crit {
-                        color: red;
                     }
                     
                     #fl_dmg_player, #fl_dmg_enemy {
@@ -147,6 +158,7 @@
                         }
                     }
 
+                    // Floating Damage Animation
                     @keyframes floatOut {
                         0% {
                             bottom: 70px;
@@ -165,6 +177,7 @@
                         }
                     }
 
+                    // Animation For Mobile
                     @keyframes floatOutMobile {
                         0% { bottom: 30px; }
                         75% {
@@ -181,6 +194,7 @@
 
                 }
 
+                // Bottom (Stats)
                 .stats {
                     width: 100%;
                     height: 50%;
@@ -194,6 +208,7 @@
                         font-size: 8px;
                     }
                     
+                    // Wrapper
                     .wrapper {
                         position: relative;
                         width: 100%;
@@ -202,10 +217,19 @@
                         flex-direction: row;
                         justify-content: space-between;
 
+                        // Ul
                         ul {
                             margin-top: 10px;
+                            &:nth-child(2) {
+                                li {
+                                    padding: 2px 17px 2px 0;
+                                    @include mobile { padding: 1px 7px 1px 0; }
+                                }   
+                            }
+
                             @include mobile { margin-top: 5px; }
     
+                            // Li
                             li {
                                 padding: 2px 0 2px 17px;
                                 @include mobile { padding: 1px 0 1px 7px; }
@@ -217,13 +241,7 @@
                             }
                         }
 
-                        ul:nth-child(2) {
-                            li {
-                                padding: 2px 17px 2px 0;
-                                @include mobile { padding: 1px 7px 1px 0; }
-                            }
-                        }
-
+                        // Stat Container
                         .stat-container.boss {
                             p {
                                 color: orangered!important; 
@@ -233,6 +251,7 @@
                     
                 }
 
+                // Forfeit Button
                 .forfeit_container {
                     z-index: 100;
                     position: absolute;
@@ -265,6 +284,7 @@
                     }
                 }
 
+                // Actions (attack options)
                 .actions {
                     position: absolute;
                     top: 0;
@@ -279,22 +299,25 @@
                         right: -70px;
                     }
 
+                    // Columns
                     .melee_column, .ranged_column {
                         display: flex;
                         flex-direction: column;
 
+                        // Action
                         .action {
                             margin-bottom: 10px;
-                            @include mobile {
-                                margin-bottom: 5px;
-                            }
-
                             &:hover {
                                 .hit_chance {
                                     display: block!important;
                                 }
                             }
 
+                            @include mobile {
+                                margin-bottom: 5px;
+                            }
+
+                            // Button
                             button {
                                 position: relative;
                                 display: flex;
@@ -305,7 +328,15 @@
                                 background: black;
                                 border: 1px white solid;
                                 transition: 500ms all;
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+
                                 &:hover {
+                                    border: 1px orangered solid;
+
+                                    .hit_chance { border: 1px orangered solid; }
+                                    p { color: orangered; }
                                     svg {
                                         path {
                                             fill: orangered;
@@ -319,6 +350,7 @@
                                     font-size: 8px;
                                 }
 
+                                // Icon
                                 .icon {
                                     display: flex;
                                     justify-content: center;
@@ -343,6 +375,7 @@
                                     }
                                 }
     
+                                // Hit Chance Box
                                 .hit_chance {
                                     display: none!important;
                                     position: absolute;
@@ -366,15 +399,6 @@
                                     }
                                 }
                             }
-                            button:hover {
-                                border: 1px orangered solid;
-                                .hit_chance { border: 1px orangered solid; }
-                                p { color: orangered; }
-                            }
-        
-                            button:last-child {
-                                margin-bottom: 0;
-                            }
                         }
                     }
 
@@ -385,12 +409,14 @@
                 }
             }
 
+            // Player
             #player {
                 margin-left: 150px;
                 @include mobile { margin-left: 40px; }
                 @include tablet { margin-left: 50px; }
             }
 
+            // Enemy
             #enemy {
                 margin-right: 150px;
                 @include mobile { margin-right: 40px; }
@@ -398,6 +424,7 @@
             }
         }
 
+        // Game Over
         .game_over {
             position: absolute;
             bottom: 5%;
@@ -413,11 +440,13 @@
                 height: 80px;
             }
 
+            // Container
             .cont {
                 width: 100%;
                 height: 100%;
                 position: relative;
 
+                // End Text
                 .end_text {
                     padding-top: 7px;
                     text-align: center;
@@ -429,6 +458,7 @@
                     }
                 }
     
+                // Reward
                 .reward {
                     display: flex;
                     flex-direction: row;
@@ -439,6 +469,7 @@
                         padding: 7px 30px 0 15px;
                     }
 
+                    // Left
                     .left {
                         div {
                             display: flex;
@@ -459,6 +490,7 @@
                         }
                     }
 
+                    // Generated Item (right)
                     .generated_item {
                         .stats {
                             @include mobile {
@@ -468,6 +500,7 @@
                     }
                 }
     
+                // Confirm
                 .confirm_container {
                     position: absolute;
                     left: 50%;

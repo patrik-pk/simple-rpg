@@ -1,7 +1,6 @@
-
 @import "../style.scss";
 
-
+// Variables
 $box_width_mobile: 400px;
 $box_height_mobile: 300px;
 
@@ -15,6 +14,7 @@ $box_margin: 30px;
 
 $dungeon_width_desktop: 1200px;
 
+// Container
 .container {
     display: flex;
     justify-content: center;
@@ -23,6 +23,7 @@ $dungeon_width_desktop: 1200px;
     min-height: 100vh;
     width: auto;
   
+    // Box
     .box {
         position: relative;
         width: $box_width_desktop;
@@ -44,6 +45,7 @@ $dungeon_width_desktop: 1200px;
     }
 }
 
+// Container For Dungeon
 .container.dungeon_page {
     overflow: hidden;
 

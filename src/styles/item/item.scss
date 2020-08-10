@@ -140,12 +140,14 @@ $legendary: orangered;
                 }
             }
 
+            // Stat Container
             .stat_container {
                 p {
                     font-weight: bold!important;
                 }
             }
 
+            // Bonuses
             .bonuses {
 
                 .bonus_container {
@@ -153,6 +155,7 @@ $legendary: orangered;
                 }
             }
 
+            // Name
             #name {
                 text-align: center;
                 margin-bottom: 8px;
@@ -164,11 +167,13 @@ $legendary: orangered;
                 }
             }
 
+            // Headings
             #stats_heading, #bonuses_heading {
                 font-weight: bold!important;
                 font-size: 16px;
             }
 
+            // Gold Value
             #value {
                 margin-top: 5px;
 

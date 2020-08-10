@@ -29,7 +29,7 @@
   color: orangered;
 }
 
-* .stat_cont {
+* .stat-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,7 +42,7 @@
           justify-content: space-between;
 }
 
-* .stat_cont p:nth-child(2) {
+* .stat-container p:nth-child(2) {
   margin-left: 10px;
 }
 
@@ -276,15 +276,15 @@
   font-weight: bold;
 }
 
+.battle_section .container .characters .character_container .top_container .floating_damage.crit {
+  color: red;
+}
+
 @media (max-width: 767px) {
   .battle_section .container .characters .character_container .top_container .floating_damage {
     bottom: 35px;
     font-size: 8px;
   }
-}
-
-.battle_section .container .characters .character_container .top_container .floating_damage.crit {
-  color: red;
 }
 
 .battle_section .container .characters .character_container .top_container #fl_dmg_player, .battle_section .container .characters .character_container .top_container #fl_dmg_enemy {
@@ -409,6 +409,16 @@
   margin-top: 10px;
 }
 
+.battle_section .container .characters .character_container .stats .wrapper ul:nth-child(2) li {
+  padding: 2px 17px 2px 0;
+}
+
+@media (max-width: 767px) {
+  .battle_section .container .characters .character_container .stats .wrapper ul:nth-child(2) li {
+    padding: 1px 7px 1px 0;
+  }
+}
+
 @media (max-width: 767px) {
   .battle_section .container .characters .character_container .stats .wrapper ul {
     margin-top: 5px;
@@ -432,16 +442,6 @@
 @media (max-width: 767px) {
   .battle_section .container .characters .character_container .stats .wrapper ul li p:nth-child(2) {
     margin-left: 3px;
-  }
-}
-
-.battle_section .container .characters .character_container .stats .wrapper ul:nth-child(2) li {
-  padding: 2px 17px 2px 0;
-}
-
-@media (max-width: 767px) {
-  .battle_section .container .characters .character_container .stats .wrapper ul:nth-child(2) li {
-    padding: 1px 7px 1px 0;
   }
 }
 
@@ -534,14 +534,14 @@
   margin-bottom: 10px;
 }
 
+.battle_section .container .characters .character_container .actions .melee_column .action:hover .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action:hover .hit_chance {
+  display: block !important;
+}
+
 @media (max-width: 767px) {
   .battle_section .container .characters .character_container .actions .melee_column .action, .battle_section .container .characters .character_container .actions .ranged_column .action {
     margin-bottom: 5px;
   }
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action:hover .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action:hover .hit_chance {
-  display: block !important;
 }
 
 .battle_section .container .characters .character_container .actions .melee_column .action button, .battle_section .container .characters .character_container .actions .ranged_column .action button {
@@ -561,6 +561,22 @@
   border: 1px white solid;
   -webkit-transition: 500ms all;
   transition: 500ms all;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button:last-child, .battle_section .container .characters .character_container .actions .ranged_column .action button:last-child {
+  margin-bottom: 0;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button:hover, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover {
+  border: 1px orangered solid;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button:hover .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover .hit_chance {
+  border: 1px orangered solid;
+}
+
+.battle_section .container .characters .character_container .actions .melee_column .action button:hover p, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover p {
+  color: orangered;
 }
 
 .battle_section .container .characters .character_container .actions .melee_column .action button:hover svg path, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover svg path {
@@ -645,22 +661,6 @@
 
 .battle_section .container .characters .character_container .actions .melee_column .action button .hit_chance p:nth-child(2), .battle_section .container .characters .character_container .actions .ranged_column .action button .hit_chance p:nth-child(2) {
   margin-left: 5px;
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action button:hover, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover {
-  border: 1px orangered solid;
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action button:hover .hit_chance, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover .hit_chance {
-  border: 1px orangered solid;
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action button:hover p, .battle_section .container .characters .character_container .actions .ranged_column .action button:hover p {
-  color: orangered;
-}
-
-.battle_section .container .characters .character_container .actions .melee_column .action button:last-child, .battle_section .container .characters .character_container .actions .ranged_column .action button:last-child {
-  margin-bottom: 0;
 }
 
 .battle_section .container .characters .character_container .actions .melee_column {

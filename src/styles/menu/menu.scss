@@ -1,9 +1,11 @@
 
 @import "../style.scss";
 
+// Menu Page
 .menu {
     background: black!important;
 
+    // Home Button
     .home_btn {
         position: absolute;
         top: 15px;
@@ -28,6 +30,7 @@
         }
     }
 
+    // Content
     .content {
         position: absolute;
         left: 50%;
@@ -64,6 +67,7 @@
         }
     }
     
+    // Random Tip
     .tip {
         position: absolute;
         left: 10px;
