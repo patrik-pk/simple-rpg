@@ -1,23 +1,23 @@
 
 const emptyBonuses = [
     {
-        name: "beasts",
+        name: 'beasts',
         value: 0,
     },
     {
-        name: "dragons",
+        name: 'dragons',
         value: 0,
     },
     {
-        name: "insect",
+        name: 'insect',
         value: 0,
     },
     {
-        name: "monsters",
+        name: 'monsters',
         value: 0,
     },
     {
-        name: "reptiles",
+        name: 'reptiles',
         value: 0,
     },
 ]

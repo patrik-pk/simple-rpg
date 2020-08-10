@@ -29,7 +29,7 @@
   color: orangered;
 }
 
-* .stat_cont {
+* .stat-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,7 +42,7 @@
           justify-content: space-between;
 }
 
-* .stat_cont p:nth-child(2) {
+* .stat-container p:nth-child(2) {
   margin-left: 10px;
 }
 

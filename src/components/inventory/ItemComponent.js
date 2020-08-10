@@ -1,14 +1,14 @@
-import React from "react"
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { setInvItemSelect, unselectShopItems, setShopItemSelect } from '../../actions/itemsActions'
-import "../../styles/item/item.css"
+import '../../styles/item/item.css'
 
 function ItemComponent(props) {
     
     // If item has data & isn't of type 'Empty' (for shop items) render item
-    if (props.data && props.data.type !== "Empty") {
+    if (props.data && props.data.type !== 'Empty') {
 
         // Destructure from props
         const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
@@ -18,11 +18,11 @@ function ItemComponent(props) {
         // Item Handle Click
         const handleClick = () => {
             // If clicked item is in the Inventory, set its isSelected value to the opposite
-            if (destination === "Inventory") {
+            if (destination === 'Inventory') {
                 setInvItemSelect(key)
             }
             // If clicked item is in the Shop, only one can be selected at the same time
-            if (destination === "Shop") {
+            if (destination === 'Shop') {
                 const selectedShopItems = shopItems.filter(item => item.isSelected)
                 
                 const cond1 = selectedShopItems.length === 1 && key === selectedShopItems[0].key
@@ -42,7 +42,7 @@ function ItemComponent(props) {
 
         // Classes
         const rarityClass = rarity.toLowerCase()
-        const selectedClass = isSelected ? " active" : ""
+        const selectedClass = isSelected ? ' active' : ''
 
         // Destination Check - if Item is equipped, don't compare anything
         const isEquipped = destination === 'Equipped' ? true : false
@@ -60,9 +60,9 @@ function ItemComponent(props) {
             const compareSingle = (compared, current) => {
                 const diff = current - compared
     
-                if (diff > 0) return { value: '+' + Math.abs(diff), color: "green" }
-                else if (diff < 0) return { value: '-' + Math.abs(diff), color: "red" }
-                else if (diff === 0) return { value: diff, color: "yellow" }
+                if (diff > 0) return { value: '+' + Math.abs(diff), color: 'green' }
+                else if (diff < 0) return { value: '-' + Math.abs(diff), color: 'red' }
+                else if (diff === 0) return { value: diff, color: 'yellow' }
             }
     
             // Compare Stat and Level
@@ -88,9 +88,9 @@ function ItemComponent(props) {
                         if (currName === compName) {
                             const diff = currVal - compVal
     
-                            if (diff > 0) diffArray.push({ value: '+' + Math.abs(diff), color: "green" })
-                            else if (diff < 0) diffArray.push({ value: '-' + Math.abs(diff), color: "red" })
-                            else if (diff === 0) diffArray.push({ value: diff, color: "yellow" })
+                            if (diff > 0) diffArray.push({ value: '+' + Math.abs(diff), color: 'green' })
+                            else if (diff < 0) diffArray.push({ value: '-' + Math.abs(diff), color: 'red' })
+                            else if (diff === 0) diffArray.push({ value: diff, color: 'yellow' })
                         }
                     })
                 })
@@ -108,12 +108,12 @@ function ItemComponent(props) {
 
         // Item Name
         const itemName = (() => {
-            const name = rarity + " " + type + " (" + currentItem.level + ")"
+            const name = rarity + ' ' + type + ' (' + currentItem.level + ')'
             const comparedValue = comparison.level ? comparison.level.value : null
             const style = comparison.level ? { color: comparison.level.color } : null
             return (
-                <div className="name_container">
-                    <p id="name">{name}</p>
+                <div className='name_container'>
+                    <p id='name'>{name}</p>
                     <p style={style}>{comparedValue}</p>
                 </div>
             )
@@ -124,8 +124,8 @@ function ItemComponent(props) {
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
             return (
-                <div className="stat_container">
-                    <p>{stats.statName + ": " + stats.value}</p>
+                <div className='stat_container'>
+                    <p>{stats.statName + ': ' + stats.value}</p>
                     <p style={style}>{comparedValue}</p>
                 </div> 
             )
@@ -137,8 +137,8 @@ function ItemComponent(props) {
             const comparedValue = comparison.bonuses ? comparison.bonuses[i].value : null
             const style = comparison.bonuses ? { color: comparison.bonuses[i].color } : null
             return (
-                <div key={i} className="bonus_container">
-                    <p>{name + ": " + bonus.value}</p>
+                <div key={i} className='bonus_container'>
+                    <p>{name + ': ' + bonus.value}</p>
                     <p style={style}>{comparedValue}</p>
                 </div>
             )
@@ -150,16 +150,16 @@ function ItemComponent(props) {
                 <div className={`item ${selectedClass}`} onClick={handleClick} >
 
                     {/* Icon */}
-                    <img alt="" src={imgSrc ? imgSrc : null}/>
+                    <img alt='' src={imgSrc ? imgSrc : null}/>
 
                     {/* Info */}
                     <div className='stats'>
                         { itemName }
                         { itemStat }
-                        <div className="bonuses">
+                        <div className='bonuses'>
                         { itemBonuses }
                         </div>
-                        <p id="value"><span id="value_heading">Value:</span> {goldValue}</p>
+                        <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p>
                     </div>
 
                 </div>
@@ -167,7 +167,7 @@ function ItemComponent(props) {
         )
     }
     // or render an empty item 
-    return <li className="item_container"></li>
+    return <li className='item_container'></li>
 }
 
 ItemComponent.propTypes = {

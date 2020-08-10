@@ -1,46 +1,46 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
-import "./styles/style.css"
+import './styles/style.css'
 
-import HomePage from "./components/HomePage"
-import Container from "./components/Container"
-import Menu from "./components/Menu"
-import Dungeon from "./components/Dungeon"
-import Inventory from "./components/inventory/Inventory"
-import Game from "./components/game_page/Game"
+import HomePage from './components/HomePage'
+import Container from './components/Container'
+import Menu from './components/Menu'
+import Dungeon from './components/Dungeon'
+import Inventory from './components/inventory/Inventory'
+import Game from './components/game/Game'
 
 export default function App() {
 
   return (
     <Provider store={store} >
-      <div className="App">
+      <div className='App'>
         <Router>
           {/* Home */}
-          <Route exact path="/" component={HomePage} />
+          <Route exact path='/' component={HomePage} />
           {/* Game */}
-          <Route path="/game"
+          <Route path='/game'
             render={(props) => <Game />
           }
           />
           {/* Menu */}
-          <Route path="/menu"
+          <Route path='/menu'
             render={(props) =>
-              <Container sectionClass="menu_page" page={<Menu />} />
+              <Container sectionClass='menu_page' page={<Menu />} />
             }
           />
           {/* Dungeon */}
-          <Route path="/dungeon"
+          <Route path='/dungeon'
             render={(props) =>
-              <Container sectionClass="dungeon_page" page={<Dungeon />} />
+              <Container sectionClass='dungeon_page' page={<Dungeon />} />
             }
           />
           {/* Inventory */}
-          <Route path="/inventory"
+          <Route path='/inventory'
             render={(props) =>
-              <Container sectionClass="inventory_page" page={<Inventory/>} />
+              <Container sectionClass='inventory_page' page={<Inventory/>} />
             }
           />
         </Router>

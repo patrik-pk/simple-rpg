@@ -445,7 +445,7 @@
   }
 }
 
-.battle_section .container .characters .character_container .stats .wrapper .stat_cont.boss p {
+.battle_section .container .characters .character_container .stats .wrapper .stat-container.boss p {
   color: orangered !important;
 }
 

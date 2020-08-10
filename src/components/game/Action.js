@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -7,11 +7,11 @@ import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyAc
 import { playerBlocked, playerHit, resetPlayerDmgTaken } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
 import { addItemToInv } from '../../actions/itemsActions'
-import attackEnemy from '../../logic/game/attackEnemy'
-import attackPlayer from '../../logic/game/attackPlayer'
-import getReward from '../../logic/game/getReward'
+import attackEnemy from '../../logic/attackEnemy'
+import attackPlayer from '../../logic/attackPlayer'
+import getReward from '../../logic/getReward'
 import generateItem from '../../logic/generateItem'
-import md from "../../data/_mainData"
+import md from '../../data/_mainData'
 
 function Action(props) {
 
@@ -116,22 +116,22 @@ function Action(props) {
     // Chance to hit on Action hover
     const hitChanceMult = (() => {
         switch(props.data.strength) {
-            case "light": return md.playerBase.attackTypes.hitChance.light
-            case "medium": return md.playerBase.attackTypes.hitChance.medium
-            case "strong": return md.playerBase.attackTypes.hitChance.strong
+            case 'light': return md.playerBase.attackTypes.hitChance.light
+            case 'medium': return md.playerBase.attackTypes.hitChance.medium
+            case 'strong': return md.playerBase.attackTypes.hitChance.strong
             default: return 1;
         }
     })()
     const chanceToHit = (100 - (props.dodge * hitChanceMult)).toFixed(2)
 
     return (
-        <div className="action">
+        <div className='action'>
             <button /*onClick={() => props.gameManager(props.data.type, props.data.strength)}*/ onClick={startRound}>
-                <div className="hit_chance">
+                <div className='hit_chance'>
                     <p>Hit chance: </p>
-                    <p>{chanceToHit + "%"}</p>
+                    <p>{chanceToHit + '%'}</p>
                 </div>
-                <div className="icon" id={props.data.id}>
+                <div className='icon' id={props.data.id}>
                     { props.data.icon }
                 </div>
             </button>

@@ -1,15 +1,15 @@
-import mainData from "../../data/_mainData"
-import possibleEnemies from "../../data/possibleEnemies"
-import levelTresholds from "../../data/levelTresholds"
-import randomGenerator from "../randomGenerator"
-import dungeon_img from '../../resources/environment/dungeon.jpg'
+import mainData from '../data/_mainData'
+import possibleEnemies from '../data/possibleEnemies'
+import levelTresholds from '../data/levelTresholds'
+import randomGenerator from './randomGenerator'
+import dungeon_img from '../resources/environment/dungeon.jpg'
 
 export default function generateEnemy(gameType, level, specificEnemy, strongStatIndex, dungeon) {
 
     // Gameflow
     const gameFlow = (() => {
-        if(gameType === "Classic") return levelTresholds[level].gameFlow
-        if(gameType === "Boss") {
+        if(gameType === 'Classic') return levelTresholds[level].gameFlow
+        if(gameType === 'Boss') {
             const maxLevel = levelTresholds.length - 1
             if (level <= maxLevel) return levelTresholds[level].gameFlow
             else {
@@ -43,8 +43,8 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
 
     // Difficulty
     const difficulty = (() => {
-        if(gameType === "Classic") return Math.ceil(Math.random() * 3)
-        if(gameType === "Boss") return 3
+        if(gameType === 'Classic') return Math.ceil(Math.random() * 3)
+        if(gameType === 'Boss') return 3
     })() 
     
     let difficultyMultiplier
@@ -77,12 +77,12 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
 
     // Create one type of armor higher and the other lower
     const setArmor = (index) => {
-        if (gameType === "Classic") {
+        if (gameType === 'Classic') {
             const rand = Math.round(Math.random()) // 0 or 1
             if(index === rand) return { min: had.min, max: had.max, perc: had.perc }
             else return { min: lad.min, max: lad.max, perc: lad.perc }
         }  
-        if (gameType === "Boss") {
+        if (gameType === 'Boss') {
             const rand = strongStatIndex // parameter
             if(strongStatIndex === null || strongStatIndex === undefined) {
                 return { min: bad.min, max: bad.max, perc: bad.perc }
@@ -97,8 +97,8 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
     const a1 = setArmor(1)
 
     const hpMult = () => {
-        if(gameType === "Boss") return mainData.enemyBase.boss.bonusHpMult
-        if(gameType === "Classic") return 1
+        if(gameType === 'Boss') return mainData.enemyBase.boss.bonusHpMult
+        if(gameType === 'Classic') return 1
     }
 
 
@@ -127,6 +127,6 @@ export default function generateEnemy(gameType, level, specificEnemy, strongStat
         type: gameType,
         difficulty: difficulty,
         dungeon: dungeon,
-        damageTaken: "",
+        damageTaken: '',
     }
 }

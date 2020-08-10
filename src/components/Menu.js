@@ -1,15 +1,15 @@
-import React from "react"
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 import { setEnemy } from '../actions/enemyActions'
 import { resetPlayer } from '../actions/playerActions'
 import { startGame } from '../actions/gameActions'
-import generateEnemy from "../logic/game/generateEnemy"
-import tips from "../data/tips"
-import home from "../resources/icons/home.svg"
-import "../styles/menu/menu.css"
+import generateEnemy from '../logic/generateEnemy'
+import tips from '../data/tips'
+import home from '../resources/icons/home.svg'
+import '../styles/menu/menu.css'
 
 function Menu(props) {
     const { resetPlayer, setEnemy, startGame, currentLevel, invItems } = props
@@ -31,26 +31,26 @@ function Menu(props) {
     }
     
     return (
-        <div className="menu">
-            <div className="home_btn">
-                <Link to="/">
-                    <img alt="" src={home}/>
+        <div className='menu'>
+            <div className='home_btn'>
+                <Link to='/'>
+                    <img alt='' src={home}/>
                 </Link>
             </div>
 
-            <div className="content">
+            <div className='content'>
                 <Link 
-                to={haveSpaceInv ? "/game" : "/menu"} 
-                className={"menu_btn start_btn" + startActiveStyle} 
+                to={haveSpaceInv ? '/game' : '/menu'} 
+                className={'menu_btn start_btn' + startActiveStyle} 
                 onClick={createClassicGame}
                 >
                 Start Game
                 </Link>
-                <Link to="/dungeon" className="menu_btn dungeon_btn">Dungeon</Link>
-                <Link to="/inventory" className="menu_btn inventory_btn">Inventory</Link>
+                <Link to='/dungeon' className='menu_btn dungeon_btn'>Dungeon</Link>
+                <Link to='/inventory' className='menu_btn inventory_btn'>Inventory</Link>
             </div>
 
-            <div className="tip">
+            <div className='tip'>
                 <p>TIP: {randomTip}</p>
             </div>
         </div>

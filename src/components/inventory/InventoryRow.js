@@ -1,5 +1,5 @@
-import React from "react"
-import ItemComponent from "./ItemComponent"
+import React from 'react'
+import ItemComponent from './ItemComponent'
 
 export default function InventoryRow(props) {
 

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import InventoryRow from "./InventoryRow"
-import ItemComponent from "./ItemComponent"
-import Stat from "../Stat"
+import InventoryRow from './InventoryRow'
+import ItemComponent from './ItemComponent'
+import Stat from '../Stat'
 import { 
     unselectInvItems, 
     unselectShopItems, 
@@ -21,7 +21,7 @@ import generateItem from '../../logic/generateItem'
 import cps from '../../logic/calculatePlayerStats'
 
 import levelTresholds from '../../data/levelTresholds'
-import "../../styles/inventory/inventory.css"
+import '../../styles/inventory/inventory.css'
 
 function Inventory(props) {
 
@@ -145,9 +145,9 @@ function Inventory(props) {
     }
 
     // Set active classes
-    const equipActive = selectedInvItems.length === 1 ? "active" : "null"
-    const sellActive = selectedInvItems.length >= 1 ? "active" : "null"
-    const rerollActive = diamonds >= 1 ? "active" : "null"
+    const equipActive = selectedInvItems.length === 1 ? 'active' : 'null'
+    const sellActive = selectedInvItems.length >= 1 ? 'active' : 'null'
+    const rerollActive = diamonds >= 1 ? 'active' : 'null'
 
     // If Player has 1 selected shop item, has space in Inventory 
     // and has money to buy that items, return active for buy btn class
@@ -155,7 +155,7 @@ function Inventory(props) {
         if (selectedShopItems.length === 1 && invItems.length <= 35) {
             const selectedItem = selectedShopItems[0]
             if(gold >= selectedItem.goldValue) {
-                return "active"
+                return 'active'
             }
         }
         return ''
@@ -165,84 +165,84 @@ function Inventory(props) {
     const levelProgress = (experience / levelTresholds[currentLevel].xp * 100).toFixed(2)
 
     return(
-        <div className="inventory">
+        <div className='inventory'>
             
-            <div className="top">
-                <div className="left">
-                    <div className="current_equipment">
-                        <div className="wrapper">
+            <div className='top'>
+                <div className='left'>
+                    <div className='current_equipment'>
+                        <div className='wrapper'>
                             <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} {...props}/>                                        
                             <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} {...props}/>                                        
                         </div>
                     </div>
-                    <div className="player_stats">
-                        <div className="wrapper">
-                            <h4 className="name">Stats</h4>
+                    <div className='player_stats'>
+                        <div className='wrapper'>
+                            <h4 className='name'>Stats</h4>
                             <hr/>
                             <ul>
-                                <Stat name="HP:" value={maxHp}/>
-                                <Stat name="Armor:" value={armor}/>
-                                <Stat name="M-DMG:" value={meleeDamage}/>
-                                <Stat name="R-DMG:" value={rangedDamage}/>
-                                <Stat name="Crit(%):" value={critChance}/>
-                                <Stat name="Block(%):" value={blockChance} />
+                                <Stat name='HP:' value={maxHp}/>
+                                <Stat name='Armor:' value={armor}/>
+                                <Stat name='M-DMG:' value={meleeDamage}/>
+                                <Stat name='R-DMG:' value={rangedDamage}/>
+                                <Stat name='Crit(%):' value={critChance}/>
+                                <Stat name='Block(%):' value={blockChance} />
                                 <br/>
-                                <Stat name="Beasts:" value={bonuses[0].value} />
-                                <Stat name="Dragons:" value={bonuses[1].value} />
-                                <Stat name="Insect:" value={bonuses[2].value} />
-                                <Stat name="Monsters:" value={bonuses[3].value} />
-                                <Stat name="Reptiles:" value={bonuses[4].value} />
+                                <Stat name='Beasts:' value={bonuses[0].value} />
+                                <Stat name='Dragons:' value={bonuses[1].value} />
+                                <Stat name='Insect:' value={bonuses[2].value} />
+                                <Stat name='Monsters:' value={bonuses[3].value} />
+                                <Stat name='Reptiles:' value={bonuses[4].value} />
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div className="right">
-                    <div className="items_container">
-                        <div className="wrapper">
-                            <div className="items">
+                <div className='right'>
+                    <div className='items_container'>
+                        <div className='wrapper'>
+                            <div className='items'>
                                 { mappedRows() }
                             </div>
                         </div>
-                        <div className="options">
-                            <div className="wrapper">
-                                <button className={"equip_btn " + equipActive} onClick={eqItem}>Equip</button>
-                                <button className={"sell_btn " + sellActive} onClick={sellItem}>Sell</button>
+                        <div className='options'>
+                            <div className='wrapper'>
+                                <button className={'equip_btn ' + equipActive} onClick={eqItem}>Equip</button>
+                                <button className={'sell_btn ' + sellActive} onClick={sellItem}>Sell</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="bottom">
-                <div className="shop_container">
-                    <div className="wrapper">
-                        <div className="items">
+            <div className='bottom'>
+                <div className='shop_container'>
+                    <div className='wrapper'>
+                        <div className='items'>
                             <ul>
                                 <ItemComponent data={shopItems[0]} {...props}/>     
                                 <ItemComponent data={shopItems[1]} {...props}/>                                      
                                 <ItemComponent data={shopItems[2]} {...props}/>                                      
                             </ul>
                         </div>
-                        <div className="options">
-                            <button className={"reroll_btn " + rerollActive} onClick={reroll}>Roll (1)</button>
-                            <button className={"buy_btn " + buyActive()} onClick={buyItem}>Buy</button>
+                        <div className='options'>
+                            <button className={'reroll_btn ' + rerollActive} onClick={reroll}>Roll (1)</button>
+                            <button className={'buy_btn ' + buyActive()} onClick={buyItem}>Buy</button>
                         </div>
                     </div>
                 </div>
                 
-                <div className="money_container">
-                    <div className="info">
-                        <p id="level">Level {currentLevel}</p>
+                <div className='money_container'>
+                    <div className='info'>
+                        <p id='level'>Level {currentLevel}</p>
                         <p>{levelProgress}%</p>
                     </div>
-                    <div className="money">
-                        <p id="gold">Gold: {gold}</p>
-                        <p id="diamonds">Diamonds: {diamonds}</p>
+                    <div className='money'>
+                        <p id='gold'>Gold: {gold}</p>
+                        <p id='diamonds'>Diamonds: {diamonds}</p>
                     </div>
                 </div>
             </div>
 
-            <Link to="/menu" className="menu_btn back_btn">Back</Link>                        
+            <Link to='/menu' className='menu_btn back_btn'>Back</Link>                        
     </div>
     )
 }

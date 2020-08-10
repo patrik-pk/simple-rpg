@@ -1,17 +1,17 @@
-import randomGenerator from "../randomGenerator"
-import md from "../../data/_mainData"
+import randomGenerator from './randomGenerator'
+import md from '../data/_mainData'
 
 export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack) {
 
   // Based on typeOfAttack (melee / ranged) return weapon dmg, enemy dodge and enemy armor
   const typeOfAtt = (() => {
     switch (typeOfAttack) {
-      case "melee": return { 
+      case 'melee': return { 
         dmg: player.meleeDamage, 
         dodge: enemy.meleeDodgeChance, 
         armor: enemy.meleeArmor 
       }
-      case "ranged": return { 
+      case 'ranged': return { 
         dmg: player.rangedDamage, 
         dodge: enemy.rangedDodgeChance, 
         armor: enemy.rangedArmor 
@@ -24,15 +24,15 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
   const strengthOfAtt = (() => {
     let dmg
     switch (strengthOfAttack) {
-      case "light": dmg = md.playerBase.attackTypes.damage.light; return {
+      case 'light': dmg = md.playerBase.attackTypes.damage.light; return {
         dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
         hitChance: md.playerBase.attackTypes.hitChance.light
       }
-      case "medium": dmg = md.playerBase.attackTypes.damage.medium; return {
+      case 'medium': dmg = md.playerBase.attackTypes.damage.medium; return {
         dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
         hitChance: md.playerBase.attackTypes.hitChance.medium
       }
-      case "strong": dmg = md.playerBase.attackTypes.damage.strong; return {
+      case 'strong': dmg = md.playerBase.attackTypes.damage.strong; return {
         dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
         hitChance: md.playerBase.attackTypes.hitChance.strong
       }

@@ -1,5 +1,5 @@
-import randomGenerator from "../randomGenerator"
-import mainData from "../../data/_mainData"
+import randomGenerator from './randomGenerator'
+import mainData from '../data/_mainData'
 
 export default function attackPlayer(player, enemy, character) {
 

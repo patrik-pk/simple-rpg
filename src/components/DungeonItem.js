@@ -1,9 +1,9 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Stat from "./Stat"
+import Stat from './Stat'
 import { resetPlayer } from '../actions/playerActions'
 import { setEnemy } from '../actions/enemyActions'
 import { startGame } from '../actions/gameActions'
@@ -11,7 +11,7 @@ import { startGame } from '../actions/gameActions'
 function DungeonItem(props) {
 
     // Not Finished Dungeon
-    if(props.boss !== "Finished") {
+    if(props.boss !== 'Finished') {
 
         // Destructure From Props
         const { 
@@ -54,51 +54,51 @@ function DungeonItem(props) {
         // Bosses name color is set based on difference between Player level and Boss level
         const enemyStyle = () => {
             const diff = level - currentLevel
-            if(diff >= 2) return { color: "red" }
-            if (diff < 2 && diff >= 1) return { color: "orange" }
-            if (diff < 1 && diff >= -1) return { color: "yellow" }
-            if (diff < -1) return { color: "green" } 
+            if(diff >= 2) return { color: 'red' }
+            if (diff < 2 && diff >= 1) return { color: 'orange' }
+            if (diff < 1 && diff >= -1) return { color: 'yellow' }
+            if (diff < -1) return { color: 'green' } 
         }
 
         return (
-            <div className="dungeon_item">
-                <div className="img_container">
-                    <img alt="" src={currentEnemy.imgSrc} />
-                    <div className="dark_overl"></div>
+            <div className='dungeon_item'>
+                <div className='img_container'>
+                    <img alt='' src={currentEnemy.imgSrc} />
+                    <div className='dark_overl'></div>
                 </div>
-                <div className="heading" >
-                    <p id="dungeon">{dungeonName} ({count + 1}/5)</p>
-                    <p id="enemy" style={enemyStyle()}>{currentEnemy.name} ({level})</p>
+                <div className='heading' >
+                    <p id='dungeon'>{dungeonName} ({count + 1}/5)</p>
+                    <p id='enemy' style={enemyStyle()}>{currentEnemy.name} ({level})</p>
 
                     <div className='stats' >
-                        <Stat name="HP:" value={maxHp} />
-                        <Stat name="M-Armor:" value={meleeArmor} enemy={boss} />
-                        <Stat name="R-Armor:" value={rangedArmor} enemy={boss} />
-                        <Stat name="Strength:" value={damage} />
-                        <Stat name="Crit:" value={critChance} />
-                        <Stat name="M-Dodge:" value={meleeDodgeChance} />
-                        <Stat name="R-Dodge:" value={rangedDodgeChance} />
+                        <Stat name='HP:' value={maxHp} />
+                        <Stat name='M-Armor:' value={meleeArmor} enemy={boss} />
+                        <Stat name='R-Armor:' value={rangedArmor} enemy={boss} />
+                        <Stat name='Strength:' value={damage} />
+                        <Stat name='Crit:' value={critChance} />
+                        <Stat name='M-Dodge:' value={meleeDodgeChance} />
+                        <Stat name='R-Dodge:' value={rangedDodgeChance} />
                     </div>
                 </div>
-                <Link to="/game" onClick={createBossGame} className={`enter_btn ${startActiveClass}`}>Enter</Link>
+                <Link to='/game' onClick={createBossGame} className={`enter_btn ${startActiveClass}`}>Enter</Link>
             </div>
         )
     }
     // Finished Dungeon
-    if(props.boss === "Finished") {
+    if(props.boss === 'Finished') {
 
         const finished_style = {
             backgroundImage: "url('resources/environment/dungeon.jpg')",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center"
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center'
         }
 
         return (
-            <div className="dungeon_item finished" style={finished_style}>
-                <div className="dark-overlay"></div>
-                <div className="text">
-                    <p id="dungeon">{props.dungeonName}</p>
+            <div className='dungeon_item finished' style={finished_style}>
+                <div className='dark-overlay'></div>
+                <div className='text'>
+                    <p id='dungeon'>{props.dungeonName}</p>
                     <p>Finished</p>
                 </div>
             </div>

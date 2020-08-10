@@ -1,24 +1,24 @@
-import md from "../../data/_mainData"
-import levelTresholds from "../../data/levelTresholds"
-import randomGenerator from "../randomGenerator"
+import md from '../data/_mainData'
+import levelTresholds from '../data/levelTresholds'
+import randomGenerator from './randomGenerator'
 
 export default function getReward(enemy, character, status, enemyType) {
 
     // WIN / LOSE MULTIPLIER
     const statusMultiplier = ((status) => {
-        if(enemyType === "Boss") {
-            if (status === "Victory") return md.rewardBase.boss.winMult
-            if (status === "Defeat") return md.rewardBase.boss.loseMult
+        if(enemyType === 'Boss') {
+            if (status === 'Victory') return md.rewardBase.boss.winMult
+            if (status === 'Defeat') return md.rewardBase.boss.loseMult
         }
-        if(enemyType === "Classic") {
-            if (status === "Victory") return md.rewardBase.status.winMult
-            if (status === "Defeat") return md.rewardBase.status.loseMult
+        if(enemyType === 'Classic') {
+            if (status === 'Victory') return md.rewardBase.status.winMult
+            if (status === 'Defeat') return md.rewardBase.status.loseMult
         }
     })(status)
 
     // ENEMY DIFFICULTY MULTIPLIER
     const difficultyMultiplier = (() => {
-        if (enemyType === "Boss") return md.rewardBase.difficulty.hard
+        if (enemyType === 'Boss') return md.rewardBase.difficulty.hard
         else {
             switch(enemy.difficulty) {
                 case 1: return md.rewardBase.difficulty.easy; 
@@ -65,21 +65,21 @@ export default function getReward(enemy, character, status, enemyType) {
 
     // Gained XP
     const gainedXp = (() => {
-        if (enemyType === "Classic") {
+        if (enemyType === 'Classic') {
             return Math.round((nextLevelXp / fightsNeededToLvl) * randomGenerator(xpDisp.min, xpDisp.max, xpDisp.perc))
         }
-        if (enemyType === "Boss") {
-            if(status === "Victory") {
+        if (enemyType === 'Boss') {
+            if(status === 'Victory') {
                 return Math.round((nextLevelXp / 100 * md.enemyBase.boss.xp) * randomGenerator(xpDisp.min, xpDisp.max, xpDisp.perc))
             }
-            if(status === "Defeat") return 0
+            if(status === 'Defeat') return 0
         }
     })()
 
     // New XP = currentXp + gainedXp
     const newExp = (() => {
-        if (status === "Victory") return currentXp + gainedXp
-        if (status === "Defeat") return Math.round(currentXp + (gainedXp * md.global.loseMult))
+        if (status === 'Victory') return currentXp + gainedXp
+        if (status === 'Defeat') return Math.round(currentXp + (gainedXp * md.global.loseMult))
     })()
 
     // Set Xp

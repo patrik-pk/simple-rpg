@@ -1,11 +1,11 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import DungeonItem from "./DungeonItem"
-import bosses from "../data/bosses"
-import "../styles/dungeon/dungeon.css"
+import DungeonItem from './DungeonItem'
+import bosses from '../data/bosses'
+import '../styles/dungeon/dungeon.css'
 
 function Dungeon(props) {
 
@@ -30,16 +30,16 @@ function Dungeon(props) {
     }
 
     return (
-        <div className="dungeon">
-            <h2 id="page_name">Dungeon</h2>
-            <p id="current_level">Your level: {currentLevel}</p>
-            <div className="dungeon_container">
+        <div className='dungeon'>
+            <h2 id='page_name'>Dungeon</h2>
+            <p id='current_level'>Your level: {currentLevel}</p>
+            <div className='dungeon_container'>
                 { dungeonItems() }
             </div>
-            <div id="tip">
+            <div id='tip'>
                 <p>TIP: Hover on boss's name to display his stats.</p>
             </div>
-            <Link to="/menu" className="back_btn">Back</Link>                          
+            <Link to='/menu' className='back_btn'>Back</Link>                          
         </div>
     )
 }
