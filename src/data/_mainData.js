@@ -1,7 +1,4 @@
 
-import emptyBonuses from './emptyBonuses'
-import icons from './icons'
-
 // this file contains all the important data - base values,
 // starting items, multipliers, etc...
 
@@ -33,32 +30,11 @@ const mainData = {
         },
     },
     enemyBase: {
-        hp: 1000,
-        armor: 150,
-        damage: 150,
-        crit: 35,
         critMult: 2,
-        dodge: 25,
-        diffMult: { // difficulty multiplier
-            stats: {
-                easy: 0.95,
-                medium: 1,
-                hard: 1.05
-            }
-        },
         dispersion: {
-            hp: { min: 90, max: 110, perc: 0.01 },
-            lowerArmor: { min: 80, max: 90, perc: 0.01 },
-            higherArmor: { min: 110, max: 120, perc: 0.01 },
-            damage: { min: 90, max: 110, perc: 0.01 }, // stat
-            crit: { min: 90, max: 110, perc: 0.01 },
-            dodge: { min: 90, max: 110, perc: 0.01 },
             dmgMult: { min: 90, max: 110, perc: 0.01 } // dispersion for calculated damage
         },
         boss: {
-            bonusHpMult: 2,
-            armorDispersion: { min: 95, max: 105, perc: 0.01 },
-            strongStatMult: 1.6,
             xp: 40 // percentage reward of next level xp
         }
     },
@@ -141,28 +117,6 @@ const mainData = {
             valueMult: 1.5 // higher gold value
         }
     },
-    equippedItems: [
-        { type: 'Helmet', rarity: 'Common', stats: { statName: 'Armor', value: 7 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.helmet, key: 0 },
-        { type: 'Chestplate', rarity: 'Common', stats: { statName: 'Armor', value: 10 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.chestplate, key: 1 },
-        { type: 'Pants', rarity: 'Common', stats: { statName: 'Armor', value: 8 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.pants, key: 2 },
-        { type: 'Gloves', rarity: 'Common', stats: { statName: 'Armor', value: 6 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.gloves, key: 3 },
-        { type: 'Boots', rarity: 'Common', stats: { statName: 'Armor', value: 6 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.boots, key: 4 },
-        { type: 'Sword', rarity: 'Common', stats: { statName: 'M-DMG', value: 125 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.sword, key: 5 },
-        { type: 'Necklace', rarity: 'Common', stats: { statName: 'HP', value: 175 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.necklace, key: 6 },
-        { type: 'Earrings', rarity: 'Common', stats: { statName: 'HP', value: 175 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.earrings, key: 7 },
-        { type: 'Ring', rarity: 'Common', stats: { statName: 'Crit. chance', value: 10 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.ring, key: 8 },
-        { type: 'Belt', rarity: 'Common', stats: { statName: 'Crit. chance', value: 10 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.belt, key: 9 },
-        { type: 'Shield', rarity: 'Common', stats: { statName: 'Block chance', value: 15 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.shield, key: 10 },
-        { type: 'Bow', rarity: 'Common', stats: { statName: 'R-DMG', value: 125 }, bonuses: emptyBonuses, goldValue: 10, level: 0, destination: 'Equipped', isSelected: false, imgSrc: icons.bow, key: 11 },
-    ],
-    invItems: [
-
-    ],
-    shopItems: [
-        { type: 'Empty', key: 0 },
-        { type: 'Empty', key: 1 },
-        { type: 'Empty', key: 2 },
-    ],
 }
 
 export default mainData
