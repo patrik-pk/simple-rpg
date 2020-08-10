@@ -11,6 +11,7 @@ const initialState = {
     battleStatus: '',
     canAttack: true,
     generatedItem: null,
+    gameTimer: 1000,
 }
 
 export default (state = initialState, action) => {

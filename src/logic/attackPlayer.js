@@ -1,5 +1,4 @@
 import randomGenerator from './randomGenerator'
-import mainData from '../data/_mainData'
 
 export default function attackPlayer(player, enemy, character) {
 
@@ -25,11 +24,10 @@ export default function attackPlayer(player, enemy, character) {
 
     // Crit Multiplier - if enemy crits return multiplier, if not, return 1
     const crit = (() => {
-        const critMultiplier = mainData.enemyBase.critMult
         const critChance = enemy.critChance
         const random = randomGenerator(0, 100, 1)
 
-        if (critChance > random) return { didCrit: true, value: critMultiplier }
+        if (critChance > random) return { didCrit: true, value: 2 }
         else return { didCrit: false, value: 1 }
     })()
 
@@ -40,25 +38,20 @@ export default function attackPlayer(player, enemy, character) {
         const damage = enemy.damage
 
         // create multiplier to randomize dmg (0.9 - 1.1)
-        const mult = mainData.enemyBase.dispersion.dmgMult
-        const multiplier = randomGenerator(mult.min, mult.max, mult.perc) 
+        const multiplier = randomGenerator(90, 110, 0.01) 
 
         // player armor
         const playerArmor = player.armor
 
         // min dmg, if armor is too high
-        const minDmgBase = mainData.global.minDmg
-        // randomize min dmg
-        const md = mainData.global.minDmgDisp
-        // multiply min dmg by gameFlow
-        const minDmg = minDmgBase * gameFlow
+        const minDmg = 30 * randomGenerator(85, 115, 0.01) * gameFlow
 
         // calculate dmg dealt
         let dmg = (damage * multiplier * crit.value) - playerArmor
 
         // if dmg dealt is less than minDmg, set dmg to minDmg * random multiplier,
         // if it isn't, keep it as it is
-        dmg = dmg < minDmg ? minDmg * randomGenerator(md.min, md.max, md.perc) : dmg
+        dmg = dmg < minDmg ? minDmg : dmg
 
         // finally return rounded dmg
         return Math.round(dmg)

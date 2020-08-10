@@ -1,7 +1,6 @@
 import randomGenerator from './randomGenerator'
-import md from '../data/_mainData'
 
-export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack) {
+export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack, hitChanceMult) {
 
   // Based on typeOfAttack (melee / ranged) return weapon dmg, enemy dodge and enemy armor
   const typeOfAtt = (() => {
@@ -22,21 +21,11 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Based on strengthOfAttack (light / medium / ranged) return dmg and hitChance
   const strengthOfAtt = (() => {
-    let dmg
     switch (strengthOfAttack) {
-      case 'light': dmg = md.playerBase.attackTypes.damage.light; return {
-        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-        hitChance: md.playerBase.attackTypes.hitChance.light
-      }
-      case 'medium': dmg = md.playerBase.attackTypes.damage.medium; return {
-        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-        hitChance: md.playerBase.attackTypes.hitChance.medium
-      }
-      case 'strong': dmg = md.playerBase.attackTypes.damage.strong; return {
-        dmg: randomGenerator(dmg.min, dmg.max, dmg.perc),
-        hitChance: md.playerBase.attackTypes.hitChance.strong
-      }
-      default: break;
+      case 'light': return randomGenerator(70, 90, 0.01)
+      case 'medium': return randomGenerator(90, 110, 0.01)
+      case 'strong': return randomGenerator(110, 130, 0.01)
+      default: break
     }
   })()
 
@@ -44,11 +33,11 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
   const dodged = (() => {
     // Enemy dodge chance
     let dodgeChance = typeOfAtt.dodge
-    // Mulitply dodgeChance by strengthOfAtt hitChance, which is value to make it easier to
-    // hit for light attack and harder for strong attack, you can check the values in mainData
+    // Mulitply dodgeChance by hitChanceMutl, which is value to make it easier to
+    // hit for light attack and harder for strong attack
     // e.g  50% dodge chance * 0.2 light attack hit Chance => 10% real chance for enemy to dodge
     // e.g  50% dodge chance * 1.8 strong attack hit Chance => 90% real chance for enemy to dodge
-    dodgeChance = (dodgeChance * strengthOfAtt.hitChance).toFixed(2)
+    dodgeChance = (dodgeChance * hitChanceMult).toFixed(2)
 
     // Finally return true / false based on comparing to random value
     const random = randomGenerator(0, 100, 1)
@@ -74,27 +63,26 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Crit - calculate crit based on critChance and return object with multiplier value & didCrit boolean
   const crit = (() => {
-    const critMultiplier = md.playerBase.critMult
     const critChance = player.critChance
     const random = randomGenerator(0, 100, 1)
 
-    if(critChance > random) return { didCrit: true, value: critMultiplier }
+    if(critChance > random) return { didCrit: true, value: 2 }
     else return { didCrit: false, value: 1 }
   })()
 
   // Calculate Damage Dealt
   const damageDealt = (() => {
-    const minDmg = md.global.minDmg // min DMG base that characters does when armor is too high
-    const min_dmg_disp = md.global.minDmgDisp // min dmg dispersion - to randomize the dmg, when armor si too high
+    // min DMG base that characters does when armor is too high
+    const minDmg = 30 * randomGenerator(85, 115, 0.01)
 
     // Damage Dealt = (TypeOfAttack DMG (coming from weapon Melee / Ranged) 
     // * StrengthOfAttack Multiplier (light/medium/strong) 
     // * Specie Bonus Multiplier) - Enemy Armor
-    let dmgDealt = (typeOfAtt.dmg * strengthOfAtt.dmg * bonusMultiplier) - typeOfAtt.armor
+    let dmgDealt = (typeOfAtt.dmg * strengthOfAtt * bonusMultiplier) - typeOfAtt.armor
     // apply crit to dmgDealt substracted by Enemy Armor
     dmgDealt *= crit.value
     // if dmgDealt is less than minDmg, set damage dealt to random * minDmg, or let it be as it is
-    dmgDealt = dmgDealt < minDmg ? minDmg * randomGenerator(min_dmg_disp.min, min_dmg_disp.max, min_dmg_disp.perc) : dmgDealt
+    dmgDealt = dmgDealt < minDmg ? minDmg : dmgDealt
     // finally round dmgDealt to a whole number
     dmgDealt = Math.round(dmgDealt)
     // and return it

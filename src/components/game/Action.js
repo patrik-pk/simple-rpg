@@ -11,15 +11,17 @@ import attackEnemy from '../../logic/attackEnemy'
 import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
 import generateItem from '../../logic/generateItem'
-import md from '../../data/_mainData'
 
 function Action(props) {
 
     // Destructure from props
-    const { 
+    const {
+        data,
+        dodge, 
         reduxPlayer, 
         reduxEnemy,
         character,
+        game,
         invItems,
         setCanAttack,
         gameWon,
@@ -37,6 +39,17 @@ function Action(props) {
 
     const gameType = reduxEnemy.type === 'Boss' ? 'Boss' : 'Classic'
 
+    // Get hit chance multiplier
+    const hitChanceMult = (() => {
+        switch (data.strength) {
+            case 'light': return 0.2
+            case 'medium': return 0.9
+            case 'strong': return 1.8
+            default: return 1;
+        }
+    })()
+    const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
+
     // Start Round - actual game functionality
     const startRound = () => {
 
@@ -45,7 +58,7 @@ function Action(props) {
         resetPlayerDmgTaken()
         setCanAttack(false)
         // calculate damage dealt and return it along with didCrit boolean
-        const { p_dmgDealt, p_didCrit } = attackEnemy(reduxPlayer, reduxEnemy, props.data.type, props.data.strength)
+        const { p_dmgDealt, p_didCrit } = attackEnemy(reduxPlayer, reduxEnemy, data.type, data.strength, hitChanceMult)
 
         // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
         if(p_dmgDealt === 'dodged') {
@@ -98,7 +111,7 @@ function Action(props) {
                 }
             }
 
-        }, md.global.gameTimer)
+        }, game.gameTimer)
 
         // PLAYER CAN ATTACK AGAIN AFTER X * 2 SECONDS 
 
@@ -109,30 +122,19 @@ function Action(props) {
                 setCanAttack(true)
             }
             resetEnemyDmgTaken()
-        }, md.global.gameTimer * 2)
+        }, game.gameTimer * 2)
 
     }
-    
-    // Chance to hit on Action hover
-    const hitChanceMult = (() => {
-        switch(props.data.strength) {
-            case 'light': return md.playerBase.attackTypes.hitChance.light
-            case 'medium': return md.playerBase.attackTypes.hitChance.medium
-            case 'strong': return md.playerBase.attackTypes.hitChance.strong
-            default: return 1;
-        }
-    })()
-    const chanceToHit = (100 - (props.dodge * hitChanceMult)).toFixed(2)
 
     return (
         <div className='action'>
-            <button /*onClick={() => props.gameManager(props.data.type, props.data.strength)}*/ onClick={startRound}>
+            <button onClick={startRound}>
                 <div className='hit_chance'>
                     <p>Hit chance: </p>
                     <p>{chanceToHit + '%'}</p>
                 </div>
-                <div className='icon' id={props.data.id}>
-                    { props.data.icon }
+                <div className='icon' id={data.id}>
+                    { data.icon }
                 </div>
             </button>
         </div>
