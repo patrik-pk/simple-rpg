@@ -1,14 +1,14 @@
 
-// XP = xp needed for next level (i.e. level 0 needs 500xp to get to level 1)
+// xp = xp needed for next level (i.e. level 0 needs 500xp to get to level 1)
 // Classic game xp is calculated this way - xp / fightsNeededToLevel
-// Boss game gives you x % of xp if you win, this means you can save bosses
-// to higher level and level up easier when you are level 20 for example
+// Boss game gives you x % of xp if you win
 
-// there is also declared a gameFlow variable which controls the whole game system -
+// there is also a variable called gameFlow, which controls the whole game system -
 // items, enemies. As you can see the value is below 1 until level 5. This is because
 // player starts without items. Items are generated with minimal gameFlow value 1, meaning 
 // this is the period for Player to get equipped.
-// Values below 1 are for enemies, which are considered "Starting enemies". 
+// Values below 1 are for enemies, which are considered "Starting enemies".
+// For items minimum gameFlow is 1 
 
 let levelTresholds = [
     { level: 0, xp: 500, gameFlow: 0.2, fightsNeededToLevel: 3 },

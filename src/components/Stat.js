@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Stat({ name, value, enemy }) {
-    // This is a simple Stat Component render in
+    // This is a simple Stat Component used in
     // Inventory and Game(for both Player and Enemy)
 
     
