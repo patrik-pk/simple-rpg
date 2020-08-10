@@ -15,19 +15,19 @@ import '../../styles/item/item.css'
 function Game(props) {
 
     // Destructure From Props
-    const { reduxEnemy, endGame } = props 
+    const { enemy, endGame } = props 
     const { battleStatus, generatedItem } = props.game
     const { acquiredXp, acquiredGold, acquiredDiamonds } = props.character
     const history = useHistory()
 
     // Game On Mount - if enemy doesn't exist (happens on refresh), redirect to /menu
     useEffect(() => {
-        !reduxEnemy && history.push('/menu')
+        !enemy && history.push('/menu')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Style
-    const bg_link = reduxEnemy ? reduxEnemy.currentEnemy.environmentSrc : ''
+    const bg_link = enemy ? enemy.currentEnemy.environmentSrc : ''
 
     const bg_style = {
         backgroundImage: 'url(' + bg_link + ')',
@@ -101,7 +101,7 @@ Game.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    reduxEnemy: state.enemy,
+    enemy: state.enemy,
     game: state.game,
     character: state.character    
 })

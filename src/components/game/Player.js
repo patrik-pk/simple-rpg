@@ -18,13 +18,13 @@ import levelTresholds from '../../data/levelTresholds'
 function Player(props) {
 
     // Render Component only if there is a Enemy
-    if(props.reduxEnemy) {
+    if(props.enemy) {
 
-        const { currentLevel, experience, reduxPlayer, reduxEnemy, canAttack } = props
-        const { meleeDodgeChance, rangedDodgeChance } = reduxEnemy
+        const { currentLevel, experience, player, enemy, canAttack } = props
+        const { meleeDodgeChance, rangedDodgeChance } = enemy
     
         // HP and XP fill
-        const hpPerc = (reduxPlayer.currentHp / reduxPlayer.maxHp) * 100
+        const hpPerc = (player.currentHp / player.maxHp) * 100
         const xpPerc = (experience / levelTresholds[currentLevel].xp) * 100
     
         const hpFillColor = 'rgb(220, 0, 0)' 
@@ -42,7 +42,7 @@ function Player(props) {
             }
         }
     
-        const critClass = reduxPlayer.receivedCrit ? ' crit' : ''
+        const critClass = player.receivedCrit ? ' crit' : ''
     
         return(
             <div className='character_container' id='player'>
@@ -54,11 +54,11 @@ function Player(props) {
                     <div className='info'>
                         <p className='name'>Player</p>
                         <p className='level' style={fillStyle(xpPerc, xpFillColor, xpBgColor)}>{currentLevel}</p>
-                        <p className='hp' style={fillStyle(hpPerc, hpFillColor, hpBgColor)}>{reduxPlayer.currentHp}/{reduxPlayer.maxHp}</p>
+                        <p className='hp' style={fillStyle(hpPerc, hpFillColor, hpBgColor)}>{player.currentHp}/{player.maxHp}</p>
                     </div>
     
-                    <p className={'floating_damage' + critClass} id='fl_dmg_player' style={{display: reduxPlayer.damageTaken === '' ? 'none' : 'block'}}>
-                        {reduxPlayer.damageTaken}
+                    <p className={'floating_damage' + critClass} id='fl_dmg_player' style={{display: player.damageTaken === '' ? 'none' : 'block'}}>
+                        {player.damageTaken}
                     </p>
     
                 </div>
@@ -66,19 +66,19 @@ function Player(props) {
                 <div className='stats'>
                     <div className='wrapper'>
                         <ul>
-                            <Stat name='HP:' value={reduxPlayer.maxHp} />
-                            <Stat name='Armor:' value={reduxPlayer.armor} />
-                            <Stat name='M-DMG:' value={reduxPlayer.meleeDamage} />
-                            <Stat name='R-DMG:' value={reduxPlayer.rangedDamage} />
-                            <Stat name='Crit(%):' value={reduxPlayer.critChance} />
-                            <Stat name='Block(%):' value={reduxPlayer.blockChance} />
+                            <Stat name='HP:' value={player.maxHp} />
+                            <Stat name='Armor:' value={player.armor} />
+                            <Stat name='M-DMG:' value={player.meleeDamage} />
+                            <Stat name='R-DMG:' value={player.rangedDamage} />
+                            <Stat name='Crit(%):' value={player.critChance} />
+                            <Stat name='Block(%):' value={player.blockChance} />
                         </ul>
                         <ul>
-                            <Stat name='Beasts:' value={reduxPlayer.bonuses[0].value} />
-                            <Stat name='Dragons:' value={reduxPlayer.bonuses[1].value} />
-                            <Stat name='Insect:' value={reduxPlayer.bonuses[2].value} />
-                            <Stat name='Monsters:' value={reduxPlayer.bonuses[3].value} />
-                            <Stat name='Reptiles:' value={reduxPlayer.bonuses[4].value} />
+                            <Stat name='Beasts:' value={player.bonuses[0].value} />
+                            <Stat name='Dragons:' value={player.bonuses[1].value} />
+                            <Stat name='Insect:' value={player.bonuses[2].value} />
+                            <Stat name='Monsters:' value={player.bonuses[3].value} />
+                            <Stat name='Reptiles:' value={player.bonuses[4].value} />
                         </ul>
                     </div>
                 </div>
@@ -110,16 +110,16 @@ function Player(props) {
 Player.propTypes = {
     currentLevel: PropTypes.number.isRequired,
     experience: PropTypes.number.isRequired,
-    reduxPlayer: PropTypes.object.isRequired,
-    reduxEnemy: PropTypes.object,
+    player: PropTypes.object.isRequired,
+    enemy: PropTypes.object,
     canAttack: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     currentLevel: state.character.currentLevel,
     experience: state.character.experience,
-    reduxPlayer: state.player,
-    reduxEnemy: state.enemy,
+    player: state.player,
+    enemy: state.enemy,
     canAttack: state.game.canAttack
 })
 

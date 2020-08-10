@@ -18,8 +18,8 @@ function Action(props) {
     const {
         data,
         dodge, 
-        reduxPlayer, 
-        reduxEnemy,
+        player, 
+        enemy,
         character,
         game,
         invItems,
@@ -37,7 +37,7 @@ function Action(props) {
         addItemToInv
     } = props
 
-    const gameType = reduxEnemy.type === 'Boss' ? 'Boss' : 'Classic'
+    const gameType = enemy.type === 'Boss' ? 'Boss' : 'Classic'
 
     // Get hit chance multiplier
     const hitChanceMult = (() => {
@@ -58,7 +58,7 @@ function Action(props) {
         resetPlayerDmgTaken()
         setCanAttack(false)
         // calculate damage dealt and return it along with didCrit boolean
-        const { p_dmgDealt, p_didCrit } = attackEnemy(reduxPlayer, reduxEnemy, data.type, data.strength, hitChanceMult)
+        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, data.type, data.strength, hitChanceMult)
 
         // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
         if(p_dmgDealt === 'dodged') {
@@ -66,14 +66,14 @@ function Action(props) {
         } else {
             enemyHit(p_dmgDealt, p_didCrit)
             // check if Enemy has 0 or less HP after damage dealt
-            if(reduxEnemy.currentHp - p_dmgDealt <= 0) {
+            if(enemy.currentHp - p_dmgDealt <= 0) {
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
                 // generate reward and update state
-                const reward = getReward(reduxEnemy, character, 'Victory', gameType)
+                const reward = getReward(enemy, character, 'Victory', gameType)
                 addReward(reward)
                 // generate item
-                const item = generateItem(character, reduxEnemy, 'Inventory', invItems.length, gameType)
+                const item = generateItem(character, enemy, 'Inventory', invItems.length, gameType)
                 // add item to inventory
                 addItemToInv(item)
                 // update generatedItem in game reducer - to display at the end of the game
@@ -90,7 +90,7 @@ function Action(props) {
         // calculate damage dealt and return it along with didCrit boolean
         // this function has to fire before setTimeout, because the values are needed in
         // the second setTimeout
-        const { e_dmgDealt, e_didCrit } = attackPlayer(reduxPlayer, reduxEnemy, character)
+        const { e_dmgDealt, e_didCrit } = attackPlayer(player, enemy, character)
 
         setTimeout(() => {
             
@@ -100,11 +100,11 @@ function Action(props) {
             } else {
                 playerHit(e_dmgDealt, e_didCrit)
                 // check if Player has 0 or less HP after damage dealt
-                if (reduxPlayer.currentHp - e_dmgDealt <= 0) {
+                if (player.currentHp - e_dmgDealt <= 0) {
                     // Battle Won - set battleStatus to 'Victory'
                     gameLost()
                     // generate reward and update state
-                    const reward = getReward(reduxEnemy, character, 'Defeat', gameType)
+                    const reward = getReward(enemy, character, 'Defeat', gameType)
                     addReward(reward)
                     // break out of this function
                     return
@@ -118,7 +118,7 @@ function Action(props) {
         setTimeout(() => {
             // If player didn't lose, he can attack again
             // and start this function over again
-            if (reduxPlayer.currentHp - e_dmgDealt > 0 || e_dmgDealt === 'blocked') {
+            if (player.currentHp - e_dmgDealt > 0 || e_dmgDealt === 'blocked') {
                 setCanAttack(true)
             }
             resetEnemyDmgTaken()
@@ -142,16 +142,16 @@ function Action(props) {
 }
 
 Action.propTypes = {
-    reduxPlayer: PropTypes.object.isRequired,
-    reduxEnemy: PropTypes.object.isRequired,
+    player: PropTypes.object.isRequired,
+    enemy: PropTypes.object.isRequired,
     character: PropTypes.object.isRequired,
     game: PropTypes.object.isRequired,
     invItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-    reduxPlayer: state.player,
-    reduxEnemy: state.enemy,
+    player: state.player,
+    enemy: state.enemy,
     character: state.character,
     game: state.game,
     invItems: state.items.invItems

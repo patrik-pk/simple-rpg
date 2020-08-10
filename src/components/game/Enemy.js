@@ -5,12 +5,12 @@ import Stat from '../Stat'
 
 function Enemy(props) {
 
-    const reduxEnemy = props.reduxEnemy
+    const enemy = props.enemy
 
     // Render Component only if there is a Enemy
-    if(reduxEnemy) {
+    if(enemy) {
     
-        const hp_percentage = (reduxEnemy.currentHp / reduxEnemy.maxHp) * 100
+        const hp_percentage = (enemy.currentHp / enemy.maxHp) * 100
     
         // HP bar fill
         const hpStyle = {
@@ -20,7 +20,7 @@ function Enemy(props) {
         }
     
         const specie = () => {
-            switch(reduxEnemy.currentEnemy.specie) {
+            switch(enemy.currentEnemy.specie) {
                 case 'beasts': return 'Beast';
                 case 'dragons': return 'Dragon';
                 case 'insect': return 'Insect';
@@ -31,9 +31,9 @@ function Enemy(props) {
         }
     
         const difficulty = () => {
-            if(reduxEnemy.type === 'Boss') return 'Boss'
+            if(enemy.type === 'Boss') return 'Boss'
             else {
-                switch(reduxEnemy.difficulty) {
+                switch(enemy.difficulty) {
                     case 1: return 'Easy'
                     case 2: return 'Med'
                     case 3: return 'Hard'
@@ -42,8 +42,8 @@ function Enemy(props) {
             }
         }
      
-        const bossClass = reduxEnemy.type === 'Boss' ? 'boss' : ''
-        const critClass = reduxEnemy.receivedCrit ? ' crit' : ''
+        const bossClass = enemy.type === 'Boss' ? 'boss' : ''
+        const critClass = enemy.receivedCrit ? ' crit' : ''
 
         return (
             <div className='character_container' id='enemy'>
@@ -52,23 +52,23 @@ function Enemy(props) {
                 <div className='top_container'>
     
                     {/* Image */}
-                    <img alt='' src={reduxEnemy.currentEnemy.imgSrc}/>
+                    <img alt='' src={enemy.currentEnemy.imgSrc}/>
     
                     {/* Info - name, level, hp */}
                     <div className='info'>
-                        <p className={'name ' + bossClass}>{reduxEnemy.currentEnemy.name} ({reduxEnemy.level})</p>
-                        <p className='hp' style={hpStyle}>{reduxEnemy.currentHp}/{reduxEnemy.maxHp}</p>
+                        <p className={'name ' + bossClass}>{enemy.currentEnemy.name} ({enemy.level})</p>
+                        <p className='hp' style={hpStyle}>{enemy.currentHp}/{enemy.maxHp}</p>
                     </div>
     
                     {/* Floating Damage */}
-                    <p className={'floating_damage' + critClass} id='fl_dmg_enemy' style={{ display: reduxEnemy.damageTaken === '' ? 'none' : 'block' }}>
-                        {reduxEnemy.damageTaken}
+                    <p className={'floating_damage' + critClass} id='fl_dmg_enemy' style={{ display: enemy.damageTaken === '' ? 'none' : 'block' }}>
+                        {enemy.damageTaken}
                     </p>
     
                     {/* Art By */}
                     <div className='art_by'>
                         <p>Art by:</p>
-                        <a href={reduxEnemy.currentEnemy.artByUrl} target='_blank' rel='noopener noreferrer'>{reduxEnemy.currentEnemy.artBy}</a>
+                        <a href={enemy.currentEnemy.artByUrl} target='_blank' rel='noopener noreferrer'>{enemy.currentEnemy.artBy}</a>
                     </div>
                     
                 </div>
@@ -77,16 +77,16 @@ function Enemy(props) {
                 <div className='stats'>
                     <div className='wrapper'>
                         <ul>
-                            <Stat name='HP:' value={reduxEnemy.maxHp} />
-                            <Stat name='M-Armor:' value={reduxEnemy.meleeArmor} enemy={reduxEnemy} />
-                            <Stat name='R-Armor:' value={reduxEnemy.rangedArmor} enemy={reduxEnemy} />
-                            <Stat name='M-DG(%):' value={Math.round(reduxEnemy.meleeDodgeChance)} />
-                            <Stat name='R-DG(%):' value={Math.round(reduxEnemy.rangedDodgeChance)} />
+                            <Stat name='HP:' value={enemy.maxHp} />
+                            <Stat name='M-Armor:' value={enemy.meleeArmor} enemy={enemy} />
+                            <Stat name='R-Armor:' value={enemy.rangedArmor} enemy={enemy} />
+                            <Stat name='M-DG(%):' value={Math.round(enemy.meleeDodgeChance)} />
+                            <Stat name='R-DG(%):' value={Math.round(enemy.rangedDodgeChance)} />
                         </ul>
     
                         <ul>
-                            <Stat name='Strength:' value={reduxEnemy.damage} />
-                            <Stat name='Crit(%):' value={reduxEnemy.critChance} />
+                            <Stat name='Strength:' value={enemy.damage} />
+                            <Stat name='Crit(%):' value={enemy.critChance} />
                             <Stat name='Diff:' value={difficulty()} />
                             <Stat name='Spec:' value={specie()} />
                         </ul>
@@ -100,11 +100,11 @@ function Enemy(props) {
 }
 
 Enemy.propTypes = {
-    reduxEnemy: PropTypes.object,
+    enemy: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
-    reduxEnemy: state.enemy
+    enemy: state.enemy
 })
 
 export default connect(mapStateToProps)(Enemy)
