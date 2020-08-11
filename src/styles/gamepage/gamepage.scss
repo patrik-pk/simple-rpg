@@ -3,266 +3,269 @@
 
 // Game Page
 .battle_section {
+    position: relative;
     height: 100vh;
     overflow: hidden!important;
+    background: black;
 
-    .dark_overlay {
-        @include dark_overlay(0.6);
-    }
-
-    // Container
-    .container {
+    // Characters
+    .characters {
+        position: absolute;
+        top: 40%;
+        transform: translate(0, -50%);
+        width: 100%;
         display: flex;
-        position: relative;
-        height: 100%;
-        
-        // Characters
-        .characters {
-            position: absolute;
-            top: 40%;
-            transform: translate(0, -50%);
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+        flex-direction: row;
+        justify-content: space-between;
 
-            @include tablet {
-                
-            }
+        // Character Container
+        .character_container {
+            position: relative;
+            width: 250px;
+            height: 400px;
+            background: black;
+            border: 1px white solid;
 
             @include mobile {
-                
+                width: 125px;
+                height: 200px;
             }
 
-            // Character Container
-            .character_container {
+            // Top Container
+            .top_container {
                 position: relative;
-                width: 250px;
-                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;    
+                width: 100%;
+                height: 42%;
                 background: black;
-                border: 1px white solid;
 
-                @include mobile {
-                    width: 125px;
-                    height: 200px;
+                // Image (svg)
+                svg {
+                    width: 75%;
+                    height: 75%;
+
+                    path {
+                        fill: white;
+                    }
                 }
 
-                // Top Container
-                .top_container {
-                    position: relative;
-                    width: 100%;
-                    height: 50%;
-                    padding: 5px;
-                    box-sizing: border-box;
-
-                    @include mobile {
-                        padding: 3px;
-                    }
-
-                    // Image
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        border: 1px white solid;
-                    }
-
-                    // Info (name, hp, level)
-                    .info {
-                        width: 150px;
-                        position: absolute;
-                        bottom: 40px;
-                        left: 50%;
-                        transform: translate(-50%, 0);
-                        text-align: center;
-                        font-size: 14px;
-
-                        @include mobile {
-                            width: 75px;
-                            bottom: 20px;
-                            font-size: 8px;
-                        }
-
-                        // Name
-                        .name {
-                            width: 100%;
-                            background: rgba(100, 100, 100, 0.7);
-                            border: 1px black solid;
-                            color: white;
-                            &.boss {
-                                background: rgba(145, 6, 6, 0.8);
-                            }
-                        }
-
-                        // HP, Level
-                        .hp, .level {
-                            width: 100%;
-                            margin-top: 3px;
-                            background: white;
-                            color: white;
-                            border: 1px black solid;
-                            transition: all 500ms;
-                            @include mobile { margin-top: 1px; }
-                        }
-                        .level.enemy {
-                            background: rgb(0, 191, 255);
-                        }
-                    }
-
-                    // Art By
-                    .art_by {
-                        display: flex;
-                        position: absolute;
-                        bottom: 10px;
-                        right: 10px;
-                        color: white;
-                        font-size: 12px;
-                        @include mobile {
-                            bottom: 5px;
-                            right: 5px;
-                            font-size: 6px;
-                        }
-
-                        a {
-                            padding-left: 2px;
-                            color: lightgreen;
-                            font-weight: bold;
-                            &:hover {
-                                text-decoration: underline;
-                            }
-                        }
-                    }
-
-                    // Floating Damage
-                    .floating_damage {
-                        position: absolute;
-                        bottom: 70px;
-                        left: 50%;
-                        transform: translate(-50%, 0);
-                        color: white;
-                        font-weight: bold;
-                        &.crit {
-                            color: red;
-                        }
-
-                        @include mobile {
-                            bottom: 35px;
-                            font-size: 8px;
-                        }
-                    }
-                    
-                    #fl_dmg_player, #fl_dmg_enemy {
-                        animation: floatOut 1.3s linear forwards;
-                        @include mobile {
-                            animation: floatOutMobile 1.3s linear forwards;
-                        }
-                    }
-
-                    // Floating Damage Animation
-                    @keyframes floatOut {
-                        0% {
-                            bottom: 70px;
-                        }
-                        
-                        75% {
-                            bottom: 130px;
-                            transform: scale(1.5);
-                            opacity: 1;
-                        }
-
-                        100% {
-                            bottom: 130px;
-                            transform: scale(1.5);                            
-                            opacity: 0;
-                        }
-                    }
-
-                    // Animation For Mobile
-                    @keyframes floatOutMobile {
-                        0% { bottom: 30px; }
-                        75% {
-                            bottom: 60px;
-                            transform: scale(1.5);
-                            opacity: 1;
-                        }
-                        100% {
-                            bottom: 60px;
-                            transform: scale(1.5);                            
-                            opacity: 0;
-                        }
-                    }
-
-                }
-
-                // Bottom (Stats)
-                .stats {
-                    width: 100%;
-                    height: 50%;
-                    padding: 5px;
-                    padding-bottom: 6px;
-                    box-sizing: border-box;
-                    font-size: 14px;
-                    @include mobile {
-                        padding: 3px;
-                        padding-bottom: 3px;
-                        font-size: 8px;
-                    }
-                    
-                    // Wrapper
-                    .wrapper {
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-
-                        // Ul
-                        ul {
-                            margin-top: 10px;
-                            &:nth-child(2) {
-                                li {
-                                    padding: 2px 17px 2px 0;
-                                    @include mobile { padding: 1px 7px 1px 0; }
-                                }   
-                            }
-
-                            @include mobile { margin-top: 5px; }
-    
-                            // Li
-                            li {
-                                padding: 2px 0 2px 17px;
-                                @include mobile { padding: 1px 0 1px 7px; }
-    
-                                p:nth-child(2) {
-                                    margin-left: 13px;
-                                    @include mobile { margin-left: 3px; }
-                                }
-                            }
-                        }
-
-                        // Stat Container
-                        .stat-container.boss {
-                            p {
-                                color: orangered!important; 
-                            }
-                        }
-                    }
-                    
-                }
-
-                // Forfeit Button
-                .forfeit_container {
-                    z-index: 100;
+                // Floating Damage
+                .floating_damage {
                     position: absolute;
-                    top: 10px;
-                    right: -71px;
+                    bottom: 70px;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                    color: white;
+                    font-weight: bold;
+                    animation: floatOut 1.3s linear forwards;
+                    &.crit {
+                        color: red;
+                    }
                     @include mobile {
-                        right: -42px;
                     }
                     
-                    a {
-                        div {
+                    @include mobile {
+                        bottom: 35px;
+                        font-size: 8px;
+                        animation: floatOutMobile 1.3s linear forwards;
+                    }
+                }
+
+                // Floating Damage Animation
+                @keyframes floatOut {
+                    0% {
+                        bottom: 70px;
+                    }
+                    
+                    75% {
+                        bottom: 130px;
+                        transform: scale(1.5);
+                        opacity: 1;
+                    }
+
+                    100% {
+                        bottom: 130px;
+                        transform: scale(1.5);                            
+                        opacity: 0;
+                    }
+                }
+
+                // Animation For Mobile
+                @keyframes floatOutMobile {
+                    0% { bottom: 30px; }
+                    75% {
+                        bottom: 60px;
+                        transform: scale(1.5);
+                        opacity: 1;
+                    }
+                    100% {
+                        bottom: 60px;
+                        transform: scale(1.5);                            
+                        opacity: 0;
+                    }
+                }
+
+            }
+
+            // Middle (Info - hp, name, level)
+            .info {
+                height: 16%;
+                
+                .name {
+                    display: flex;
+                    justify-content: center;
+                    height: 45%;
+                    color: white;
+                    &.boss {
+                        color: darkred;
+                        font-weight: bold;
+                    }
+
+                    @include mobile {
+                        font-size: 10px;
+                    }
+                }
+                
+                .hp {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 55%;
+
+                    .value {
+                        color: white;
+                        transition: 500ms all;
+
+                        @include mobile {
+                            font-size: 10px;
+                        }
+                    }
+                }
+
+            }
+
+            // Bottom (Stats)
+            .stats {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                height: 42%;
+                padding: 5px;
+                padding-bottom: 6px;
+                box-sizing: border-box;
+                font-size: 14px;
+                @include mobile {
+                    padding: 3px;
+                    padding-bottom: 3px;
+                    font-size: 8px;
+                }
+
+                // Ul
+                ul {
+                    margin-top: 10px;
+                    &:nth-child(2) {
+                        li {
+                            padding: 2px 17px 2px 0;
+                            @include mobile { padding: 1px 7px 1px 0; }
+                        }   
+                    }
+
+                    @include mobile { margin-top: 5px; }
+
+                    // Li
+                    li {
+                        padding: 2px 0 2px 17px;
+                        @include mobile { padding: 1px 0 1px 7px; }
+
+                        p:nth-child(2) {
+                            margin-left: 13px;
+                            @include mobile { margin-left: 3px; }
+                        }
+                    }
+                }
+
+                // Stat Container
+                .stat-container.boss {
+                    p {
+                        color: orangered!important; 
+                    }
+                }
+            }
+
+            // Forfeit Button
+            .forfeit_container {
+                z-index: 100;
+                position: absolute;
+                top: 10px;
+                right: -71px;
+                @include mobile {
+                    right: -42px;
+                }
+                
+                a {
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50px;
+                        height: 50px;
+                        background: black;
+                        border: 1px white solid;
+                        transition: 500ms all;
+                        &:hover {
+                            border: 1px orangered solid;
+                            color: orangered;
+                        }
+
+                        @include mobile {
+                            width: 25px;
+                            height: 25px;
+                            font-size: 8px;
+                        }
+                    }
+                }
+            }
+
+            // Actions (attack options)
+            .actions {
+                position: absolute;
+                top: 0;
+                right: -130px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: auto;
+                height: 100%;
+                @include mobile {
+                    right: -70px;
+                }
+
+                // Columns
+                .melee_column, .ranged_column {
+                    display: flex;
+                    flex-direction: column;
+
+                    // Action
+                    .action {
+                        margin-bottom: 10px;
+                        &:hover {
+                            .hit_chance {
+                                display: block!important;
+                            }
+                        }
+
+                        @include mobile {
+                            margin-bottom: 5px;
+                        }
+
+                        // Button
+                        button {
+                            position: relative;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -271,260 +274,194 @@
                             background: black;
                             border: 1px white solid;
                             transition: 500ms all;
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+
+                            &:hover {
+                                border: 1px orangered solid;
+
+                                .hit_chance { border: 1px orangered solid; }
+                                p { color: orangered; }
+                                svg {
+                                    path {
+                                        fill: orangered;
+                                    }
+                                }
+                            }
+
                             @include mobile {
                                 width: 25px;
                                 height: 25px;
                                 font-size: 8px;
                             }
-                        }
-                        div:hover {
-                            border: 1px orangered solid;
-                            color: orangered;
-                        }
-                    }
-                }
 
-                // Actions (attack options)
-                .actions {
-                    position: absolute;
-                    top: 0;
-                    right: -130px;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    width: auto;
-                    height: 100%;
-                    @include mobile {
-                        right: -70px;
-                    }
-
-                    // Columns
-                    .melee_column, .ranged_column {
-                        display: flex;
-                        flex-direction: column;
-
-                        // Action
-                        .action {
-                            margin-bottom: 10px;
-                            &:hover {
-                                .hit_chance {
-                                    display: block!important;
-                                }
-                            }
-
-                            @include mobile {
-                                margin-bottom: 5px;
-                            }
-
-                            // Button
-                            button {
-                                position: relative;
+                            // Icon
+                            .icon {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                width: 50px;
+                                width: 40px;
+                                height: 40px;
+                                &#mm { transform: rotate(-45deg); }
+                                &#ms { transform: rotate(-90deg); }
+                                @include mobile {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+
+                                svg {
+                                    width: 32px;
+                                    height: 32px;
+
+                                    @include mobile {
+                                        width: 16px;
+                                        height: 16px;
+                                    }
+                                }
+                            }
+
+                            // Hit Chance Box
+                            .hit_chance {
+                                display: none!important;
+                                position: absolute;
+                                top: -40px;
+                                right: -110px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100px;
                                 height: 50px;
                                 background: black;
                                 border: 1px white solid;
-                                transition: 500ms all;
-                                &:last-child {
-                                    margin-bottom: 0;
+                                z-index: 100;
+
+                                p:first-child {
+                                    padding-top: 8px;
                                 }
 
-                                &:hover {
-                                    border: 1px orangered solid;
-
-                                    .hit_chance { border: 1px orangered solid; }
-                                    p { color: orangered; }
-                                    svg {
-                                        path {
-                                            fill: orangered;
-                                        }
-                                    }
-                                }
-
-                                @include mobile {
-                                    width: 25px;
-                                    height: 25px;
-                                    font-size: 8px;
-                                }
-
-                                // Icon
-                                .icon {
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: 40px;
-                                    height: 40px;
-                                    &#mm { transform: rotate(-45deg); }
-                                    &#ms { transform: rotate(-90deg); }
-                                    @include mobile {
-                                        width: 20px;
-                                        height: 20px;
-                                    }
-
-                                    svg {
-                                        width: 32px;
-                                        height: 32px;
-    
-                                        @include mobile {
-                                            width: 16px;
-                                            height: 16px;
-                                        }
-                                    }
-                                }
-    
-                                // Hit Chance Box
-                                .hit_chance {
-                                    display: none!important;
-                                    position: absolute;
-                                    top: -40px;
-                                    right: -110px;
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: 100px;
-                                    height: 50px;
-                                    background: black;
-                                    border: 1px white solid;
-                                    z-index: 100;
-    
-                                    p:first-child {
-                                        padding-top: 8px;
-                                    }
-
-                                    p:nth-child(2) {
-                                        margin-left: 5px;
-                                    }
+                                p:nth-child(2) {
+                                    margin-left: 5px;
                                 }
                             }
                         }
                     }
-
-                    .melee_column {
-                        margin-right: 10px;
-                        @include mobile { margin-right: 5px; }
-                    }
                 }
-            }
 
-            // Player
-            #player {
-                margin-left: 150px;
-                @include mobile { margin-left: 40px; }
-                @include tablet { margin-left: 50px; }
-            }
-
-            // Enemy
-            #enemy {
-                margin-right: 150px;
-                @include mobile { margin-right: 40px; }
-                @include tablet { margin-right: 50px; }
+                .melee_column {
+                    margin-right: 10px;
+                    @include mobile { margin-right: 5px; }
+                }
             }
         }
 
-        // Game Over
-        .game_over {
-            position: absolute;
-            bottom: 5%;
-            left: 50%;
-            transform: translate(-50%, 0);
-            width: 350px;
-            height: 155px;
-            background: black;
-            border: 1px white solid;
+        // Player
+        #player {
+            margin-left: 150px;
+            @include mobile { margin-left: 40px; }
+            @include tablet { margin-left: 50px; }
+        }
+
+        // Enemy
+        #enemy {
+            margin-right: 150px;
+            @include mobile { margin-right: 40px; }
+            @include tablet { margin-right: 50px; }
+        }
+    }
+
+    // Game Over
+    .game_over {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 350px;
+        height: 155px;
+        background: black;
+        border: 1px white solid;
+        @include mobile {
+            bottom: 10%;
+            width: 175px;
+            height: 80px;
+        }
+
+        // End Text
+        .end_text {
+            padding-top: 7px;
+            text-align: center;
+            font-weight: normal;
+            font-size: 20px;
             @include mobile {
-                bottom: 10%;
-                width: 175px;
-                height: 80px;
+                padding-top: 4px;
+                font-size: 10px;
+            }
+        }
+
+        // Reward
+        .reward {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px 0 30px;
+            @include mobile {
+                padding: 7px 30px 0 15px;
             }
 
-            // Container
-            .cont {
-                width: 100%;
-                height: 100%;
-                position: relative;
-
-                // End Text
-                .end_text {
-                    padding-top: 7px;
-                    text-align: center;
-                    font-weight: normal;
-                    font-size: 20px;
-                    @include mobile {
-                        padding-top: 4px;
-                        font-size: 10px;
-                    }
-                }
-    
-                // Reward
-                .reward {
+            // Left (Acquired XP, Gold, Diamonds)
+            .left {
+                div {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    align-items: center;
-                    padding: 15px 60px 0 30px;
-                    @include mobile {
-                        padding: 7px 30px 0 15px;
-                    }
 
-                    // Left
-                    .left {
-                        div {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
-
-                            p {
-                                padding-bottom: 2px;
-                                @include mobile {
-                                    padding-bottom: 1px;
-                                    font-size: 8px;
-                                }
-                            }
-
-                            p:last-child {
-                                margin-left: 12px;
-                            }
+                    p {
+                        padding-bottom: 2px;
+                        &:last-child {
+                            margin-left: 12px;
                         }
-                    }
 
-                    // Generated Item (right)
-                    .generated_item {
-                        .stats {
-                            @include mobile {
-                                margin-bottom: 30px;
-                            }
-                        }
-                    }
-                }
-    
-                // Confirm
-                .confirm_container {
-                    position: absolute;
-                    left: 50%;
-                    bottom: 13px;
-                    transform: translate(-50%, 0);
-                    @include mobile { bottom: 5px; }
-    
-                    .confirm_btn {
-                        padding: 5px 10px;
-                        background: black;
-                        color: white;
-                        transition: all 500ms;
-                        border: 1px white solid;
-                        &:hover {
-                            color: orangered;
-                            border: 1px orangered solid;
-                        }
                         @include mobile {
-                            padding: 2px 5px;
-                            font-size: 10px;
+                            padding-bottom: 1px;
+                            font-size: 8px;
                         }
                     }
                 }
             }
+
+            // Right - Generated Item(s)
+            .generated_item {
+                .stats {
+                    @include mobile {
+                        margin-bottom: 30px;
+                    }
+                }
+            }
         }
-    }   
+
+        // Confirm
+        .confirm_btn {
+            display: block;
+            width: 80px;
+            margin: 10px auto 0 auto;
+            padding: 5px 0;
+            background: black;
+            color: white;
+            text-align: center;
+            border: 1px white solid;
+            transition: all 500ms;
+            &:hover {
+                color: orangered;
+                border: 1px orangered solid;
+            }
+            
+            @include mobile {
+                width: 60px;
+                margin-top: 5px;
+                padding: 2px 0;
+                font-size: 10px;
+            }
+        }
+    } 
 }

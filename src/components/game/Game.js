@@ -15,9 +15,13 @@ import '../../styles/item/item.css'
 function Game(props) {
 
     // Destructure From Props
-    const { enemy, endGame } = props 
-    const { battleStatus, generatedItem } = props.game
-    const { acquiredXp, acquiredGold, acquiredDiamonds } = props.character
+    const {
+        game: { battleStatus, generatedItem },
+        character: { acquiredXp, acquiredGold, acquiredDiamonds },
+        enemy, 
+        endGame 
+    } = props 
+
     const history = useHistory()
 
     // Game On Mount - if enemy doesn't exist (happens on refresh), redirect to /menu
@@ -26,15 +30,6 @@ function Game(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Style
-    const bg_link = enemy ? enemy.currentEnemy.environmentSrc : ''
-
-    const bg_style = {
-        backgroundImage: 'url(' + bg_link + ')',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center'
-    }
 
     // Text Variables
     const winText = 'Victory'
@@ -42,55 +37,56 @@ function Game(props) {
 
     // Render
     return(
-        <section className='battle_section' style={bg_style}>
-            <div className='dark_overlay'></div>
-            <div className='container'>
-                <div className='characters'>
-                    <Player 
-                    {...props}
-                    attack={props.attack} 
-                    gameManager={props.gameManager} 
-                    canAttack={props.canAttack}
-                    />
-                    <Enemy {...props}/>
+        <section className='battle_section'>
+
+            {/* Characters */}
+            <div className='characters'>
+                <Player />
+                <Enemy />
+            </div>
+
+            {/* Game Over */}
+            <div className='game_over' style={{ display: battleStatus === 'inBattle' ? 'none' : 'block' }}>
+
+                {/* End Text */}
+                <div className='end_text'>
+                    <p>{battleStatus === 'Victory' ? winText : loseText}</p>
                 </div>
 
-                <div className='game_over' style={{ display: battleStatus === 'inBattle' ? 'none' : 'block' }}>
-                    <div className='cont'>
-                        <div className='end_text'>
-                            <p>{battleStatus === 'Victory' ? winText : loseText}</p>
+                {/* Reward */}
+                <div className='reward'>
+
+                    {/* Left - Gold, Diamonds, Xp */}
+                    <div className='left'>
+                        <div>
+                            <p>Gold:</p>
+                            <p>{acquiredGold}</p>  
                         </div>
-                        <div className='reward'>
-                            <div className='left'>
-                                <div>
-                                    <p>Gold:</p>
-                                    <p>{acquiredGold}</p>  
-                                </div>
-                                <div>
-                                    <p>Diamonds:</p>
-                                    <p>{acquiredDiamonds}</p>
-                                </div>
-                                <div>
-                                    <p>Experience:</p>
-                                    <p>{acquiredXp}</p>
-                                </div>
-                            </div>
-                            <div className='right'>
-                                <div className='generated_item'>
-                                    {
-                                    battleStatus === 'Victory' ?
-                                    <ItemComponent data={generatedItem} {...props} />
-                                    : null
-                                    }
-                                </div>
-                            </div>
+                        <div>
+                            <p>Diamonds:</p>
+                            <p>{acquiredDiamonds}</p>
                         </div>
-                        <div className='confirm_container'>
-                            <Link className='confirm_btn' to='/menu' onClick={endGame}>Continue</Link>
+                        <div>
+                            <p>Experience:</p>
+                            <p>{acquiredXp}</p>
                         </div>
                     </div>
+
+                    {/* Right - Generated Item(s) */}
+                    <div className='right generated_item'>
+                        {
+                        battleStatus === 'Victory' ?
+                        <ItemComponent data={generatedItem} {...props} />
+                        : null
+                        }
+                    </div>
+
                 </div>
+
+                {/* Confirm Button */}
+                <Link className='confirm_btn' to='/menu' onClick={endGame}>Continue</Link>
             </div>
+
         </section>
     )
 }
