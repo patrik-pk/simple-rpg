@@ -1,3 +1,4 @@
+
 // Dinosaurs
 import { ReactComponent as Epidexipteryx } from '../resources/icons/creatures/dinosaurs/epidexipteryx.svg'
 import { ReactComponent as Magyarosaurus } from '../resources/icons/creatures/dinosaurs/magyarosaurus.svg'
@@ -9,7 +10,6 @@ import { ReactComponent as Gorgosaurus } from '../resources/icons/creatures/dino
 import { ReactComponent as Camarosaurus } from '../resources/icons/creatures/dinosaurs/camarosaurus.svg'
 import { ReactComponent as Spinosaurus } from '../resources/icons/creatures/dinosaurs/spinosaurus.svg'
 import { ReactComponent as Tyrannosaurus } from '../resources/icons/creatures/dinosaurs/tyrannosaurus.svg'
-
 
 // Avians
 import { ReactComponent as Rooster } from '../resources/icons/creatures/avians/rooster.svg'
@@ -67,6 +67,7 @@ import { ReactComponent as Elasmosaurus } from '../resources/icons/creatures/aqu
 import { ReactComponent as Kraken } from '../resources/icons/creatures/aquatic/kraken.svg'
 
 const creatureIcons = {
+    
     // Dinosaurs
     Epidexipteryx, // otocit
     Magyarosaurus,
