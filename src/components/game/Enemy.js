@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Stat from '../Stat'
 
-import { ReactComponent as EnemyIcon } from '../../resources/icons/creatures/dragon.svg'
+//import { ReactComponent as EnemyIcon } from '../../resources/icons/creatures/reptiles/dragon.svg'
+import CreatureIcons from '../../data/creatureIcons'
 
 function Enemy(props) {
 
@@ -56,7 +57,7 @@ function Enemy(props) {
                 {/* Top - Image, Floating Damage */}
                 <div className='top_container'>
     
-                    <EnemyIcon />
+                    <CreatureIcons.Dragon />
     
                     <p className={'floating_damage' + critClass} style={{ display: enemy.damageTaken === '' ? 'none' : 'block' }}>
                         {enemy.damageTaken}
