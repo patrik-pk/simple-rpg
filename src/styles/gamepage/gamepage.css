@@ -314,8 +314,6 @@
 
 .battle_section .characters .character_container .info .hp .value {
   color: white;
-  -webkit-transition: 500ms all;
-  transition: 500ms all;
 }
 
 @media (max-width: 767px) {
