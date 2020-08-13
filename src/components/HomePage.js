@@ -1,19 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import background from '../resources/container_bg.jpg'
 import '../styles/homepage/homepage.css'
 
-export default function HomePage(props) {
-
-    const homepage_style = {
-        backgroundImage: 'url(' + background + ')',            
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center'
-    }
+export default function HomePage() {
 
     return (
-        <section className='home_page' style={homepage_style}>
+        <section className='home_page'>
             <div className='dark_overlay'></div>
             <div className='content'>
                 <h1>Welcome to <span className='bold coloured'>SimpleRPG</span></h1>

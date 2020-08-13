@@ -1,14 +1,14 @@
 
 // Dinosaurs
-import { ReactComponent as Epidexipteryx } from '../resources/icons/creatures/dinosaurs/epidexipteryx.svg'
 import { ReactComponent as Magyarosaurus } from '../resources/icons/creatures/dinosaurs/magyarosaurus.svg'
+import { ReactComponent as Epidexipteryx } from '../resources/icons/creatures/dinosaurs/epidexipteryx.svg'
+import { ReactComponent as Camarosaurus } from '../resources/icons/creatures/dinosaurs/camarosaurus.svg'
 import { ReactComponent as Dilong } from '../resources/icons/creatures/dinosaurs/dilong.svg'
 import { ReactComponent as Centrosaurus } from '../resources/icons/creatures/dinosaurs/centrosaurus.svg'
 import { ReactComponent as Guanlong } from '../resources/icons/creatures/dinosaurs/guanlong.svg'
 import { ReactComponent as Monoclonius } from '../resources/icons/creatures/dinosaurs/monoclonius.svg'
 import { ReactComponent as Gorgosaurus } from '../resources/icons/creatures/dinosaurs/gorgosaurus.svg'
-import { ReactComponent as Camarosaurus } from '../resources/icons/creatures/dinosaurs/camarosaurus.svg'
-import { ReactComponent as Spinosaurus } from '../resources/icons/creatures/dinosaurs/spinosaurus.svg'
+import { ReactComponent as Irritator } from '../resources/icons/creatures/dinosaurs/irritator.svg'
 import { ReactComponent as Tyrannosaurus } from '../resources/icons/creatures/dinosaurs/tyrannosaurus.svg'
 
 // Avians
@@ -43,8 +43,8 @@ import { ReactComponent as Bull } from '../resources/icons/creatures/wildlife/bu
 import { ReactComponent as Bear } from '../resources/icons/creatures/wildlife/bear.svg'
 import { ReactComponent as Lion } from '../resources/icons/creatures/wildlife/lion.svg'
 import { ReactComponent as Rhino } from '../resources/icons/creatures/wildlife/rhino.svg'
-import { ReactComponent as Tiger } from '../resources/icons/creatures/wildlife/tiger.svg'
 import { ReactComponent as Mammoth } from '../resources/icons/creatures/wildlife/mammoth.svg'
+import { ReactComponent as Tiger } from '../resources/icons/creatures/wildlife/tiger.svg'
 
 // Reptiles
 import { ReactComponent as Gecko } from '../resources/icons/creatures/reptiles/gecko.svg'
@@ -69,71 +69,71 @@ import { ReactComponent as Kraken } from '../resources/icons/creatures/aquatic/k
 const creatureIcons = {
     
     // Dinosaurs
-    Epidexipteryx, // otocit
     Magyarosaurus,
-    Dilong, // otocit
+    Epidexipteryx, // otocit
+    Camarosaurus, // posunout dolu
+    Dilong, // otocit BOSS 13
     Centrosaurus, // otocit
-    Guanlong, // otocit
-    Monoclonius, // otocit
+    Guanlong, // otocit BOSS 18
+    Monoclonius, // otocit BOSS 22
     Gorgosaurus,
-    Camarosaurus,
-    Spinosaurus,
-    Tyrannosaurus, // otocit
+    Irritator, // BOSS 28
+    Tyrannosaurus, // otocit BOSS 32
 
     // Avians
     Rooster,
     Turkey, // otocit
     Stork,
-    Owl,
-    Falcon,
+    Owl, // BOSS 9
+    Falcon, // BOSS 15
     Vulture,
-    Hawk,
-    Microraptor,
-    Pterodactyl, // otocit
+    Hawk, // BOSS 20
+    Microraptor, // BOSS 25
+    Pterodactyl, // otocit BOSS 30
 
     // Insect
-    Mosquito, // otocit
+    Mosquito, // otocit BOSS 6
     Cockroach,
     Beetle,
     Spider,
-    Dragonfly, // otocit
+    Dragonfly, // otocit BOSS 10
     Chalcosoma,
-    Tarantula,
-    Scorpion, // otocit
-    Millipede,
+    Tarantula, // BOSS 16
+    Scorpion, // otocit BOSS 24
+    Millipede, // BOSS 29
 
     // Wildlife
-    Rat, // otocit
+    Rat, // BOSS otocit 5
     Deer, 
     Fox, // otocit
-    Boar, // otocit
+    Boar, // otocit BOSS 11
     Buffalo, // otocit
-    Bull, // otocit
+    Bull, // otocit BOSS 17
     Bear, // otocit
-    Lion, // otocit
+    Lion, // otocit BOSS 23
     Rhino, // otocit
-    Tiger, // otocit
     Mammoth,
+    Tiger, // otocit BOSS 30
 
     // Reptiles
     Gecko,
-    Chameleon, // otocit
-    Iguana, // otocit
+    Chameleon, // otocit BOSS 7
+    Iguana, // otocit BOSS 12
     Turtle, // otocit
     Python, // otocit
-    Crocodile, // otocit
-    Cobra,
-    Dragon,
+    Crocodile, // otocit BOSS 19
+    Cobra, // BOSS 26
+    Dragon, // BOSS 35
 
     // Aquatic
-    Ray,
-    Anglerfish,
+    Ray, // BOSS 8
+    Anglerfish, // BOSS 14
     Goliath, // otocit
-    Hammerhead,
+    Hammerhead, // BOSS 21
     Merlin,
-    Shark,
+    Shark, // BOSS 27
     Elasmosaurus, // otocit
-    Kraken
+    Kraken // Boss 40
 }
 
 export default creatureIcons 

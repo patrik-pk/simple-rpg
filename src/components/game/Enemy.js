@@ -57,7 +57,7 @@ function Enemy(props) {
                 {/* Top - Image, Floating Damage */}
                 <div className='top_container'>
     
-                    <CreatureIcons.Dragon />
+                    <CreatureIcons.Tiger />
     
                     <p className={'floating_damage' + critClass} style={{ display: enemy.damageTaken === '' ? 'none' : 'block' }}>
                         {enemy.damageTaken}

@@ -1,8 +1,6 @@
 ## SimpleRPG
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![Showcase](https://github.com/patrikPu/patrikp_rpg/blob/master/showcase.jpg)
-
 ## Getting started
 * Clone this repository
 * `npm install` to install all required dependencies
