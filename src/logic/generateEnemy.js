@@ -1,4 +1,4 @@
-import possibleEnemies from '../data/possibleEnemies'
+import possibleEnemies from '../data/posEnV2'
 import levelTresholds from '../data/levelTresholds'
 import randomGenerator from './randomGenerator'
 import dungeon_img from '../resources/environment/dungeon.jpg'
@@ -20,16 +20,29 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
     })()
 
     // Generate Enemy Type from possibleEnemies
-    const currentEnemy = (() => {
-        // If there is no 'specificEnemy', create random
+    const enemyType = (() => {
+        // If there is no 'specificEnemy', create random type from possibleEnemies
         if(typeof specificEnemy === 'undefined' || specificEnemy === null) {
-            return possibleEnemies[Math.floor(Math.random() * possibleEnemies.length)]
+
+            // copy possibleEnemis object
+            const enemiesCopy = JSON.parse(JSON.stringify(possibleEnemies))
+            // make an array out of it
+            const enemiesArray = Object.values(possibleEnemies)
+
+            // get random specie
+            const randomSpecie = enemiesArray[Math.floor(Math.random() * enemiesArray.length)]
+
+            // make an array out of the specie object
+            const specieArray = Object.values(randomSpecie)
+
+            // get random enemy (in the future filter min, max level)
+            const randomEnemy = specieArray[Math.floor(Math.random() * specieArray.length)]
+
+            // and return that random enemy
+            return randomEnemy
         }
-        else {
-            let enemy = JSON.parse(JSON.stringify(possibleEnemies[specificEnemy]))
-            enemy.environmentSrc = dungeon_img
-            return enemy
-        } 
+        // else return that specificEnemy
+        else return specificEnemy
     })()
 
 
@@ -110,7 +123,7 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
         critChance,
         meleeDodgeChance,
         rangedDodgeChance,
-        currentEnemy,
+        enemyType,
         level,
         type,
         difficulty,

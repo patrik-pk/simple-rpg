@@ -137,10 +137,10 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
                 if(i < bonusAmount) {
                     // boss items have minimum bonus value
                     if(gameType === 'Boss') {
-                        return Math.ceil(randomGenerator(7, 20 - 1, 1))
+                        return Math.ceil(randomGenerator(7, 20, 1))
                     }
                     // normal items don't 
-                    else return Math.ceil(Math.random() * 20)
+                    else return Math.ceil(randomGenerator(1, 20, 1))
                 } 
                 // rest set to 0
                 else return 0
