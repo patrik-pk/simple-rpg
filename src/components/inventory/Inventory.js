@@ -92,7 +92,7 @@ function Inventory(props) {
             for (let i = 0; i < 3; i++) {
                 newShopItems.push(generateItem(character, null, 'Shop', i))
             }
-    
+
             rerollShopItems(newShopItems)
             setDiamonds(-1)
         }

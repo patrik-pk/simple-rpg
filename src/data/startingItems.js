@@ -13,7 +13,7 @@ export class StartingItem {
             { name: 'dinosaur', value: 0 },
             { name: 'insect', value: 0 },
             { name: 'wildlife', value: 0 },
-            { name: 'reptiles', value: 0 },
+            { name: 'reptile', value: 0 },
             { name: 'aquatic', value: 0 },
         ], 
         goldValue = 10, 

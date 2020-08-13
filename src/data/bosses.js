@@ -39,11 +39,11 @@ const bosses = [
     ],
     // Wildlife
     [
-        boss(5, wildlife.rat, 1, 'wilflife'),
-        boss(11, wildlife.boar, 0, 'wilflife'),
-        boss(17, wildlife.bull, 0, 'wilflife'),
-        boss(23, wildlife.lion, 0, 'wilflife'),
-        boss(30, wildlife.tiger, 0, 'wilflife'),
+        boss(5, wildlife.rat, 1, 'wildlife'),
+        boss(11, wildlife.boar, 0, 'wildlife'),
+        boss(17, wildlife.bull, 0, 'wildlife'),
+        boss(23, wildlife.lion, 0, 'wildlife'),
+        boss(30, wildlife.tiger, 0, 'wildlife'),
 
     ],
     // Reptiles
@@ -54,7 +54,7 @@ const bosses = [
         boss(26, reptiles.cobra, 1, 'reptile'),
         boss(35, reptiles.dragon, 1, 'reptile'),
     ],
-    // Avians
+    // Aquatic
     [
         boss(8, aquatic.ray, 0, 'aquatic'),
         boss(14, aquatic.anglerfish, 0, 'aquatic'),

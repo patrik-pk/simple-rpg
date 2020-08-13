@@ -26,17 +26,43 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
             // make an array out of possibleEnemies
             const enemiesArray = Object.values(possibleEnemies)
 
-            // get random specie
-            const randomSpecie = enemiesArray[Math.floor(Math.random() * enemiesArray.length)]
+            // Recursion function to generate random enemy type with matching level
+            const getRandomEnemy = (alreadyLooped = []) => {
 
-            // make an array out of the specie object
-            const specieArray = Object.values(randomSpecie)
+                // if there is no enemy with matching level in any of the 6 species,
+                // (which never happens), return turkey
+                if(alreadyLooped.length === enemiesArray.length) return possibleEnemies.avians.turkey
+            
+                // generate random index, if it is in alreadyLooped, generate new
+                const random = (() => {
+                    let rand = randomGenerator(0, enemiesArray.length - 1)
+                    while(alreadyLooped.includes(rand)) {
+                        rand = randomGenerator(0, enemiesArray.length - 1)
+                    } 
+                    return rand
+                })() 
 
-            // get random enemy (in the future filter min, max level)
-            const randomEnemy = specieArray[Math.floor(Math.random() * specieArray.length)]
+                // get specie object with generated index
+                const specie = enemiesArray[random]
+                
+                // make an array out of that specie object
+                const specieArray = Object.values(specie)
 
-            // and return that random enemy
-            return randomEnemy
+                // from that array filter out enemies, that match players level between min and max
+                const filtered = specieArray.filter(enemy => enemy.minLevel <= level && enemy.maxLevel >= level)
+
+                // If there are no Enemies in filtered (with that level),
+                // add index of this specie to alreadyLooped and execute this function again
+                if(filtered.length === 0) {
+                    alreadyLooped.push(random)
+                    return getRandomEnemy(alreadyLooped)
+                } 
+                // If there are, return random enemy from filtered (even if there is just one)
+                else return filtered[Math.floor(Math.random() * filtered.length)]
+            }
+
+            // return random enemy type
+            return getRandomEnemy()
         }
         // else return that specificEnemy
         else return specificEnemy

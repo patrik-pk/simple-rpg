@@ -8,7 +8,7 @@ function Enemy(props) {
     const enemy = props.enemy
 
     // Render Component only if there is a Enemy
-    if(props.enemy) {
+    if(enemy) {
     
         // Destructure From Props
         const { 
