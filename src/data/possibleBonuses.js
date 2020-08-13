@@ -1,10 +1,11 @@
 
 const possibleBonuses = [
-    'beasts',
-    'dragons',
+    'avian',
+    'dinosaur',
     'insect',
-    'monsters',
-    'reptiles'
+    'wildlife',
+    'reptile',
+    'aquatic',
 ]
 
 export default possibleBonuses

@@ -1,69 +1,87 @@
+import icons from './creatureIcons'
 
-// Data file with all possible enemies that you can find in the game
-// Adding or removing would work in Classic game, but bosses are set
-// by the possibleEnemies array index, so be careful.
-
-const artUrl = 'https://www.deviantart.com/'
-
-const darkForestUrl = require('../resources/environment/dark_forest.jpg')
-const desertUrl = require('../resources/environment/desert.jpg')
-const cliffUrl = require('../resources/environment/cliff.jpg')
-const deepForestUrl = require('../resources/environment/deep_forest.jpg')
-
-class Enemy {
-    constructor(name, specie, artBy, artByUrl, imgSrc, environmentSrc) {
+class EnemyType {
+    constructor(name, specie, icon) {
         this.name = name
         this.specie = specie
-        this.artBy = artBy
-        this.artByUrl = artByUrl
-        this.imgSrc = imgSrc
-        this.environmentSrc = environmentSrc
+        this.icon = icon
     }
 }
 
+const species = {
+    // Avians
+    avians: {
+        rooster: new EnemyType('Rooster', 'avian', icons.Rooster),
+        turkey: new EnemyType('Turkey', 'avian', icons.Turkey),
+        stork: new EnemyType('Stork', 'avian', icons.Stork),
+        owl: new EnemyType('Owl', 'avian', icons.Owl),
+        falcon: new EnemyType('Falcon', 'avian', icons.Falcon),
+        vulture: new EnemyType('Vulture', 'avian', icons.Vulture),
+        hawk: new EnemyType('Hawk', 'avian', icons.Hawk),
+        microraptor: new EnemyType('Microraptor', 'avian', icons.Microraptor),
+        pterodactyl: new EnemyType('Rooster', 'avian', icons.Pterodactyl),
+    },
+    // Dinosaurs
+    dinosaurs: {
+        magyarosaurus: new EnemyType('Magyarosaurus', 'dinosaur', icons.Magyarosaurus),
+        epidexipteryx: new EnemyType('Epidexipteryx', 'dinosaur', icons.Epidexipteryx),
+        camarosaurus: new EnemyType('Camarosaurus', 'dinosaur', icons.Camarosaurus),
+        dilong: new EnemyType('Dilong', 'dinosaur', icons.Dilong),
+        centrosaurus: new EnemyType('Centrosaurus', 'dinosaur', icons.Centrosaurus),
+        guanlong: new EnemyType('Guanlong', 'dinosaur', icons.Guanlong),
+        monoclonius: new EnemyType('Monoclonius', 'dinosaur', icons.Monoclonius),
+        gorgosaurus: new EnemyType('Gorgosaurus', 'dinosaur', icons.Gorgosaurus),
+        irritator: new EnemyType('Irritator', 'dinosaur', icons.Irritator),
+        tyrannosaurus: new EnemyType('T-Rex', 'dinosaur', icons.Tyrannosaurus),
+    },
+    // Insect
+    insect: {
+        mosquito: new EnemyType('Mosquito', 'insect', icons.Mosquito),        
+        cockroach: new EnemyType('Cockroach', 'insect', icons.Cockroach),        
+        beetle: new EnemyType('Beetle', 'insect', icons.Beetle),        
+        spider: new EnemyType('Spider', 'insect', icons.Spider),        
+        dragonfly: new EnemyType('Dragonfly', 'insect', icons.Dragonfly),        
+        chalcosoma: new EnemyType('Chalcosoma', 'insect', icons.Chalcosoma),        
+        tarantula: new EnemyType('Tarantula', 'insect', icons.Tarantula),        
+        scorpion: new EnemyType('Scorpion', 'insect', icons.Scorpion),        
+        millipede: new EnemyType('Millipede', 'insect', icons.Millipede),        
+    },
+    // Wildlife
+    wildlife: {
+        rat: new EnemyType('Rat', 'wildlife', icons.Rat),
+        deer: new EnemyType('Deer', 'wildlife', icons.Deer),
+        fox: new EnemyType('Fox', 'wildlife', icons.Fox),
+        boar: new EnemyType('Boar', 'wildlife', icons.Boar),
+        buffalo: new EnemyType('Buffalo', 'wildlife', icons.Buffalo),
+        bull: new EnemyType('Bull', 'wildlife', icons.Bull),
+        bear: new EnemyType('Bear', 'wildlife', icons.Bear),
+        lion: new EnemyType('Lion', 'wildlife', icons.Lion),
+        rhino: new EnemyType('Rhino', 'wildlife', icons.Rhino),
+        mammoth: new EnemyType('Mammoth', 'wildlife', icons.Mammoth),
+        tiger: new EnemyType('Tiger', 'wildlife', icons.Tiger),
+    },
+    // Reptiles
+    reptiles: {
+        gecko: new EnemyType('Gecko', 'reptile', icons.Gecko),
+        chameleon: new EnemyType('Chameleon', 'reptile', icons.Chameleon),
+        iguana: new EnemyType('Iguana', 'reptile', icons.Iguana),
+        turtle: new EnemyType('Turtle', 'reptile', icons.Turtle),
+        python: new EnemyType('Python', 'reptile', icons.Python),
+        crocodile: new EnemyType('Crocodile', 'reptile', icons.Crocodile),
+        cobra: new EnemyType('Cobra', 'reptile', icons.Cobra),
+        dragon: new EnemyType('Dragon', 'reptile', icons.Dragon),
+    },
+    // Aquatic
+    aquatic: {
+        ray: new EnemyType('Ray', 'aquatic', icons.Ray),
+        anglerfish: new EnemyType('Anglerfish', 'aquatic', icons.Anglerfish),
+        goliath: new EnemyType('Goliath', 'aquatic', icons.Goliath),
+        hammerhead: new EnemyType('Hammerhead', 'aquatic', icons.Hammerhead),
+        merlin: new EnemyType('Merlin', 'aquatic', icons.Merlin),
+        shark: new EnemyType('Shark', 'aquatic', icons.Shark),
+        elasmosaurus: new EnemyType('Elasmosaurus', 'aquatic', icons.Elasmosaurus),
+        kraken: new EnemyType('Kraken', 'aquatic', icons.Kraken),
+    }
+}
 
-// Beasts
-const direwolf = new Enemy('Direwolf', 'beasts', 'Akiman', artUrl + 'Akiman', require('../resources/art/beasts/direwolf.jpg'), darkForestUrl)
-const tulpar = new Enemy('Tulpar', 'beasts', 'Akiman', artUrl + 'Akiman', require('../resources/art/beasts/tulpar.jpg'), darkForestUrl)
-const wolf = new Enemy('Wolf', 'beasts', '25Tachigami', artUrl + '25tachigami', require('../resources/art/beasts/wolf.jpg'), darkForestUrl)
-
-// Dragons
-const fire_dragon = new Enemy('Fire Dragon', 'dragons', 'Manzanedo', artUrl + 'manzanedo', require('../resources/art/dragons/fire_dragon.jpg'), desertUrl)
-const ice_dragon = new Enemy('Ice Dragon', 'dragons', 'AlectorFencer', artUrl + 'alectorfencer', require('../resources/art/dragons/ice_dragon.jpg'), cliffUrl)
-const sea_dragon = new Enemy('Sea Dragon', 'dragons', 'TheRafa', artUrl + 'therafa', require('../resources/art/dragons/sea_dragon.jpg'), cliffUrl)
-
-// Insect
-const centipede = new Enemy('Centipede', 'insect', 'Zezhou', artUrl + 'zezhou', require('../resources/art/insect/centipede.jpg'), deepForestUrl)
-const scorpion = new Enemy('Scorpion', 'insect', 'fooyee', artUrl + 'fooyee', require('../resources/art/insect/scorpion.jpg'), desertUrl)
-const wasp = new Enemy('Wasp', 'insect', 'Akiman', artUrl + 'akiman', require('../resources/art/insect/wasp.jpg'), darkForestUrl)
-
-// Monsters
-const abra = new Enemy('Abra', 'monsters', 'Akiman', artUrl + 'Akiman', require('../resources/art/monsters/abra.jpg'), deepForestUrl)
-const chupacabra = new Enemy('Chupacabra', 'monsters', 'Gpzang', artUrl + 'gpzang', require('../resources/art/monsters/chupacabra.jpg'), desertUrl)
-const sea_monster = new Enemy('Sea Monster', 'monsters', 'Akiman', artUrl + 'Akiman', require('../resources/art/monsters/sea_monster.jpg'), cliffUrl)
-
-// Reptiles
-const frog = new Enemy('Frog', 'reptiles', 'DanikYaroslavTomyn', artUrl + 'danikyaroslavtomyn', require('../resources/art/reptiles/frog.jpg'), deepForestUrl)
-const lizzard = new Enemy('Lizzard', 'reptiles', 'Zezhou', artUrl + 'zezhou', require('../resources/art/reptiles/lizzard.jpg'), cliffUrl)
-const rex = new Enemy('Rex', 'reptiles', 'Akiman', artUrl + 'Akiman', require('../resources/art/reptiles/rex.jpg'), deepForestUrl)
-
-
-const possibleEnemies = [
-    direwolf,
-    tulpar,
-    wolf,
-    fire_dragon,
-    ice_dragon,
-    sea_dragon,
-    centipede,
-    scorpion,
-    wasp,
-    abra,
-    chupacabra,
-    sea_monster,
-    frog,
-    lizzard,
-    rex
-]
-
-export default possibleEnemies
+export default species

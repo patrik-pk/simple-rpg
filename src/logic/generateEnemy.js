@@ -1,7 +1,6 @@
-import possibleEnemies from '../data/posEnV2'
+import possibleEnemies from '../data/possibleEnemies'
 import levelTresholds from '../data/levelTresholds'
 import randomGenerator from './randomGenerator'
-import dungeon_img from '../resources/environment/dungeon.jpg'
 
 export default function generateEnemy(type, level, specificEnemy, strongStatIndex, dungeon) {
 
@@ -27,7 +26,7 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
             // copy possibleEnemis object
             const enemiesCopy = JSON.parse(JSON.stringify(possibleEnemies))
             // make an array out of it
-            const enemiesArray = Object.values(possibleEnemies)
+            const enemiesArray = Object.values(enemiesCopy)
 
             // get random specie
             const randomSpecie = enemiesArray[Math.floor(Math.random() * enemiesArray.length)]

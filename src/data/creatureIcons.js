@@ -1,4 +1,15 @@
 
+// Avians
+import { ReactComponent as Rooster } from '../resources/icons/creatures/avians/rooster.svg'
+import { ReactComponent as Turkey } from '../resources/icons/creatures/avians/turkey.svg'
+import { ReactComponent as Stork } from '../resources/icons/creatures/avians/stork.svg'
+import { ReactComponent as Owl } from '../resources/icons/creatures/avians/owl.svg'
+import { ReactComponent as Falcon } from '../resources/icons/creatures/avians/falcon.svg'
+import { ReactComponent as Vulture } from '../resources/icons/creatures/avians/vulture.svg'
+import { ReactComponent as Hawk } from '../resources/icons/creatures/avians/hawk.svg'
+import { ReactComponent as Microraptor } from '../resources/icons/creatures/avians/microraptor.svg'
+import { ReactComponent as Pterodactyl } from '../resources/icons/creatures/avians/pterodactyl.svg'
+
 // Dinosaurs
 import { ReactComponent as Magyarosaurus } from '../resources/icons/creatures/dinosaurs/magyarosaurus.svg'
 import { ReactComponent as Epidexipteryx } from '../resources/icons/creatures/dinosaurs/epidexipteryx.svg'
@@ -10,17 +21,6 @@ import { ReactComponent as Monoclonius } from '../resources/icons/creatures/dino
 import { ReactComponent as Gorgosaurus } from '../resources/icons/creatures/dinosaurs/gorgosaurus.svg'
 import { ReactComponent as Irritator } from '../resources/icons/creatures/dinosaurs/irritator.svg'
 import { ReactComponent as Tyrannosaurus } from '../resources/icons/creatures/dinosaurs/tyrannosaurus.svg'
-
-// Avians
-import { ReactComponent as Rooster } from '../resources/icons/creatures/avians/rooster.svg'
-import { ReactComponent as Turkey } from '../resources/icons/creatures/avians/turkey.svg'
-import { ReactComponent as Stork } from '../resources/icons/creatures/avians/stork.svg'
-import { ReactComponent as Owl } from '../resources/icons/creatures/avians/owl.svg'
-import { ReactComponent as Falcon } from '../resources/icons/creatures/avians/falcon.svg'
-import { ReactComponent as Vulture } from '../resources/icons/creatures/avians/vulture.svg'
-import { ReactComponent as Hawk } from '../resources/icons/creatures/avians/hawk.svg'
-import { ReactComponent as Microraptor } from '../resources/icons/creatures/avians/microraptor.svg'
-import { ReactComponent as Pterodactyl } from '../resources/icons/creatures/avians/pterodactyl.svg'
 
 // Insect
 import { ReactComponent as Mosquito } from '../resources/icons/creatures/insect/mosquito.svg'
@@ -68,6 +68,17 @@ import { ReactComponent as Kraken } from '../resources/icons/creatures/aquatic/k
 
 const creatureIcons = {
     
+    // Avians
+    Rooster,
+    Turkey, // otocit
+    Stork,
+    Owl, // BOSS 9
+    Falcon, // BOSS 15
+    Vulture,
+    Hawk, // BOSS 20
+    Microraptor, // BOSS 25
+    Pterodactyl, // otocit BOSS 30
+
     // Dinosaurs
     Magyarosaurus,
     Epidexipteryx, // otocit
@@ -79,17 +90,6 @@ const creatureIcons = {
     Gorgosaurus,
     Irritator, // BOSS 28
     Tyrannosaurus, // otocit BOSS 32
-
-    // Avians
-    Rooster,
-    Turkey, // otocit
-    Stork,
-    Owl, // BOSS 9
-    Falcon, // BOSS 15
-    Vulture,
-    Hawk, // BOSS 20
-    Microraptor, // BOSS 25
-    Pterodactyl, // otocit BOSS 30
 
     // Insect
     Mosquito, // otocit BOSS 6

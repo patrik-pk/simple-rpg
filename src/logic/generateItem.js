@@ -115,7 +115,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
 
         // every type of bonus is generated, but only for bonusAmount bonuses
         // there is a generated value, rest is set to 0
-        for(let i = 0; i < 5; i++) { 
+        for(let i = 0; i < 6; i++) { 
 
             // remove already existing bonus from allPossibleBonuses to prevent generating same bonus
             for(let x = 0; x < genBonuses.length; x++) {
