@@ -15,11 +15,12 @@ const initialState = {
     critChance: 20,
     blockChance: 0,
     bonuses: [
-        { name: 'beasts', value: 0 },
-        { name: 'dragons', value: 0 },
+        { name: 'avian', value: 0 },
+        { name: 'dinosaur', value: 0 },
         { name: 'insect', value: 0 },
-        { name: 'monsters', value: 0 },
-        { name: 'reptiles', value: 0 },
+        { name: 'wildlife', value: 0 },
+        { name: 'reptile', value: 0 },
+        { name: 'aquatic', value: 0 },
     ],
     damageTaken: '',
     receivedCrit: false

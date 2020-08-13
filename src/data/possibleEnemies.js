@@ -8,7 +8,7 @@ class EnemyType {
     }
 }
 
-const species = {
+const possibleEnemies = {
     // Avians
     avians: {
         rooster: new EnemyType('Rooster', 'avian', icons.Rooster),
@@ -84,4 +84,4 @@ const species = {
     }
 }
 
-export default species
+export default possibleEnemies

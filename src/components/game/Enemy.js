@@ -3,18 +3,32 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Stat from '../Stat'
 
-//import { ReactComponent as EnemyIcon } from '../../resources/icons/creatures/reptiles/dragon.svg'
-import CreatureIcons from '../../data/creatureIcons'
-
 function Enemy(props) {
 
     const enemy = props.enemy
 
     // Render Component only if there is a Enemy
-    if(enemy) {
+    if(props.enemy) {
     
+        // Destructure From Props
+        const { 
+            currentHp, 
+            maxHp,
+            meleeArmor,
+            rangedArmor,
+            meleeDodgeChance,
+            rangedDodgeChance,
+            damage,
+            critChance, 
+            level, 
+            enemyType: { name, specie, icon }, 
+            type, 
+            receivedCrit, 
+            damageTaken, 
+        } = enemy
+
         // HP bar fill
-        const hp_percentage = (enemy.currentHp / enemy.maxHp) * 100
+        const hp_percentage = (currentHp / maxHp) * 100
         const hpStyle = {
             background: 'linear-gradient(to right, rgb(220, 0, 0)' 
             + hp_percentage + '%, rgb(75, 0, 0)' 
@@ -22,22 +36,13 @@ function Enemy(props) {
         }
     
         // Specie
-        const specie = () => {
-            switch(enemy.currentEnemy.specie) {
-                case 'beasts': return 'Beast';
-                case 'dragons': return 'Dragon';
-                case 'insect': return 'Insect';
-                case 'monsters': return 'Monster';
-                case 'reptiles': return 'Reptile';
-                default: break;
-            }
-        }
-    
+        const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
+
         // Difficulty
         const difficulty = () => {
-            if(enemy.type === 'Boss') return 'Boss'
+            if(type === 'Boss') return 'Boss'
             else {
-                switch(enemy.difficulty) {
+                switch(difficulty) {
                     case 1: return 'Easy'
                     case 2: return 'Med'
                     case 3: return 'Hard'
@@ -47,8 +52,8 @@ function Enemy(props) {
         }
      
         // Classes
-        const bossClass = enemy.type === 'Boss' ? 'boss' : ''
-        const critClass = enemy.receivedCrit ? ' crit' : ''
+        const bossClass = type === 'Boss' ? 'boss' : ''
+        const critClass = receivedCrit ? ' crit' : ''
 
         // Render
         return (
@@ -57,10 +62,10 @@ function Enemy(props) {
                 {/* Top - Image, Floating Damage */}
                 <div className='top_container'>
     
-                    <CreatureIcons.Tiger />
+                    { icon.render() }
     
-                    <p className={'floating_damage' + critClass} style={{ display: enemy.damageTaken === '' ? 'none' : 'block' }}>
-                        {enemy.damageTaken}
+                    <p className={'floating_damage' + critClass} style={{ display: damageTaken === '' ? 'none' : 'block' }}>
+                        {damageTaken}
                     </p>
                     
                 </div>
@@ -69,12 +74,12 @@ function Enemy(props) {
                 <div className='info'>
 
                     <p className={`name ${bossClass}`}>
-                        {enemy.currentEnemy.name} ({enemy.level})
+                        {name} ({level})
                     </p>
 
                     <div className='hp' style={hpStyle}>
                         <p className='value'>
-                            {enemy.currentHp} / {enemy.maxHp}
+                            {currentHp} / {maxHp}
                         </p>
                     </div>
 
@@ -83,18 +88,18 @@ function Enemy(props) {
                 {/* Bottom - Stats */}
                 <div className='stats'>
                     <ul>
-                        <Stat name='HP:' value={enemy.maxHp} />
-                        <Stat name='M-Armor:' value={enemy.meleeArmor} enemy={enemy} />
-                        <Stat name='R-Armor:' value={enemy.rangedArmor} enemy={enemy} />
-                        <Stat name='M-DG(%):' value={Math.round(enemy.meleeDodgeChance)} />
-                        <Stat name='R-DG(%):' value={Math.round(enemy.rangedDodgeChance)} />
+                        <Stat name='HP:' value={maxHp} />
+                        <Stat name='M-Armor:' value={meleeArmor} enemy={enemy} />
+                        <Stat name='R-Armor:' value={rangedArmor} enemy={enemy} />
+                        <Stat name='M-DG(%):' value={Math.round(meleeDodgeChance)} />
+                        <Stat name='R-DG(%):' value={Math.round(rangedDodgeChance)} />
                     </ul>
 
                     <ul>
-                        <Stat name='Strength:' value={enemy.damage} />
-                        <Stat name='Crit(%):' value={enemy.critChance} />
+                        <Stat name='Strength:' value={damage} />
+                        <Stat name='Crit(%):' value={critChance} />
                         <Stat name='Diff:' value={difficulty()} />
-                        <Stat name='Spec:' value={specie()} />
+                        <Stat name='Spec:' value={specieName} />
                     </ul>
                 </div>
     

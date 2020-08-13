@@ -85,23 +85,20 @@
                 margin: 0 2px;
             }
 
-            // Image Container
-            .img_container {
+            // Image (svg)
+            svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 40%;
+                height: 40%;
 
-                // Dark Overlay
-                .dark_overl {
-                    @include dark_overlay(0.3);
-                    height: 100%;
-                }
-                
-                // Image
-                img {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
+                path {
+                    fill: white;
                 }
             }
+        
 
             // Heading
             .heading {
@@ -206,11 +203,6 @@
         // Finished Dungeon Item
         .dungeon_item.finished {
             position: relative;
-
-            .dark-overlay {
-                @include dark_overlay(0.6);
-                height: 100%;
-            }
 
             .text {
                 position: absolute;

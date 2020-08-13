@@ -27,7 +27,7 @@ function DungeonItem(props) {
 
         const { 
             level, 
-            currentEnemy, 
+            enemyType: { name, icon }, 
             maxHp, 
             meleeArmor, 
             rangedArmor, 
@@ -62,13 +62,14 @@ function DungeonItem(props) {
 
         return (
             <div className='dungeon_item'>
-                <div className='img_container'>
-                    <img alt='' src={currentEnemy.imgSrc} />
-                    <div className='dark_overl'></div>
-                </div>
+                
+                {/* Icon */}
+                {icon.render()}
+
+                {/* Heading & Stats */}
                 <div className='heading' >
                     <p id='dungeon'>{dungeonName} ({count + 1}/5)</p>
-                    <p id='enemy' style={enemyStyle()}>{currentEnemy.name} ({level})</p>
+                    <p id='enemy' style={enemyStyle()}>{name} ({level})</p>
 
                     <div className='stats' >
                         <Stat name='HP:' value={maxHp} />
@@ -80,22 +81,16 @@ function DungeonItem(props) {
                         <Stat name='R-Dodge:' value={rangedDodgeChance} />
                     </div>
                 </div>
+
+                {/* Enter Link */}
                 <Link to='/game' onClick={createBossGame} className={`enter_btn ${startActiveClass}`}>Enter</Link>
             </div>
         )
     }
     // Finished Dungeon
     if(props.boss === 'Finished') {
-
-        const finished_style = {
-            backgroundImage: "url('resources/environment/dungeon.jpg')",
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center'
-        }
-
         return (
-            <div className='dungeon_item finished' style={finished_style}>
+            <div className='dungeon_item finished' >
                 <div className='dark-overlay'></div>
                 <div className='text'>
                     <p id='dungeon'>{props.dungeonName}</p>

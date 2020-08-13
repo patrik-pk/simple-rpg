@@ -23,10 +23,8 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
         // If there is no 'specificEnemy', create random type from possibleEnemies
         if(typeof specificEnemy === 'undefined' || specificEnemy === null) {
 
-            // copy possibleEnemis object
-            const enemiesCopy = JSON.parse(JSON.stringify(possibleEnemies))
-            // make an array out of it
-            const enemiesArray = Object.values(enemiesCopy)
+            // make an array out of possibleEnemies
+            const enemiesArray = Object.values(possibleEnemies)
 
             // get random specie
             const randomSpecie = enemiesArray[Math.floor(Math.random() * enemiesArray.length)]

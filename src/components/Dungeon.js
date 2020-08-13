@@ -7,10 +7,7 @@ import DungeonItem from './DungeonItem'
 import bosses from '../data/bosses'
 import '../styles/dungeon/dungeon.css'
 
-function Dungeon(props) {
-
-    // Destructure From Props
-    const { dungeon, currentLevel } = props
+function Dungeon({ dungeon, currentLevel }) {
 
     // Map Dungeon Items
     const dungeonItems = () => {
@@ -24,8 +21,7 @@ function Dungeon(props) {
                 boss={dungeon[i].current < 5 ? bosses[i][dungeon[i].current] : 'Finished'} 
                 dungeonName={item.type.charAt(0).toUpperCase() + item.type.slice(1)} 
                 count={dungeon[i].current} 
-                {...props} 
-                startGame={props.startGame} />
+            />
         })
     }
 

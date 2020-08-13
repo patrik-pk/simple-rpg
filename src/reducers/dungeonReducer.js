@@ -3,11 +3,12 @@ import {
 } from '../actions/types'
 
 const initialState = [
-    { type: 'beasts', current: 0 },
-    { type: 'dragons', current: 0 },
+    { type: 'avians', current: 0 },
+    { type: 'dinosaurs', current: 0 },
     { type: 'insect', current: 0 },
-    { type: 'monsters', current: 0 },
+    { type: 'wildlife', current: 0 },
     { type: 'reptiles', current: 0 },
+    { type: 'aquatic', current: 0 },
 ]
 
 export default (state = initialState, action) => {

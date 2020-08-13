@@ -49,7 +49,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Specie bonus multiplier
   const bonusMultiplier = (() => {
-    const specie = enemy.currentEnemy.specie
+    const specie = enemy.enemyType.specie
     const playerBonuses = player.bonuses
     let bonusValue = 1
 
