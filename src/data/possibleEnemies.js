@@ -1,4 +1,4 @@
-import icons from './creatureIcons'
+import icons from './icons/creatureIcons'
 
 class EnemyType {
     constructor(name, specie, icon, minLevel, maxLevel) {

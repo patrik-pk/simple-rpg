@@ -291,7 +291,7 @@
   }
 }
 
-.item_container .item img {
+.item_container .item svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -299,10 +299,11 @@
           transform: translate(-50%, -50%);
   width: 26px;
   height: 26px;
+  fill: black;
 }
 
 @media (max-width: 767px) {
-  .item_container .item img {
+  .item_container .item svg {
     width: 18px;
     height: 18px;
   }

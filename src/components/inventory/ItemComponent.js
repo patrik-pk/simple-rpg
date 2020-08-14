@@ -12,7 +12,8 @@ function ItemComponent(props) {
 
         // Destructure from props
         const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
-        const { type, destination, rarity, goldValue, stats, bonuses, imgSrc, isSelected, key } = data
+        const { type, destination, rarity, goldValue, stats, bonuses, icon, isSelected, key } = data
+
         const currentItem = data
 
         // Item Handle Click
@@ -108,7 +109,7 @@ function ItemComponent(props) {
 
         // Item Name
         const itemName = (() => {
-            const name = rarity + ' ' + type + ' (' + currentItem.level + ')'
+            const name = data.getName()
             const comparedValue = comparison.level ? comparison.level.value : null
             const style = comparison.level ? { color: comparison.level.color } : null
             return (
@@ -144,13 +145,15 @@ function ItemComponent(props) {
             )
         })
 
+        console.log(icon)
+
         // RENDER
         return ( 
             <li className={`item_container ${rarityClass} ${selectedClass}`}>
                 <div className={`item ${selectedClass}`} onClick={handleClick} >
 
                     {/* Icon */}
-                    <img alt='' src={imgSrc ? imgSrc : null}/>
+                    { icon.render() } 
 
                     {/* Info */}
                     <div className='stats'>

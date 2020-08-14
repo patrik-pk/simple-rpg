@@ -1,3 +1,4 @@
+import EquipItem from '../data/EquipItem'
 import possibleItems from '../data/possibleItems'
 import possibleBonuses from '../data/possibleBonuses'
 import levelTresholds from '../data/levelTresholds'
@@ -212,30 +213,28 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
     })()
 
     // Assign generated values and return generatedItem
+    const destination = whereToPut
+    const key = keyPar
     const type = generatedType.type
-    const name = rarityName + ' ' + generatedType.type
     const rarity = rarityName
+    const icon = generatedType.icon
     const stats = generatedStat
     const bonuses = generatedBonuses
     const goldValue = generatedValue
     const level = generatedLevel
     const isSelected = false
-    const destination = whereToPut
-    const imgSrc = generatedType.imgSrc
-    const key = keyPar
 
     // Final Return
-    return {
+    return new EquipItem(
+        destination,
+        key,
         type,
-        name,
         rarity,
+        icon,
         stats,
         bonuses,
         goldValue,
         level,
-        isSelected,
-        destination,
-        imgSrc,
-        key
-    }
+        isSelected
+    )
 }

@@ -1,4 +1,5 @@
-import startingItems, { StartingItem } from '../data/startingItems'
+import startingItems from '../data/startingItems'
+import EquipItem from '../data/EquipItem'
 import {
     ADD_ITEM_TO_INV,
     SET_INV_ITEM_SELECT,
@@ -14,8 +15,9 @@ import {
 const initialState = {
     equippedItems: startingItems,
     invItems: [
-        new StartingItem('Inventory', 0),
-        new StartingItem('Inventory', 1)
+        new EquipItem('Inventory', 0),
+        new EquipItem('Inventory', 1),
+
     ],
     shopItems: [
         { type: "Empty", key: 0 },
