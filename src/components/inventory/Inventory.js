@@ -116,7 +116,9 @@ function Inventory(props) {
         if(buyCondition) {
             const selectedItem = selectedShopItems[0]
             if (gold >= selectedItem.goldValue) {
-                const item = selectedItem
+
+                // make a copy of selectedItem
+                const item = Object.assign({}, selectedItem)
                 item.destination = 'Inventory'
                 item.isSelected = false
                 item.goldValue = Math.ceil(item.goldValue * 0.75)

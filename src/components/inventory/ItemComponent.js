@@ -13,7 +13,7 @@ function ItemComponent(props) {
         // Destructure from props
         const { 
             data: {
-                type,
+                name,
                 destination,
                 rarity,
                 stats,
@@ -23,19 +23,23 @@ function ItemComponent(props) {
                 icon,
                 isSelected,
                 key,
-                itemType
+                type,
+                amount
             }, 
             equippedItems, 
             shopItems, 
             setInvItemSelect, 
             unselectShopItems, 
-            setShopItemSelect 
+            setShopItemSelect,
+            renderedInGame 
         } = props
 
         const currentItem = props.data
 
         // Item Handle Click
         const handleClick = () => {
+            // If this Item is rendered in Game.js, don't do anything
+            if(renderedInGame) return
             // If clicked item is in the Inventory, set its isSelected value to the opposite
             if (destination === 'Inventory') {
                 setInvItemSelect(key)
@@ -61,7 +65,7 @@ function ItemComponent(props) {
 
         // Checks
         const isEquipped = destination === 'Equipped' ? true : false
-        const isDrop = itemType === 'drop' ? true : false
+        const isDrop = type === 'drop' ? true : false
 
         // Classes
         const rarityClass = rarity ? rarity.toLowerCase() : ''
@@ -75,8 +79,8 @@ function ItemComponent(props) {
             // If Item is equipped, or its Drop Item break out of this function
             if(isEquipped || isDrop) return {}
 
-            // Compared Item (compare current Item with the equipped item of same type, e.g. bow with bow)
-            const comparedItem = equippedItems.filter(item => item.type === type)[0]
+            // Compared Item (compare current Item with the equipped item of same name, e.g. bow with bow)
+            const comparedItem = equippedItems.filter(item => item.name === name)[0]
     
             // Single Value Comparison
             const compareSingle = (compared, current) => {
@@ -131,19 +135,19 @@ function ItemComponent(props) {
         // Item Name
         const itemName = (() => {
             if (isDrop) {
-                const name = type.charAt(0).toUpperCase() + type.slice(1)
+                const nameVal = name.charAt(0).toUpperCase() + name.slice(1)
                 return (
                     <div className='name_container'>
-                        <p id='name'>{name}</p>
+                        <p id='name'>{nameVal}</p>
                     </div>
                 )
             } else {
-                const name = `${rarity} ${type} (${level})`
+                const nameVal = `${rarity} ${name} (${level})`
                 const comparedValue = comparison.level ? comparison.level.value : null
                 const style = comparison.level ? { color: comparison.level.color } : null
                 return (
                     <div className='name_container'>
-                        <p id='name'>{name}</p>
+                        <p id='name'>{nameVal}</p>
                         <p style={style}>{comparedValue}</p>
                     </div>
                 )
@@ -152,7 +156,7 @@ function ItemComponent(props) {
 
         // Item Stat
         const itemStat = (() => {
-            if(isDrop) return null
+            if(isDrop) return amount
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
             return (
@@ -188,9 +192,8 @@ function ItemComponent(props) {
                     <div className='stats'>
                         { itemName }
                         { itemStat }
-                        <div className='bonuses'>
-                        { itemBonuses }
-                        </div>
+                        { itemBonuses ? <div className='bonuses'>{itemBonuses}</div> : null }
+
                         <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p>
                     </div>
 

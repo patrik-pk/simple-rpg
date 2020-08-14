@@ -175,15 +175,8 @@ export default function generateItem(character, enemy, destination, key, gameTyp
         // randomize the price a little with multiplier
         const randomMultiplier = randomGenerator(95, 105, 0.01)
 
-        const destinationMultiplier = (() => {
-            // shop items cost more than received items
-            switch(destination) {
-                case 'Shop': return 1.6
-                case 'Game': return 1
-                case 'Inventory': return 1
-                default: break
-            }
-        })()
+        // items in shop have higher value
+        const destinationMultiplier = destination === 'Shop' ? 1.6 : 1
 
         // calculate the value
         const calculateValue = () => {

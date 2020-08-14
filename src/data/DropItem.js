@@ -4,19 +4,21 @@ class DropItem {
     constructor(
         destination = 'Inventory',
         key,
-        type = 'feather',
+        amount = 1,
+        name = 'feather',
         icon = dropIcons.Feather,
         goldValue = 10,
         isSelected = false,
-        itemType = 'drop'
+        type = 'drop'
     ) {
         this.destination = destination
         this.key = key
-        this.type = type
+        this.amount = amount
+        this.name = name
         this.icon = icon
         this.goldValue = goldValue
         this.isSelected = isSelected
-        this.itemType = itemType
+        this.type = type
     }
 }
 

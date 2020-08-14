@@ -76,7 +76,7 @@ function Game(props) {
                     <div className='right generated_item'>
                         {
                         battleStatus === 'Victory' ?
-                        <ItemComponent data={generatedItem} {...props} />
+                        <ItemComponent data={generatedItem} renderedInGame={true} />
                         : null
                         }
                     </div>

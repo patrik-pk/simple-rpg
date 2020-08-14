@@ -4,7 +4,7 @@ class EquipItem {
     constructor(
         destination = 'Equipped',
         key,
-        type = 'Helmet',
+        name = 'Helmet',
         rarity = 'Common',
         icon = equipIcons.Helmet,
         stats = { statName: 'Armor', value: 7 },
@@ -19,11 +19,11 @@ class EquipItem {
         goldValue = 10,
         level = 0,
         isSelected = false,
-        itemType = 'equip'
+        type = 'equip'
     ) {
         this.destination = destination
         this.key = key
-        this.type = type
+        this.name = name
         this.rarity = rarity
         this.icon = icon
         this.stats = stats
@@ -31,7 +31,7 @@ class EquipItem {
         this.goldValue = goldValue
         this.level = level
         this.isSelected = isSelected
-        this.itemType = itemType
+        this.type = type
     }
 }
 
