@@ -72,7 +72,6 @@ function ItemComponent(props) {
         const selectedClass = isSelected ? ' active' : ''
         const dropClass = isDrop ? 'drop' : ''
 
-
         // COMPARISON
         const comparison = (() => {
 

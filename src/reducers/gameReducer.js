@@ -10,7 +10,7 @@ import {
 const initialState = {
     battleStatus: '',
     canAttack: true,
-    generatedItem: null,
+    generatedItems: null,
     gameTimer: 1000,
 }
 
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
                 ...state,
                 battleStatus: 'inBattle',
                 canAttack: true,
-                generatedItem: null
+                generatedItems: null
             }
 
         // End Game
@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 battleStatus: '',
-                generatedItem: null
+                generatedItems: null
             }
 
         // Set Attack
@@ -55,11 +55,11 @@ export default (state = initialState, action) => {
                 battleStatus: 'Defeat'
             }
 
-        // Item Obtained
+        // Items Obtained
         case ITEM_OBTAINED:
             return {
                 ...state,
-                generatedItem: action.payload
+                generatedItems: action.payload
             }
 
         // Default

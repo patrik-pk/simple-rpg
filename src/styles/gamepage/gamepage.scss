@@ -403,7 +403,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 60px 0 30px;
+            padding: 15px 30px 0 30px;
             @include mobile {
                 padding: 7px 30px 0 15px;
             }
@@ -430,12 +430,22 @@
             }
 
             // Right - Generated Item(s)
-            .generated_item {
-                .stats {
-                    @include mobile {
-                        margin-bottom: 30px;
+            .right {
+                display: flex;
+
+                .item_container {
+                    margin-right: 5px;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    .stats {
+                        @include mobile {
+                            margin-bottom: 30px;
+                        }
                     }
                 }
+
             }
         }
 

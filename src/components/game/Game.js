@@ -16,7 +16,7 @@ function Game(props) {
 
     // Destructure From Props
     const {
-        game: { battleStatus, generatedItem },
+        game: { battleStatus, generatedItems },
         character: { acquiredXp, acquiredGold, acquiredDiamonds },
         enemy, 
         endGame 
@@ -30,6 +30,8 @@ function Game(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // Generated Items
+    const mappedItems = generatedItems ? generatedItems.map(item => <ItemComponent key={item.key} data={item} renderedInGame={true} />) : null
 
     // Text Variables
     const winText = 'Victory'
@@ -73,13 +75,13 @@ function Game(props) {
                     </div>
 
                     {/* Right - Generated Item(s) */}
-                    <div className='right generated_item'>
+                    <ul className='right'>
                         {
                         battleStatus === 'Victory' ?
-                        <ItemComponent data={generatedItem} renderedInGame={true} />
+                        mappedItems
                         : null
                         }
-                    </div>
+                    </ul>
 
                 </div>
 

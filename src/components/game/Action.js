@@ -11,6 +11,8 @@ import attackEnemy from '../../logic/attackEnemy'
 import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
 import generateItem from '../../logic/generateItem'
+import generateDrop from '../../logic/generateDrop'
+import randomGenerator from '../../logic/randomGenerator'
 
 function Action(props) {
 
@@ -67,16 +69,35 @@ function Action(props) {
             enemyHit(p_dmgDealt, p_didCrit)
             // check if Enemy has 0 or less HP after damage dealt
             if(enemy.currentHp - p_dmgDealt <= 0) {
+
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
+
                 // generate reward and update state
                 const reward = getReward(enemy, character, 'Victory', gameType)
                 addReward(reward)
-                // generate item
-                const item = generateItem(character, enemy, 'Inventory', invItems.length, gameType)
+
+                // generate items
+                const rewardItems = (() => {
+                    let items = []
+                    // for Boss game generate 3 items, for Classic one 2-3
+                    const numberOfItems = gameType === 'Boss' ? 2 : randomGenerator(2, 2, 1)
+
+                    // generate items, first item is always equipment, others are drop
+                    for(let i = 0; i < numberOfItems; i++) {
+                        if (i === 0) items.push(generateItem(character, enemy, 'Inventory', invItems.length, gameType))
+                        else {
+                            items.push(generateDrop('Inventory', invItems.length + i))
+                        } 
+                    }
+
+                    return items
+                })()
+
                 // add item to inventory and render it in Game.js
-                addItemToInv(item)
-                itemObtained(item)
+                addItemToInv(rewardItems)
+                itemObtained(rewardItems)
+
                 // break out of this function
                 return
             }

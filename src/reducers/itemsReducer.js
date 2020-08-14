@@ -31,37 +31,76 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
 
-        // Add Item To Inventory
+        // Add Item(s) To Inventory
         case ADD_ITEM_TO_INV:
-            // If itemType is drop
-            if(action.payload.type === 'drop') {
-                // find item with same name
-                const filtered = state.invItems.filter(item => item.type === 'drop' && item.name === action.payload.name)
-                // if there is one
-                if(filtered.length !== 0) {
-                    // calculate amount (found item amount + new item amount)
-                    const newAmount = filtered[0].amount + action.payload.amount
-                    // and update that item's amount
-                    return { 
+
+            // MULTIPLE ITEMS
+            if(Array.isArray(action.payload)) {
+                
+                const newItems = state.invItems
+
+                // loop throgh action.payload items
+                action.payload.forEach(item => {
+                    // if its equipment item, just push it to the Array
+                    if(item.type === 'equip') {
+                        newItems.push(item)
+                    }
+                    // if it is drop
+                    if(item.type === 'drop') {
+                        // filter invItems and return item if its name matches the payload name
+                        const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)
+                        // if there is such item
+                        if(filtered.length !== 0) {
+                            // set newAmount to items amount + payload item amount
+                            const newAmount = filtered[0].amount + item.amount
+                            newItems[2].amount = newAmount
+                        }
+                        // else just push the item to the array 
+                        else {
+                            newItems.push(item)
+                        }
+                    }
+                })
+
+                return {
+                    ...state,
+                    invItems: newItems
+                }
+            }
+            
+            // SINLGE ITEM
+            else {
+    
+                // If itemType is drop
+                if(action.payload.type === 'drop') {
+                    // find item with same name
+                    const filtered = state.invItems.filter(item => item.name === action.payload.name)
+                    // if there is one
+                    if(filtered.length !== 0) {
+                        // calculate amount (found item amount + new item amount)
+                        const newAmount = filtered[0].amount + action.payload.amount
+                        // and update that item's amount
+                        return { 
+                            ...state,
+                            invItems: state.invItems.map(item => {
+                                if(item.name === filtered[0].name) {
+                                    item.amount = newAmount
+                                }
+                                return item
+                            })
+                        }
+                    } 
+                    // if there is no item with same name, just add the item to the array
+                    else return {
                         ...state,
-                        invItems: state.invItems.map(item => {
-                            if(item.name === filtered[0].name) {
-                                item.amount = newAmount
-                            }
-                            return item
-                        })
+                        invItems: [...state.invItems, action.payload]
                     }
                 } 
-                // if there is no item with same name, just add the item to the array
+                // else just add the item to the array
                 else return {
                     ...state,
                     invItems: [...state.invItems, action.payload]
                 }
-            } 
-            // else just add the item to the array
-            else return {
-                ...state,
-                invItems: [...state.invItems, action.payload]
             }
 
         // Unselect Inventory Items
