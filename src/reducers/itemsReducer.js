@@ -1,5 +1,6 @@
 import startingItems from '../data/startingItems'
 import EquipItem from '../data/EquipItem'
+import DropItem from '../data/DropItem'
 import {
     ADD_ITEM_TO_INV,
     SET_INV_ITEM_SELECT,
@@ -17,6 +18,7 @@ const initialState = {
     invItems: [
         new EquipItem('Inventory', 0),
         new EquipItem('Inventory', 1),
+        new DropItem('Inventory', 2),
 
     ],
     shopItems: [
@@ -120,7 +122,7 @@ export default (state = initialState, action) => {
                 equippedItems: state.equippedItems.map(item => {
                     // if equipped type matches the selected type, replace equipped with selected
                     if(item.type === selectedItem.type) {
-                        const newItem = JSON.parse(JSON.stringify(selectedItem)) 
+                        const newItem = selectedItem
                         newItem.destination = 'Equipped'
                         newItem.isSelected = false
                         newItem.key = item.key

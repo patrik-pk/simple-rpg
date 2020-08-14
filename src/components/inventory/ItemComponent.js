@@ -11,10 +11,28 @@ function ItemComponent(props) {
     if (props.data && props.data.type !== 'Empty') {
 
         // Destructure from props
-        const { data, equippedItems, shopItems, setInvItemSelect, unselectShopItems, setShopItemSelect } = props
-        const { type, destination, rarity, goldValue, stats, bonuses, icon, isSelected, key } = data
+        const { 
+            data: {
+                type,
+                destination,
+                rarity,
+                stats,
+                bonuses,
+                goldValue,
+                level,
+                icon,
+                isSelected,
+                key,
+                itemType
+            }, 
+            equippedItems, 
+            shopItems, 
+            setInvItemSelect, 
+            unselectShopItems, 
+            setShopItemSelect 
+        } = props
 
-        const currentItem = data
+        const currentItem = props.data
 
         // Item Handle Click
         const handleClick = () => {
@@ -41,18 +59,21 @@ function ItemComponent(props) {
             }
         }
 
-        // Classes
-        const rarityClass = rarity.toLowerCase()
-        const selectedClass = isSelected ? ' active' : ''
-
-        // Destination Check - if Item is equipped, don't compare anything
+        // Checks
         const isEquipped = destination === 'Equipped' ? true : false
+        const isDrop = itemType === 'drop' ? true : false
+
+        // Classes
+        const rarityClass = rarity ? rarity.toLowerCase() : ''
+        const selectedClass = isSelected ? ' active' : ''
+        const dropClass = isDrop ? 'drop' : ''
+
 
         // COMPARISON
         const comparison = (() => {
 
-            // If Item is equipped, break out of this function
-            if(isEquipped) return {}
+            // If Item is equipped, or its Drop Item break out of this function
+            if(isEquipped || isDrop) return {}
 
             // Compared Item (compare current Item with the equipped item of same type, e.g. bow with bow)
             const comparedItem = equippedItems.filter(item => item.type === type)[0]
@@ -109,19 +130,29 @@ function ItemComponent(props) {
 
         // Item Name
         const itemName = (() => {
-            const name = data.getName()
-            const comparedValue = comparison.level ? comparison.level.value : null
-            const style = comparison.level ? { color: comparison.level.color } : null
-            return (
-                <div className='name_container'>
-                    <p id='name'>{name}</p>
-                    <p style={style}>{comparedValue}</p>
-                </div>
-            )
+            if (isDrop) {
+                const name = type.charAt(0).toUpperCase() + type.slice(1)
+                return (
+                    <div className='name_container'>
+                        <p id='name'>{name}</p>
+                    </div>
+                )
+            } else {
+                const name = `${rarity} ${type} (${level})`
+                const comparedValue = comparison.level ? comparison.level.value : null
+                const style = comparison.level ? { color: comparison.level.color } : null
+                return (
+                    <div className='name_container'>
+                        <p id='name'>{name}</p>
+                        <p style={style}>{comparedValue}</p>
+                    </div>
+                )
+            } 
         })()
 
         // Item Stat
         const itemStat = (() => {
+            if(isDrop) return null
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
             return (
@@ -133,7 +164,7 @@ function ItemComponent(props) {
         })() 
 
         // Item Bonuses
-        const itemBonuses = bonuses.map((bonus, i) => {
+        const itemBonuses = isDrop ? null : bonuses.map((bonus, i) => {
             const name = bonus.name.charAt(0).toUpperCase() + bonus.name.slice(1)
             const comparedValue = comparison.bonuses ? comparison.bonuses[i].value : null
             const style = comparison.bonuses ? { color: comparison.bonuses[i].color } : null
@@ -145,11 +176,9 @@ function ItemComponent(props) {
             )
         })
 
-        console.log(icon)
-
         // RENDER
         return ( 
-            <li className={`item_container ${rarityClass} ${selectedClass}`}>
+            <li className={`item_container ${rarityClass} ${selectedClass} ${dropClass}`}>
                 <div className={`item ${selectedClass}`} onClick={handleClick} >
 
                     {/* Icon */}

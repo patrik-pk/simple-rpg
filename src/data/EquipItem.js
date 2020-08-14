@@ -19,6 +19,7 @@ class EquipItem {
         goldValue = 10,
         level = 0,
         isSelected = false,
+        itemType = 'equip'
     ) {
         this.destination = destination
         this.key = key
@@ -30,10 +31,7 @@ class EquipItem {
         this.goldValue = goldValue
         this.level = level
         this.isSelected = isSelected
-    }
-
-    getName() {
-        return `${this.rarity} ${this.type} (${this.level})`
+        this.itemType = itemType
     }
 }
 

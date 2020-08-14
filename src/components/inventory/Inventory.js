@@ -18,6 +18,8 @@ import {
 import { setDiamonds, setGold } from '../../actions/characterActions'
 import { recalculatePlayerStats } from '../../actions/playerActions'
 import generateItem from '../../logic/generateItem'
+import generateDrop from '../../logic/generateDrop'
+import randomGenerator from '../../logic/randomGenerator'
 import cps from '../../logic/calculatePlayerStats'
 
 import levelTresholds from '../../data/levelTresholds'
@@ -84,13 +86,24 @@ function Inventory(props) {
     const selectedInvItems = invItems.filter(item => item.isSelected)
     const selectedShopItems = shopItems.filter(item => item.isSelected)
 
+    // Conditions
+    const buyCondition = selectedShopItems.length === 1 && invItems.length <= 35
+    const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].itemType !== 'drop'
+    const rerollCondition = diamonds > 0 
+    const sellCondition = selectedInvItems.length > 0
+
     // Reroll Items
     const reroll = () => {
-        if(diamonds > 0) {
+        if(rerollCondition) {
             let newShopItems = []
             
             for (let i = 0; i < 3; i++) {
-                newShopItems.push(generateItem(character, null, 'Shop', i))
+                const random = randomGenerator(1, 100, 1)
+                // 75% chance to generate item, 25% to generate drop
+                if(random < 75) newShopItems.push(generateItem(character, null, 'Shop', i))
+                else {
+                    newShopItems.push(generateDrop('Shop', i))
+                }
             }
 
             rerollShopItems(newShopItems)
@@ -100,10 +113,10 @@ function Inventory(props) {
 
     // Buy Item
     const buyItem = () => {
-        if(selectedShopItems.length === 1 && invItems.length <= 35) {
+        if(buyCondition) {
             const selectedItem = selectedShopItems[0]
             if (gold >= selectedItem.goldValue) {
-                const item = JSON.parse(JSON.stringify(selectedItem))
+                const item = selectedItem
                 item.destination = 'Inventory'
                 item.isSelected = false
                 item.goldValue = Math.ceil(item.goldValue * 0.75)
@@ -118,7 +131,7 @@ function Inventory(props) {
 
     // Sell Item(s)
     const sellItem = () => {
-        if(selectedInvItems.length > 0) {
+        if(sellCondition) {
             let goldVal = 0
             selectedInvItems.forEach(item => {
                 goldVal += item.goldValue
@@ -131,7 +144,7 @@ function Inventory(props) {
 
     // Equip Item
     const eqItem = () => {
-        if(selectedInvItems.length === 1) {
+        if(equipCondition) {
             // find the matching type, that is already equipped
             const equipped = equippedItems.filter(item => item.type === selectedInvItems[0].type)
 
@@ -145,14 +158,14 @@ function Inventory(props) {
     }
 
     // Set active classes
-    const equipActive = selectedInvItems.length === 1 ? 'active' : 'null'
-    const sellActive = selectedInvItems.length >= 1 ? 'active' : 'null'
-    const rerollActive = diamonds >= 1 ? 'active' : 'null'
+    const equipActive = equipCondition ? 'active' : 'null'
+    const sellActive = sellCondition ? 'active' : 'null'
+    const rerollActive = rerollCondition ? 'active' : 'null'
 
     // If Player has 1 selected shop item, has space in Inventory 
     // and has money to buy that items, return active for buy btn class
     const buyActive = () => {
-        if (selectedShopItems.length === 1 && invItems.length <= 35) {
+        if (buyCondition) {
             const selectedItem = selectedShopItems[0]
             if(gold >= selectedItem.goldValue) {
                 return 'active'

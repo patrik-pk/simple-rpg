@@ -30,6 +30,15 @@ $legendary: orangered;
         border: 1px $item_active_color solid; 
     }
 
+    // drop
+    &.drop {
+        background: $common;
+        .item { background: $common; }
+        svg {
+            fill: #ccc;
+        }
+    }
+
     // legendary
     &.legendary { 
         background: $legendary; 
@@ -101,7 +110,6 @@ $legendary: orangered;
             transform: translate(-50%, -50%);
             width: 26px;
             height: 26px;
-            fill: black;
 
             @include mobile {
                 width: 18px;

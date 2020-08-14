@@ -194,6 +194,18 @@
   border: 1px white solid;
 }
 
+.item_container.drop {
+  background: #555;
+}
+
+.item_container.drop .item {
+  background: #555;
+}
+
+.item_container.drop svg {
+  fill: #ccc;
+}
+
 .item_container.legendary {
   background: orangered;
 }
@@ -299,7 +311,6 @@
           transform: translate(-50%, -50%);
   width: 26px;
   height: 26px;
-  fill: black;
 }
 
 @media (max-width: 767px) {

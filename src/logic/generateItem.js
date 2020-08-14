@@ -7,7 +7,7 @@ import randomGenerator from './randomGenerator'
 // TODO: Pro specific item pridat dalsi parametr 'specific', coz bude objekt
 // vsech spefikaci, ktere chci automaticky vygenerovat (rarita, typ),
 // napr. specific = { rarity: 'legendary', itemType: 'sword' }
-export default function generateItem(character, enemy, whereToPut, keyPar, gameType) {
+export default function generateItem(character, enemy, destination, key, gameType) {
 
     // Get gameFlow, if it is generated after defeating a Boss,
     // return gameFlow off that Boss, if its level is higher than Player's,
@@ -52,7 +52,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
         }
     })()
 
-    const rarityName = genRarity.name
+    const rarity = genRarity.name
     const rarityMultiplier = genRarity.mult
     const rarityValueMultiplier = genRarity.valueMult
     
@@ -105,7 +105,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
         let genBonuses = []
 
         // set amount of bonuses that item should have based on rarity
-        switch(rarityName) { 
+        switch(rarity) { 
             case 'Legendary': bonusAmount = 5; break;
             case 'Epic' || 'Rare': bonusAmount = 4; break;
             case 'Rare': bonusAmount = 3; break;
@@ -177,7 +177,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
 
         const destinationMultiplier = (() => {
             // shop items cost more than received items
-            switch(whereToPut) {
+            switch(destination) {
                 case 'Shop': return 1.6
                 case 'Game': return 1
                 case 'Inventory': return 1
@@ -213,11 +213,7 @@ export default function generateItem(character, enemy, whereToPut, keyPar, gameT
     })()
 
     // Assign generated values and return generatedItem
-    const destination = whereToPut
-    const key = keyPar
-    const type = generatedType.type
-    const rarity = rarityName
-    const icon = generatedType.icon
+    const { type, icon } = generatedType
     const stats = generatedStat
     const bonuses = generatedBonuses
     const goldValue = generatedValue
