@@ -1,15 +1,17 @@
 import icons from './icons/creatureIcons'
 
 class EnemyType {
-    constructor(name, specie, icon, minLevel, maxLevel, drop = 'low soul') {
+    constructor(name, specie, icon, minLevel, maxLevel, drops = ['low soul', 'high feather']) {
         this.name = name
         this.specie = specie
         this.icon = icon
         this.minLevel = minLevel
         this.maxLevel = maxLevel
-        this.drop = drop
+        this.drops = drops
     }
 }
+
+// drops bude array objektu is s ikonkami
 
 const possibleEnemies = {
     // Avians

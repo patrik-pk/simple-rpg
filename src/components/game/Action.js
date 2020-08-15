@@ -79,19 +79,50 @@ function Action(props) {
 
                 // generate items
                 const rewardItems = (() => {
+                    // items array that will be returned
                     let items = []
-                    // for Boss game generate 3 items, for Classic one 2-3
-                    const numberOfItems = gameType === 'Boss' ? 2 : randomGenerator(2, 2, 1)
 
+                    // for Boss game generate 3 items, for Classic one 2-3
+                    const numberOfItems = gameType === 'Boss' ? 2 : randomGenerator(2, 3)
+
+                    // get possible drops from enemyType
+                    const possibleDrops = enemy.enemyType.drops
+                    let alreadyGeneratedDrops = []
+
+                    // generate drop function
+                    const generateUniqueDrop = (alreadyGenerated, i) => {
+
+                        // if all the possible drops have been generated, break out
+                        if (alreadyGenerated.length === possibleDrops.length) return
+
+                        // generate random index for drop 
+                        let index = randomGenerator(0, possibleDrops.length - 1)
+
+                        // if the index is in alreadyGenerated array, keep generating new one
+                        while (alreadyGenerated.includes(index)) {
+                            index = randomGenerator(0, possibleDrops.length - 1)
+                        }
+
+                        // generate random amount for drop
+                        const randomAmount = randomGenerator(3, 5)
+
+                        // get drop based on index and push it to alreadyGenerated array, 
+                        // so it can't be generated again
+                        const dropName = possibleDrops[index]
+                        alreadyGeneratedDrops.push(index)
+
+                        // push that drop into items array
+                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, dropName))
+                    }
+
+                    
                     // generate items, first item is always equipment, others are drop
                     for(let i = 0; i < numberOfItems; i++) {
                         if (i === 0) items.push(generateItem(character, enemy, 'Inventory', invItems.length, gameType))
-                        else {
-                            const randomAmount = randomGenerator(3, 5, 1)
-                            items.push(generateDrop('Inventory', invItems.length + i, randomAmount))
-                        } 
+                        else generateUniqueDrop(alreadyGeneratedDrops, i)
                     }
 
+                    // return items
                     return items
                 })()
 
