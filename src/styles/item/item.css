@@ -320,6 +320,13 @@
   }
 }
 
+.item_container .item .drop-amount {
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  color: white;
+}
+
 .item_container .item .stats {
   display: none;
   min-width: 200px;

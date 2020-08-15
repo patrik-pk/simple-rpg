@@ -1,4 +1,4 @@
-import { ReactComponent as Feather } from '../../resources/icons/drop/feather.svg'
+import { ReactComponent as Feather } from '../../resources/icons/drop/large_feather.svg'
 
 const dropIcons = {
     Feather,

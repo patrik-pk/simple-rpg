@@ -150,8 +150,6 @@ function Inventory(props) {
             // find the matching type, that is already equipped
             const equipped = equippedItems.filter(item => item.type === selectedInvItems[0].type)
 
-            // remove selected item from inventory 
-            //removeInvItems(selectedInvItems)
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])
             // recalculate player stats - cps (calculatePlayerstats) returns object with new values

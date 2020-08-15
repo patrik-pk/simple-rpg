@@ -74,7 +74,7 @@ function ItemComponent(props) {
 
         // COMPARISON
         const comparison = (() => {
-
+            
             // If Item is equipped, or its Drop Item break out of this function
             if(isEquipped || isDrop) return {}
 
@@ -155,7 +155,7 @@ function ItemComponent(props) {
 
         // Item Stat
         const itemStat = (() => {
-            if(isDrop) return amount
+            if(isDrop) return null
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
             return (
@@ -192,10 +192,11 @@ function ItemComponent(props) {
                         { itemName }
                         { itemStat }
                         { itemBonuses ? <div className='bonuses'>{itemBonuses}</div> : null }
-
                         <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p>
                     </div>
 
+                    {/* Drop Amount - only for drop items */}
+                    { amount ? <p className='drop-amount'>{amount}</p> : null }
                 </div>
             </li>
         )

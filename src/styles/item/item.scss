@@ -116,6 +116,14 @@ $legendary: orangered;
                 height: 18px;
             }
         }
+
+        // Drop Amount (only for drop items)
+        .drop-amount {
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            color: white;
+        }
     
         // Item Stats
         .stats {

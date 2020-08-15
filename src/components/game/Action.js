@@ -87,7 +87,8 @@ function Action(props) {
                     for(let i = 0; i < numberOfItems; i++) {
                         if (i === 0) items.push(generateItem(character, enemy, 'Inventory', invItems.length, gameType))
                         else {
-                            items.push(generateDrop('Inventory', invItems.length + i))
+                            const randomAmount = randomGenerator(3, 5, 1)
+                            items.push(generateDrop('Inventory', invItems.length + i, randomAmount))
                         } 
                     }
 

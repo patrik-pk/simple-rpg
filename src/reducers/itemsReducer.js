@@ -68,7 +68,7 @@ export default (state = initialState, action) => {
                 }
             }
             
-            // SINLGE ITEM
+            // SINGLE ITEM
             else {
     
                 // If itemType is drop
@@ -186,8 +186,9 @@ export default (state = initialState, action) => {
                 ...state,
                 equippedItems: state.equippedItems.map(item => {
                     // if equipped type matches the selected type, replace equipped with selected
-                    if(item.type === selectedItem.type) {
-                        const newItem = selectedItem
+                    if(item.name === selectedItem.name) {
+                        const newItem = Object.assign({}, selectedItem)
+                        //const newItem = selectedItem
                         newItem.destination = 'Equipped'
                         newItem.isSelected = false
                         newItem.key = item.key
@@ -199,7 +200,8 @@ export default (state = initialState, action) => {
                 invItems: state.invItems.map(item => {
                     // find the selected item, and replace it with the equipped one
                     if(item.key === selectedItem.key) {
-                        const newItem = equippedItem
+                        const newItem = Object.assign({}, equippedItem)
+                        //const newItem = equippedItem
                         newItem.destination = 'Inventory'
                         newItem.key = item.key
                         newItem.isSelected = false
