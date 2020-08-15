@@ -7,6 +7,7 @@ class DropItem {
         amount = 1,
         name = 'small feather',
         icon = dropIcons.SmallFeather,
+        classes,
         goldValue = 10,
         isSelected = false,
         type = 'drop'
@@ -16,6 +17,7 @@ class DropItem {
         this.amount = amount
         this.name = name
         this.icon = icon
+        this.classes = classes
         this.goldValue = goldValue
         this.isSelected = isSelected
         this.type = type

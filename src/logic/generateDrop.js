@@ -1,6 +1,6 @@
 import DropItem from './../data/DropItem'
 
-export default function generateDrop(destination, key, amount, name, icon, goldValue) {
+export default function generateDrop(destination, key, amount, name, icon, classes, goldValue) {
 
     return new DropItem(
         destination,
@@ -8,6 +8,7 @@ export default function generateDrop(destination, key, amount, name, icon, goldV
         amount,
         name,
         icon,
+        classes,
         goldValue,
     )
 }

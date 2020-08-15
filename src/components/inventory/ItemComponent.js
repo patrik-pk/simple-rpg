@@ -24,7 +24,8 @@ function ItemComponent(props) {
                 isSelected,
                 key,
                 type,
-                amount
+                amount,
+                classes
             }, 
             equippedItems, 
             shopItems, 
@@ -67,10 +68,21 @@ function ItemComponent(props) {
         const isEquipped = destination === 'Equipped' ? true : false
         const isDrop = type === 'drop' ? true : false
 
-        // Classes
-        const rarityClass = rarity ? rarity.toLowerCase() : ''
-        const selectedClass = isSelected ? ' active' : ''
-        const dropClass = isDrop ? 'drop' : ''
+        // Set Classes - first push items into array, 
+        // then join them into single string with with space between them
+        const setClasses = () => {
+            const classesArray = []
+
+            if(rarity) classesArray.push(rarity.toLowerCase())
+            if(isSelected) classesArray.push('selected')
+            if(isDrop) classesArray.push('drop')
+            if(classes) {
+                classes.forEach(item => classesArray.push(item))
+            }
+
+
+            return classesArray.join(' ')
+        }
 
         // COMPARISON
         const comparison = (() => {
@@ -132,9 +144,13 @@ function ItemComponent(props) {
         })()
 
         // Item Name
-        const itemName = (() => {
+        const itemName = () => {
             if (isDrop) {
-                const nameVal = name.charAt(0).toUpperCase() + name.slice(1)
+                // make the first letter of every word upper case
+                let nameArray = name.split(' ')
+                const upperCaseArray = nameArray.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                const nameVal = upperCaseArray.join(' ')
+
                 return (
                     <div className='name_container'>
                         <p id='name'>{nameVal}</p>
@@ -151,10 +167,10 @@ function ItemComponent(props) {
                     </div>
                 )
             } 
-        })()
+        }
 
         // Item Stat
-        const itemStat = (() => {
+        const itemStat = () => {
             if(isDrop) return null
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
@@ -164,7 +180,7 @@ function ItemComponent(props) {
                     <p style={style}>{comparedValue}</p>
                 </div> 
             )
-        })() 
+        }
 
         // Item Bonuses
         const itemBonuses = isDrop ? null : bonuses.map((bonus, i) => {
@@ -181,16 +197,16 @@ function ItemComponent(props) {
 
         // RENDER
         return ( 
-            <li className={`item_container ${rarityClass} ${selectedClass} ${dropClass}`}>
-                <div className={`item ${selectedClass}`} onClick={handleClick} >
+            <li className={`item_container ${setClasses()}`}>
+                <div className='item' onClick={handleClick} >
 
                     {/* Icon */}
                     { icon.render() } 
 
                     {/* Info */}
                     <div className='stats'>
-                        { itemName }
-                        { itemStat }
+                        { itemName() }
+                        { itemStat() }
                         { itemBonuses ? <div className='bonuses'>{itemBonuses}</div> : null }
                         <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p>
                     </div>

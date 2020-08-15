@@ -1,6 +1,6 @@
 import startingItems from '../data/startingItems'
 import EquipItem from '../data/EquipItem'
-import DropItem from '../data/DropItem'
+//import DropItem from '../data/DropItem'
 import {
     ADD_ITEM_TO_INV,
     SET_INV_ITEM_SELECT,
@@ -18,7 +18,7 @@ const initialState = {
     invItems: [
         new EquipItem('Inventory', 0),
         new EquipItem('Inventory', 1),
-        new DropItem('Inventory', 2),
+        //new DropItem('Inventory', 2),
 
     ],
     shopItems: [

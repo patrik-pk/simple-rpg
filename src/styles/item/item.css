@@ -189,81 +189,9 @@
   transition: 500ms all;
 }
 
-.item_container.active {
+.item_container.selected {
   background: white !important;
   border: 1px white solid;
-}
-
-.item_container.drop {
-  background: #555;
-}
-
-.item_container.drop .item {
-  background: #555;
-}
-
-.item_container.drop svg {
-  fill: #ccc;
-}
-
-.item_container.legendary {
-  background: orangered;
-}
-
-.item_container.legendary .item {
-  background: orangered;
-}
-
-.item_container.legendary #name {
-  color: orangered;
-}
-
-.item_container.epic {
-  background: purple;
-}
-
-.item_container.epic .item {
-  background: purple;
-}
-
-.item_container.epic #name {
-  color: purple;
-}
-
-.item_container.rare {
-  background: blue;
-}
-
-.item_container.rare .item {
-  background: blue;
-}
-
-.item_container.rare #name {
-  color: blue;
-}
-
-.item_container.uncommon {
-  background: green;
-}
-
-.item_container.uncommon .item {
-  background: green;
-}
-
-.item_container.uncommon #name {
-  color: green;
-}
-
-.item_container.common {
-  background: #555;
-}
-
-.item_container.common .item {
-  background: #555;
-}
-
-.item_container.common #name {
-  color: #555;
 }
 
 @media (max-width: 767px) {
@@ -323,8 +251,16 @@
 .item_container .item .drop-amount {
   position: absolute;
   bottom: -2px;
-  right: 0;
+  right: 1px;
   color: white;
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .item_container .item .drop-amount {
+    bottom: 0;
+    font-size: 8px;
+  }
 }
 
 .item_container .item .stats {
@@ -403,5 +339,175 @@
 
 .item_container .item .stats #value #value_heading {
   font-weight: bold !important;
+}
+
+.item_container.drop {
+  background: #555;
+}
+
+.item_container.drop .item {
+  background: #555;
+}
+
+.item_container.drop svg {
+  top: 40%;
+  left: 40%;
+  fill: #ccc;
+}
+
+.item_container.avian-soul .stats, .item_container.feather .stats {
+  border-color: #ff97b7;
+}
+
+.item_container.avian-soul #name, .item_container.feather #name {
+  color: #ff97b7;
+}
+
+.item_container.avian-soul .drop-amount, .item_container.feather .drop-amount {
+  color: #ff97b7;
+}
+
+.item_container.avian-soul svg, .item_container.feather svg {
+  fill: #ff97b7;
+}
+
+.item_container.dinosaur-soul .stats, .item_container.fossil .stats {
+  border-color: #ed6a5a;
+}
+
+.item_container.dinosaur-soul #name, .item_container.fossil #name {
+  color: #ed6a5a;
+}
+
+.item_container.dinosaur-soul .drop-amount, .item_container.fossil .drop-amount {
+  color: #ed6a5a;
+}
+
+.item_container.dinosaur-soul svg, .item_container.fossil svg {
+  fill: #ed6a5a;
+}
+
+.item_container.insect-soul .stats, .item_container.poison .stats {
+  border-color: #53dd6c;
+}
+
+.item_container.insect-soul #name, .item_container.poison #name {
+  color: #53dd6c;
+}
+
+.item_container.insect-soul .drop-amount, .item_container.poison .drop-amount {
+  color: #53dd6c;
+}
+
+.item_container.insect-soul svg, .item_container.poison svg {
+  fill: #53dd6c;
+}
+
+.item_container.wildlife-soul .stats, .item_container.wildlife-leather .stats {
+  border-color: #e09767;
+}
+
+.item_container.wildlife-soul #name, .item_container.wildlife-leather #name {
+  color: #e09767;
+}
+
+.item_container.wildlife-soul .drop-amount, .item_container.wildlife-leather .drop-amount {
+  color: #e09767;
+}
+
+.item_container.wildlife-soul svg, .item_container.wildlife-leather svg {
+  fill: #e09767;
+}
+
+.item_container.reptile-soul .stats, .item_container.reptile-leather .stats {
+  border-color: #02c39a;
+}
+
+.item_container.reptile-soul #name, .item_container.reptile-leather #name {
+  color: #02c39a;
+}
+
+.item_container.reptile-soul .drop-amount, .item_container.reptile-leather .drop-amount {
+  color: #02c39a;
+}
+
+.item_container.reptile-soul svg, .item_container.reptile-leather svg {
+  fill: #02c39a;
+}
+
+.item_container.aquatic-soul .stats, .item_container.aqua-meat .stats {
+  border-color: aqua;
+}
+
+.item_container.aquatic-soul #name, .item_container.aqua-meat #name {
+  color: aqua;
+}
+
+.item_container.aquatic-soul .drop-amount, .item_container.aqua-meat .drop-amount {
+  color: aqua;
+}
+
+.item_container.aquatic-soul svg, .item_container.aqua-meat svg {
+  fill: aqua;
+}
+
+.item_container.legendary {
+  background: orangered;
+}
+
+.item_container.legendary .item {
+  background: orangered;
+}
+
+.item_container.legendary #name {
+  color: orangered;
+}
+
+.item_container.epic {
+  background: purple;
+}
+
+.item_container.epic .item {
+  background: purple;
+}
+
+.item_container.epic #name {
+  color: purple;
+}
+
+.item_container.rare {
+  background: blue;
+}
+
+.item_container.rare .item {
+  background: blue;
+}
+
+.item_container.rare #name {
+  color: blue;
+}
+
+.item_container.uncommon {
+  background: green;
+}
+
+.item_container.uncommon .item {
+  background: green;
+}
+
+.item_container.uncommon #name {
+  color: green;
+}
+
+.item_container.common {
+  background: #555;
+}
+
+.item_container.common .item {
+  background: #555;
+}
+
+.item_container.common #name {
+  color: #555;
 }
 /*# sourceMappingURL=item.css.map */

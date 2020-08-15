@@ -3,13 +3,22 @@
 
 // Variables
 $item_bg: #999;
-$item_active_color: white;
+$item_selected_color: white;
 
 $common: #555;
 $uncommon: green;
 $rare: blue;
 $epic: purple;
 $legendary: orangered;
+
+$avian-color: #ff97b7;
+$dinosaur-color:#ed6a5a;
+$insect-color: #53dd6c;
+$wildlife-color: #e09767;
+$reptile-color: #02c39a;
+$aquatic-color: aqua;
+
+// Color classes for rarity are at the bottom of the file.
 
 
 // Item Container
@@ -24,54 +33,10 @@ $legendary: orangered;
     border: 1px black solid;
     transition: 500ms all;
 
-    // active
-    &.active { 
-        background: $item_active_color!important; 
-        border: 1px $item_active_color solid; 
-    }
-
-    // drop
-    &.drop {
-        background: $common;
-        .item { background: $common; }
-        svg {
-            fill: #ccc;
-        }
-    }
-
-    // legendary
-    &.legendary { 
-        background: $legendary; 
-        .item { background: $legendary; }
-        #name { color: $legendary; }  
-    }
-
-    // epic
-    &.epic { 
-        background: $epic; 
-        .item { background: $epic; }
-        #name { color: $epic; }
-    }
-
-    // rare
-    &.rare {
-        background: $rare; 
-        .item { background: $rare; }
-        #name { color: $rare; }
-    }
-
-    // uncommon
-    &.uncommon { 
-        background: $uncommon; 
-        .item { background: $uncommon; }
-        #name { color: $uncommon; }
-    }
-
-    // common
-    &.common { 
-        background: $common; 
-        .item { background: $common; }
-        #name { color: $common; }
+    // selected
+    &.selected { 
+        background: $item_selected_color!important; 
+        border: 1px $item_selected_color solid; 
     }
 
     // mobile
@@ -121,8 +86,13 @@ $legendary: orangered;
         .drop-amount {
             position: absolute;
             bottom: -2px;
-            right: 0;
+            right: 1px;
             color: white;
+            font-size: 13px;
+            @include mobile {
+                bottom: 0;
+                font-size: 8px;
+            }
         }
     
         // Item Stats
@@ -199,5 +169,105 @@ $legendary: orangered;
                 }
             }
         }
+    }
+
+    // COLOR CLASSES
+
+    // Drop Classes
+
+    // drop
+    &.drop {
+        background: $common;
+        .item { background: $common; }
+        svg {
+            top: 40%;
+            left: 40%;
+            fill: #ccc;
+        }
+    }
+
+    // avian soul
+    &.avian-soul, &.feather {
+        .stats { border-color: $avian-color; }
+        #name { color: $avian-color; }
+        .drop-amount { color: $avian-color; }
+        svg { fill: $avian-color; }
+    }
+
+    // dinosaur soul
+    &.dinosaur-soul, &.fossil {
+        .stats { border-color: $dinosaur-color; }
+        #name { color: $dinosaur-color; }
+        .drop-amount { color: $dinosaur-color; }
+        svg { fill: $dinosaur-color; }
+    }
+
+    // insect soul
+    &.insect-soul, &.poison {
+        .stats { border-color: $insect-color; }
+        #name { color: $insect-color; }
+        .drop-amount { color: $insect-color; }
+        svg { fill: $insect-color; }
+    }
+
+    // wildlife soul
+    &.wildlife-soul, &.wildlife-leather {
+        .stats { border-color: $wildlife-color; }
+        #name { color: $wildlife-color; }
+        .drop-amount { color: $wildlife-color; }
+        svg { fill: $wildlife-color; }
+    }
+
+    // reptiles soul
+    &.reptile-soul, &.reptile-leather {
+        .stats { border-color: $reptile-color; }
+        #name { color: $reptile-color; }
+        .drop-amount { color: $reptile-color; }
+        svg { fill: $reptile-color; }
+    }
+
+    // aquatic soul
+    &.aquatic-soul, &.aqua-meat {
+        .stats { border-color: $aquatic-color; }
+        #name { color: $aquatic-color; }
+        .drop-amount { color: $aquatic-color; }
+        svg { fill: $aquatic-color; }
+    }
+
+    // Rarity Classes
+
+    // legendary
+    &.legendary { 
+        background: $legendary; 
+        .item { background: $legendary; }
+        #name { color: $legendary; }  
+    }
+
+    // epic
+    &.epic { 
+        background: $epic; 
+        .item { background: $epic; }
+        #name { color: $epic; }
+    }
+
+    // rare
+    &.rare {
+        background: $rare; 
+        .item { background: $rare; }
+        #name { color: $rare; }
+    }
+
+    // uncommon
+    &.uncommon { 
+        background: $uncommon; 
+        .item { background: $uncommon; }
+        #name { color: $uncommon; }
+    }
+
+    // common
+    &.common { 
+        background: $common; 
+        .item { background: $common; }
+        #name { color: $common; }
     }
 }

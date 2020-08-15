@@ -104,15 +104,15 @@ function Action(props) {
                         }
 
                         // generate random amount for drop
-                        const randomAmount = randomGenerator(3, 5)
+                        const randomAmount = randomGenerator(30, 50) // 3 - 5
 
                         // get drop based on index and push it to alreadyGenerated array, 
                         // so it can't be generated again
-                        const { name, icon } = possibleDrops[index]
+                        const { name, icon, classVal } = possibleDrops[index]
                         alreadyGeneratedDrops.push(index)
 
                         // push that drop into items array
-                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon))
+                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon, [classVal]))
                     }
 
                     
