@@ -51,9 +51,11 @@ export default (state = initialState, action) => {
                         const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)
                         // if there is such item
                         if(filtered.length !== 0) {
+
                             // set newAmount to items amount + payload item amount
                             const newAmount = filtered[0].amount + item.amount
-                            newItems[2].amount = newAmount
+                            
+                            newItems[filtered[0].key].amount = newAmount
                         }
                         // else just push the item to the array 
                         else {
