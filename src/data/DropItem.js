@@ -5,8 +5,8 @@ class DropItem {
         destination = 'Inventory',
         key,
         amount = 1,
-        name = 'feather',
-        icon = dropIcons.Feather,
+        name = 'small feather',
+        icon = dropIcons.SmallFeather,
         goldValue = 10,
         isSelected = false,
         type = 'drop'

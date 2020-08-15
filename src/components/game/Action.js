@@ -108,11 +108,11 @@ function Action(props) {
 
                         // get drop based on index and push it to alreadyGenerated array, 
                         // so it can't be generated again
-                        const dropName = possibleDrops[index]
+                        const { name, icon } = possibleDrops[index]
                         alreadyGeneratedDrops.push(index)
 
                         // push that drop into items array
-                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, dropName))
+                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon))
                     }
 
                     

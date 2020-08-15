@@ -88,7 +88,7 @@ function Inventory(props) {
 
     // Conditions
     const buyCondition = selectedShopItems.length === 1 && invItems.length <= 35
-    const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].itemType !== 'drop'
+    const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].type !== 'drop'
     const rerollCondition = diamonds > 0 
     const sellCondition = selectedInvItems.length > 0
 
