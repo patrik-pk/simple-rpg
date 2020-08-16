@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Sidemenu from './components/Sidemenu'
+import Sidemenu from './components/sidemenu/Sidemenu'
 import Menu from './components/Menu'
 import Dungeon from './components/Dungeon'
 import Inventory from './components/inventory/Inventory'

@@ -21,21 +21,34 @@ function Player(props) {
         // Destructure From Props
         const { 
             currentLevel, 
-            player, 
+            player: {
+                currentHp,
+                maxHp,
+                armor,
+                meleeDamage,
+                rangedDamage,
+                critChance,
+                blockChance,
+                bonuses,
+                receivedCrit,
+                damageTaken,
+            }, 
             enemy: { meleeDodgeChance, rangedDodgeChance }, 
             canAttack 
         } = props
     
-        // HP bar fill
-        const hp_percentage = (player.currentHp / player.maxHp) * 100
+        // HP Bar Styling
+        const hp_percentage = (currentHp / maxHp) * 100
         const hpStyle = {
             background: 'linear-gradient(to right, rgb(220, 0, 0)'
                 + hp_percentage + '%, rgb(75, 0, 0)'
                 + hp_percentage + '%)'
         }
     
-        const critClass = player.receivedCrit ? ' crit' : ''
+        // Crit Class
+        const critClass = receivedCrit ? 'crit' : ''
     
+        // Render
         return(
             <div className='character_container' id='player'>
     
@@ -44,8 +57,8 @@ function Player(props) {
     
                     <PlayerImage />
     
-                    <p className={'floating_damage' + critClass} style={{display: player.damageTaken === '' ? 'none' : 'block'}}>
-                        {player.damageTaken}
+                    <p className={`floating_damage ${critClass}`} style={{display: damageTaken === '' ? 'none' : 'block'}}>
+                        {damageTaken}
                     </p>
     
                 </div>
@@ -59,7 +72,7 @@ function Player(props) {
 
                     <div className='hp' style={hpStyle}>
                         <p className='value'>
-                            {player.currentHp} / {player.maxHp}
+                            {currentHp} / {maxHp}
                         </p>
                     </div>
 
@@ -68,19 +81,19 @@ function Player(props) {
                 {/* Bottom - Stats */}
                 <div className='stats'>
                     <ul>
-                        <Stat name='HP:' value={player.maxHp} />
-                        <Stat name='Armor:' value={player.armor} />
-                        <Stat name='M-DMG:' value={player.meleeDamage} />
-                        <Stat name='R-DMG:' value={player.rangedDamage} />
-                        <Stat name='Crit(%):' value={player.critChance} />
-                        <Stat name='Block(%):' value={player.blockChance} />
+                        <Stat name='HP:' value={maxHp} />
+                        <Stat name='Armor:' value={armor} />
+                        <Stat name='M-DMG:' value={meleeDamage} />
+                        <Stat name='R-DMG:' value={rangedDamage} />
+                        <Stat name='Crit(%):' value={critChance} />
+                        <Stat name='Block(%):' value={blockChance} />
                     </ul>
                     <ul>
-                        <Stat name='Beasts:' value={player.bonuses[0].value} />
-                        <Stat name='Dragons:' value={player.bonuses[1].value} />
-                        <Stat name='Insect:' value={player.bonuses[2].value} />
-                        <Stat name='Monsters:' value={player.bonuses[3].value} />
-                        <Stat name='Reptiles:' value={player.bonuses[4].value} />
+                        <Stat name='Beasts:' value={bonuses[0].value} />
+                        <Stat name='Dragons:' value={bonuses[1].value} />
+                        <Stat name='Insect:' value={bonuses[2].value} />
+                        <Stat name='Monsters:' value={bonuses[3].value} />
+                        <Stat name='Reptiles:' value={bonuses[4].value} />
                     </ul>
                 </div>
     
@@ -93,15 +106,15 @@ function Player(props) {
                 <div className='actions' style={{display: canAttack === true ? 'flex' : 'none'}}>
                     
                     <div className='melee_column'>
-                        <Action data={{ id: 'ml', type: 'melee', strength: 'light', icon: <ActionMelee/> }} dodge={meleeDodgeChance} gameManager={props.gameManager} />
-                        <Action data={{ id: 'mm', type: 'melee', strength: 'medium', icon: <ActionMelee /> }} dodge={meleeDodgeChance} gameManager={props.gameManager} />
-                        <Action data={{ id: 'ms', type: 'melee', strength: 'strong', icon: <ActionMelee /> }} dodge={meleeDodgeChance} gameManager={props.gameManager} />
+                        <Action data={{ id: 'ml', type: 'melee', strength: 'light', icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
+                        <Action data={{ id: 'mm', type: 'melee', strength: 'medium', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
+                        <Action data={{ id: 'ms', type: 'melee', strength: 'strong', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
                     </div>
     
                     <div className='ranged_column'>
-                        <Action data={{ id: 'rl', type: 'ranged', strength: 'light', icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} gameManager={props.gameManager} />
-                        <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} gameManager={props.gameManager} />
-                        <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} gameManager={props.gameManager} />
+                        <Action data={{ id: 'rl', type: 'ranged', strength: 'light', icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
+                        <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
+                        <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />
                     </div>
     
                 </div>

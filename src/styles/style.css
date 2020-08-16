@@ -212,26 +212,81 @@
 }
 
 * .page-wrapper .content-container .side-menu .character-info {
-  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border-bottom: 1px white solid;
+  padding: 10px;
 }
 
-@media (max-width: 768px) {
-  * .page-wrapper .content-container .side-menu .character-info {
-    padding: 15px;
-  }
+* .page-wrapper .content-container .side-menu .character-info .character-icon {
+  width: 50px;
+  height: 50px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  margin-left: 10px;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container .xp-bar {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background: white;
+  height: 10px;
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  border-radius: 5px;
 }
 
 * .page-wrapper .content-container .side-menu .nav-link {
-  display: block;
-  padding: 15px 0 15px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px 20px;
   border-bottom: 1px white solid;
   -webkit-transition: 200ms;
   transition: 200ms;
 }
 
-* .page-wrapper .content-container .side-menu .nav-link:hover {
-  color: orangered;
+* .page-wrapper .content-container .side-menu .nav-link:not(.locked):hover {
+  background: white;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link:not(.locked):hover p {
+  color: black;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link.locked {
+  color: #333;
+  cursor: default;
 }
 
 @media (max-width: 768px) {

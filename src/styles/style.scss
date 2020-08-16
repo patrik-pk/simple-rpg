@@ -228,22 +228,57 @@ $tablet: 1200px;
 
                 // Character Info
                 .character-info {
-                    padding: 30px;
+                    display: flex;
                     border-bottom: 1px white solid;
+                    padding: 10px;
 
-                    @include mobile {
-                        padding: 15px;
+                    .character-icon {
+                        width: 50px;
+                        height: 50px;
+                        background: #ccc;
+                        border-radius: 5px;
+                    }
+                    
+                    .level-container {
+                        display: flex;
+                        flex-direction: column;
+                        flex-grow: 100;
+                        margin-left: 10px;
+
+                        div {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .xp-bar {
+                            margin-top: 5px;
+                            display: flex;
+                            width: 100%;
+                            background: white;
+                            height: 10px;
+                            flex-grow: 100;
+                            border-radius: 5px;
+                        }
                     }
                 }
 
                 // Links
                 .nav-link {
-                    display: block;
-                    padding: 15px 0 15px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 15px 20px;
                     border-bottom: 1px white solid;
                     transition: 200ms;
-                    &:hover {
-                        color: orangered;
+                    &:not(.locked):hover {
+                        p {
+                            color: black;
+                        }
+                        background: white;
+                    }
+
+                    &.locked {
+                        color: #333;
+                        cursor: default;
                     }
 
                     @include mobile {
