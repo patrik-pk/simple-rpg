@@ -3,11 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
-import './styles/style.css'
-
-import HomePage from './components/HomePage'
 import Game from './components/game/Game'
 import BoxRoutes from './BoxRoutes'
+import './styles/style.css'
 
 export default function App() {
 
@@ -27,11 +25,8 @@ export default function App() {
     <Provider store={store} >
         <Router>
           <Switch>
-            
-            <Route exact path='/' component={HomePage} />
             <Route path='/game' component={Game} />
             <Route component={BoxRoutes} />
-
           </Switch>
         </Router>
     </Provider>

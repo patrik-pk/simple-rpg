@@ -8,7 +8,6 @@ import { resetPlayer } from '../actions/playerActions'
 import { startGame } from '../actions/gameActions'
 import generateEnemy from '../logic/generateEnemy'
 import tips from '../data/tips'
-import home from '../resources/icons/home.svg'
 import '../styles/menu/menu.css'
 
 function Menu(props) {
@@ -32,11 +31,6 @@ function Menu(props) {
     
     return (
         <div className='menu'>
-            <div className='home_btn'>
-                <Link to='/'>
-                    <img alt='' src={home}/>
-                </Link>
-            </div>
 
             <div className='content'>
                 <Link 
@@ -53,6 +47,7 @@ function Menu(props) {
             <div className='tip'>
                 <p>TIP: {randomTip}</p>
             </div>
+            
         </div>
     )
 }

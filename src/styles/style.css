@@ -1,29 +1,8 @@
-/*@mixin dark_overlay($opacity) {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, $opacity);
-}*/
 * {
   margin: 0;
   padding: 0;
   color: white;
   border-spacing: 0 !important;
-  /*.container.dungeon_page {
-    overflow: hidden;
-
-        .box {
-            min-width: 1200px;
-
-            @include mobile {
-                min-width: 400px;
-            }
-
-            @include tablet {
-                min-width: 700px;
-            }
-        }
-    }*/
 }
 
 * a {
@@ -93,14 +72,14 @@
           animation: loading 500ms infinite linear;
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   * .loading .circle-loading {
     width: 75px;
     height: 75px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   * .loading .circle-loading {
     width: 50px;
     height: 50px;
@@ -129,7 +108,7 @@
   }
 }
 
-* .container {
+* .page-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,33 +119,153 @@
       -ms-flex-align: center;
           align-items: center;
   min-width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
+  max-height: 100vh;
   width: auto;
   background: black;
 }
 
-* .container .box {
+@media (max-width: 500px) {
+  * .page-wrapper {
+    min-width: auto;
+    max-width: auto;
+    overflow-x: scroll;
+  }
+}
+
+@media (max-height: 300px) {
+  * .page-wrapper {
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: scroll !important;
+  }
+  * .page-wrapper .content-container {
+    height: 100%;
+  }
+  * .page-wrapper .content-container .side-menu, * .page-wrapper .content-container .main-content {
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper {
+    display: block;
+  }
+}
+
+* .page-wrapper .content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px white solid;
+  height: 600px;
+}
+
+@media (max-height: 300px) {
+  * .page-wrapper .content-container {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container {
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container {
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+}
+
+* .page-wrapper .content-container .side-menu {
+  width: 300px;
+  height: 100%;
+  border-right: 1px white solid;
+}
+
+@media (max-width: 500px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 25%;
+    max-width: 25%;
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 25%;
+    max-width: 25%;
+  }
+}
+
+* .page-wrapper .content-container .side-menu .character-info {
+  padding: 30px;
+  border-bottom: 1px white solid;
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .side-menu .character-info {
+    padding: 15px;
+  }
+}
+
+* .page-wrapper .content-container .side-menu .nav-link {
+  display: block;
+  padding: 15px 0 15px 20px;
+  border-bottom: 1px white solid;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link:hover {
+  color: orangered;
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .side-menu .nav-link {
+    padding: 8px 0 8px 12px;
+  }
+}
+
+* .page-wrapper .content-container .main-content {
   position: relative;
   width: 800px;
-  height: 600px;
-  margin: 30px;
-  border: 1px white solid;
+  height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: black;
 }
 
-@media (max-width: 767px) {
-  * .container .box {
-    width: 400px;
-    height: 300px;
+@media (max-width: 500px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 370px;
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
-  * .container .box {
-    width: 700px;
-    height: 525px;
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 75%;
+    max-width: 75%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 75%;
+    max-width: 75%;
   }
 }
 /*# sourceMappingURL=style.css.map */

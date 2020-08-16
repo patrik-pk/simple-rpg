@@ -3,14 +3,6 @@
 
 $character_side_margin: 150px;
 
-// Mixins
-
-/*@mixin dark_overlay($opacity) {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, $opacity);
-}*/
 
 @mixin menu_button {
     width: 150px;
@@ -40,8 +32,27 @@ $character_side_margin: 150px;
 
 // Media Queries
 
-$mobile: 767px;
+$extra-small-width: 500px;
+$extra-small-height: 300px;
+$mobile: 768px;
 $tablet: 1200px;
+
+// Everything in mobile mixin works here too, unless
+// its overwritten. This media query ensures that everything
+// is displayed correctly by allowing horizontal scroll, instead
+// of trying to fit it into a whole screen.
+@mixin extra-small-width {
+    @media(max-width: #{$extra-small-width}) {
+        @content;
+    }
+}
+
+// Allows overflow-y on extra small height (under 300px)
+@mixin extra-small-height {
+    @media(max-height: #{$extra-small-height}) {
+        @content;
+    }
+}
 
 @mixin mobile {
     @media(max-width: #{$mobile}) {
@@ -138,52 +149,131 @@ $tablet: 1200px;
         }
     }
     
-    // Container
-    .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 100vw;
-    min-height: 100vh;
-    width: auto;
-    background: black;
-  
-        // Box
-        .box {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            margin: 30px;
+    // Wrapper
+    .page-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+        width: auto;
+        background: black;
+
+        @include extra-small-width {
+            min-width: auto;
+            max-width: auto;
+            overflow-x: scroll;
+        }
+
+        @include extra-small-height {
+            min-height: 300px;
+            max-height: 300px;
+            overflow-y: scroll!important;
+            .content-container {
+                height: 100%;
+                .side-menu, .main-content {
+                    height: 100%;
+                }
+            }
+        }
+
+        @include mobile {
+            display: block;
+        }
+
+        // Content Container
+        .content-container {
+            display: flex;
             border: 1px white solid;
-            box-sizing: border-box;
-            background: black;
+            height: 600px;
+
+            @include extra-small-height {
+                min-height: 300px;
+            }
 
             @include mobile {
-                width: 400px;
-                height: 300px;
+                width: 100%;
+                height: 100vh;
+                border: none;
             }
 
             @include tablet {
-                width: 700px;
-                height: 525px;
+                width: 100%;
+                height: 100vh;
+                border: none;
+            }
+
+            // Sidemenu
+            .side-menu {
+                width: 300px;
+                height: 100%;
+                border-right: 1px white solid;
+
+                @include extra-small-width {
+                    min-width: 130px;
+                }
+
+                @include mobile {
+                    min-width: 25%;
+                    max-width: 25%;
+                    font-size: 10px;
+                }
+
+                @include tablet {
+                    min-width: 25%;
+                    max-width: 25%;
+                }
+
+                // Character Info
+                .character-info {
+                    padding: 30px;
+                    border-bottom: 1px white solid;
+
+                    @include mobile {
+                        padding: 15px;
+                    }
+                }
+
+                // Links
+                .nav-link {
+                    display: block;
+                    padding: 15px 0 15px 20px;
+                    border-bottom: 1px white solid;
+                    transition: 200ms;
+                    &:hover {
+                        color: orangered;
+                    }
+
+                    @include mobile {
+                        padding: 8px 0 8px 12px;
+                    }
+                }
+            }
+      
+            // Main Content
+            .main-content {
+                position: relative;
+                width: 800px;
+                height: 100%;
+                box-sizing: border-box;
+                background: black;
+
+                @include extra-small-width {
+                    min-width: 370px;
+                }
+    
+                @include mobile {
+                    min-width: 75%;
+                    max-width: 75%;
+                }
+    
+                @include tablet {
+                    min-width: 75%;
+                    max-width: 75%;
+                }
             }
         }
     }
-
-    // Container For Dungeon - Delete
-    /*.container.dungeon_page {
-    overflow: hidden;
-
-        .box {
-            min-width: 1200px;
-
-            @include mobile {
-                min-width: 400px;
-            }
-
-            @include tablet {
-                min-width: 700px;
-            }
-        }
-    }*/
 }

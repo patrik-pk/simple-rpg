@@ -9,21 +9,6 @@
   padding: 0;
   color: white;
   border-spacing: 0 !important;
-  /*.container.dungeon_page {
-    overflow: hidden;
-
-        .box {
-            min-width: 1200px;
-
-            @include mobile {
-                min-width: 400px;
-            }
-
-            @include tablet {
-                min-width: 700px;
-            }
-        }
-    }*/
 }
 
 * a {
@@ -129,7 +114,7 @@
   }
 }
 
-* .container {
+* .page-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -145,59 +130,47 @@
   background: black;
 }
 
-* .container .box {
+* .page-wrapper .content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px white solid;
+}
+
+* .page-wrapper .content-container .side-menu {
+  width: 200px;
+  border-right: 1px white solid;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link {
+  display: block;
+}
+
+* .page-wrapper .content-container .main-content {
   position: relative;
   width: 800px;
   height: 600px;
-  margin: 30px;
-  border: 1px white solid;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: black;
 }
 
 @media (max-width: 767px) {
-  * .container .box {
+  * .page-wrapper .content-container .main-content {
     width: 400px;
     height: 300px;
   }
 }
 
 @media (min-width: 767px) and (max-width: 1200px) {
-  * .container .box {
+  * .page-wrapper .content-container .main-content {
     width: 700px;
     height: 525px;
   }
 }
 
 .menu {
-  background: black !important;
-}
-
-.menu .home_btn {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 28px;
-  height: 28px;
-}
-
-@media (max-width: 767px) {
-  .menu .home_btn {
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.menu .home_btn a img {
-  width: 100%;
-  height: 100%;
-}
-
-.menu .home_btn a img:hover {
-  content: url("../../resources/icons/home_colored.svg");
+  background: black;
 }
 
 .menu .content {
