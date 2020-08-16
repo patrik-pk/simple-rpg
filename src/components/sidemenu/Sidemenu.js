@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import SidemenuLink from './SidemenuLink'
 import levelTresholds from '../../data/levelTresholds'
+import { ReactComponent as Logout } from '../../resources/icons/logout.svg'
 
 function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
 
@@ -16,28 +16,21 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
             + xpPercentage + '%)'
     }
 
-    // Locked - this will come from state later on
-    const locked = {
-        classicGame: false,
-        dungeon: true,
-        inventory: false,
-        menu: false,
-    }
-
-    const { classicGame, dungeon, inventory, menu } = locked
+    // Replace with real Auth condition later
+    const isLogged = true
+    const loggedClass = isLogged ? 'active' : ''
 
     // Render
     return (
         <nav className='side-menu'>
 
-            {/* Character Info */}
-            <div className='character-info'>
+            {/* CHARACTER INFO */}
 
+            <div className={`character-info ${loggedClass}`}>
                 {/* Icon */}
                 <div className='character-icon'>
 
                 </div>
-
                 {/* Info - name, currency, level */}
                 <div className='level-container'>
                     <div>
@@ -48,26 +41,22 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
                 </div>
             </div>
 
-            {/* Links */}
-            <Link className='nav-link' to='/game'>
-                <p className='link-name'>Classic Game</p>
-                { classicGame ? <p className='locked'>Locked</p> : null }
-            </Link>
+            {/* LINKS */}
 
-            <Link className='nav-link locked' to='/dungeon'>
-                <p className='link-name'>Dungeon</p>
-                { dungeon ? <p className='locked'>Locked</p> : null }
-            </Link>
-
-            <Link className='nav-link' to='/inventory'>
-                <p className='link-name'>Inventory</p>
-                { inventory ? <p className='locked'>Locked</p> : null }
-            </Link>
-
-            <Link className='nav-link' to='/menu'>
-                <p className='link-name'>Menu</p>
-                { menu ? <p className='locked'>Locked</p> : null }
-            </Link>
+            { // Register & Login if isn't logged
+            !isLogged ?
+            <React.Fragment>
+                <SidemenuLink name='Login' linkTo='/login' isLocked={false} /> 
+                <SidemenuLink name='Register' linkTo='/register' isLocked={false} /> 
+            </React.Fragment> 
+            : null 
+            }
+            <SidemenuLink name='Classic Game' linkTo='/classic_game' isLocked={isLogged ? false : true} />
+            <SidemenuLink name='Dungeon' linkTo='/dungeon' isLocked={true} />
+            <SidemenuLink name='Inventory' linkTo='/inventory' isLocked={isLogged ? false : true} />
+            <SidemenuLink name='Home' linkTo='/' isLocked={isLogged ? false : true} />
+            {/* Logout if is logged */}
+            {isLogged ? <SidemenuLink name='Logout' linkTo='/' isLocked={false} icon={Logout} /> : null}
             
         </nav>
     )

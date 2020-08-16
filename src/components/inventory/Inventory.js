@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -22,7 +21,6 @@ import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
 import cps from '../../logic/calculatePlayerStats'
 
-import levelTresholds from '../../data/levelTresholds'
 import '../../styles/inventory/inventory.css'
 
 function Inventory(props) {
@@ -43,7 +41,7 @@ function Inventory(props) {
         setGold 
     } = props
     const { equippedItems, invItems, shopItems } = items
-    const { currentLevel, experience, gold, diamonds } = character
+    const { gold, diamonds } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
     // Unselect all Inventory & Shop Items on Unmount
@@ -174,9 +172,6 @@ function Inventory(props) {
         return ''
     }
 
-    // Level progress
-    const levelProgress = (experience / levelTresholds[currentLevel].xp * 100).toFixed(2)
-
     return(
         <div className='inventory'>
             
@@ -242,21 +237,8 @@ function Inventory(props) {
                         </div>
                     </div>
                 </div>
-                
-                <div className='money_container'>
-                    <div className='info'>
-                        <p id='level'>Level {currentLevel}</p>
-                        <p>{levelProgress}%</p>
-                    </div>
-                    <div className='money'>
-                        <p id='gold'>Gold: {gold}</p>
-                        <p id='diamonds'>Diamonds: {diamonds}</p>
-                    </div>
-                </div>
-            </div>
-
-            <Link to='/menu' className='menu_btn back_btn'>Back</Link>                        
-    </div>
+            </div>                      
+        </div>
     )
 }
 

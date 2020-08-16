@@ -186,7 +186,7 @@ $info_color: white;
         }
     }
 
-    // Bottom (shop, player info)
+    // Bottom (shop)
     .bottom {
         display: flex;
         flex-direction: row;
@@ -282,74 +282,6 @@ $info_color: white;
                     }
                 }
             }
-        }
-    
-        // Money Container (+ level)
-        .money_container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            min-width: 200px;
-            height: calc(112px - 50px)!important;
-            margin-top: 50px;
-            background: $box_fill;
-            border: $box_border;
-            @include mobile {
-                margin-top: 30px;
-                min-width: 110px;
-                height: calc(70px - 30px)!important;
-            }
-
-            // Info & Money
-            .info, .money {
-                display: flex;
-                flex-direction: column;
-                margin: 10px 0;
-                @include mobile { margin: 6px 0; }
-
-                p {
-                    color: $info_color;
-                    @include mobile { font-size: 10px; }
-                }
-
-                p:first-child {
-                    padding-bottom: 3px;
-                }
-            }
-    
-            // Info
-            .info {
-                margin-left: 15px;
-                @include mobile { margin-left: 5px; }
-
-                p:last-child {
-                    text-align: center;
-                }
-            }
-
-            // Money
-            .money {
-                margin-right: 15px;
-                @include mobile { margin-right: 5px; }
-            }
-        }
-    }
-
-    // Back Button
-    .back_btn {
-        @include menu_button;
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translate(-50%, 0);
-
-        @include tablet {
-            bottom: 10px;
-        }
-
-        @include mobile {
-            bottom: 10px;
         }
     }
 }

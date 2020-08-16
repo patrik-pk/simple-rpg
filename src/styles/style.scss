@@ -228,10 +228,14 @@ $tablet: 1200px;
 
                 // Character Info
                 .character-info {
-                    display: flex;
-                    border-bottom: 1px white solid;
+                    display: none;
+                    //border-bottom: 1px white solid;
                     padding: 10px;
+                    &.active {
+                        display: flex;
+                    }
 
+                    // Character Icon
                     .character-icon {
                         width: 50px;
                         height: 50px;
@@ -239,17 +243,20 @@ $tablet: 1200px;
                         border-radius: 5px;
                     }
                     
+                    // Level Container (everything next to the icon)
                     .level-container {
                         display: flex;
                         flex-direction: column;
                         flex-grow: 100;
                         margin-left: 10px;
 
+                        // Div for Name + Level on the left, Currency on the right
                         div {
                             display: flex;
                             justify-content: space-between;
                         }
 
+                        // XP Bar
                         .xp-bar {
                             margin-top: 5px;
                             display: flex;
@@ -266,19 +273,45 @@ $tablet: 1200px;
                 .nav-link {
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                     padding: 15px 20px;
                     border-bottom: 1px white solid;
                     transition: 200ms;
+                    // Not Locked On Hover
                     &:not(.locked):hover {
-                        p {
-                            color: black;
-                        }
+                        p { color: black; }
                         background: white;
+                        .link-icon.active {
+                            svg {
+                                fill: black;
+                            }
+                        }
                     }
 
+                    // Locked Link
                     &.locked {
-                        color: #333;
+                        p {
+                            color: #444;
+                        }
                         cursor: default;
+                    }
+
+                    // Link Icon
+                    .link-icon {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        &.active {
+                            svg {
+                                fill: white;
+                            }
+                        }
+
+                        svg {
+                            width: 18px;
+                            height: 18px;
+                            fill: #444;
+                        }
                     }
 
                     @include mobile {

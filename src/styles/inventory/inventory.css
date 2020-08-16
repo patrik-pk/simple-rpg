@@ -1,29 +1,8 @@
-/*@mixin dark_overlay($opacity) {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, $opacity);
-}*/
 * {
   margin: 0;
   padding: 0;
   color: white;
   border-spacing: 0 !important;
-  /*.container.dungeon_page {
-    overflow: hidden;
-
-        .box {
-            min-width: 1200px;
-
-            @include mobile {
-                min-width: 400px;
-            }
-
-            @include tablet {
-                min-width: 700px;
-            }
-        }
-    }*/
 }
 
 * a {
@@ -93,14 +72,14 @@
           animation: loading 500ms infinite linear;
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   * .loading .circle-loading {
     width: 75px;
     height: 75px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   * .loading .circle-loading {
     width: 50px;
     height: 50px;
@@ -129,7 +108,7 @@
   }
 }
 
-* .container {
+* .page-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,33 +119,219 @@
       -ms-flex-align: center;
           align-items: center;
   min-width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
+  max-height: 100vh;
   width: auto;
   background: black;
 }
 
-* .container .box {
+@media (max-width: 500px) {
+  * .page-wrapper {
+    min-width: auto;
+    max-width: auto;
+    overflow-x: scroll;
+  }
+}
+
+@media (max-height: 300px) {
+  * .page-wrapper {
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: scroll !important;
+  }
+  * .page-wrapper .content-container {
+    height: 100%;
+  }
+  * .page-wrapper .content-container .side-menu, * .page-wrapper .content-container .main-content {
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper {
+    display: block;
+  }
+}
+
+* .page-wrapper .content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px white solid;
+  height: 600px;
+}
+
+@media (max-height: 300px) {
+  * .page-wrapper .content-container {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container {
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container {
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+}
+
+* .page-wrapper .content-container .side-menu {
+  width: 300px;
+  height: 100%;
+  border-right: 1px white solid;
+}
+
+@media (max-width: 500px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 25%;
+    max-width: 25%;
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container .side-menu {
+    min-width: 25%;
+    max-width: 25%;
+  }
+}
+
+* .page-wrapper .content-container .side-menu .character-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .character-icon {
+  width: 50px;
+  height: 50px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  margin-left: 10px;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+* .page-wrapper .content-container .side-menu .character-info .level-container .xp-bar {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background: white;
+  height: 10px;
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  border-radius: 5px;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px white solid;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link:not(.locked):hover {
+  background: white;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link:not(.locked):hover p {
+  color: black;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link.locked {
+  cursor: default;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link.locked p {
+  color: #444;
+}
+
+* .page-wrapper .content-container .side-menu .nav-link svg {
+  width: 20px;
+  height: 20px;
+  fill: #444;
+}
+
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .side-menu .nav-link {
+    padding: 8px 0 8px 12px;
+  }
+}
+
+* .page-wrapper .content-container .main-content {
   position: relative;
   width: 800px;
-  height: 600px;
-  margin: 30px;
-  border: 1px white solid;
+  height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background: black;
 }
 
-@media (max-width: 767px) {
-  * .container .box {
-    width: 400px;
-    height: 300px;
+@media (max-width: 500px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 370px;
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
-  * .container .box {
-    width: 700px;
-    height: 525px;
+@media (max-width: 768px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 75%;
+    max-width: 75%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  * .page-wrapper .content-container .main-content {
+    min-width: 75%;
+    max-width: 75%;
   }
 }
 
@@ -193,14 +358,14 @@
   margin: 30px auto 0 auto;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top {
     width: 95% !important;
     margin: 10px auto 0 auto;
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .top {
     width: 90% !important;
   }
@@ -234,7 +399,7 @@
   padding: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .left .current_equipment .wrapper {
     padding: 3px;
   }
@@ -244,7 +409,7 @@
   margin: 0 0 5px 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .left .current_equipment .wrapper ul li {
     margin: 0 0 2px 0;
   }
@@ -258,7 +423,7 @@
   margin-right: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .left .current_equipment ul:first-child {
     margin-right: 2px;
   }
@@ -270,7 +435,7 @@
   margin-left: 30px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .left .player_stats {
     min-width: 70px;
     margin: 5px 10px 0 10px;
@@ -297,7 +462,7 @@
   padding: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .wrapper {
     padding: 3px;
   }
@@ -330,7 +495,7 @@
   margin: 0 5px 5px 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .wrapper .items ul li {
     margin: 0 2px 2px 0;
   }
@@ -346,7 +511,7 @@
   bottom: -60px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .options {
     bottom: -32px;
     right: -2px;
@@ -375,7 +540,7 @@
   border: 1px orangered solid;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
     width: 80px;
     padding: 4px 0;
@@ -383,7 +548,7 @@
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
     width: 135px;
     padding: 8px 0;
@@ -396,7 +561,7 @@
   border: 1px white solid;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
     width: 40px;
     padding: 3px 0;
@@ -404,7 +569,7 @@
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
     width: 80px;
     padding: 8px 0;
@@ -415,7 +580,7 @@
   margin-right: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .top .right .items_container .options .equip_btn {
     margin-right: 7px;
   }
@@ -447,14 +612,14 @@
           justify-content: space-between;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom {
     width: 95% !important;
     margin: 10px auto 0 auto;
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .bottom {
     width: 90% !important;
     margin: 20px auto 0 auto;
@@ -468,7 +633,7 @@
   border: 1px white solid;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container {
     width: 110px;
     height: 70px !important;
@@ -479,7 +644,7 @@
   padding: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container .wrapper {
     padding: 5px;
   }
@@ -511,7 +676,7 @@
   text-align: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container .wrapper .options {
     margin-top: 5px;
   }
@@ -539,7 +704,7 @@
   border: 1px orangered solid;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
     width: 80px;
     padding: 4px 0;
@@ -547,7 +712,7 @@
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
     width: 135px;
     padding: 8px 0;
@@ -560,7 +725,7 @@
   border: 1px white solid;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
     width: 43px;
     padding: 5px 0;
@@ -568,7 +733,7 @@
   }
 }
 
-@media (min-width: 767px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
     width: 62px;
     padding: 10px 0;
@@ -589,142 +754,9 @@
   margin-right: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .inventory .bottom .shop_container .wrapper .options button:first-child {
     margin-right: 5px;
-  }
-}
-
-.inventory .bottom .money_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  min-width: 200px;
-  height: calc(112px - 50px) !important;
-  margin-top: 50px;
-  background: black;
-  border: 1px white solid;
-}
-
-@media (max-width: 767px) {
-  .inventory .bottom .money_container {
-    margin-top: 30px;
-    min-width: 110px;
-    height: calc(70px - 30px) !important;
-  }
-}
-
-.inventory .bottom .money_container .info, .inventory .bottom .money_container .money {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: 10px 0;
-}
-
-@media (max-width: 767px) {
-  .inventory .bottom .money_container .info, .inventory .bottom .money_container .money {
-    margin: 6px 0;
-  }
-}
-
-.inventory .bottom .money_container .info p, .inventory .bottom .money_container .money p {
-  color: white;
-}
-
-@media (max-width: 767px) {
-  .inventory .bottom .money_container .info p, .inventory .bottom .money_container .money p {
-    font-size: 10px;
-  }
-}
-
-.inventory .bottom .money_container .info p:first-child, .inventory .bottom .money_container .money p:first-child {
-  padding-bottom: 3px;
-}
-
-.inventory .bottom .money_container .info {
-  margin-left: 15px;
-}
-
-@media (max-width: 767px) {
-  .inventory .bottom .money_container .info {
-    margin-left: 5px;
-  }
-}
-
-.inventory .bottom .money_container .info p:last-child {
-  text-align: center;
-}
-
-.inventory .bottom .money_container .money {
-  margin-right: 15px;
-}
-
-@media (max-width: 767px) {
-  .inventory .bottom .money_container .money {
-    margin-right: 5px;
-  }
-}
-
-.inventory .back_btn {
-  width: 150px;
-  padding: 10px 0;
-  background: black;
-  color: white;
-  border: 1px white solid;
-  text-align: center;
-  -webkit-transition: all 500ms;
-  transition: all 500ms;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-}
-
-.inventory .back_btn:hover {
-  background: black;
-  color: orangered;
-  border: 1px orangered solid;
-}
-
-@media (max-width: 767px) {
-  .inventory .back_btn {
-    width: 80px;
-    padding: 4px 0;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 767px) and (max-width: 1200px) {
-  .inventory .back_btn {
-    width: 135px;
-    padding: 8px 0;
-  }
-}
-
-@media (min-width: 767px) and (max-width: 1200px) {
-  .inventory .back_btn {
-    bottom: 10px;
-  }
-}
-
-@media (max-width: 767px) {
-  .inventory .back_btn {
-    bottom: 10px;
   }
 }
 /*# sourceMappingURL=inventory.css.map */

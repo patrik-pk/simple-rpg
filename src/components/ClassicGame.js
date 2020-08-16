@@ -7,14 +7,11 @@ import { setEnemy } from '../actions/enemyActions'
 import { resetPlayer } from '../actions/playerActions'
 import { startGame } from '../actions/gameActions'
 import generateEnemy from '../logic/generateEnemy'
-import tips from '../data/tips'
-import '../styles/menu/menu.css'
 
-function Menu(props) {
+function ClassicGame(props) {
+
     const { resetPlayer, setEnemy, startGame, currentLevel, invItems } = props
 
-    const randomTip = tips[Math.floor(Math.random() * tips.length)]
-    
     const haveSpaceInv = invItems.length <= 35 ? true : false
     const startActiveStyle = haveSpaceInv ? 'active' : ''
 
@@ -28,31 +25,22 @@ function Menu(props) {
         // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
         startGame()
     }
-    
+
     return (
-        <div className='menu'>
-
-            <div className='content'>
-                <Link 
-                to={haveSpaceInv ? '/game' : '/menu'} 
-                className={'menu_btn start_btn' + startActiveStyle} 
+        <div className='classic-game'>
+            Classic Game Interface
+            <Link
+                to={haveSpaceInv ? '/game' : '/menu'}
+                className={'menu_btn start_btn' + startActiveStyle}
                 onClick={createClassicGame}
-                >
-                Start Game
-                </Link>
-                <Link to='/dungeon' className='menu_btn dungeon_btn'>Dungeon</Link>
-                <Link to='/inventory' className='menu_btn inventory_btn'>Inventory</Link>
-            </div>
-
-            <div className='tip'>
-                <p>TIP: {randomTip}</p>
-            </div>
-            
+            >
+            Start Game
+            </Link>
         </div>
     )
 }
 
-Menu.propTypes = {
+ClassicGame.propTypes = {
     currentLevel: PropTypes.number.isRequired,
     invItems: PropTypes.array.isRequired,
 }
@@ -62,4 +50,4 @@ const mapStateToProps = state => ({
     invItems: state.items.invItems
 })
 
-export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(Menu)
+export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(ClassicGame)
