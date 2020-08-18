@@ -4,10 +4,12 @@ import {
     SET_CAN_ATTACK,
     GAME_WON,
     GAME_LOST,
-    ITEM_OBTAINED
+    ITEM_OBTAINED,
+    GENERATE_CLASSIC_ENEMIES
 } from '../actions/types'
 
 const initialState = {
+    classicEnemies: [],
     battleStatus: '',
     canAttack: true,
     generatedItems: null,
@@ -60,6 +62,13 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 generatedItems: action.payload
+            }
+
+        // Generate Classic Enemies
+        case GENERATE_CLASSIC_ENEMIES:
+            return {
+                ...state,
+                classicEnemies: action.payload
             }
 
         // Default

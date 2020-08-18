@@ -1,34 +1,53 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import EnemyCard from './EnemyCard'
-import { setEnemy } from '../../actions/enemyActions'
-import { resetPlayer } from '../../actions/playerActions'
-import { startGame } from '../../actions/gameActions'
+import { generateClassicEnemies } from '../../actions/gameActions'
 import generateEnemy from '../../logic/generateEnemy'
+import shuffleArray from '../../logic/shuffleArray'
 
 import '../../styles/classic_game/classic_game.css'
 
 function ClassicGame(props) {
 
-    const { resetPlayer, setEnemy, startGame, currentLevel, invItems } = props
+    // Destructure From Props
+    const { 
+        generateClassicEnemies,
+        currentLevel, 
+        classicEnemies 
+    } = props
 
-    const haveSpaceInv = invItems.length <= 35 ? true : false
-    const startActiveStyle = haveSpaceInv ? 'active' : ''
+    // Reroll - generate 3 enemies with unique species, with 
+    // different level - first has one level less than player, second has the same
+    // and the third has one level more than player, then randomize the array
+    const reroll = () => {
+        const enemies = []
+        const diff = [-1, 0, 1]
 
-    // Start Game
-    const createClassicGame = () => {
-        const enemy = generateEnemy('Classic', currentLevel)
-        // reset player hp, damageTaken
-        resetPlayer()
-        // generate enemy
-        setEnemy(enemy)
-        // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
-        startGame()
+        for(let i = 0; i < 3; i++) {
+
+            // set enemy level to currentLevel + diff from array for 3 different difficulties
+            let enemyLevel = currentLevel + diff[i]
+
+            // enemy level cant be -1 or 31, if it is, substract the diff back
+            if(enemyLevel < 0 || enemyLevel > 30) enemyLevel -= diff[i]
+
+            // push generated enemy to the array
+            enemies.push(generateEnemy('Classic', enemyLevel))
+        }
+
+        // shuffle the array to randomize the order of enemies
+        const shuffled = shuffleArray(enemies)
+
+        // and update the state
+        generateClassicEnemies(shuffled)
     }
 
+    // If there are no classicEnemies, generate them - they have no starting value
+    if(classicEnemies.length === 0) reroll()
+
+    // Render
     return (
         <div className='classic-game'>
 
@@ -43,34 +62,28 @@ function ClassicGame(props) {
                 </div>
 
                 <div className='right'>
-                    <button className='reroll-btn' type='button'>Reroll (3)</button>    
+                    <button className='reroll-btn' type='button' onClick={reroll}>Reroll (3)</button>    
                 </div>
 
             </div>
 
             {/* Enemies */}
             <div className='enemies'>
-                <EnemyCard />
-                <EnemyCard />
-                <EnemyCard />
+                { classicEnemies.map((enemy, i) => <EnemyCard key={i} enemy={enemy} />) }
             </div>
 
-
-            {/* <Link to={haveSpaceInv ? '/game' : '/menu'} className={'menu_btn start_btn' + startActiveStyle} onClick={createClassicGame} >
-            Start Game
-            </Link> */}
         </div>
     )
 }
 
 ClassicGame.propTypes = {
     currentLevel: PropTypes.number.isRequired,
-    invItems: PropTypes.array.isRequired,
+    classicEnemies: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
     currentLevel: state.character.currentLevel,
-    invItems: state.items.invItems
+    classicEnemies: state.game.classicEnemies
 })
 
-export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(ClassicGame)
+export default connect(mapStateToProps, { generateClassicEnemies })(ClassicGame)

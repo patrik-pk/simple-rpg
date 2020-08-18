@@ -4,7 +4,8 @@ import {
     SET_CAN_ATTACK,
     GAME_WON,
     GAME_LOST,
-    ITEM_OBTAINED
+    ITEM_OBTAINED,
+    GENERATE_CLASSIC_ENEMIES
 } from './types'
 
 // START GAME
@@ -38,3 +39,9 @@ export const itemObtained = item => ({
     type: ITEM_OBTAINED,
     payload: item
 }) 
+
+// GENERATE CLASSIC ENEMIES
+export const generateClassicEnemies = newEnemies => ({
+    type: GENERATE_CLASSIC_ENEMIES,
+    payload: newEnemies
+})

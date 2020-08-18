@@ -22,6 +22,7 @@ export const SET_CAN_ATTACK = 'CANT_ATTACK'
 export const GAME_WON = 'GAME_WON'
 export const GAME_LOST = 'GAME_LOST'
 export const ITEM_OBTAINED = 'ITEM_OBTAINED'
+export const GENERATE_CLASSIC_ENEMIES = 'GENERATE_CLASSIC_ENEMIES'
 
 // Player
 export const RESET_PLAYER = 'RESET_PLAYER'

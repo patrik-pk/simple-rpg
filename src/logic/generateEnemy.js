@@ -2,7 +2,7 @@ import possibleEnemies from '../data/possibleEnemies'
 import levelTresholds from '../data/levelTresholds'
 import randomGenerator from './randomGenerator'
 
-export default function generateEnemy(type, level, specificEnemy, strongStatIndex, dungeon) {
+export default function generateEnemy(type, level, specificEnemy = null, strongStatIndex = null, dungeon = null) {
 
     // Get Gameflow
     const gameFlow = (() => {
@@ -21,7 +21,7 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
     // Generate Enemy Type from possibleEnemies
     const enemyType = (() => {
         // If there is no 'specificEnemy', create random type from possibleEnemies
-        if(typeof specificEnemy === 'undefined' || specificEnemy === null) {
+        if(!specificEnemy) {
 
             // make an array out of possibleEnemies
             const enemiesArray = Object.values(possibleEnemies)
@@ -107,7 +107,7 @@ export default function generateEnemy(type, level, specificEnemy, strongStatInde
     const armorRandMult = (index) => {
         if (type === 'Classic') return randomMult()
         if (type === 'Boss') {
-            if (strongStatIndex === null || strongStatIndex === undefined) return randomMult()
+            if (!strongStatIndex) return randomMult()
             else {
                 if (index === strongStatIndex) return bossStrongStatMult()
                 else return randomMult()
