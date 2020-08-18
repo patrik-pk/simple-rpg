@@ -3,10 +3,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import { setEnemy } from '../actions/enemyActions'
-import { resetPlayer } from '../actions/playerActions'
-import { startGame } from '../actions/gameActions'
-import generateEnemy from '../logic/generateEnemy'
+import EnemyCard from './EnemyCard'
+import { setEnemy } from '../../actions/enemyActions'
+import { resetPlayer } from '../../actions/playerActions'
+import { startGame } from '../../actions/gameActions'
+import generateEnemy from '../../logic/generateEnemy'
+
+import '../../styles/classic_game/classic_game.css'
 
 function ClassicGame(props) {
 
@@ -28,14 +31,34 @@ function ClassicGame(props) {
 
     return (
         <div className='classic-game'>
-            Classic Game Interface
-            <Link
-                to={haveSpaceInv ? '/game' : '/menu'}
-                className={'menu_btn start_btn' + startActiveStyle}
-                onClick={createClassicGame}
-            >
+
+            {/* Heading */}
+            <h3 className='heading'>Classic Game</h3>
+            
+            {/* Reroll Enemies */}
+            <div className='reroll-enemies'>
+
+                <div className='left'>
+                    <p>Next roll in: 0:45</p>
+                </div>
+
+                <div className='right'>
+                    <button className='reroll-btn' type='button'>Reroll (3)</button>    
+                </div>
+
+            </div>
+
+            {/* Enemies */}
+            <div className='enemies'>
+                <EnemyCard />
+                <EnemyCard />
+                <EnemyCard />
+            </div>
+
+
+            {/* <Link to={haveSpaceInv ? '/game' : '/menu'} className={'menu_btn start_btn' + startActiveStyle} onClick={createClassicGame} >
             Start Game
-            </Link>
+            </Link> */}
         </div>
     )
 }

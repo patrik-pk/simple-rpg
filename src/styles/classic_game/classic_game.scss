@@ -1,0 +1,107 @@
+@import '../style.scss';
+
+// Classic Game Container
+.classic-game {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // Heading
+    .heading {
+        margin-top: 20px;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    // Reroll Enemies
+    .reroll-enemies {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding: 10px 40px;
+        border-top: 1px white solid;
+        border-bottom: 1px white solid;
+
+        // .left {}
+
+        // Right - Reroll Button
+        .right {
+
+            .reroll-btn {
+                padding: 7px 10px;
+                border: 1px white solid;
+                transition: 500ms all;
+                &:hover {
+                    border-color: orangered;
+                    color: orangered;
+                }
+            }
+        }
+    }
+
+    // Enemies
+    .enemies {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding: 0 40px;
+        flex-grow: 1;
+
+        // Enemy Card
+        .enemy-card {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            height: 75%;
+            border: 1px white solid;
+            
+            // Top - Name (level) + Attack Button
+            .top {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 10px;
+                border-bottom: 1px white solid;
+            }
+
+            // Icon
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 1px white solid;
+                height: 170px;
+
+                svg {
+                    width: 100px;
+                    height: 100px;
+                    fill: white;
+                }
+            }
+
+            // Possible Drops
+            .possible-drops {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-grow: 1;
+
+                .drop-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 50px;
+                    height: 50px;
+                    border: 1px white solid;
+
+                    svg {
+                        width: 75%;
+                        height: 75%;
+                        fill: white;
+                    }
+                }
+
+            }
+        }
+    }
+}

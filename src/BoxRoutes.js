@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import Sidemenu from './components/sidemenu/Sidemenu'
 import HomePage from './components/HomePage'
-import ClassicGame from './components/ClassicGame'
+import ClassicGame from './components/classic_game/ClassicGame'
 import Dungeon from './components/Dungeon'
 import Inventory from './components/inventory/Inventory'
 import NotFound from './components/NotFound'
