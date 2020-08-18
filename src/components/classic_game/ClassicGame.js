@@ -47,6 +47,10 @@ function ClassicGame(props) {
     // If there are no classicEnemies, generate them - they have no starting value
     if(classicEnemies.length === 0) reroll()
 
+    // Reroll Active
+    const rerollActive = /* reroll condition */ true
+    const rerollClass = rerollActive ? 'active' : ''
+
     // Render
     return (
         <div className='classic-game'>
@@ -62,7 +66,7 @@ function ClassicGame(props) {
                 </div>
 
                 <div className='right'>
-                    <button className='reroll-btn' type='button' onClick={reroll}>Reroll (3)</button>    
+                    <button className={`reroll-btn ${rerollClass}`} type='button' onClick={rerollActive ? reroll : null}>Reroll (3)</button>    
                 </div>
 
             </div>

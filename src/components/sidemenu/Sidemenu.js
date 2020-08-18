@@ -11,8 +11,8 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
     // XP Bar Styling
     const xpPercentage = (experience / levelTresholds[currentLevel].xp) * 100
     const xpStyle = {
-        background: 'linear-gradient(to right, rgb(0, 191, 255)'
-            + xpPercentage + '%, rgb(0, 37, 122)'
+        background: 'linear-gradient(to right, rgb(255, 255, 255)'
+            + xpPercentage + '%, rgb(35, 35, 35)'
             + xpPercentage + '%)'
     }
 

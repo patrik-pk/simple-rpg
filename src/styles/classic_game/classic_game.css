@@ -389,21 +389,30 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 20px;
-  padding: 10px 40px;
+  padding: 13px 40px;
   border-top: 1px white solid;
   border-bottom: 1px white solid;
 }
 
 .classic-game .reroll-enemies .right .reroll-btn {
-  padding: 7px 10px;
-  border: 1px white solid;
+  padding: 10px 8px;
+  border: 1px black solid;
+  background: white;
+  color: black;
+  height: 100%;
   -webkit-transition: 500ms all;
   transition: 500ms all;
 }
 
-.classic-game .reroll-enemies .right .reroll-btn:hover {
-  border-color: orangered;
-  color: orangered;
+.classic-game .reroll-enemies .right .reroll-btn.active {
+  background: black;
+  color: white;
+  border-color: white;
+}
+
+.classic-game .reroll-enemies .right .reroll-btn.active:hover {
+  background: white;
+  color: black;
 }
 
 .classic-game .enemies {
@@ -431,6 +440,78 @@
   width: 30%;
   height: 75%;
   border: 1px white solid;
+}
+
+.classic-game .enemies .enemy-card.avian svg {
+  fill: #ff97b7 !important;
+}
+
+.classic-game .enemies .enemy-card.avian p {
+  color: #ff97b7;
+}
+
+.classic-game .enemies .enemy-card.avian .top, .classic-game .enemies .enemy-card.avian .icon, .classic-game .enemies .enemy-card.avian {
+  border-color: #ff97b7;
+}
+
+.classic-game .enemies .enemy-card.dinosaur svg {
+  fill: #ed6a5a !important;
+}
+
+.classic-game .enemies .enemy-card.dinosaur p {
+  color: #ed6a5a;
+}
+
+.classic-game .enemies .enemy-card.dinosaur .top, .classic-game .enemies .enemy-card.dinosaur .icon, .classic-game .enemies .enemy-card.dinosaur {
+  border-color: #ed6a5a;
+}
+
+.classic-game .enemies .enemy-card.insect svg {
+  fill: #53dd6c !important;
+}
+
+.classic-game .enemies .enemy-card.insect p {
+  color: #53dd6c;
+}
+
+.classic-game .enemies .enemy-card.insect .top, .classic-game .enemies .enemy-card.insect .icon, .classic-game .enemies .enemy-card.insect {
+  border-color: #53dd6c;
+}
+
+.classic-game .enemies .enemy-card.wildlife svg {
+  fill: #e09767 !important;
+}
+
+.classic-game .enemies .enemy-card.wildlife p {
+  color: #e09767;
+}
+
+.classic-game .enemies .enemy-card.wildlife .top, .classic-game .enemies .enemy-card.wildlife .icon, .classic-game .enemies .enemy-card.wildlife {
+  border-color: #e09767;
+}
+
+.classic-game .enemies .enemy-card.reptile svg {
+  fill: #02c39a !important;
+}
+
+.classic-game .enemies .enemy-card.reptile p {
+  color: #02c39a;
+}
+
+.classic-game .enemies .enemy-card.reptile .top, .classic-game .enemies .enemy-card.reptile .icon, .classic-game .enemies .enemy-card.reptile {
+  border-color: #02c39a;
+}
+
+.classic-game .enemies .enemy-card.aquatic svg {
+  fill: aqua !important;
+}
+
+.classic-game .enemies .enemy-card.aquatic p {
+  color: aqua;
+}
+
+.classic-game .enemies .enemy-card.aquatic .top, .classic-game .enemies .enemy-card.aquatic .icon, .classic-game .enemies .enemy-card.aquatic {
+  border-color: aqua;
 }
 
 .classic-game .enemies .enemy-card .top {
@@ -464,7 +545,8 @@
   fill: white;
 }
 
-.classic-game .enemies .enemy-card .possible-drops {
+.classic-game .enemies .enemy-card .bottom {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -479,7 +561,7 @@
           flex-grow: 1;
 }
 
-.classic-game .enemies .enemy-card .possible-drops .drop-container {
+.classic-game .enemies .enemy-card .bottom .drop-container, .classic-game .enemies .enemy-card .bottom .attack-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -491,12 +573,57 @@
           align-items: center;
   width: 50px;
   height: 50px;
-  border: 1px white solid;
 }
 
-.classic-game .enemies .enemy-card .possible-drops .drop-container svg {
+.classic-game .enemies .enemy-card .bottom .drop-container svg, .classic-game .enemies .enemy-card .bottom .attack-container svg {
   width: 75%;
   height: 75%;
-  fill: white;
+}
+
+.classic-game .enemies .enemy-card .bottom .drop-container .drop-name, .classic-game .enemies .enemy-card .bottom .drop-container .attack-warning, .classic-game .enemies .enemy-card .bottom .attack-container .drop-name, .classic-game .enemies .enemy-card .bottom .attack-container .attack-warning {
+  display: none;
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.classic-game .enemies .enemy-card .bottom .drop-container .drop-name.active, .classic-game .enemies .enemy-card .bottom .drop-container .attack-warning.active, .classic-game .enemies .enemy-card .bottom .attack-container .drop-name.active, .classic-game .enemies .enemy-card .bottom .attack-container .attack-warning.active {
+  display: block;
+}
+
+.classic-game .enemies .enemy-card .bottom .drop-container {
+  background: #555;
+}
+
+.classic-game .enemies .enemy-card .bottom .drop-container:hover .drop-name {
+  display: block;
+}
+
+.classic-game .enemies .enemy-card .bottom .attack-container {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 10px;
+}
+
+.classic-game .enemies .enemy-card .bottom .attack-container:not(.active) svg {
+  fill: white !important;
+}
+
+.classic-game .enemies .enemy-card .bottom .attack-container:hover .attack-warning {
+  display: block;
+}
+
+.classic-game .enemies .enemy-card .bottom .attack-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.classic-game .enemies .enemy-card .bottom .attack-container .attack-warning {
+  color: white;
 }
 /*# sourceMappingURL=classic_game.css.map */

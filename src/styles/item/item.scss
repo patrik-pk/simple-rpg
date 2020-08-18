@@ -1,26 +1,6 @@
 
 @import "../style.scss";
 
-// Variables
-$item_bg: #999;
-$item_selected_color: white;
-
-$common: #555;
-$uncommon: green;
-$rare: blue;
-$epic: purple;
-$legendary: orangered;
-
-$avian-color: #ff97b7;
-$dinosaur-color:#ed6a5a;
-$insect-color: #53dd6c;
-$wildlife-color: #e09767;
-$reptile-color: #02c39a;
-$aquatic-color: aqua;
-
-// Color classes for rarity are at the bottom of the file.
-
-
 // Item Container
 .item_container {
     display: flex;
@@ -170,9 +150,6 @@ $aquatic-color: aqua;
             }
         }
     }
-
-    // COLOR CLASSES
-
     // Drop Classes
 
     // drop

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { setInvItemSelect, unselectShopItems, setShopItemSelect } from '../../actions/itemsActions'
+import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 import '../../styles/item/item.css'
 
 function ItemComponent(props) {
@@ -147,13 +148,10 @@ function ItemComponent(props) {
         const itemName = () => {
             if (isDrop) {
                 // make the first letter of every word upper case
-                let nameArray = name.split(' ')
-                const upperCaseArray = nameArray.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                const nameVal = upperCaseArray.join(' ')
-
+                const nameUpper = firstLetterUpperCase(name)
                 return (
                     <div className='name_container'>
-                        <p id='name'>{nameVal}</p>
+                        <p id='name'>{nameUpper}</p>
                     </div>
                 )
             } else {

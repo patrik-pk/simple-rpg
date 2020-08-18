@@ -6,12 +6,30 @@ import PropTypes from 'prop-types'
 import { setEnemy } from '../../actions/enemyActions'
 import { resetPlayer } from '../../actions/playerActions'
 import { startGame } from '../../actions/gameActions'
+import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 
-import { ReactComponent as Enemy } from '../../resources/icons/creatures/reptiles/dragon.svg'
-import { ReactComponent as Drop } from '../../resources/icons/drop/small_soul.svg'
 import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
 
-function EnemyCard({ enemy, invItems, resetPlayer, setEnemy, startGame }) {
+function EnemyCard(props) {
+
+    // Destructure From Props
+    const { 
+        enemy, 
+        invItems, 
+        resetPlayer, 
+        setEnemy, 
+        startGame 
+    } = props
+
+    const {
+        enemyType: {
+            drops,
+            icon,
+            name,
+            specie
+        },
+        level,
+    } = enemy
 
     // Start Game
     const startClassicGame = () => {
@@ -23,44 +41,53 @@ function EnemyCard({ enemy, invItems, resetPlayer, setEnemy, startGame }) {
         startGame()
     }
 
-    const haveSpaceInv = invItems.length <= 35 ? true : false
-    const linkTo = haveSpaceInv ? '/game' : '/menu'
-    const startActive = haveSpaceInv ? 'active' : ''
+    console.log(enemy)
+
+    // Check if Player has space in inventory
+    const haveSpaceInv = invItems.length <= 33 ? true : false
 
     return (
-        <div className='enemy-card'>
+        <div className={`enemy-card ${specie}`}>
 
             {/* Top */}
             <div className='top'>
-                <p className='name'>Enemy (0)</p>
+                <p className='name'>{name} ({level})</p>
                 <button>Info</button>
-                <button type='button'>Attack</button>
-                <Link to={linkTo} className={`menu_btn start_btn ${startActive}`} onClick={startClassicGame} >
-                    Start Game
-                </Link>
             </div>
 
             {/* Enemy Icon */}
             <div className='icon'>
-                <Enemy />
+                { icon.render() }
             </div>
 
-            {/* Possible Drop Items */}
-            <ul className='possible-drops'>
+            {/* Bottom (Possible Drops & Attack Button) */}
+            <div className='bottom'>
 
-                <li className="drop-container">
-                    <Drop />
-                </li>
+                {/* Drop One */}
+                <div className='drop-container'>
+                    { drops[0].icon.render() }
+                    <p className='drop-name'>{ firstLetterUpperCase(drops[0].name) }</p>
+                </div>
 
-                <li className='drop-container'>
-                    <Attack />
-                </li>
+                {/* Attack Button */}
+                { haveSpaceInv ?
+                    <Link to='/game' className='attack-container active' onClick={startClassicGame} >
+                        <Attack />
+                    </Link>
+                    :
+                    <div className='attack-container'>
+                        <Attack />
+                        <p className='attack-warning'>Clean up your inventory first</p>
+                    </div>
+                }
 
-                <li className="drop-container">
-                    <Drop />
-                </li>
+                {/* Drop Two */}
+                <div className='drop-container'>
+                    { drops[1].icon.render() }
+                    <p className='drop-name'>{ firstLetterUpperCase(drops[1].name) }</p>
+                </div>
 
-            </ul>
+            </div>
 
         </div>
     )

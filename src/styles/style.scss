@@ -1,7 +1,21 @@
 
-// Variables
 
-$character_side_margin: 150px;
+// Variables
+$item_bg: #999;
+$item_selected_color: white;
+
+$common: #555;
+$uncommon: green;
+$rare: blue;
+$epic: purple;
+$legendary: orangered;
+
+$avian-color: #ff97b7;
+$dinosaur-color:#ed6a5a;
+$insect-color: #53dd6c;
+$wildlife-color: #e09767;
+$reptile-color: #02c39a;
+$aquatic-color: aqua;
 
 
 @mixin menu_button {

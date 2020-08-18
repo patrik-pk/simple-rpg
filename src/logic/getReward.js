@@ -17,12 +17,12 @@ export default function getReward(enemy, character, status, enemyType) {
 
     // ENEMY DIFFICULTY MULTIPLIER
     const difficultyMultiplier = (() => {
-        if (enemyType === 'Boss') return 1.25
+        if (enemyType === 'Boss') return 1
         else {
             switch(enemy.difficulty) {
-                case 1: return 0.75
+                case 1: return 0.8
                 case 2: return 1
-                case 3: return 1.25
+                case 3: return 1.2
                 default: break
             }
         }

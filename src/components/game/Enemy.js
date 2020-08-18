@@ -24,7 +24,8 @@ function Enemy(props) {
             enemyType: { name, specie, icon }, 
             type, 
             receivedCrit, 
-            damageTaken, 
+            damageTaken,
+            difficulty 
         } = enemy
 
         // HP bar fill
@@ -39,7 +40,7 @@ function Enemy(props) {
         const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
 
         // Difficulty
-        const difficulty = () => {
+        const difficultyVal = () => {
             if(type === 'Boss') return 'Boss'
             else {
                 switch(difficulty) {
@@ -98,7 +99,7 @@ function Enemy(props) {
                     <ul>
                         <Stat name='Strength:' value={damage} />
                         <Stat name='Crit(%):' value={critChance} />
-                        <Stat name='Diff:' value={difficulty()} />
+                        <Stat name='Diff:' value={difficultyVal()} />
                         <Stat name='Spec:' value={specieName} />
                     </ul>
                 </div>

@@ -71,7 +71,13 @@ export default function generateEnemy(type, level, specificEnemy = null, strongS
 
     // Set Difficulty
     const difficulty = (() => {
-        if(type === 'Classic') return Math.ceil(Math.random() * 3)
+        if(type === 'Classic') {
+            //const lvlDiff = enemyLevel - playerLevel
+            const diff = 1
+            if(diff < 0) return 1
+            if(diff === 0) return 2
+            if(diff > 0) return 3
+        }
         if(type === 'Boss') return 3
     })() 
     

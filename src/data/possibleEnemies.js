@@ -30,7 +30,7 @@ const possibleEnemies = {
         vulture: new EnemyType('Vulture', 'avian', creatureIcons.Vulture, 15, 17, [{ name: 'medium avian soul', icon: di.MediumSoul, classVal: 'avian-soul' }, { name: 'medium feather', icon: di.MediumFeather, classVal: 'feather' }]), 
         hawk: new EnemyType('Hawk', 'avian', creatureIcons.Hawk, 18, 21, [{ name: 'medium avian soul', icon: di.MediumSoul, classVal: 'avian-soul' }, { name: 'medium feather', icon: di.MediumFeather, classVal: 'feather' }]),  
         microraptor: new EnemyType('Microraptor', 'avian', creatureIcons.Microraptor, 22, 26, [{ name: 'large avian soul', icon: di.LargeSoul, classVal: 'avian-soul' }, { name: 'large feather', icon: di.LargeFeather, classVal: 'feather' }]),
-        pterodactyl: new EnemyType('Rooster', 'avian', creatureIcons.Pterodactyl, 27, 30, [{ name: 'large avian soul', icon: di.LargeSoul, classVal: 'avian-soul' }, { name: 'large feather', icon: di.LargeFeather, classVal: 'feather' }]), 
+        pterodactyl: new EnemyType('Pterodactyl', 'avian', creatureIcons.Pterodactyl, 27, 30, [{ name: 'large avian soul', icon: di.LargeSoul, classVal: 'avian-soul' }, { name: 'large feather', icon: di.LargeFeather, classVal: 'feather' }]), 
     },
     // Dinosaurs
     dinosaurs: {

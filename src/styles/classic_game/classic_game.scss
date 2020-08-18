@@ -19,7 +19,7 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 20px;
-        padding: 10px 40px;
+        padding: 13px 40px;
         border-top: 1px white solid;
         border-bottom: 1px white solid;
 
@@ -29,12 +29,20 @@
         .right {
 
             .reroll-btn {
-                padding: 7px 10px;
-                border: 1px white solid;
+                padding: 10px 8px;
+                border: 1px black solid;
+                background: white;
+                color: black;
+                height: 100%;
                 transition: 500ms all;
-                &:hover {
-                    border-color: orangered;
-                    color: orangered;
+                &.active {
+                    background: black;
+                    color: white;
+                    border-color: white;
+                }
+                &.active:hover {
+                    background: white;
+                    color: black;
                 }
             }
         }
@@ -55,6 +63,36 @@
             width: 30%;
             height: 75%;
             border: 1px white solid;
+            &.avian { 
+                svg { fill: $avian-color!important; }
+                p { color: $avian-color; }
+                .top, .icon, & { border-color: $avian-color; }
+            }
+            &.dinosaur { 
+                svg { fill: $dinosaur-color!important; }
+                p { color: $dinosaur-color; } 
+                .top, .icon, & { border-color: $dinosaur-color; }
+            }
+            &.insect { 
+                svg { fill: $insect-color!important; }
+                p { color: $insect-color; } 
+                .top, .icon, & { border-color: $insect-color; }
+            }
+            &.wildlife { 
+                svg { fill: $wildlife-color!important; }
+                p { color: $wildlife-color; } 
+                .top, .icon, & { border-color: $wildlife-color; }
+            }
+            &.reptile { 
+                svg { fill: $reptile-color!important; }
+                p { color: $reptile-color; } 
+                .top, .icon, & { border-color: $reptile-color; }
+            }
+            &.aquatic { 
+                svg { fill: $aquatic-color!important; }
+                p { color: $aquatic-color; } 
+                .top, .icon, & { border-color: $aquatic-color; }
+            }
             
             // Top - Name (level) + Attack Button
             .top {
@@ -79,28 +117,76 @@
                 }
             }
 
-            // Possible Drops
-            .possible-drops {
+            // Bottom (Possible Drops & Attack Button)
+            .bottom {
+                position: relative;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
                 flex-grow: 1;
 
-                .drop-container {
+                // Drop & Attack Containers
+                .drop-container, .attack-container {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     width: 50px;
                     height: 50px;
-                    border: 1px white solid;
-
+                    
                     svg {
                         width: 75%;
                         height: 75%;
-                        fill: white;
+                    }
+
+                    // Drop Name & Attack Warning - Displays On Hover
+                    .drop-name, .attack-warning {
+                        display: none;
+                        position: absolute;
+                        bottom: 3px;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+                        width: 100%;
+                        text-align: center;
+                        font-size: 14px;
+                        &.active {
+                            display: block;
+                        }
+                    }
+                }
+                
+                // Drop Container
+                .drop-container {
+                    background: $common;
+                    &:hover {
+                        .drop-name {
+                            display: block;
+                        }
                     }
                 }
 
+                // Attack Container
+                .attack-container {
+                    align-self: flex-start;
+                    margin-top: 10px;
+                    &:not(.active) {
+                        svg { fill: white!important; }
+                    }
+
+                    &:hover {
+                        .attack-warning {
+                            display: block;
+                        }
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .attack-warning {
+                        color: white;
+                    }
+                }
             }
         }
     }
