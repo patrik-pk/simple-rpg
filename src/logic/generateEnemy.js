@@ -2,26 +2,26 @@ import possibleEnemies from '../data/possibleEnemies'
 import levelTresholds from '../data/levelTresholds'
 import randomGenerator from './randomGenerator'
 
-export default function generateEnemy(type, level, specificEnemy = null, strongStatIndex = null, dungeon = null) {
+export default function generateEnemy(type, enemyLevel, playerLevel, specificEnemy = null, strongStatIndex = null, dungeon = null) {
 
     // Get Gameflow
     const gameFlow = (() => {
-        if(type === 'Classic') return levelTresholds[level].gameFlow
+        if(type === 'Classic') return levelTresholds[enemyLevel].gameFlow
         if(type === 'Boss') {
             const maxLevel = levelTresholds.length - 1
-            if (level <= maxLevel) return levelTresholds[level].gameFlow
+            if (enemyLevel <= maxLevel) return levelTresholds[enemyLevel].gameFlow
             else {
-                const diff = level - maxLevel
+                const diff = enemyLevel - maxLevel
                 const result = levelTresholds[maxLevel].gameFlow + (diff * 2)
                 return result
             }
         }
     })()
 
-    // Generate Enemy Type from possibleEnemies
+    // Generate Enemy Type from possibleEnemies, the are two types
     const enemyType = (() => {
-        // If there is no 'specificEnemy', create random type from possibleEnemies
-        if(!specificEnemy) {
+        // If there is no specificEnemy set, specificEnemy is a array of enemyTypes that can't be generated again
+        if(!specificEnemy.isSet) {
 
             // make an array out of possibleEnemies
             const enemiesArray = Object.values(possibleEnemies)
@@ -34,7 +34,7 @@ export default function generateEnemy(type, level, specificEnemy = null, strongS
                 if(alreadyLooped.length === enemiesArray.length) return possibleEnemies.avians.turkey
             
                 // generate random index, if it is in alreadyLooped, generate new
-                const random = (() => {
+                const randSpecIndex = (() => {
                     let rand = randomGenerator(0, enemiesArray.length - 1)
                     while(alreadyLooped.includes(rand)) {
                         rand = randomGenerator(0, enemiesArray.length - 1)
@@ -43,40 +43,69 @@ export default function generateEnemy(type, level, specificEnemy = null, strongS
                 })() 
 
                 // get specie object with generated index
-                const specie = enemiesArray[random]
+                const specie = enemiesArray[randSpecIndex]
                 
                 // make an array out of that specie object
                 const specieArray = Object.values(specie)
 
-                // from that array filter out enemies, that match players level between min and max
-                const filtered = specieArray.filter(enemy => enemy.minLevel <= level && enemy.maxLevel >= level)
+                // from that array filter out enemies, that match enemy level between min and max
+                const filtered = specieArray.filter(enemy => enemy.minLevel <= enemyLevel && enemy.maxLevel >= enemyLevel)
 
                 // If there are no Enemies in filtered (with that level),
                 // add index of this specie to alreadyLooped and execute this function again
                 if(filtered.length === 0) {
-                    alreadyLooped.push(random)
+                    alreadyLooped.push(randSpecIndex)
                     return getRandomEnemy(alreadyLooped)
+                }
+
+                // If there are, get random enemy from filtered (even if there is just one)
+                const randFilteredIndex = Math.floor(Math.random() * filtered.length)
+                const randomFiltered = filtered[randFilteredIndex]
+
+                // Create array of names of already generated enemies names
+                const alreadyGeneratedNames = specificEnemy.alreadyGenerated.map(enemy => enemy.name)
+
+                // If that randomFiltered enemy is already generated
+                if(alreadyGeneratedNames.includes(randomFiltered.name)) {
+                    // if it is the only one in filtered array, 
+                    // just add the whole specie to the alreadyLooped array and run the whole function again
+                    if(filtered.length === 1) {
+                        alreadyLooped.push(randSpecIndex)
+                        return getRandomEnemy(alreadyLooped)
+                    }
+                    // else splice the already generated one from filtered and get another one
+                    else {
+                        filtered.splice(randFilteredIndex, 1)
+                        const anotherFiltered = filtered[Math.floor(Math.random() * filtered.length)]
+
+                        // if that anotherFiltered is still included (that means there are two
+                        // different enemyTypes with same specie already generated). 
+                        // then push the specie to alreadyLooped and get new one
+                        if(alreadyGeneratedNames.includes(anotherFiltered.name)) {
+                            alreadyLooped.push(randSpecIndex)
+                            return getRandomEnemy(alreadyLooped)
+                        } else return anotherFiltered
+                    } 
                 } 
-                // If there are, return random enemy from filtered (even if there is just one)
-                else return filtered[Math.floor(Math.random() * filtered.length)]
+                // If it's not already generated, return randomFiltered
+                else return randomFiltered
             }
 
             // return random enemy type
             return getRandomEnemy()
         }
         // else return that specificEnemy
-        else return specificEnemy
+        else return specificEnemy.enemy
     })()
 
 
-    // Set Difficulty
+    // Set Difficulty - based on difference between enemyLevel and playerLevel
     const difficulty = (() => {
         if(type === 'Classic') {
-            //const lvlDiff = enemyLevel - playerLevel
-            const diff = 1
-            if(diff < 0) return 1
-            if(diff === 0) return 2
-            if(diff > 0) return 3
+            const lvlDiff = enemyLevel - playerLevel
+            if(lvlDiff < 0) return 1
+            if(lvlDiff === 0) return 2
+            if(lvlDiff > 0) return 3
         }
         if(type === 'Boss') return 3
     })() 
@@ -153,7 +182,7 @@ export default function generateEnemy(type, level, specificEnemy = null, strongS
         meleeDodgeChance,
         rangedDodgeChance,
         enemyType,
-        level,
+        level: enemyLevel,
         type,
         difficulty,
         dungeon,

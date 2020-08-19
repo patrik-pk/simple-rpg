@@ -7,7 +7,7 @@ const { avians, dinosaurs, insect, wildlife, reptiles, aquatic } = possibleEnemi
 // Boss FC - strongStatIndex valid values are 0 or 1, 
 // 0 is for stronger melee armor, 1 is for stronger ranged armor
 const boss = (level, specificEnemy, strongStatIndex, specie) => {
-    return generateEnemy('Boss', level, specificEnemy, strongStatIndex, specie)
+    return generateEnemy('Boss', level, undefined, { enemy: specificEnemy, isSet: true }, strongStatIndex, specie)
 }
 
 // Generate Bosses

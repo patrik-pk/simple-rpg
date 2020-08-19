@@ -41,8 +41,6 @@ function EnemyCard(props) {
         startGame()
     }
 
-    console.log(enemy)
-
     // Check if Player has space in inventory
     const haveSpaceInv = invItems.length <= 33 ? true : false
 
