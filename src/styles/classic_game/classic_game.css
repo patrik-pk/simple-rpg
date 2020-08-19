@@ -503,15 +503,15 @@
 }
 
 .classic-game .enemies .enemy-card.aquatic svg {
-  fill: aqua !important;
+  fill: #00e1e1 !important;
 }
 
 .classic-game .enemies .enemy-card.aquatic p {
-  color: aqua;
+  color: #00e1e1;
 }
 
 .classic-game .enemies .enemy-card.aquatic .top, .classic-game .enemies .enemy-card.aquatic .icon, .classic-game .enemies .enemy-card.aquatic {
-  border-color: aqua;
+  border-color: #00e1e1;
 }
 
 .classic-game .enemies .enemy-card .top {

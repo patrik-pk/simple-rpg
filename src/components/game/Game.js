@@ -39,7 +39,7 @@ function Game(props) {
 
     // Render
     return(
-        <section className='battle_section'>
+        <section className='battle-section'>
 
             {/* Characters */}
             <div className='characters'>
@@ -48,10 +48,10 @@ function Game(props) {
             </div>
 
             {/* Game Over */}
-            <div className='game_over' style={{ display: battleStatus === 'inBattle' ? 'none' : 'block' }}>
+            <div className='game-over' style={{ display: battleStatus === 'inBattle' ? 'none' : 'block' }}>
 
                 {/* End Text */}
-                <div className='end_text'>
+                <div className='end-text'>
                     <p>{battleStatus === 'Victory' ? winText : loseText}</p>
                 </div>
 
@@ -59,20 +59,20 @@ function Game(props) {
                 <div className='reward'>
 
                     {/* Left - Gold, Diamonds, Xp */}
-                    <div className='left'>
-                        <div>
+                    <ul className='left'>
+                        <li>
                             <p>Gold:</p>
                             <p>{acquiredGold}</p>  
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <p>Diamonds:</p>
                             <p>{acquiredDiamonds}</p>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <p>Experience:</p>
                             <p>{acquiredXp}</p>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
 
                     {/* Right - Generated Item(s) */}
                     <ul className='right'>
@@ -86,7 +86,7 @@ function Game(props) {
                 </div>
 
                 {/* Confirm Button */}
-                <Link className='confirm_btn' to='/menu' onClick={endGame}>Continue</Link>
+                <Link className='confirm-btn' to='/menu' onClick={endGame}>Continue</Link>
             </div>
 
         </section>

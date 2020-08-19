@@ -10,12 +10,12 @@ $rare: blue;
 $epic: purple;
 $legendary: orangered;
 
-$avian-color: #ff97b7;
-$dinosaur-color:#ed6a5a;
-$insect-color: #53dd6c;
-$wildlife-color: #e09767;
-$reptile-color: #02c39a;
-$aquatic-color: aqua;
+$avian-color: rgb(255, 151, 183);
+$dinosaur-color: rgb(237, 106, 90);
+$insect-color: rgb(83, 221, 108);
+$wildlife-color: rgb(224, 151, 103);
+$reptile-color: rgb(2, 195, 154);
+$aquatic-color: rgb(0, 225, 225);
 
 
 @mixin menu_button {

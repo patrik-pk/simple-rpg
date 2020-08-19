@@ -28,13 +28,9 @@ function Enemy(props) {
             difficulty 
         } = enemy
 
-        // HP bar fill
-        const hp_percentage = (currentHp / maxHp) * 100
-        const hpStyle = {
-            background: 'linear-gradient(to right, rgb(220, 0, 0)' 
-            + hp_percentage + '%, rgb(75, 0, 0)' 
-            + hp_percentage + '%)'
-        }
+        // HP Bar Styling
+        const hpPercentage = (currentHp / maxHp) * 100
+        const hpStyle = { width: `${hpPercentage > 0 ? hpPercentage : 0}%` }
     
         // Specie
         const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
@@ -58,14 +54,14 @@ function Enemy(props) {
 
         // Render
         return (
-            <div className='character_container' id='enemy'>
+            <div className={`character-container ${specie}`} id='enemy'>
     
                 {/* Top - Image, Floating Damage */}
-                <div className='top_container'>
+                <div className='top'>
     
                     { icon.render() }
     
-                    <p className={'floating_damage' + critClass} style={{ display: damageTaken === '' ? 'none' : 'block' }}>
+                    <p className={'floating-damage' + critClass} style={{ display: damageTaken === '' ? 'none' : 'block' }}>
                         {damageTaken}
                     </p>
                     
@@ -78,10 +74,10 @@ function Enemy(props) {
                         {name} ({level})
                     </p>
 
-                    <div className='hp' style={hpStyle}>
-                        <p className='value'>
-                            {currentHp} / {maxHp}
-                        </p>
+                    <div className='hp'>
+                        <div className='hp-current' style={hpStyle}></div>
+                        <div className='hp-max'></div>
+                        <p className='hp-value'>{currentHp} / {maxHp}</p>
                     </div>
 
                 </div>

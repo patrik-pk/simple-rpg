@@ -38,26 +38,22 @@ function Player(props) {
         } = props
     
         // HP Bar Styling
-        const hp_percentage = (currentHp / maxHp) * 100
-        const hpStyle = {
-            background: 'linear-gradient(to right, rgb(220, 0, 0)'
-                + hp_percentage + '%, rgb(75, 0, 0)'
-                + hp_percentage + '%)'
-        }
+        const hpPercentage = (currentHp / maxHp) * 100
+        const hpStyle = { width: `${hpPercentage > 0 ? hpPercentage : 0}%` }
     
         // Crit Class
         const critClass = receivedCrit ? 'crit' : ''
     
         // Render
         return(
-            <div className='character_container' id='player'>
+            <div className='character-container' id='player'>
     
                 {/* Top - Image, Floating Damage */}
-                <div className='top_container'>
+                <div className='top'>
     
                     <PlayerImage />
     
-                    <p className={`floating_damage ${critClass}`} style={{display: damageTaken === '' ? 'none' : 'block'}}>
+                    <p className={`floating-damage ${critClass}`} style={{display: damageTaken === '' ? 'none' : 'block'}}>
                         {damageTaken}
                     </p>
     
@@ -70,10 +66,10 @@ function Player(props) {
                         Player ({currentLevel})
                     </p>
 
-                    <div className='hp' style={hpStyle}>
-                        <p className='value'>
-                            {currentHp} / {maxHp}
-                        </p>
+                    <div className='hp'>
+                        <div className='hp-current' style={hpStyle}></div>
+                        <div className='hp-max'></div>
+                        <p className='hp-value'>{currentHp} / {maxHp}</p>
                     </div>
 
                 </div>
@@ -98,20 +94,20 @@ function Player(props) {
                 </div>
     
                 {/* Forfeit Button */}
-                <div className='forfeit_container'>
-                    <Link to='/menu'><div>FF</div></Link>
+                <div className='forfeit-container'>
+                    <Link to='/menu'>FF</Link>
                 </div>
     
                 {/* Actions */}
                 <div className='actions' style={{display: canAttack === true ? 'flex' : 'none'}}>
                     
-                    <div className='melee_column'>
+                    <div className='melee-column'>
                         <Action data={{ id: 'ml', type: 'melee', strength: 'light', icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
                         <Action data={{ id: 'mm', type: 'melee', strength: 'medium', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
                         <Action data={{ id: 'ms', type: 'melee', strength: 'strong', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
                     </div>
     
-                    <div className='ranged_column'>
+                    <div className='ranged-column'>
                         <Action data={{ id: 'rl', type: 'ranged', strength: 'light', icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
                         <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
                         <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />

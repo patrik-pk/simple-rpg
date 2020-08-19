@@ -361,19 +361,15 @@
   }
 }
 
-.battle_section {
-  position: relative;
+.battle-section {
   height: 100vh;
   overflow: hidden !important;
   background: black;
 }
 
-.battle_section .characters {
-  position: absolute;
-  top: 40%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+.battle-section .characters {
   width: 100%;
+  padding: 120px 150px 0 150px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -386,7 +382,19 @@
           justify-content: space-between;
 }
 
-.battle_section .characters .character_container {
+@media (max-width: 768px) {
+  .battle-section .characters {
+    padding: 120px 40px 0 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .battle-section .characters {
+    padding: 120px 50px 0 50px;
+  }
+}
+
+.battle-section .characters .character-container {
   position: relative;
   width: 250px;
   height: 400px;
@@ -395,13 +403,13 @@
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container {
+  .battle-section .characters .character-container {
     width: 125px;
     height: 200px;
   }
 }
 
-.battle_section .characters .character_container .top_container {
+.battle-section .characters .character-container .top {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -417,33 +425,34 @@
   background: black;
 }
 
-.battle_section .characters .character_container .top_container svg {
+.battle-section .characters .character-container .top svg {
   width: 75%;
   height: 75%;
-}
-
-.battle_section .characters .character_container .top_container svg path {
   fill: white;
 }
 
-.battle_section .characters .character_container .top_container .floating_damage {
+.battle-section .characters .character-container .top .floating-damage {
   position: absolute;
   bottom: 70px;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
-  color: white;
+  color: white !important;
   font-weight: bold;
   -webkit-animation: floatOut 1.3s linear forwards;
           animation: floatOut 1.3s linear forwards;
 }
 
-.battle_section .characters .character_container .top_container .floating_damage.crit {
-  color: red;
+.battle-section .characters .character-container .top .floating-damage.crit::before {
+  content: '!! ';
+}
+
+.battle-section .characters .character-container .top .floating-damage.crit::after {
+  content: ' !!';
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .top_container .floating_damage {
+  .battle-section .characters .character-container .top .floating-damage {
     bottom: 35px;
     font-size: 8px;
     -webkit-animation: floatOutMobile 1.3s linear forwards;
@@ -523,57 +532,66 @@
   }
 }
 
-.battle_section .characters .character_container .info {
+.battle-section .characters .character-container .info {
   height: 16%;
 }
 
-.battle_section .characters .character_container .info .name {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.battle-section .characters .character-container .info .name {
   height: 45%;
+  text-align: center;
   color: white;
 }
 
-.battle_section .characters .character_container .info .name.boss {
+.battle-section .characters .character-container .info .name.boss {
   color: darkred;
   font-weight: bold;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .info .name {
+  .battle-section .characters .character-container .info .name {
     font-size: 10px;
   }
 }
 
-.battle_section .characters .character_container .info .hp {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.battle-section .characters .character-container .info .hp {
+  position: relative;
   height: 55%;
 }
 
-.battle_section .characters .character_container .info .hp .value {
+.battle-section .characters .character-container .info .hp .hp-current {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #dc0000;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.battle-section .characters .character-container .info .hp .hp-max {
+  width: 100%;
+  height: 100%;
+  background: #4b0000;
+}
+
+.battle-section .characters .character-container .info .hp .hp-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   color: white;
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .info .hp .value {
+  .battle-section .characters .character-container .info .hp .hp-value {
     font-size: 10px;
   }
 }
 
-.battle_section .characters .character_container .stats {
-  position: relative;
+.battle-section .characters .character-container .stats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -586,66 +604,51 @@
           justify-content: space-between;
   width: 100%;
   height: 42%;
-  padding: 5px;
-  padding-bottom: 6px;
+  padding: 15px 15px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 14px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .stats {
+  .battle-section .characters .character-container .stats {
     padding: 3px;
     padding-bottom: 3px;
     font-size: 8px;
   }
 }
 
-.battle_section .characters .character_container .stats ul {
-  margin-top: 10px;
-}
-
-.battle_section .characters .character_container .stats ul:nth-child(2) li {
-  padding: 2px 17px 2px 0;
-}
-
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .stats ul:nth-child(2) li {
-    padding: 1px 7px 1px 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .battle_section .characters .character_container .stats ul {
+  .battle-section .characters .character-container .stats ul {
     margin-top: 5px;
   }
 }
 
-.battle_section .characters .character_container .stats ul li {
-  padding: 2px 0 2px 17px;
+.battle-section .characters .character-container .stats ul .stat-container {
+  padding: 2px 0;
+}
+
+.battle-section .characters .character-container .stats ul .stat-container.boss p {
+  color: orangered !important;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .stats ul li {
-    padding: 1px 0 1px 7px;
+  .battle-section .characters .character-container .stats ul .stat-container {
+    padding: 1px 0;
   }
 }
 
-.battle_section .characters .character_container .stats ul li p:nth-child(2) {
+.battle-section .characters .character-container .stats ul .stat-container p:nth-child(2) {
   margin-left: 13px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .stats ul li p:nth-child(2) {
+  .battle-section .characters .character-container .stats ul .stat-container p:nth-child(2) {
     margin-left: 3px;
   }
 }
 
-.battle_section .characters .character_container .stats .stat-container.boss p {
-  color: orangered !important;
-}
-
-.battle_section .characters .character_container .forfeit_container {
+.battle-section .characters .character-container .forfeit-container {
   z-index: 100;
   position: absolute;
   top: 10px;
@@ -653,12 +656,12 @@
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .forfeit_container {
+  .battle-section .characters .character-container .forfeit-container {
     right: -42px;
   }
 }
 
-.battle_section .characters .character_container .forfeit_container a div {
+.battle-section .characters .character-container .forfeit-container a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -676,20 +679,20 @@
   transition: 500ms all;
 }
 
-.battle_section .characters .character_container .forfeit_container a div:hover {
+.battle-section .characters .character-container .forfeit-container a:hover {
   border: 1px orangered solid;
   color: orangered;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .forfeit_container a div {
+  .battle-section .characters .character-container .forfeit-container a {
     width: 25px;
     height: 25px;
     font-size: 8px;
   }
 }
 
-.battle_section .characters .character_container .actions {
+.battle-section .characters .character-container .actions {
   position: absolute;
   top: 0;
   right: -130px;
@@ -711,12 +714,12 @@
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .actions {
+  .battle-section .characters .character-container .actions {
     right: -70px;
   }
 }
 
-.battle_section .characters .character_container .actions .melee_column, .battle_section .characters .character_container .actions .ranged_column {
+.battle-section .characters .character-container .actions .melee-column, .battle-section .characters .character-container .actions .ranged-column {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -726,21 +729,21 @@
           flex-direction: column;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action, .battle_section .characters .character_container .actions .ranged_column .action {
+.battle-section .characters .character-container .actions .melee-column .action, .battle-section .characters .character-container .actions .ranged-column .action {
   margin-bottom: 10px;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action:hover .hit_chance, .battle_section .characters .character_container .actions .ranged_column .action:hover .hit_chance {
+.battle-section .characters .character-container .actions .melee-column .action:hover .hit_chance, .battle-section .characters .character-container .actions .ranged-column .action:hover .hit_chance {
   display: block !important;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .actions .melee_column .action, .battle_section .characters .character_container .actions .ranged_column .action {
+  .battle-section .characters .character-container .actions .melee-column .action, .battle-section .characters .character-container .actions .ranged-column .action {
     margin-bottom: 5px;
   }
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button, .battle_section .characters .character_container .actions .ranged_column .action button {
+.battle-section .characters .character-container .actions .melee-column .action button, .battle-section .characters .character-container .actions .ranged-column .action button {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -759,35 +762,35 @@
   transition: 500ms all;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button:last-child, .battle_section .characters .character_container .actions .ranged_column .action button:last-child {
+.battle-section .characters .character-container .actions .melee-column .action button:last-child, .battle-section .characters .character-container .actions .ranged-column .action button:last-child {
   margin-bottom: 0;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button:hover, .battle_section .characters .character_container .actions .ranged_column .action button:hover {
+.battle-section .characters .character-container .actions .melee-column .action button:hover, .battle-section .characters .character-container .actions .ranged-column .action button:hover {
   border: 1px orangered solid;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button:hover .hit_chance, .battle_section .characters .character_container .actions .ranged_column .action button:hover .hit_chance {
+.battle-section .characters .character-container .actions .melee-column .action button:hover .hit_chance, .battle-section .characters .character-container .actions .ranged-column .action button:hover .hit_chance {
   border: 1px orangered solid;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button:hover p, .battle_section .characters .character_container .actions .ranged_column .action button:hover p {
+.battle-section .characters .character-container .actions .melee-column .action button:hover p, .battle-section .characters .character-container .actions .ranged-column .action button:hover p {
   color: orangered;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button:hover svg path, .battle_section .characters .character_container .actions .ranged_column .action button:hover svg path {
+.battle-section .characters .character-container .actions .melee-column .action button:hover svg path, .battle-section .characters .character-container .actions .ranged-column .action button:hover svg path {
   fill: orangered;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .actions .melee_column .action button, .battle_section .characters .character_container .actions .ranged_column .action button {
+  .battle-section .characters .character-container .actions .melee-column .action button, .battle-section .characters .character-container .actions .ranged-column .action button {
     width: 25px;
     height: 25px;
     font-size: 8px;
   }
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .icon, .battle_section .characters .character_container .actions .ranged_column .action button .icon {
+.battle-section .characters .character-container .actions .melee-column .action button .icon, .battle-section .characters .character-container .actions .ranged-column .action button .icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -797,40 +800,31 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40px;
-  height: 40px;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .icon#mm, .battle_section .characters .character_container .actions .ranged_column .action button .icon#mm {
+.battle-section .characters .character-container .actions .melee-column .action button .icon#mm, .battle-section .characters .character-container .actions .ranged-column .action button .icon#mm {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .icon#ms, .battle_section .characters .character_container .actions .ranged_column .action button .icon#ms {
+.battle-section .characters .character-container .actions .melee-column .action button .icon#ms, .battle-section .characters .character-container .actions .ranged-column .action button .icon#ms {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
 
-@media (max-width: 768px) {
-  .battle_section .characters .character_container .actions .melee_column .action button .icon, .battle_section .characters .character_container .actions .ranged_column .action button .icon {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.battle_section .characters .character_container .actions .melee_column .action button .icon svg, .battle_section .characters .character_container .actions .ranged_column .action button .icon svg {
+.battle-section .characters .character-container .actions .melee-column .action button .icon svg, .battle-section .characters .character-container .actions .ranged-column .action button .icon svg {
   width: 32px;
   height: 32px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .actions .melee_column .action button .icon svg, .battle_section .characters .character_container .actions .ranged_column .action button .icon svg {
+  .battle-section .characters .character-container .actions .melee-column .action button .icon svg, .battle-section .characters .character-container .actions .ranged-column .action button .icon svg {
     width: 16px;
     height: 16px;
   }
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .hit_chance, .battle_section .characters .character_container .actions .ranged_column .action button .hit_chance {
+.battle-section .characters .character-container .actions .melee-column .action button .hit_chance, .battle-section .characters .character-container .actions .ranged-column .action button .hit_chance {
   display: none !important;
   position: absolute;
   top: -40px;
@@ -851,57 +845,25 @@
   z-index: 100;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .hit_chance p:first-child, .battle_section .characters .character_container .actions .ranged_column .action button .hit_chance p:first-child {
+.battle-section .characters .character-container .actions .melee-column .action button .hit_chance p:first-child, .battle-section .characters .character-container .actions .ranged-column .action button .hit_chance p:first-child {
   padding-top: 8px;
 }
 
-.battle_section .characters .character_container .actions .melee_column .action button .hit_chance p:nth-child(2), .battle_section .characters .character_container .actions .ranged_column .action button .hit_chance p:nth-child(2) {
+.battle-section .characters .character-container .actions .melee-column .action button .hit_chance p:nth-child(2), .battle-section .characters .character-container .actions .ranged-column .action button .hit_chance p:nth-child(2) {
   margin-left: 5px;
 }
 
-.battle_section .characters .character_container .actions .melee_column {
+.battle-section .characters .character-container .actions .melee-column {
   margin-right: 10px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .characters .character_container .actions .melee_column {
+  .battle-section .characters .character-container .actions .melee-column {
     margin-right: 5px;
   }
 }
 
-.battle_section .characters #player {
-  margin-left: 150px;
-}
-
-@media (max-width: 768px) {
-  .battle_section .characters #player {
-    margin-left: 40px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .battle_section .characters #player {
-    margin-left: 50px;
-  }
-}
-
-.battle_section .characters #enemy {
-  margin-right: 150px;
-}
-
-@media (max-width: 768px) {
-  .battle_section .characters #enemy {
-    margin-right: 40px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .battle_section .characters #enemy {
-    margin-right: 50px;
-  }
-}
-
-.battle_section .game_over {
+.battle-section .game-over {
   position: absolute;
   bottom: 5%;
   left: 50%;
@@ -914,99 +876,93 @@
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over {
+  .battle-section .game-over {
     bottom: 10%;
     width: 175px;
     height: 80px;
   }
 }
 
-.battle_section .game_over .end_text {
-  padding-top: 7px;
+.battle-section .game-over .end-text {
+  margin-top: 7px;
   text-align: center;
   font-weight: normal;
   font-size: 20px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over .end_text {
+  .battle-section .game-over .end-text {
     padding-top: 4px;
     font-size: 10px;
   }
 }
 
-.battle_section .game_over .reward {
+.battle-section .game-over .reward {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 15px 30px 0 30px;
+  margin-top: 15px;
+  padding: 0 30px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over .reward {
-    padding: 7px 30px 0 15px;
+  .battle-section .game-over .reward {
+    margin-top: 7px;
+    padding: 0 30px 0 15px;
   }
 }
 
-.battle_section .game_over .reward .left div {
+.battle-section .game-over .reward .left li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.battle_section .game_over .reward .left div p {
-  padding-bottom: 2px;
+.battle-section .game-over .reward .left li p {
+  margin-bottom: 2px;
 }
 
-.battle_section .game_over .reward .left div p:last-child {
+.battle-section .game-over .reward .left li p:last-child {
   margin-left: 12px;
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over .reward .left div p {
-    padding-bottom: 1px;
+  .battle-section .game-over .reward .left li p {
+    margin-bottom: 1px;
     font-size: 8px;
   }
 }
 
-.battle_section .game_over .reward .right {
+.battle-section .game-over .reward .right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.battle_section .game_over .reward .right .item_container {
+.battle-section .game-over .reward .right .item_container {
   margin-right: 5px;
 }
 
-.battle_section .game_over .reward .right .item_container:last-child {
+.battle-section .game-over .reward .right .item_container:last-child {
   margin-right: 0;
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over .reward .right .item_container .stats {
+  .battle-section .game-over .reward .right .item_container .stats {
     margin-bottom: 30px;
   }
 }
 
-.battle_section .game_over .confirm_btn {
+.battle-section .game-over .confirm-btn {
   display: block;
   width: 80px;
   margin: 10px auto 0 auto;
@@ -1019,17 +975,137 @@
   transition: all 500ms;
 }
 
-.battle_section .game_over .confirm_btn:hover {
+.battle-section .game-over .confirm-btn:hover {
   color: orangered;
   border: 1px orangered solid;
 }
 
 @media (max-width: 768px) {
-  .battle_section .game_over .confirm_btn {
+  .battle-section .game-over .confirm-btn {
     width: 60px;
     margin-top: 5px;
     padding: 2px 0;
     font-size: 10px;
   }
+}
+
+#enemy.avian {
+  border-color: #ff97b7;
+}
+
+#enemy.avian svg {
+  fill: #ff97b7;
+}
+
+#enemy.avian p:not(.hp-value) {
+  color: #ff97b7;
+}
+
+#enemy.avian .hp-current {
+  background: #ff97b7;
+}
+
+#enemy.avian .hp-max {
+  background: #cb4b82;
+}
+
+#enemy.dinosaur {
+  border-color: #ed6a5a;
+}
+
+#enemy.dinosaur svg {
+  fill: #ed6a5a;
+}
+
+#enemy.dinosaur p:not(.hp-value) {
+  color: #ed6a5a;
+}
+
+#enemy.dinosaur .hp-current {
+  background: #ed6a5a;
+}
+
+#enemy.dinosaur .hp-max {
+  background: #931e10;
+}
+
+#enemy.insect {
+  border-color: #53dd6c;
+}
+
+#enemy.insect svg {
+  fill: #53dd6c;
+}
+
+#enemy.insect p:not(.hp-value) {
+  color: #53dd6c;
+}
+
+#enemy.insect .hp-current {
+  background: #53dd6c;
+}
+
+#enemy.insect .hp-max {
+  background: #197e2b;
+}
+
+#enemy.wildlife {
+  border-color: #e09767;
+}
+
+#enemy.wildlife svg {
+  fill: #e09767;
+}
+
+#enemy.wildlife p:not(.hp-value) {
+  color: #e09767;
+}
+
+#enemy.wildlife .hp-current {
+  background: #e09767;
+}
+
+#enemy.wildlife .hp-max {
+  background: #8a5a44;
+}
+
+#enemy.reptile {
+  border-color: #02c39a;
+}
+
+#enemy.reptile svg {
+  fill: #02c39a;
+}
+
+#enemy.reptile p:not(.hp-value) {
+  color: #02c39a;
+}
+
+#enemy.reptile .hp-current {
+  background: #02c39a;
+}
+
+#enemy.reptile .hp-max {
+  background: #00614d;
+}
+
+#enemy.aquatic {
+  border-color: #00e1e1;
+}
+
+#enemy.aquatic svg {
+  fill: #00e1e1;
+}
+
+#enemy.aquatic p:not(.hp-value) {
+  color: #00e1e1;
+}
+
+#enemy.aquatic .hp-current {
+  background: #00e1e1;
+}
+
+#enemy.aquatic .hp-max {
+  background: #007f7f;
 }
 /*# sourceMappingURL=gamepage.css.map */
