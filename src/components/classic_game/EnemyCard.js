@@ -76,7 +76,6 @@ function EnemyCard(props) {
 
     // Specie To UpperCase
     const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
-    console.log(enemy)
 
     return (
         <div className={`enemy-card ${specie}`}>

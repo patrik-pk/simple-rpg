@@ -23,6 +23,8 @@ export const GAME_WON = 'GAME_WON'
 export const GAME_LOST = 'GAME_LOST'
 export const ITEM_OBTAINED = 'ITEM_OBTAINED'
 export const GENERATE_CLASSIC_ENEMIES = 'GENERATE_CLASSIC_ENEMIES'
+export const SET_ROLLS = 'SET_ROLLS'
+export const SET_ROLL_TIMER = 'SET_ROLL_TIMER'
 
 // Player
 export const RESET_PLAYER = 'RESET_PLAYER'

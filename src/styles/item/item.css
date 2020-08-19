@@ -627,19 +627,19 @@
 }
 
 .item_container.aquatic-soul .stats, .item_container.aqua-meat .stats {
-  border-color: cyan;
+  border-color: #00e1e1;
 }
 
 .item_container.aquatic-soul #name, .item_container.aqua-meat #name {
-  color: cyan;
+  color: #00e1e1;
 }
 
 .item_container.aquatic-soul .drop-amount, .item_container.aqua-meat .drop-amount {
-  color: cyan;
+  color: #00e1e1;
 }
 
 .item_container.aquatic-soul svg, .item_container.aqua-meat svg {
-  fill: cyan;
+  fill: #00e1e1;
 }
 
 .item_container.legendary {

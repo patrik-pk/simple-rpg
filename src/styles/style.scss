@@ -89,6 +89,10 @@ $tablet: 1200px;
     border-spacing: 0!important;
     box-sizing: border-box;
 
+    body, html {
+        overflow-x: hidden;
+    }
+
     // Link Tag
     a {
         text-decoration: none;

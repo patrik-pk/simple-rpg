@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
+import EventHandler from './components/EventHandler'
 import Game from './components/game/Game'
 import BoxRoutes from './BoxRoutes'
 import './styles/style.css'
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <Provider store={store} >
         <Router>
+          <EventHandler />
           <Switch>
             <Route path='/game' component={Game} />
             <Route component={BoxRoutes} />

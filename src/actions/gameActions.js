@@ -5,7 +5,9 @@ import {
     GAME_WON,
     GAME_LOST,
     ITEM_OBTAINED,
-    GENERATE_CLASSIC_ENEMIES
+    GENERATE_CLASSIC_ENEMIES,
+    SET_ROLLS,
+    SET_ROLL_TIMER
 } from './types'
 
 // START GAME
@@ -44,4 +46,16 @@ export const itemObtained = item => ({
 export const generateClassicEnemies = newEnemies => ({
     type: GENERATE_CLASSIC_ENEMIES,
     payload: newEnemies
+})
+
+// SET ROLLS (add or substract)
+export const setRolls = amount => ({
+    type: SET_ROLLS,
+    payload: amount
+})
+
+// SET ROLL TIMER
+export const setRollTimer = timer => ({
+    type: SET_ROLL_TIMER,
+    payload: timer
 })

@@ -5,7 +5,9 @@ import {
     GAME_WON,
     GAME_LOST,
     ITEM_OBTAINED,
-    GENERATE_CLASSIC_ENEMIES
+    GENERATE_CLASSIC_ENEMIES,
+    SET_ROLLS,
+    SET_ROLL_TIMER
 } from '../actions/types'
 
 const initialState = {
@@ -14,6 +16,8 @@ const initialState = {
     canAttack: true,
     generatedItems: null,
     gameTimer: 1000,
+    rolls: 3,
+    rollTimer: null
 }
 
 export default (state = initialState, action) => {
@@ -69,6 +73,20 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 classicEnemies: action.payload
+            }
+
+        // Set Rolls
+        case SET_ROLLS:
+            return {
+                ...state,
+                rolls: state.rolls += action.payload
+            }
+
+        // Set Roll Timer
+        case SET_ROLL_TIMER:
+            return {
+                ...state,
+                rollTimer: action.payload,
             }
 
         // Default
