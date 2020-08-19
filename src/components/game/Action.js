@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setCanAttack, gameWon, gameLost, itemObtained } from '../../actions/gameActions'
+import { setCanAttack, gameWon, gameLost, itemObtained, generateClassicEnemies } from '../../actions/gameActions'
 import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyActions'
 import { playerBlocked, playerHit, resetPlayerDmgTaken } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
@@ -12,6 +12,7 @@ import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
+import rerollEnemies from '../../logic/rerollEnemies'
 import randomGenerator from '../../logic/randomGenerator'
 
 function Action(props) {
@@ -29,6 +30,7 @@ function Action(props) {
         gameWon,
         gameLost,
         itemObtained, 
+        generateClassicEnemies,
         enemyDodged, 
         enemyHit, 
         resetEnemyDmgTaken,
@@ -130,6 +132,9 @@ function Action(props) {
                 addItemToInv(rewardItems)
                 itemObtained(rewardItems)
 
+                // generate new classic enemies
+                generateClassicEnemies(rerollEnemies(character.currentLevel))
+
                 // break out of this function
                 return
             }
@@ -149,13 +154,20 @@ function Action(props) {
                 playerBlocked()
             } else {
                 playerHit(e_dmgDealt, e_didCrit)
+
                 // check if Player has 0 or less HP after damage dealt
                 if (player.currentHp - e_dmgDealt <= 0) {
+
                     // Battle Won - set battleStatus to 'Victory'
                     gameLost()
+                    
                     // generate reward and update state
                     const reward = getReward(enemy, character, 'Defeat', gameType)
                     addReward(reward)
+
+                    // generate new classic enemies
+                    generateClassicEnemies(rerollEnemies(character.currentLevel))
+
                     // break out of this function
                     return
                 }
@@ -212,6 +224,7 @@ export default connect(mapStateToProps, {
     gameWon,
     gameLost,
     itemObtained, 
+    generateClassicEnemies,
     enemyDodged, 
     enemyHit,
     resetEnemyDmgTaken,
