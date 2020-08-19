@@ -58,48 +58,36 @@
 
         // Enemy Card
         .enemy-card {
+            position: relative;
             display: flex;
             flex-direction: column;
             width: 30%;
-            height: 75%;
+            height: 330px;
             border: 1px white solid;
-            &.avian { 
-                svg { fill: $avian-color!important; }
-                p { color: $avian-color; }
-                .top, .icon, & { border-color: $avian-color; }
-            }
-            &.dinosaur { 
-                svg { fill: $dinosaur-color!important; }
-                p { color: $dinosaur-color; } 
-                .top, .icon, & { border-color: $dinosaur-color; }
-            }
-            &.insect { 
-                svg { fill: $insect-color!important; }
-                p { color: $insect-color; } 
-                .top, .icon, & { border-color: $insect-color; }
-            }
-            &.wildlife { 
-                svg { fill: $wildlife-color!important; }
-                p { color: $wildlife-color; } 
-                .top, .icon, & { border-color: $wildlife-color; }
-            }
-            &.reptile { 
-                svg { fill: $reptile-color!important; }
-                p { color: $reptile-color; } 
-                .top, .icon, & { border-color: $reptile-color; }
-            }
-            &.aquatic { 
-                svg { fill: $aquatic-color!important; }
-                p { color: $aquatic-color; } 
-                .top, .icon, & { border-color: $aquatic-color; }
-            }
             
             // Top - Name (level) + Attack Button
             .top {
                 display: flex;
                 justify-content: space-between;
-                padding: 10px 10px;
+                align-items: center;
+                padding: 12px 14px;
+                padding: 5px 5px 5px 10px;
                 border-bottom: 1px white solid;
+
+                // .name {}
+
+                .info-btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 32px;
+                    height: 32px;
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
             }
 
             // Icon
@@ -167,7 +155,7 @@
                 // Attack Container
                 .attack-container {
                     align-self: flex-start;
-                    margin-top: 10px;
+                    margin-top: 15px;
                     &:not(.active) {
                         svg { fill: white!important; }
                     }
@@ -188,6 +176,91 @@
                     }
                 }
             }
+
+            // Info - Shows when info button is clicked
+            .info {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+                &.active {
+                    display: block;
+                }
+
+                // Info Container
+                .info-container {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+
+                    // Hide Button
+                    .hide-btn {
+                        position: absolute;
+                        top: 6px;
+                        right: 6px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 32px;
+                        height: 32px;
+                        svg {
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+
+                    // Name (+ level)
+                    .name {
+                        padding-top: 45px;
+                        
+                        p {
+                            font-weight: bold;
+                            text-align: center;
+                        }
+                    }
+
+                    // Stats
+                    .stats {
+                        padding: 25px 20px 10px 20px;
+                    }
+                }
+            }
         }
     }
+}
+
+// Species Colorized
+
+.enemy-card.avian { 
+    svg { fill: $avian-color!important; }
+    p { color: $avian-color; }
+    .top, .icon, & { border-color: $avian-color; }
+}
+.enemy-card.dinosaur { 
+    svg { fill: $dinosaur-color!important; }
+    p { color: $dinosaur-color; } 
+    .top, .icon, & { border-color: $dinosaur-color; }
+}
+.enemy-card.insect { 
+    svg { fill: $insect-color!important; }
+    p { color: $insect-color; } 
+    .top, .icon, & { border-color: $insect-color; }
+}
+.enemy-card.wildlife { 
+    svg { fill: $wildlife-color!important; }
+    p { color: $wildlife-color; } 
+    .top, .icon, & { border-color: $wildlife-color; }
+}
+.enemy-card.reptile { 
+    svg { fill: $reptile-color!important; }
+    p { color: $reptile-color; } 
+    .top, .icon, & { border-color: $reptile-color; }
+}
+.enemy-card.aquatic { 
+    svg { fill: $aquatic-color!important; }
+    p { color: $aquatic-color; } 
+    .top, .icon, & { border-color: $aquatic-color; }
 }

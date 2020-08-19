@@ -430,6 +430,7 @@
 }
 
 .classic-game .enemies .enemy-card {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -438,80 +439,8 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 30%;
-  height: 75%;
+  height: 330px;
   border: 1px white solid;
-}
-
-.classic-game .enemies .enemy-card.avian svg {
-  fill: #ff97b7 !important;
-}
-
-.classic-game .enemies .enemy-card.avian p {
-  color: #ff97b7;
-}
-
-.classic-game .enemies .enemy-card.avian .top, .classic-game .enemies .enemy-card.avian .icon, .classic-game .enemies .enemy-card.avian {
-  border-color: #ff97b7;
-}
-
-.classic-game .enemies .enemy-card.dinosaur svg {
-  fill: #ed6a5a !important;
-}
-
-.classic-game .enemies .enemy-card.dinosaur p {
-  color: #ed6a5a;
-}
-
-.classic-game .enemies .enemy-card.dinosaur .top, .classic-game .enemies .enemy-card.dinosaur .icon, .classic-game .enemies .enemy-card.dinosaur {
-  border-color: #ed6a5a;
-}
-
-.classic-game .enemies .enemy-card.insect svg {
-  fill: #53dd6c !important;
-}
-
-.classic-game .enemies .enemy-card.insect p {
-  color: #53dd6c;
-}
-
-.classic-game .enemies .enemy-card.insect .top, .classic-game .enemies .enemy-card.insect .icon, .classic-game .enemies .enemy-card.insect {
-  border-color: #53dd6c;
-}
-
-.classic-game .enemies .enemy-card.wildlife svg {
-  fill: #e09767 !important;
-}
-
-.classic-game .enemies .enemy-card.wildlife p {
-  color: #e09767;
-}
-
-.classic-game .enemies .enemy-card.wildlife .top, .classic-game .enemies .enemy-card.wildlife .icon, .classic-game .enemies .enemy-card.wildlife {
-  border-color: #e09767;
-}
-
-.classic-game .enemies .enemy-card.reptile svg {
-  fill: #02c39a !important;
-}
-
-.classic-game .enemies .enemy-card.reptile p {
-  color: #02c39a;
-}
-
-.classic-game .enemies .enemy-card.reptile .top, .classic-game .enemies .enemy-card.reptile .icon, .classic-game .enemies .enemy-card.reptile {
-  border-color: #02c39a;
-}
-
-.classic-game .enemies .enemy-card.aquatic svg {
-  fill: #00e1e1 !important;
-}
-
-.classic-game .enemies .enemy-card.aquatic p {
-  color: #00e1e1;
-}
-
-.classic-game .enemies .enemy-card.aquatic .top, .classic-game .enemies .enemy-card.aquatic .icon, .classic-game .enemies .enemy-card.aquatic {
-  border-color: #00e1e1;
 }
 
 .classic-game .enemies .enemy-card .top {
@@ -521,8 +450,31 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 10px 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 12px 14px;
+  padding: 5px 5px 5px 10px;
   border-bottom: 1px white solid;
+}
+
+.classic-game .enemies .enemy-card .top .info-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.classic-game .enemies .enemy-card .top .info-btn svg {
+  width: 14px;
+  height: 14px;
 }
 
 .classic-game .enemies .enemy-card .icon {
@@ -607,7 +559,7 @@
 .classic-game .enemies .enemy-card .bottom .attack-container {
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .classic-game .enemies .enemy-card .bottom .attack-container:not(.active) svg {
@@ -625,5 +577,132 @@
 
 .classic-game .enemies .enemy-card .bottom .attack-container .attack-warning {
   color: white;
+}
+
+.classic-game .enemies .enemy-card .info {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.classic-game .enemies .enemy-card .info.active {
+  display: block;
+}
+
+.classic-game .enemies .enemy-card .info .info-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.classic-game .enemies .enemy-card .info .info-container .hide-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.classic-game .enemies .enemy-card .info .info-container .hide-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.classic-game .enemies .enemy-card .info .info-container .name {
+  padding-top: 45px;
+}
+
+.classic-game .enemies .enemy-card .info .info-container .name p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.classic-game .enemies .enemy-card .info .info-container .stats {
+  padding: 25px 20px 10px 20px;
+}
+
+.enemy-card.avian svg {
+  fill: #ff97b7 !important;
+}
+
+.enemy-card.avian p {
+  color: #ff97b7;
+}
+
+.enemy-card.avian .top, .enemy-card.avian .icon, .enemy-card.avian {
+  border-color: #ff97b7;
+}
+
+.enemy-card.dinosaur svg {
+  fill: #ed6a5a !important;
+}
+
+.enemy-card.dinosaur p {
+  color: #ed6a5a;
+}
+
+.enemy-card.dinosaur .top, .enemy-card.dinosaur .icon, .enemy-card.dinosaur {
+  border-color: #ed6a5a;
+}
+
+.enemy-card.insect svg {
+  fill: #53dd6c !important;
+}
+
+.enemy-card.insect p {
+  color: #53dd6c;
+}
+
+.enemy-card.insect .top, .enemy-card.insect .icon, .enemy-card.insect {
+  border-color: #53dd6c;
+}
+
+.enemy-card.wildlife svg {
+  fill: #e09767 !important;
+}
+
+.enemy-card.wildlife p {
+  color: #e09767;
+}
+
+.enemy-card.wildlife .top, .enemy-card.wildlife .icon, .enemy-card.wildlife {
+  border-color: #e09767;
+}
+
+.enemy-card.reptile svg {
+  fill: #02c39a !important;
+}
+
+.enemy-card.reptile p {
+  color: #02c39a;
+}
+
+.enemy-card.reptile .top, .enemy-card.reptile .icon, .enemy-card.reptile {
+  border-color: #02c39a;
+}
+
+.enemy-card.aquatic svg {
+  fill: #00e1e1 !important;
+}
+
+.enemy-card.aquatic p {
+  color: #00e1e1;
+}
+
+.enemy-card.aquatic .top, .enemy-card.aquatic .icon, .enemy-card.aquatic {
+  border-color: #00e1e1;
 }
 /*# sourceMappingURL=classic_game.css.map */

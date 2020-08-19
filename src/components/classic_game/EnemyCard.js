@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import Stat from '../Stat'
 import { setEnemy } from '../../actions/enemyActions'
 import { resetPlayer } from '../../actions/playerActions'
 import { startGame } from '../../actions/gameActions'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 
 import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
+import { ReactComponent as Close } from '../../resources/icons/close.svg'
+import { ReactComponent as Info } from '../../resources/icons/info.svg'
 
 function EnemyCard(props) {
 
@@ -29,7 +32,20 @@ function EnemyCard(props) {
             specie
         },
         level,
+        maxHp,
+        meleeArmor,
+        rangedArmor,
+        meleeDodgeChance,
+        rangedDodgeChance,
+        damage,
+        critChance,
+        difficulty,
+        type
     } = enemy
+
+    // Info
+    const [infoActive, setInfoActive] = useState(false)
+    const infoClass = infoActive ? 'active' : ''
 
     // Start Game
     const startClassicGame = () => {
@@ -41,8 +57,26 @@ function EnemyCard(props) {
         startGame()
     }
 
+
     // Check if Player has space in inventory
     const haveSpaceInv = invItems.length <= 33 ? true : false
+
+    // Difficulty
+    const difficultyVal = () => {
+        if (type === 'Boss') return 'Boss'
+        else {
+            switch (difficulty) {
+                case 1: return 'Easy'
+                case 2: return 'Medium'
+                case 3: return 'Hard'
+                default: break;
+            }
+        }
+    }
+
+    // Specie To UpperCase
+    const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
+    console.log(enemy)
 
     return (
         <div className={`enemy-card ${specie}`}>
@@ -50,7 +84,9 @@ function EnemyCard(props) {
             {/* Top */}
             <div className='top'>
                 <p className='name'>{name} ({level})</p>
-                <button>Info</button>
+                <button className='info-btn' onClick={() => setInfoActive(true)}>
+                    <Info />
+                </button>
             </div>
 
             {/* Enemy Icon */}
@@ -85,6 +121,34 @@ function EnemyCard(props) {
                     <p className='drop-name'>{ firstLetterUpperCase(drops[1].name) }</p>
                 </div>
 
+            </div>
+
+            {/* Info - Shows when info button is clicked */}
+            <div className={`info ${infoClass}`}>
+                <div className='info-container'>
+
+                    {/* Hide Button */}
+                    <button className='hide-btn' onClick={() => setInfoActive(false)}>
+                        <Close />
+                    </button>
+
+                    <div className='name'>
+                        <p>{name} ({level})</p>
+                    </div>
+
+                    {/* Stats */}
+                    <ul className='stats'>
+                        <Stat name='HP:' value={maxHp} />
+                        <Stat name='M-Armor:' value={meleeArmor} enemy={enemy} />
+                        <Stat name='R-Armor:' value={rangedArmor} enemy={enemy} />
+                        <Stat name='M-Dodge(%):' value={Math.round(meleeDodgeChance)} />
+                        <Stat name='R-Dodge(%):' value={Math.round(rangedDodgeChance)} />
+                        <Stat name='Damage:' value={damage} />
+                        <Stat name='Crit(%):' value={critChance} />
+                        <Stat name='Difficulty:' value={difficultyVal()} />
+                        <Stat name='Specie:' value={specieName} />
+                    </ul>
+                </div>
             </div>
 
         </div>
