@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import InventoryRow from './inventory/InventoryRow'
 import possibleDrops from '../data/possibleDrops'
 import DropItem from '../data/DropItem'
+import craftableItems from '../data/craftableItems'
 import '../styles/crafting/crafting.css'
 
 function Crafting({ invItems }) {
@@ -57,7 +58,7 @@ function Crafting({ invItems }) {
     }
 
     // Mapped Drops
-    const drps = {
+    const drops = {
         low: mapDrops(0, 3),
         medium: mapDrops(1, 4),
         high: mapDrops(2, 5),
@@ -74,9 +75,9 @@ function Crafting({ invItems }) {
     // Display Proper Drops Based On Menu
     const displayDrops = () => {
         switch(menuActive) {
-            case 1: return drps.low
-            case 2: return drps.medium
-            case 3: return drps.high
+            case 1: return drops.low
+            case 2: return drops.medium
+            case 3: return drops.high
             default: break;
         }
     }
@@ -112,6 +113,10 @@ function Crafting({ invItems }) {
             </div>
 
             {/* Craftable Items */}
+            <div className='craftable-items'>
+                <InventoryRow itemsProp={craftableItems} />
+            </div>
+
         </div>
     )
 }

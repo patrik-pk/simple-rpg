@@ -2,56 +2,50 @@ import EquipItem from '../data/EquipItem'
 import possibleItems from '../data/possibleItems'
 import possibleBonuses from '../data/possibleBonuses'
 import levelTresholds from '../data/levelTresholds'
+import rarities from '../data/rarities'
 import randomGenerator from './randomGenerator'
 
-// TODO: Pro specific item pridat dalsi parametr 'specific', coz bude objekt
-// vsech spefikaci, ktere chci automaticky vygenerovat (rarita, typ),
-// napr. specific = { rarity: 'legendary', itemType: 'sword' }
-export default function generateItem(character, enemy, destination, key, gameType) {
+export default function generateItem(level, destination, key, gameType, specific) {
 
-    // Get gameFlow, if it is generated after defeating a Boss,
-    // return gameFlow off that Boss, if its level is higher than Player's,
-    // if Player's is higher, return Player's gameFlow
-    // if it isn't from boss, return Player's gameFlow
+    // Get GameFlow (= multiplier for level)
     const gameFlow = (() => {
-        if(gameType === 'Boss') {
-            const playerLevel = character.currentLevel
-            const bossLevel = enemy.level
-            const maxLevel = levelTresholds.length - 1
-            if(playerLevel > bossLevel) {
-                return levelTresholds[playerLevel].gameFlow
-            } else {
-                if (bossLevel <= maxLevel) return levelTresholds[bossLevel].gameFlow
-                else {
-                    const diff = bossLevel - maxLevel
-                    const result = levelTresholds[maxLevel].gameFlow + (diff * 2)
-                    return result
-                }
-            }
+        const maxLevel = levelTresholds[levelTresholds.length].level
+
+        // If level is higher than max level (happens for bosses), create gameFlow manually
+        if(level > maxLevel) {
+            const diff = level - maxLevel
+            return levelTresholds[maxLevel].gameFlow + (diff * 2)
         }
-        // IMPORTANT: gameFlow has always minimum value of 1 for items, 
-        // which is equal to level 5
-        else return character.gameFlow < 1 ? 1 : character.gameFlow
+
+        // IMPORTANT: gameFlow has always minimum value of 1 for items, which is equal to level 5
+        else return levelTresholds[level].gameFlow < 1 ? 1 : levelTresholds[level].gameFlow
     })()
 
-    // Generate random item type from /data/possibleItem.js
-    const generatedType = possibleItems[Math.floor(Math.random() * possibleItems.length)]
+    // Generate Type - If there is specific type assign it, else generate random item type from /data/possibleItem.js
+    const generatedType = (() => {
+        if(specific.type) return specific.type
+        else {
+            const possItems = Object.values(possibleItems)
+            return possItems[Math.floor(Math.random() * possItems.length)] 
+        }
+    })()
 
-    // Generate item's rarity and set multipliers
+    // Generate Rarity (check rarities.js for multiplier values)
     const genRarity = (() => {
-
-        if (gameType === 'Boss') return { name: 'Legendary', mult: 1.7, valueMult: 2.5 }
+        if(specific.rarity) return specific.rarity
+        else if (gameType === 'Boss') return rarities.legendary
         else {
             const rand = Math.round(Math.random() * 100)
-            if(rand <= 5) return { name: 'Legendary', mult: 1.7, valueMult: 2.5 }
-            else if (rand <= 20 && rand > 5) return { name: 'Epic', mult: 1.45, valueMult: 2 }
-            else if (rand <= 40 & rand > 20) return { name: 'Rare', mult: 1.25, valueMult: 1.6 }
-            else if (rand <= 70 && rand > 40) return { name: 'Uncommon', mult: 1.1, valueMult: 1.3 }
-            else if (rand <= 100 && rand > 70) return { name: 'Common', mult: 1, valueMult:1 }
-            return 'Unknown'
+            if(rand <= 5) return rarities.legendary
+            else if (rand <= 20 && rand > 5) return rarities.epic
+            else if (rand <= 40 & rand > 20) return rarities.rare
+            else if (rand <= 70 && rand > 40) return rarities.uncommon
+            else if (rand <= 100 && rand > 70) return rarities.common
+            return rarities.common
         }
     })()
 
+    // TODO: Continue here, simplify this using destructuring?
     const rarity = genRarity.name
     const rarityMultiplier = genRarity.mult
     const rarityValueMultiplier = genRarity.valueMult
@@ -98,6 +92,7 @@ export default function generateItem(character, enemy, destination, key, gameTyp
 
     // Generate Bonuses
     const generatedBonuses = (() => {
+        if(specific.bonuses) return specific.bonuses
 
         // create a copy of allPossibleBonuses object
         let allPossibleBonuses = JSON.parse(JSON.stringify(possibleBonuses))
@@ -193,9 +188,7 @@ export default function generateItem(character, enemy, destination, key, gameTyp
     // Generate Item Level
     const generatedLevel = (() => {
         let level = (() => {
-            if(!gameType) return character.currentLevel
-            const playerLevel = character.currentLevel
-            const enemyLevel = enemy.level
+            if(!gameType) return playerLevel
             // if enemy is boss and has higher level than player => return enemyLevel
             if(gameType === 'Boss' && playerLevel < enemyLevel) return enemyLevel
             else return playerLevel // otherwise return playerLevel

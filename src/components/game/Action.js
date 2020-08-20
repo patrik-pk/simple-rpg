@@ -120,7 +120,10 @@ function Action(props) {
                     
                     // generate items, first item is always equipment, others are drop
                     for(let i = 0; i < numberOfItems; i++) {
-                        if (i === 0) items.push(generateItem(character, enemy, 'Inventory', invItems.length, gameType))
+                        if (i === 0) {
+                            const itemLevel = enemy.level > character.currentLevel ? enemy.level : character.currentLevel
+                            items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
+                        } 
                         else generateUniqueDrop(alreadyGeneratedDrops, i)
                     }
 

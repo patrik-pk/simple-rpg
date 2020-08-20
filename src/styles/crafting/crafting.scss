@@ -47,6 +47,7 @@
 
     // Players Drops
     .player-drops {
+        margin: 30px auto 0 auto;
         
         // Item Row
         ul {
@@ -56,14 +57,21 @@
             .item-container {
                 width: 44px;
                 height: 44px;
-
-                
-                .drop-amount {
-
-                }
             }
         }
     }
 
     // Craftable Items
+    .craftable-items {
+        margin: 30px auto 0 auto;
+
+        ul {
+            display: flex;
+
+            .item-container {
+                width: 44px;
+                height: 44px;
+            }
+        }
+    }
 }

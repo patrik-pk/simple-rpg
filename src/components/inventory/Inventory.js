@@ -41,7 +41,7 @@ function Inventory(props) {
         setGold 
     } = props
     const { equippedItems, invItems, shopItems } = items
-    const { gold, diamonds } = character
+    const { gold, diamonds, currentLevel } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
     // Unselect all Inventory & Shop Items on Unmount
@@ -98,7 +98,7 @@ function Inventory(props) {
             for (let i = 0; i < 3; i++) {
                 const random = randomGenerator(1, 100, 1)
                 // 75% chance to generate item, 25% to generate drop
-                if(random < 75) newShopItems.push(generateItem(character, null, 'Shop', i))
+                if(random < 75) newShopItems.push(generateItem(currentLevel, 'Shop', i))
                 else {
                     newShopItems.push(generateDrop('Shop', i))
                 }

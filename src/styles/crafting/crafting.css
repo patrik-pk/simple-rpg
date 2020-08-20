@@ -426,6 +426,10 @@
   text-align: center;
 }
 
+.crafting .player-drops {
+  margin: 30px auto 0 auto;
+}
+
 .crafting .player-drops ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -433,6 +437,21 @@
 }
 
 .crafting .player-drops ul .item-container {
+  width: 44px;
+  height: 44px;
+}
+
+.crafting .craftable-items {
+  margin: 30px auto 0 auto;
+}
+
+.crafting .craftable-items ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.crafting .craftable-items ul .item-container {
   width: 44px;
   height: 44px;
 }
