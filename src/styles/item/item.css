@@ -7,6 +7,10 @@
           box-sizing: border-box;
 }
 
+* body, * html {
+  overflow-x: hidden;
+}
+
 * a {
   text-decoration: none;
   color: white;
@@ -383,6 +387,10 @@
 .item_container.selected {
   background: white !important;
   border: 1px white solid;
+}
+
+.item_container.avian-soul .stats {
+  display: block !important;
 }
 
 @media (max-width: 768px) {

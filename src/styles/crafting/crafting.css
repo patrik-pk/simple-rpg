@@ -365,89 +365,7 @@
   }
 }
 
-.dungeon {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.dungeon #tip {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-}
-
-@media (max-width: 768px) {
-  .dungeon #tip {
-    margin-right: 7px;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon #tip {
-    font-size: 14px;
-  }
-}
-
-.dungeon #page_name {
-  padding-top: 20px;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .dungeon #page_name {
-    padding-top: 15px;
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon #page_name {
-    padding-top: 15px;
-    font-size: 24px;
-  }
-}
-
-.dungeon #current_level {
-  text-align: center;
-  margin-top: 5px;
-}
-
-@media (max-width: 768px) {
-  .dungeon #current_level {
-    margin-top: 2px;
-    font-size: 10px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon #current_level {
-    margin-top: 3px;
-    font-size: 14px;
-  }
-}
-
-.dungeon .dungeon_container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.dungeon .dungeon_container .dungeon_item {
-  position: relative;
+.crafting {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -455,279 +373,56 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-width: 200px;
-  min-height: 200px;
-  margin: 0 10px;
-  border: 2px black solid;
+  height: 100%;
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item {
-    min-width: 130px;
-    min-height: 130px;
-    margin: 0 2px;
-  }
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item {
-    min-width: 70px;
-    min-height: 70px;
-    margin: 0 2px;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 40%;
-  height: 40%;
-}
-
-.dungeon .dungeon_container .dungeon_item svg path {
-  fill: white;
-}
-
-.dungeon .dungeon_container .dungeon_item .heading {
-  width: 100%;
-  margin: 0 auto;
-  padding: 7px 0;
-  color: white;
-  z-index: 10;
+.crafting .heading {
+  margin-top: 20px;
+  font-size: 32px;
   text-align: center;
-  -webkit-transition: 500ms;
-  transition: 500ms;
 }
 
-.dungeon .dungeon_container .dungeon_item .heading:hover {
-  background: black;
-  outline: 1px orangered solid;
+.crafting .crafting-menu {
+  margin-top: 20px;
+  border-top: 1px white solid;
+  border-bottom: 1px white solid;
 }
 
-.dungeon .dungeon_container .dungeon_item .heading:hover .stats {
-  display: block;
+.crafting .crafting-menu .menu-items {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .heading {
-    padding: 3px 0;
-  }
+.crafting .crafting-menu .menu-items .menu-item {
+  width: auto;
+  padding: 15px 0;
+  cursor: pointer;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
 }
 
-.dungeon .dungeon_container .dungeon_item .heading #dungeon {
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .heading #dungeon {
-    font-size: 9px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .heading #dungeon {
-    font-size: 12px;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item .heading #enemy {
-  margin-top: 5px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .heading #enemy {
-    font-size: 6px;
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .heading #enemy {
-    font-size: 10px;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item .heading .stats {
-  display: none;
-  position: absolute;
-  bottom: -1px;
-  left: 185px;
-  width: 110px;
-  padding: 10px;
-  background: black;
-  border: 1px orangered solid;
-  z-index: 100 !important;
-  font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .heading .stats {
-    left: 75px;
-    width: 75px;
-    font-size: 8px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .heading .stats {
-    left: 135px;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item .heading .stats .stat_cont.boss p {
-  color: orangered !important;
-}
-
-.dungeon .dungeon_container .dungeon_item .enter_btn {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-  width: 150px;
-  padding: 10px 0;
-  background: black;
-  color: white;
-  border: 1px white solid;
-  text-align: center;
-  -webkit-transition: all 500ms;
-  transition: all 500ms;
-  width: 100px;
-  padding: 7px 0;
-}
-
-.dungeon .dungeon_container .dungeon_item .enter_btn:hover {
-  background: black;
-  color: orangered;
-  border: 1px orangered solid;
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .enter_btn {
-    width: 80px;
-    padding: 4px 0;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .enter_btn {
-    width: 135px;
-    padding: 8px 0;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item .enter_btn:hover {
-  border: 1px orangered solid;
-}
-
-.dungeon .dungeon_container .dungeon_item .enter_btn:not(.active) {
+.crafting .crafting-menu .menu-items .menu-item:hover {
   background: white;
+}
+
+.crafting .crafting-menu .menu-items .menu-item:hover p {
   color: black;
-  border: none;
 }
 
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item .enter_btn {
-    width: 35px;
-    padding: 2px 0;
-    font-size: 8px;
-  }
+.crafting .crafting-menu .menu-items .menu-item.active {
+  background: white;
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item .enter_btn {
-    width: 60px;
-    padding: 3px 0;
-  }
+.crafting .crafting-menu .menu-items .menu-item.active p {
+  color: black;
 }
 
-.dungeon .dungeon_container .dungeon_item.finished {
-  position: relative;
-}
-
-.dungeon .dungeon_container .dungeon_item.finished .text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.dungeon .dungeon_container .dungeon_item.finished .text p {
-  font-size: 22px;
-  font-weight: bold;
+.crafting .crafting-menu .menu-items .menu-item p {
   text-align: center;
-  letter-spacing: 1px;
 }
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item.finished .text p {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .dungeon_container .dungeon_item.finished .text p {
-    font-size: 16px;
-  }
-}
-
-.dungeon .dungeon_container .dungeon_item.finished .text p:first-child {
-  padding-bottom: 4px;
-}
-
-@media (max-width: 768px) {
-  .dungeon .dungeon_container .dungeon_item.finished .text p:first-child {
-    padding-bottom: 1px;
-  }
-}
-
-.dungeon .back_btn {
-  width: 150px;
-  padding: 10px 0;
-  background: black;
-  color: white;
-  border: 1px white solid;
-  text-align: center;
-  -webkit-transition: all 500ms;
-  transition: all 500ms;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-}
-
-.dungeon .back_btn:hover {
-  background: black;
-  color: orangered;
-  border: 1px orangered solid;
-}
-
-@media (max-width: 768px) {
-  .dungeon .back_btn {
-    width: 80px;
-    padding: 4px 0;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .dungeon .back_btn {
-    width: 135px;
-    padding: 8px 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .dungeon .back_btn {
-    bottom: 10px;
-  }
-}
-/*# sourceMappingURL=dungeon.css.map */
+/*# sourceMappingURL=crafting.css.map */

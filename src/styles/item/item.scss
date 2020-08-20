@@ -19,6 +19,10 @@
         border: 1px $item_selected_color solid; 
     }
 
+    &.avian-soul {
+        .stats { display: block!important; }
+    }
+
     // mobile
     @include mobile {
         width: 26px;

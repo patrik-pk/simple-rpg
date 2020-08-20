@@ -7,6 +7,10 @@
           box-sizing: border-box;
 }
 
+* body, * html {
+  overflow-x: hidden;
+}
+
 * a {
   text-decoration: none;
   color: white;

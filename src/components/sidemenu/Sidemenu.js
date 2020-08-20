@@ -54,6 +54,7 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
             <SidemenuLink name='Classic Game' linkTo='/classic_game' isLocked={isLogged ? false : true} />
             <SidemenuLink name='Dungeon' linkTo='/dungeon' isLocked={true} />
             <SidemenuLink name='Inventory' linkTo='/inventory' isLocked={isLogged ? false : true} />
+            <SidemenuLink name='Crafting' linkTo='/crafting' isLocked={isLogged ? false : true} />
             <SidemenuLink name='Home' linkTo='/' isLocked={isLogged ? false : true} />
             {/* Logout if is logged */}
             {isLogged ? <SidemenuLink name='Logout' linkTo='/' isLocked={false} icon={Logout} /> : null}

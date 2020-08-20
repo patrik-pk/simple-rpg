@@ -193,6 +193,8 @@ function ItemComponent(props) {
             )
         })
 
+        const itemValue = goldValue ? <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p> : null
+
         // RENDER
         return ( 
             <li className={`item_container ${setClasses()}`}>
@@ -206,7 +208,7 @@ function ItemComponent(props) {
                         { itemName() }
                         { itemStat() }
                         { itemBonuses ? <div className='bonuses'>{itemBonuses}</div> : null }
-                        <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p>
+                        { itemValue }
                     </div>
 
                     {/* Drop Amount - only for drop items */}

@@ -1,0 +1,51 @@
+@import '../style.scss';
+
+.crafting {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // Heading
+    .heading {
+        margin-top: 20px;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    // Menu
+    .crafting-menu {
+        margin-top: 20px;
+        border-top: 1px white solid;
+        border-bottom: 1px white solid;
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-content: space-evenly;
+
+            .menu-item {
+                width: auto;
+                padding: 15px 0;
+                cursor: pointer;
+                transition: 500ms all;
+
+                &:hover {
+                    background: white;
+                    p { color: black; }
+                }
+                &.active {
+                    background: white;
+                    p { color: black; }
+                }
+
+                p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    // Players Drops
+
+    // Craftable Items
+}
