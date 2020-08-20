@@ -25,12 +25,12 @@ const randBonuses = [
 
 // Exported Craftable Items
 const craftableItems = [
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: sword, bonuses: randBonuses }),
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: shield, bonuses: randBonuses }),
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
-    generateItem(10, null, 'Crafting', 1, 'Classic', { rarity: legendary, type: ring }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: sword, bonuses: randBonuses }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: shield, bonuses: randBonuses }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: helmet }),
+    generateItem(10, 'Crafting', 1, 'Classic', { rarity: legendary, type: ring }),
 ]
 
 export default craftableItems

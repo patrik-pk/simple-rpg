@@ -1,10 +1,10 @@
 
 const rarities = {
-    legendary: { name: 'Legendary', mult: 1.7, valueMult: 2.5 },
-    epic: { name: 'Epic', mult: 1.45, valueMult: 2 },
-    rare: { name: 'Rare', mult: 1.25, valueMult: 1.6 },
-    uncommon: { name: 'Uncommon', mult: 1.1, valueMult: 1.3 },
-    common: { name: 'Common', mult: 1, valueMult: 1 }
+    legendary: { rarity: 'Legendary', rarStatMult: 1.7, rarValMult: 2.5, bonusAmount: 5 },
+    epic: { rarity: 'Epic', rarStatMult: 1.45, rarValMult: 2, bonusAmount: 4 },
+    rare: { rarity: 'Rare', rarStatMult: 1.25, rarValMult: 1.6, bonusAmount: 3 },
+    uncommon: { rarity: 'Uncommon', rarStatMult: 1.1, rarValMult: 1.3, bonusAmount: 2 },
+    common: { rarity: 'Common', rarStatMult: 1, rarValMult: 1, bonusAmount: 1 }
 }
 
 export default rarities

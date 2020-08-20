@@ -1,10 +1,10 @@
 import equipIcons from './icons/equipIcons'
 
 class PossibleItem {
-    constructor(type, icon, possibleStat, baseStat, statMultiplier) {
+    constructor(type, icon, statName, baseStat, statMultiplier) {
         this.type = type
         this.icon = icon
-        this.possibleStat = possibleStat
+        this.statName = statName
         this.baseStat = baseStat
         this.statMultiplier = statMultiplier
     }
