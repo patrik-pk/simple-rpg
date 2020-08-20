@@ -46,6 +46,24 @@
     }
 
     // Players Drops
+    .player-drops {
+        
+        // Item Row
+        ul {
+            display: flex;
+
+            // Item
+            .item-container {
+                width: 44px;
+                height: 44px;
+
+                
+                .drop-amount {
+
+                }
+            }
+        }
+    }
 
     // Craftable Items
 }

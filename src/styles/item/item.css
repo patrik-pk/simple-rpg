@@ -365,7 +365,8 @@
   }
 }
 
-.item_container {
+.item-container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -384,23 +385,19 @@
   transition: 500ms all;
 }
 
-.item_container.selected {
+.item-container.selected {
   background: white !important;
   border: 1px white solid;
 }
 
-.item_container.avian-soul .stats {
-  display: block !important;
-}
-
 @media (max-width: 768px) {
-  .item_container {
+  .item-container {
     width: 26px;
     height: 26px;
   }
 }
 
-.item_container .item {
+.item-container .item {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -419,18 +416,18 @@
   outline: 0;
 }
 
-.item_container .item:hover .stats {
+.item-container .item:hover .stats {
   display: block;
 }
 
 @media (max-width: 768px) {
-  .item_container .item {
+  .item-container .item {
     width: 23px;
     height: 23px;
   }
 }
 
-.item_container .item svg {
+.item-container .item svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -441,13 +438,13 @@
 }
 
 @media (max-width: 768px) {
-  .item_container .item svg {
+  .item-container .item svg {
     width: 18px;
     height: 18px;
   }
 }
 
-.item_container .item .drop-amount {
+.item-container .item .drop-amount {
   position: absolute;
   bottom: -2px;
   right: 1px;
@@ -456,13 +453,13 @@
 }
 
 @media (max-width: 768px) {
-  .item_container .item .drop-amount {
+  .item-container .item .drop-amount {
     bottom: 0;
     font-size: 8px;
   }
 }
 
-.item_container .item .stats {
+.item-container .item .stats {
   display: none;
   min-width: 200px;
   margin-bottom: -15px;
@@ -477,7 +474,7 @@
 }
 
 @media (max-width: 768px) {
-  .item_container .item .stats {
+  .item-container .item .stats {
     min-width: 150px;
     margin-left: 210px;
     font-size: 10px;
@@ -485,7 +482,7 @@
   }
 }
 
-.item_container .item .stats .bonus_container, .item_container .item .stats .stat_container, .item_container .item .stats .name_container {
+.item-container .item .stats .bonus-container, .item-container .item .stats .stat-container, .item-container .item .stats .name-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -501,212 +498,206 @@
           align-items: center;
 }
 
-.item_container .item .stats .bonus_container p, .item_container .item .stats .stat_container p, .item_container .item .stats .name_container p {
-  font-weight: normal !important;
+.item-container .item .stats .stat-container p {
+  font-weight: bold;
 }
 
-.item_container .item .stats .stat_container p {
-  font-weight: bold !important;
-}
-
-.item_container .item .stats .bonuses .bonus_container {
+.item-container .item .stats .bonuses .bonus-container {
   margin-top: 1px;
 }
 
-.item_container .item .stats #name {
+.item-container .item .stats #name {
   text-align: center;
   margin-bottom: 8px;
-  font-weight: bold !important;
+  font-weight: bold;
   font-size: 16px;
 }
 
 @media (max-width: 768px) {
-  .item_container .item .stats #name {
+  .item-container .item .stats #name {
     font-size: 12px;
     margin-bottom: 5px;
   }
 }
 
-.item_container .item .stats #stats_heading, .item_container .item .stats #bonuses_heading {
-  font-weight: bold !important;
-  font-size: 16px;
-}
-
-.item_container .item .stats #value {
+.item-container .item .stats #value {
   margin-top: 5px;
 }
 
-.item_container .item .stats #value #value_heading {
-  font-weight: bold !important;
+.item-container .item .stats #value #value-heading {
+  font-weight: bold;
 }
 
-.item_container.drop {
+.item-container.drop {
   background: #555;
 }
 
-.item_container.drop .item {
+.item-container.drop .item {
   background: #555;
 }
 
-.item_container.drop svg {
+.item-container.drop.has-amount svg {
   top: 40%;
   left: 40%;
-  fill: #ccc;
 }
 
-.item_container.avian-soul .stats, .item_container.feather .stats {
+.item-container.drop:not(.has-amount) svg {
+  opacity: 0.4;
+}
+
+.item-container.avian-soul .stats, .item-container.feather .stats {
   border-color: #ff97b7;
 }
 
-.item_container.avian-soul #name, .item_container.feather #name {
+.item-container.avian-soul #name, .item-container.feather #name {
   color: #ff97b7;
 }
 
-.item_container.avian-soul .drop-amount, .item_container.feather .drop-amount {
+.item-container.avian-soul .drop-amount, .item-container.feather .drop-amount {
   color: #ff97b7;
 }
 
-.item_container.avian-soul svg, .item_container.feather svg {
+.item-container.avian-soul svg, .item-container.feather svg {
   fill: #ff97b7;
 }
 
-.item_container.dinosaur-soul .stats, .item_container.fossil .stats {
+.item-container.dinosaur-soul .stats, .item-container.fossil .stats {
   border-color: #ed6a5a;
 }
 
-.item_container.dinosaur-soul #name, .item_container.fossil #name {
+.item-container.dinosaur-soul #name, .item-container.fossil #name {
   color: #ed6a5a;
 }
 
-.item_container.dinosaur-soul .drop-amount, .item_container.fossil .drop-amount {
+.item-container.dinosaur-soul .drop-amount, .item-container.fossil .drop-amount {
   color: #ed6a5a;
 }
 
-.item_container.dinosaur-soul svg, .item_container.fossil svg {
+.item-container.dinosaur-soul svg, .item-container.fossil svg {
   fill: #ed6a5a;
 }
 
-.item_container.insect-soul .stats, .item_container.poison .stats {
+.item-container.insect-soul .stats, .item-container.poison .stats {
   border-color: #53dd6c;
 }
 
-.item_container.insect-soul #name, .item_container.poison #name {
+.item-container.insect-soul #name, .item-container.poison #name {
   color: #53dd6c;
 }
 
-.item_container.insect-soul .drop-amount, .item_container.poison .drop-amount {
+.item-container.insect-soul .drop-amount, .item-container.poison .drop-amount {
   color: #53dd6c;
 }
 
-.item_container.insect-soul svg, .item_container.poison svg {
+.item-container.insect-soul svg, .item-container.poison svg {
   fill: #53dd6c;
 }
 
-.item_container.wildlife-soul .stats, .item_container.wildlife-leather .stats {
+.item-container.wildlife-soul .stats, .item-container.wildlife-leather .stats {
   border-color: #e09767;
 }
 
-.item_container.wildlife-soul #name, .item_container.wildlife-leather #name {
+.item-container.wildlife-soul #name, .item-container.wildlife-leather #name {
   color: #e09767;
 }
 
-.item_container.wildlife-soul .drop-amount, .item_container.wildlife-leather .drop-amount {
+.item-container.wildlife-soul .drop-amount, .item-container.wildlife-leather .drop-amount {
   color: #e09767;
 }
 
-.item_container.wildlife-soul svg, .item_container.wildlife-leather svg {
+.item-container.wildlife-soul svg, .item-container.wildlife-leather svg {
   fill: #e09767;
 }
 
-.item_container.reptile-soul .stats, .item_container.reptile-leather .stats {
+.item-container.reptile-soul .stats, .item-container.reptile-leather .stats {
   border-color: #02c39a;
 }
 
-.item_container.reptile-soul #name, .item_container.reptile-leather #name {
+.item-container.reptile-soul #name, .item-container.reptile-leather #name {
   color: #02c39a;
 }
 
-.item_container.reptile-soul .drop-amount, .item_container.reptile-leather .drop-amount {
+.item-container.reptile-soul .drop-amount, .item-container.reptile-leather .drop-amount {
   color: #02c39a;
 }
 
-.item_container.reptile-soul svg, .item_container.reptile-leather svg {
+.item-container.reptile-soul svg, .item-container.reptile-leather svg {
   fill: #02c39a;
 }
 
-.item_container.aquatic-soul .stats, .item_container.aqua-meat .stats {
+.item-container.aquatic-soul .stats, .item-container.aqua-meat .stats {
   border-color: #00e1e1;
 }
 
-.item_container.aquatic-soul #name, .item_container.aqua-meat #name {
+.item-container.aquatic-soul #name, .item-container.aqua-meat #name {
   color: #00e1e1;
 }
 
-.item_container.aquatic-soul .drop-amount, .item_container.aqua-meat .drop-amount {
+.item-container.aquatic-soul .drop-amount, .item-container.aqua-meat .drop-amount {
   color: #00e1e1;
 }
 
-.item_container.aquatic-soul svg, .item_container.aqua-meat svg {
+.item-container.aquatic-soul svg, .item-container.aqua-meat svg {
   fill: #00e1e1;
 }
 
-.item_container.legendary {
+.item-container.legendary {
   background: orangered;
 }
 
-.item_container.legendary .item {
+.item-container.legendary .item {
   background: orangered;
 }
 
-.item_container.legendary #name {
+.item-container.legendary #name {
   color: orangered;
 }
 
-.item_container.epic {
+.item-container.epic {
   background: purple;
 }
 
-.item_container.epic .item {
+.item-container.epic .item {
   background: purple;
 }
 
-.item_container.epic #name {
+.item-container.epic #name {
   color: purple;
 }
 
-.item_container.rare {
+.item-container.rare {
   background: blue;
 }
 
-.item_container.rare .item {
+.item-container.rare .item {
   background: blue;
 }
 
-.item_container.rare #name {
+.item-container.rare #name {
   color: blue;
 }
 
-.item_container.uncommon {
+.item-container.uncommon {
   background: green;
 }
 
-.item_container.uncommon .item {
+.item-container.uncommon .item {
   background: green;
 }
 
-.item_container.uncommon #name {
+.item-container.uncommon #name {
   color: green;
 }
 
-.item_container.common {
+.item-container.common {
   background: #555;
 }
 
-.item_container.common .item {
+.item-container.common .item {
   background: #555;
 }
 
-.item_container.common #name {
+.item-container.common #name {
   color: #555;
 }
 /*# sourceMappingURL=item.css.map */

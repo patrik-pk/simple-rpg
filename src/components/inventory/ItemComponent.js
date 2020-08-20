@@ -77,6 +77,7 @@ function ItemComponent(props) {
             if(rarity) classesArray.push(rarity.toLowerCase())
             if(isSelected) classesArray.push('selected')
             if(isDrop) classesArray.push('drop')
+            if(amount) classesArray.push('has-amount')
             if(classes) {
                 classes.forEach(item => classesArray.push(item))
             }
@@ -150,7 +151,7 @@ function ItemComponent(props) {
                 // make the first letter of every word upper case
                 const nameUpper = firstLetterUpperCase(name)
                 return (
-                    <div className='name_container'>
+                    <div className='name-container'>
                         <p id='name'>{nameUpper}</p>
                     </div>
                 )
@@ -159,7 +160,7 @@ function ItemComponent(props) {
                 const comparedValue = comparison.level ? comparison.level.value : null
                 const style = comparison.level ? { color: comparison.level.color } : null
                 return (
-                    <div className='name_container'>
+                    <div className='name-container'>
                         <p id='name'>{nameVal}</p>
                         <p style={style}>{comparedValue}</p>
                     </div>
@@ -173,7 +174,7 @@ function ItemComponent(props) {
             const comparedValue = comparison.stat ? comparison.stat.value : null
             const style = comparison.stat ? { color: comparison.stat.color } : null
             return (
-                <div className='stat_container'>
+                <div className='stat-container'>
                     <p>{stats.statName + ': ' + stats.value}</p>
                     <p style={style}>{comparedValue}</p>
                 </div> 
@@ -186,18 +187,18 @@ function ItemComponent(props) {
             const comparedValue = comparison.bonuses ? comparison.bonuses[i].value : null
             const style = comparison.bonuses ? { color: comparison.bonuses[i].color } : null
             return (
-                <div key={i} className='bonus_container'>
+                <div key={i} className='bonus-container'>
                     <p>{name + ': ' + bonus.value}</p>
                     <p style={style}>{comparedValue}</p>
                 </div>
             )
         })
 
-        const itemValue = goldValue ? <p id='value'><span id='value_heading'>Value:</span> {goldValue}</p> : null
+        const itemValue = goldValue ? <p id='value'><span id='value-heading'>Value:</span> {goldValue}</p> : null
 
         // RENDER
         return ( 
-            <li className={`item_container ${setClasses()}`}>
+            <li className={`item-container ${setClasses()}`}>
                 <div className='item' onClick={handleClick} >
 
                     {/* Icon */}
@@ -218,7 +219,7 @@ function ItemComponent(props) {
         )
     }
     // or render an empty item 
-    return <li className='item_container'></li>
+    return <li className='item-container'></li>
 }
 
 ItemComponent.propTypes = {

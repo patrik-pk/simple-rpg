@@ -2,7 +2,8 @@
 @import "../style.scss";
 
 // Item Container
-.item_container {
+.item-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,10 +18,6 @@
     &.selected { 
         background: $item_selected_color!important; 
         border: 1px $item_selected_color solid; 
-    }
-
-    &.avian-soul {
-        .stats { display: block!important; }
     }
 
     // mobile
@@ -100,28 +97,23 @@
             }
 
             // Bonus, Stat, Name Container
-            .bonus_container, .stat_container, .name_container {
+            .bonus-container, .stat-container, .name-container {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-
-                p {
-                    font-weight: normal!important;
-                }
             }
 
             // Stat Container
-            .stat_container {
+            .stat-container {
                 p {
-                    font-weight: bold!important;
+                    font-weight: bold;
                 }
             }
 
             // Bonuses
             .bonuses {
-
-                .bonus_container {
+                .bonus-container {
                     margin-top: 1px;
                 }
             }
@@ -130,7 +122,7 @@
             #name {
                 text-align: center;
                 margin-bottom: 8px;
-                font-weight: bold!important;
+                font-weight: bold;
                 font-size: 16px;
                 @include mobile { 
                     font-size: 12px;
@@ -138,32 +130,37 @@
                 }
             }
 
-            // Headings
-            #stats_heading, #bonuses_heading {
-                font-weight: bold!important;
-                font-size: 16px;
-            }
-
             // Gold Value
             #value {
                 margin-top: 5px;
 
-                #value_heading {
-                    font-weight: bold!important;
+                #value-heading {
+                    font-weight: bold;
                 }
             }
         }
     }
+
     // Drop Classes
 
     // drop
     &.drop {
         background: $common;
         .item { background: $common; }
+    }
+
+    // drop that has amount
+    &.drop.has-amount {
         svg {
             top: 40%;
             left: 40%;
-            fill: #ccc;
+        }
+    }
+
+    // drop that doesn't have amount
+    &.drop:not(.has-amount) {
+        svg {
+            opacity: 0.4;
         }
     }
 

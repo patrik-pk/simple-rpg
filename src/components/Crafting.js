@@ -7,8 +7,10 @@ import possibleDrops from '../data/possibleDrops'
 import DropItem from '../data/DropItem'
 import '../styles/crafting/crafting.css'
 
-function Crafting() {
-    // TODO: Calculate value based on drop items amount
+function Crafting({ invItems }) {
+
+    // Get Players Drops
+    const playerDrops = invItems.filter(item => item.type === 'drop')
 
     // Map Drops
     const mapDrops = (key1, key2) => {
@@ -28,13 +30,33 @@ function Crafting() {
 
         // make actual items from mapped drops
         const itemsArr = mappedDrops.map((drop, i) => {
-            return new DropItem('Crafting', i, null, drop.name, drop.icon, [drop.classVal], 0)
+
+            // loop through players drops and get the amount if the name matches
+            let dropAmount = 0
+            playerDrops.forEach(playerDrop => {
+                if(playerDrop.name === drop.name) dropAmount = playerDrop.amount
+            })
+
+            return new DropItem('Crafting', i, dropAmount, drop.name, drop.icon, [drop.classVal], 10 * dropAmount)
         })
 
-        // return items
-        return itemsArr
+        // sort the array
+        const firstHalf = []
+        const secondHalf = []
+
+        itemsArr.forEach((item, i) => {
+            if(i % 2 === 0) firstHalf.push(item)
+            else secondHalf.push(item) 
+        })
+
+        // join the arrays together
+        const result = firstHalf.concat(secondHalf)
+
+        // return result
+        return result
     }
 
+    // Mapped Drops
     const drps = {
         low: mapDrops(0, 3),
         medium: mapDrops(1, 4),
@@ -42,7 +64,22 @@ function Crafting() {
     }
 
     // Menu Active
-    const [menuActive, setMenuActive] = useState(['active', '', ''])
+    const [menuActive, setMenuActive] = useState(1)
+
+    // Menu Classes
+    const menuClass1 = menuActive === 1 ? 'active' : ''
+    const menuClass2 = menuActive === 2 ? 'active' : ''
+    const menuClass3 = menuActive === 3 ? 'active' : ''
+
+    // Display Proper Drops Based On Menu
+    const displayDrops = () => {
+        switch(menuActive) {
+            case 1: return drps.low
+            case 2: return drps.medium
+            case 3: return drps.high
+            default: break;
+        }
+    }
 
     // Render
     return (
@@ -55,13 +92,13 @@ function Crafting() {
             <div className='crafting-menu'>
                 <ul className='menu-items'>
 
-                    <li className={`menu-item ${menuActive[0]}`} onClick={() => setMenuActive(['active', '', ''])}>
+                    <li className={`menu-item ${menuClass1}`} onClick={() => setMenuActive(1)}>
                         <p>Low Level</p>
                     </li>
-                    <li className={`menu-item ${menuActive[1]}`} onClick={() => setMenuActive(['', 'active', ''])}>
+                    <li className={`menu-item ${menuClass2}`} onClick={() => setMenuActive(2)}>
                         <p>Medium Level</p>
                     </li>
-                    <li className={`menu-item ${menuActive[2]}`} onClick={() => setMenuActive(['', '', 'active'])}>
+                    <li className={`menu-item ${menuClass3}`} onClick={() => setMenuActive(3)}>
                         <p>High Level</p>
                     </li>
 
@@ -69,9 +106,9 @@ function Crafting() {
             </div>
 
             {/* Players Drops */}
-            <div className="players-drops">
-                <InventoryRow itemsProp={drps.low.slice(0, 6)} />
-                <InventoryRow itemsProp={drps.low.slice(6, 12)} />
+            <div className="player-drops">
+                <InventoryRow itemsProp={displayDrops().slice(0, 6)} />
+                <InventoryRow itemsProp={displayDrops().slice(6, 12)} />
             </div>
 
             {/* Craftable Items */}

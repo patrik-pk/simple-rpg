@@ -425,4 +425,15 @@
 .crafting .crafting-menu .menu-items .menu-item p {
   text-align: center;
 }
+
+.crafting .player-drops ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.crafting .player-drops ul .item-container {
+  width: 44px;
+  height: 44px;
+}
 /*# sourceMappingURL=crafting.css.map */
