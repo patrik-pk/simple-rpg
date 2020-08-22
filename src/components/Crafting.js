@@ -2,22 +2,13 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import ItemComponent from './inventory/ItemComponent'
 import InventoryRow from './inventory/InventoryRow'
 import mapDrops from '../logic/mapDrops'
 import '../styles/crafting/crafting.css'
 
 function Crafting({ invItems, craftableItems }) {
 
-    // Get Players Drops
-    const playerDrops = invItems.filter(item => item.type === 'drop')
-
-    // Mapped Drops
-    const drops = {
-        low: mapDrops(playerDrops, 0, 3),
-        medium: mapDrops(playerDrops, 1, 4),
-        high: mapDrops(playerDrops, 2, 5),
-    }
+    // MENU
 
     // Menu Active
     const [menuActive, setMenuActive] = useState(1)
@@ -27,20 +18,36 @@ function Crafting({ invItems, craftableItems }) {
     const menuClass2 = menuActive === 2 ? 'active' : ''
     const menuClass3 = menuActive === 3 ? 'active' : ''
 
-    // Display Proper Drops Based On Menu
-    const displayDrops = () => {
-        switch(menuActive) {
-            case 1: return drops.low
-            case 2: return drops.medium
-            case 3: return drops.high
-            default: break;
-        }
-    }
+    // PLAYERS DROPS
 
-    // Map Craftable Items For Displaying
-    const displayedCraftableItems = craftableItems.low.mythic.map(item => {
+    // Get Players Drops
+    const playerDropItems = invItems.filter(item => item.type === 'drop')
+
+    // Mapped Player Drops
+    const playerDrops = [
+        mapDrops(playerDropItems, 0, 3),
+        mapDrops(playerDropItems, 1, 4),
+        mapDrops(playerDropItems, 2, 5),
+    ]
+
+    // CRAFTABLE ITEMS
+
+    // Get Matching Items - that match level type menu and rarity type menu
+    // - first index is for level type (low, medium, high)
+    // - the second one is for rarity type (mythic, avian, etc.)
+    const matchingCraftableItems = craftableItems[menuActive - 1][0]
+
+    const displayedCraftableItems = matchingCraftableItems.map(item => {
         return item.item
     })
+
+    // NEEDED DROPS
+    const neededDrops = [
+        mapDrops(matchingCraftableItems[0].dropsNeeded, 0, 3),
+        mapDrops(matchingCraftableItems[0].dropsNeeded, 1, 4),
+        mapDrops(matchingCraftableItems[0].dropsNeeded, 2, 5),
+    ]
+
 
     // Render
     return (
@@ -68,8 +75,8 @@ function Crafting({ invItems, craftableItems }) {
 
             {/* Players Drops */}
             <div className="player-drops">
-                <InventoryRow itemsProp={displayDrops().slice(0, 6)} />
-                <InventoryRow itemsProp={displayDrops().slice(6, 12)} />
+                <InventoryRow itemsProp={playerDrops[menuActive - 1].slice(0, 6)} />
+                <InventoryRow itemsProp={playerDrops[menuActive - 1].slice(6, 12)} />
             </div>
 
             {/* Craftable Items */}
@@ -78,17 +85,14 @@ function Crafting({ invItems, craftableItems }) {
                 <InventoryRow itemsProp={displayedCraftableItems.slice(6, 12)} />
             </div>
 
-            {/* Craft Section */}
-            <div className='craft-section'>
-
-                <div className='drops-needed'>
-                    <ItemComponent data={craftableItems.low.mythic[1].dropsNeeded[0]} />
-                    <ItemComponent data={craftableItems.low.mythic[1].dropsNeeded[1]} />
-                </div>
-
-                <button className='craft-btn'>Craft</button>
-
+            {/* Drops Needed */}
+            <div className='drops-needed'>
+                <InventoryRow itemsProp={neededDrops[menuActive - 1].slice(0, 6)} />
+                <InventoryRow itemsProp={neededDrops[menuActive - 1].slice(6, 12)} />
             </div>
+
+            {/* Craft Button */}
+            <button className='craft-btn'>Craft</button>
 
         </div>
     )
@@ -96,7 +100,7 @@ function Crafting({ invItems, craftableItems }) {
 
 Crafting.propTypes = {
     invItems: PropTypes.array.isRequired,
-    craftableItems: PropTypes.object.isRequired,
+    craftableItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({

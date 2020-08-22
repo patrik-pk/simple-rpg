@@ -536,6 +536,10 @@
   background: #555;
 }
 
+.item-container.drop.no-functionality .item {
+  cursor: default !important;
+}
+
 .item-container.drop.has-amount svg {
   top: 40%;
   left: 40%;

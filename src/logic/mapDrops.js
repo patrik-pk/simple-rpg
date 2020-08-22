@@ -1,9 +1,11 @@
 import possibleDrops from '../data/possibleDrops'
 import DropItem from '../data/DropItem'
 
-// Map Drops - get all the possible drops with the following keys,
-// and add amount to those that player has
-export default function mapDrops(playerDrops, key1, key2) {
+
+// This function maps all the possible drops, making actual items 
+// from them and adding amount to those that player has / that are needed for crafting
+// based on the type for which they are used
+export default function mapDrops(parameterDrops, key1, key2) {
 
     // make an array out of possibleDrops object
     const allDropsArr = Object.values(possibleDrops)
@@ -21,10 +23,12 @@ export default function mapDrops(playerDrops, key1, key2) {
     // make actual items from mapped drops
     const itemsArr = mappedDrops.map((drop, i) => {
 
-        // loop through players drops and get the amount if the name matches
+        // loop through parameter drops and get the amount if the name matches
         let dropAmount = 0
-        playerDrops.forEach(playerDrop => {
-            if (playerDrop.name === drop.name) dropAmount = playerDrop.amount
+        parameterDrops.forEach(parDrop => {
+            if (parDrop.name === drop.name) {
+                dropAmount = parDrop.amount  
+            } 
         })
 
         return new DropItem('Crafting', i, dropAmount, drop.name, drop.icon, [drop.classVal], 10 * dropAmount)

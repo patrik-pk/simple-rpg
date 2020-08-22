@@ -76,24 +76,29 @@
     }
 
     // Craft Section
-    .craft-section {
-        display: flex;
-        margin: 50px auto 0 auto;
+    .drops-needed {
+        margin: 30px auto 0 auto;
 
-        .drops-needed {
+        ul {
             display: flex;
-        }
 
-        .craft-btn {
-            width: 70px;
-            margin-left: 50px;
-            border: 1px white solid;
-            padding: 5px 0;
-            transition: 500ms all;
-            &:hover {
-                background: white;
-                color: black;
+            .item-container {
+                width: 44px;
+                height: 44px;
             }
+        }
+    }
+
+    // Craft Button
+    .craft-btn {
+        margin: 30px auto 0 auto;
+        width: 70px;
+        border: 1px white solid;
+        padding: 5px 0;
+        transition: 500ms all;
+        &:hover {
+            background: white;
+            color: black;
         }
     }
 }

@@ -149,6 +149,11 @@
         .item { background: $common; }
     }
 
+    // drop without functionality (only drops in Inventory & Shop have one)
+    &.drop.no-functionality {
+        .item { cursor: default!important; }
+    }
+
     // drop that has amount
     &.drop.has-amount {
         svg {

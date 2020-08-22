@@ -1,22 +1,22 @@
 import mythic from './mythic'
 
 // Exported Craftable Items
-const craftableItems = {
+const craftableItems = [
 
     // Low
-    low: {
-        mythic: mythic.low
-    },
+    [
+        mythic.low
+    ],
 
     // Medium
-    medium: {
-        mythic: mythic.medium
-    },
+    [
+        mythic.medium
+    ],
 
     // High
-    high: {
-        mythic: mythic.high
-    }
-}
+    [
+        mythic.high
+    ]
+]
 
 export default craftableItems
