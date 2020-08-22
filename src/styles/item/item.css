@@ -408,8 +408,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
   cursor: pointer;
   -webkit-transition: all 500ms;
   transition: all 500ms;
@@ -435,6 +435,8 @@
           transform: translate(-50%, -50%);
   width: 26px;
   height: 26px;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
 }
 
 @media (max-width: 768px) {

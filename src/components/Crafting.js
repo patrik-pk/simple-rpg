@@ -1,22 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import InventoryRow from './inventory/InventoryRow'
+import { unselectCraftableItems } from '../actions/itemsActions'
 import mapDrops from '../logic/mapDrops'
 import '../styles/crafting/crafting.css'
 
-function Crafting({ invItems, craftableItems }) {
+function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
+
+    // Unselect Items on Unmount
+    useEffect(() => {
+        return () => unselectCraftableItems()
+    }, [unselectCraftableItems])
 
     // MENU
 
+    // Activate Menu
+    const activateMenu = index => {
+        setMenuActive(index)
+        unselectCraftableItems()
+    }
+
     // Menu Active
-    const [menuActive, setMenuActive] = useState(1)
+    const [menuActive, setMenuActive] = useState(0)
 
     // Menu Classes
-    const menuClass1 = menuActive === 1 ? 'active' : ''
-    const menuClass2 = menuActive === 2 ? 'active' : ''
-    const menuClass3 = menuActive === 3 ? 'active' : ''
+    const menuClass1 = menuActive === 0 ? 'active' : ''
+    const menuClass2 = menuActive === 1 ? 'active' : ''
+    const menuClass3 = menuActive === 2 ? 'active' : ''
+
+    // Drop Indexes Based On Level Type
+    const [ dropIndex1, dropIndex2 ] = (() => {
+        switch(menuActive) {
+            case 0: return [0, 3]
+            case 1: return [1, 4]
+            case 2: return [2, 5]
+            default: return [0, 3]
+        }
+    })()
 
     // PLAYERS DROPS
 
@@ -24,18 +46,14 @@ function Crafting({ invItems, craftableItems }) {
     const playerDropItems = invItems.filter(item => item.type === 'drop')
 
     // Mapped Player Drops
-    const playerDrops = [
-        mapDrops(playerDropItems, 0, 3),
-        mapDrops(playerDropItems, 1, 4),
-        mapDrops(playerDropItems, 2, 5),
-    ]
+    const playerDrops = mapDrops(playerDropItems, dropIndex1, dropIndex2)
 
     // CRAFTABLE ITEMS
 
     // Get Matching Items - that match level type menu and rarity type menu
     // - first index is for level type (low, medium, high)
     // - the second one is for rarity type (mythic, avian, etc.)
-    const matchingCraftableItems = craftableItems[menuActive - 1][0]
+    const matchingCraftableItems = craftableItems[menuActive][0]
 
     const displayedCraftableItems = matchingCraftableItems.map(item => {
         return item.item
@@ -43,13 +61,11 @@ function Crafting({ invItems, craftableItems }) {
 
     // NEEDED DROPS
 
-    // TODO: get current selected crafting item
+    // Get Selected Item
+    const selectedItem = craftableItems[menuActive][0].filter(item => item.item.isSelected)
+    const selectedItemDrops = selectedItem[0] ? selectedItem[0].dropsNeeded : []
 
-    const neededDrops = [
-        mapDrops(matchingCraftableItems[0].dropsNeeded, 0, 3),
-        mapDrops(matchingCraftableItems[0].dropsNeeded, 1, 4),
-        mapDrops(matchingCraftableItems[0].dropsNeeded, 2, 5),
-    ]
+    const neededDrops = mapDrops(selectedItemDrops, dropIndex1, dropIndex2)
 
 
     // Render
@@ -63,13 +79,13 @@ function Crafting({ invItems, craftableItems }) {
             <div className='crafting-menu'>
                 <ul className='menu-items'>
 
-                    <li className={`menu-item ${menuClass1}`} onClick={() => setMenuActive(1)}>
+                    <li className={`menu-item ${menuClass1}`} onClick={() => activateMenu(0)}>
                         <p>Low Level</p>
                     </li>
-                    <li className={`menu-item ${menuClass2}`} onClick={() => setMenuActive(2)}>
+                    <li className={`menu-item ${menuClass2}`} onClick={() => activateMenu(1)}>
                         <p>Medium Level</p>
                     </li>
-                    <li className={`menu-item ${menuClass3}`} onClick={() => setMenuActive(3)}>
+                    <li className={`menu-item ${menuClass3}`} onClick={() => activateMenu(2)}>
                         <p>High Level</p>
                     </li>
 
@@ -78,8 +94,8 @@ function Crafting({ invItems, craftableItems }) {
 
             {/* Players Drops */}
             <div className="player-drops">
-                <InventoryRow itemsProp={playerDrops[menuActive - 1].slice(0, 6)} />
-                <InventoryRow itemsProp={playerDrops[menuActive - 1].slice(6, 12)} />
+                <InventoryRow itemsProp={playerDrops.slice(0, 6)} />
+                <InventoryRow itemsProp={playerDrops.slice(6, 12)} />
             </div>
 
             {/* Craftable Items */}
@@ -90,8 +106,8 @@ function Crafting({ invItems, craftableItems }) {
 
             {/* Drops Needed */}
             <div className='drops-needed'>
-                <InventoryRow itemsProp={neededDrops[menuActive - 1].slice(0, 6)} />
-                <InventoryRow itemsProp={neededDrops[menuActive - 1].slice(6, 12)} />
+                <InventoryRow itemsProp={neededDrops.slice(0, 6)} />
+                <InventoryRow itemsProp={neededDrops.slice(6, 12)} />
             </div>
 
             {/* Craft Button */}
@@ -111,4 +127,4 @@ const mapStateToProps = state => ({
     craftableItems: state.items.craftableItems
 })
 
-export default connect(mapStateToProps)(Crafting)
+export default connect(mapStateToProps, { unselectCraftableItems })(Crafting)

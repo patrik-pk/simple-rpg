@@ -456,6 +456,11 @@
   height: 44px;
 }
 
+.crafting .craftable-items ul .item-container .item {
+  width: 40px;
+  height: 40px;
+}
+
 .crafting .drops-needed {
   margin: 30px auto 0 auto;
 }

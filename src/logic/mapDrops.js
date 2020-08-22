@@ -5,7 +5,7 @@ import DropItem from '../data/DropItem'
 // This function maps all the possible drops, making actual items 
 // from them and adding amount to those that player has / that are needed for crafting
 // based on the type for which they are used
-export default function mapDrops(parameterDrops, key1, key2) {
+export default function mapDrops(parameterDrops = [], key1, key2) {
 
     // make an array out of possibleDrops object
     const allDropsArr = Object.values(possibleDrops)
