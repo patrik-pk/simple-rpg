@@ -7,7 +7,9 @@ import {
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
     REMOVE_INV_ITEMS,
-    EQUIP_ITEM
+    EQUIP_ITEM,
+    SET_CRAFTABLE_ITEM_SELECT,
+    UNSELECT_CRAFTABLE_ITEMS
 } from './types'
 
 // ADD ITEM TO INV
@@ -63,4 +65,15 @@ export const equipItem = (selectedItem, equippedItem) => ({
         selectedItem,
         equippedItem
     }
+})
+
+// SET CRAFTABLE ITEM ISSELECT
+export const setCraftableItemSelect = key => ({
+    type: SET_CRAFTABLE_ITEM_SELECT,
+    payload: key
+})
+
+// UNSELECT ALL CRAFTABLE ITEMS
+export const unselectCraftableItems = () => ({
+    type: UNSELECT_CRAFTABLE_ITEMS,
 })

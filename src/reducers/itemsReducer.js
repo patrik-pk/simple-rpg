@@ -1,6 +1,7 @@
 import startingItems from '../data/startingItems'
 import craftableItems from '../data/craftable_items/craftableItems'
 import EquipItem from '../data/EquipItem'
+import deepCopy from '../logic/deepCopy'
 //import DropItem from '../data/DropItem'
 import {
     ADD_ITEM_TO_INV,
@@ -11,7 +12,9 @@ import {
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
     REMOVE_INV_ITEMS,
-    EQUIP_ITEM
+    EQUIP_ITEM,
+    SET_CRAFTABLE_ITEM_SELECT,
+    UNSELECT_CRAFTABLE_ITEMS
 } from '../actions/types'
 
 const initialState = {
@@ -215,6 +218,44 @@ export default (state = initialState, action) => {
                     else return item
                 })
             }
+
+            // SET CRAFTABLE ITEM ISSELECT
+            case SET_CRAFTABLE_ITEM_SELECT:
+
+                const newCraftableItems = deepCopy(state.craftableItems)
+                
+                newCraftableItems.forEach(levelType => {
+                    levelType.forEach(rarityType => {
+                        rarityType.forEach(item => {
+                            if (item.item.key === action.payload) {
+                                item.item.isSelected = !item.item.isSelected
+                            }
+                        })
+                    })
+                })
+
+                return {
+                    ...state,
+                    craftableItems: newCraftableItems
+                }
+
+            // UNSELECT ALL CRAFTABLE ITEMS
+            case UNSELECT_CRAFTABLE_ITEMS:
+
+            const unselectedCraftableItems = deepCopy(state.craftableItems)
+
+            unselectedCraftableItems.forEach(levelType => {
+                levelType.forEach(rarityType => {
+                    rarityType.forEach(item => {
+                        item.item.isSelected = false
+                    })
+                })
+            })
+
+                return {
+                    ...state,
+                    craftableItems: unselectedCraftableItems
+                }
 
         // Default
         default:

@@ -42,6 +42,9 @@ function Crafting({ invItems, craftableItems }) {
     })
 
     // NEEDED DROPS
+
+    // TODO: get current selected crafting item
+
     const neededDrops = [
         mapDrops(matchingCraftableItems[0].dropsNeeded, 0, 3),
         mapDrops(matchingCraftableItems[0].dropsNeeded, 1, 4),

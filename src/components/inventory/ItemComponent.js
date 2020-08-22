@@ -2,7 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setInvItemSelect, unselectShopItems, setShopItemSelect } from '../../actions/itemsActions'
+import { 
+    setInvItemSelect, 
+    unselectShopItems, 
+    setShopItemSelect, 
+    setCraftableItemSelect, 
+    unselectCraftableItems 
+} from '../../actions/itemsActions'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 import '../../styles/item/item.css'
 
@@ -31,9 +37,12 @@ function ItemComponent(props) {
             }, 
             equippedItems, 
             shopItems, 
+            craftableItems,
             setInvItemSelect, 
             unselectShopItems, 
             setShopItemSelect,
+            setCraftableItemSelect,
+            unselectCraftableItems,
             renderedInGame 
         } = props
 
@@ -64,12 +73,36 @@ function ItemComponent(props) {
                     setShopItemSelect(key)                        
                 }
             }
+            // Do the similiar thing for Crafting Item as for Shop Item
+            if(destination === 'Crafting') {
+                let selectedCraftableItems = []
+
+                // Loop through every craftableItem and add to array the selected one(s),
+                // along with the levelType and rarityType index that the item is located in 
+                craftableItems.forEach(levelType => {
+                    levelType.forEach(rarityType => {
+                        rarityType.forEach(item => {
+                            if(item.item.isSelected) selectedCraftableItems.push(item.item)
+                        })
+                    })
+                })
+
+                const cond1 = selectedCraftableItems.length === 1 && key === selectedCraftableItems[0].key
+                const cond2 = selectedCraftableItems.length === 0
+
+                if (cond1 || cond2) {
+                    setCraftableItemSelect(key)
+                } else {
+                    unselectCraftableItems()
+                    setCraftableItemSelect(key)
+                }
+            }
         }
 
         // Checks
         const isEquipped = destination === 'Equipped' ? true : false
         const isDrop = type === 'drop' ? true : false
-        const hasDropFunctionality = isDrop && (destination === 'Shop' || destination === 'Inventory') ? true : false
+        const hasDropFunctionality = isDrop & (destination === 'Shop' || destination === 'Inventory') ? true : false
 
         // Set Classes - first push items into array, 
         // then join them into single string with with space between them
@@ -228,11 +261,19 @@ function ItemComponent(props) {
 ItemComponent.propTypes = {
     equippedItems: PropTypes.array.isRequired,
     shopItems: PropTypes.array.isRequired,
+    craftableItems: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
     equippedItems: state.items.equippedItems,
-    shopItems: state.items.shopItems
+    shopItems: state.items.shopItems,
+    craftableItems: state.items.craftableItems
 })
 
-export default connect(mapStateToProps, { setInvItemSelect, unselectShopItems, setShopItemSelect })(ItemComponent)
+export default connect(mapStateToProps, { 
+    setInvItemSelect, 
+    unselectShopItems, 
+    setShopItemSelect,
+    setCraftableItemSelect,
+    unselectCraftableItems 
+})(ItemComponent)
