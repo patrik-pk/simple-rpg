@@ -3,6 +3,7 @@ import possibleItems from '../data/possibleItems'
 import possibleBonuses from '../data/possibleBonuses'
 import levelTresholds from '../data/levelTresholds'
 import rarities from '../data/rarities'
+import deepCopy from './deepCopy'
 import randomGenerator from './randomGenerator'
 
 export default function generateItem(level, destination, key, gameType, specific = {}) {
@@ -21,12 +22,24 @@ export default function generateItem(level, destination, key, gameType, specific
         else return levelTresholds[level].gameFlow < 1 ? 1 : levelTresholds[level].gameFlow
     })()
 
-    // Generate Type - If there is specific type assign it, else generate random item type from /data/possibleItem.js
-    const { statName, baseStat, statMultiplier, type, icon } = (() => {
-        if(specific.type) return specific.type
+    // Generate Type - If there is specific type generate that type, else generate random item type from /data/possibleItem.js
+    const { statName, baseStat, statMultiplier, type, genIcon: { displayedName, icon } } = (() => {
+        if(specific.itemType) {
+            const { type, iconIndex } = specific.itemType
+            const itemType = deepCopy(type)
+            itemType.genIcon = type.iconInfo[iconIndex]
+
+            return itemType  
+        } 
         else {
-            const possItems = Object.values(possibleItems)
-            return possItems[Math.floor(Math.random() * possItems.length)] 
+            const possItems = deepCopy(possibleItems)
+            const possItemsArr = Object.values(possItems)
+            // get random index for icon (there are two basic types for every item type)
+            const randIndex = randomGenerator(0, 1)
+            const randType = possItemsArr[Math.floor(Math.random() * possItemsArr.length)] 
+            randType.genIcon = randType.iconInfo[randIndex]
+
+            return randType
         }
     })()
 
@@ -81,7 +94,7 @@ export default function generateItem(level, destination, key, gameType, specific
             const randIndex = Math.floor(Math.random() * allPossibleBonuses.length)
 
             // get bonus based on that index
-            const name = allPossibleBonuses[randIndex]
+            const bonusName = allPossibleBonuses[randIndex]
 
             // and splice it from the possibleBonuses array, so that it can't be generated again
             allPossibleBonuses.splice(randIndex, 1)
@@ -98,13 +111,13 @@ export default function generateItem(level, destination, key, gameType, specific
             })()
 
             // push bonus to generated bonuses
-            genBonuses.push({ name, value })
+            genBonuses.push({ name: bonusName, value })
         }
 
         // sort bonuses
         const compare = (a, b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return 1
+            if (a.bonusName < b.bonusName) return -1
+            if (a.bonusName > b.bonusName) return 1
             return 0
         }
 
@@ -141,6 +154,7 @@ export default function generateItem(level, destination, key, gameType, specific
         destination,
         key,
         type,
+        displayedName,
         rarity,
         icon,
         stats,

@@ -114,7 +114,8 @@ function Crafting({ invItems }) {
 
             {/* Craftable Items */}
             <div className='craftable-items'>
-                <InventoryRow itemsProp={craftableItems} />
+                <InventoryRow itemsProp={craftableItems.slice(0, 6)} />
+                <InventoryRow itemsProp={craftableItems.slice(6, 12)} />
             </div>
 
         </div>

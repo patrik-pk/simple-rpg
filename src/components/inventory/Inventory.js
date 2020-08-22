@@ -146,7 +146,7 @@ function Inventory(props) {
     const eqItem = () => {
         if(equipCondition) {
             // find the matching type, that is already equipped
-            const equipped = equippedItems.filter(item => item.type === selectedInvItems[0].type)
+            const equipped = equippedItems.filter(item => item.name === selectedInvItems[0].name)
 
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])

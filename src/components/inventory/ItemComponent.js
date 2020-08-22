@@ -15,6 +15,7 @@ function ItemComponent(props) {
         const { 
             data: {
                 name,
+                displayedName,
                 destination,
                 rarity,
                 stats,
@@ -156,7 +157,7 @@ function ItemComponent(props) {
                     </div>
                 )
             } else {
-                const nameVal = `${rarity} ${name} (${level})`
+                const nameVal = `${rarity} ${displayedName} (${level})`
                 const comparedValue = comparison.level ? comparison.level.value : null
                 const style = comparison.level ? { color: comparison.level.color } : null
                 return (

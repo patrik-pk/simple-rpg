@@ -5,6 +5,7 @@ class EquipItem {
         destination = 'Equipped',
         key,
         name = 'Helmet',
+        displayedName = 'Helmet',
         rarity = 'Common',
         icon = equipIcons.Helmet,
         stats = { statName: 'Armor', value: 7 },
@@ -24,6 +25,7 @@ class EquipItem {
         this.destination = destination
         this.key = key
         this.name = name
+        this.displayedName = displayedName
         this.rarity = rarity
         this.icon = icon
         this.stats = stats
