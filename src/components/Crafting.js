@@ -2,66 +2,21 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import ItemComponent from './inventory/ItemComponent'
 import InventoryRow from './inventory/InventoryRow'
-import possibleDrops from '../data/possibleDrops'
-import DropItem from '../data/DropItem'
-import craftableItems from '../data/craftableItems'
+import mapDrops from '../logic/mapDrops'
 import '../styles/crafting/crafting.css'
 
-function Crafting({ invItems }) {
+function Crafting({ invItems, craftableItems }) {
 
     // Get Players Drops
     const playerDrops = invItems.filter(item => item.type === 'drop')
 
-    // Map Drops
-    const mapDrops = (key1, key2) => {
-
-        // make an array out of possibleDrops object
-        const allDropsArr = Object.values(possibleDrops)
-        const mappedDrops = []
-
-        // loop through the array of possible drops
-        allDropsArr.forEach(specie => {
-            // make an array out of the current specie
-            const specieArr = Object.values(specie)
-            // and push key1 and key2 items to the mapped array
-            mappedDrops.push(specieArr[key1])
-            mappedDrops.push(specieArr[key2])
-        })
-
-        // make actual items from mapped drops
-        const itemsArr = mappedDrops.map((drop, i) => {
-
-            // loop through players drops and get the amount if the name matches
-            let dropAmount = 0
-            playerDrops.forEach(playerDrop => {
-                if(playerDrop.name === drop.name) dropAmount = playerDrop.amount
-            })
-
-            return new DropItem('Crafting', i, dropAmount, drop.name, drop.icon, [drop.classVal], 10 * dropAmount)
-        })
-
-        // sort the array
-        const firstHalf = []
-        const secondHalf = []
-
-        itemsArr.forEach((item, i) => {
-            if(i % 2 === 0) firstHalf.push(item)
-            else secondHalf.push(item) 
-        })
-
-        // join the arrays together
-        const result = firstHalf.concat(secondHalf)
-
-        // return result
-        return result
-    }
-
     // Mapped Drops
     const drops = {
-        low: mapDrops(0, 3),
-        medium: mapDrops(1, 4),
-        high: mapDrops(2, 5),
+        low: mapDrops(playerDrops, 0, 3),
+        medium: mapDrops(playerDrops, 1, 4),
+        high: mapDrops(playerDrops, 2, 5),
     }
 
     // Menu Active
@@ -81,6 +36,11 @@ function Crafting({ invItems }) {
             default: break;
         }
     }
+
+    // Map Craftable Items For Displaying
+    const displayedCraftableItems = craftableItems.low.mythic.map(item => {
+        return item.item
+    })
 
     // Render
     return (
@@ -114,8 +74,20 @@ function Crafting({ invItems }) {
 
             {/* Craftable Items */}
             <div className='craftable-items'>
-                <InventoryRow itemsProp={craftableItems.slice(0, 6)} />
-                <InventoryRow itemsProp={craftableItems.slice(6, 12)} />
+                <InventoryRow itemsProp={displayedCraftableItems.slice(0, 6)} />
+                <InventoryRow itemsProp={displayedCraftableItems.slice(6, 12)} />
+            </div>
+
+            {/* Craft Section */}
+            <div className='craft-section'>
+
+                <div className='drops-needed'>
+                    <ItemComponent data={craftableItems.low.mythic[1].dropsNeeded[0]} />
+                    <ItemComponent data={craftableItems.low.mythic[1].dropsNeeded[1]} />
+                </div>
+
+                <button className='craft-btn'>Craft</button>
+
             </div>
 
         </div>
@@ -124,10 +96,12 @@ function Crafting({ invItems }) {
 
 Crafting.propTypes = {
     invItems: PropTypes.array.isRequired,
+    craftableItems: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-    invItems: state.items.invItems
+    invItems: state.items.invItems,
+    craftableItems: state.items.craftableItems
 })
 
 export default connect(mapStateToProps)(Crafting)

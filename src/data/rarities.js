@@ -1,5 +1,10 @@
 
 const rarities = {
+
+    // Craftable Items
+    mythic: { rarity: 'Mythic', rarStatMult: 2, rarValMult: 4, bonusAmount: 6 },    
+
+    // Normal Items
     legendary: { rarity: 'Legendary', rarStatMult: 1.7, rarValMult: 2.5, bonusAmount: 5 },
     epic: { rarity: 'Epic', rarStatMult: 1.45, rarValMult: 2, bonusAmount: 4 },
     rare: { rarity: 'Rare', rarStatMult: 1.25, rarValMult: 1.6, bonusAmount: 3 },

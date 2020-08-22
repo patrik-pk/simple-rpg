@@ -3,7 +3,7 @@ import dropIcons from './icons/dropIcons'
 class DropItem {
     constructor(
         destination = 'Inventory',
-        key,
+        key = 1,
         amount = 1,
         name = 'small feather',
         icon = dropIcons.SmallFeather,

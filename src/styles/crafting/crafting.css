@@ -455,4 +455,31 @@
   width: 44px;
   height: 44px;
 }
+
+.crafting .craft-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 50px auto 0 auto;
+}
+
+.crafting .craft-section .drops-needed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.crafting .craft-section .craft-btn {
+  width: 70px;
+  margin-left: 50px;
+  border: 1px white solid;
+  padding: 5px 0;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.crafting .craft-section .craft-btn:hover {
+  background: white;
+  color: black;
+}
 /*# sourceMappingURL=crafting.css.map */

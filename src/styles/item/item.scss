@@ -214,6 +214,13 @@
 
     // Rarity Classes
 
+    // mythic
+    &.mythic { 
+        background: $mythic; 
+        .item { background: $mythic; }
+        #name { color: $mythic; }  
+    }
+
     // legendary
     &.legendary { 
         background: $legendary; 

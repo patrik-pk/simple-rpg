@@ -641,6 +641,18 @@
   fill: #00e1e1;
 }
 
+.item-container.mythic {
+  background: #d00000;
+}
+
+.item-container.mythic .item {
+  background: #d00000;
+}
+
+.item-container.mythic #name {
+  color: #d00000;
+}
+
 .item-container.legendary {
   background: orangered;
 }

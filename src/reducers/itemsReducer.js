@@ -1,4 +1,5 @@
 import startingItems from '../data/startingItems'
+import craftableItems from '../data/craftable_items/craftableItems'
 import EquipItem from '../data/EquipItem'
 //import DropItem from '../data/DropItem'
 import {
@@ -26,6 +27,7 @@ const initialState = {
         { type: "Empty", key: 1 },
         { type: "Empty", key: 2 },
     ],
+    craftableItems: craftableItems
 }
 
 export default (state = initialState, action) => {
