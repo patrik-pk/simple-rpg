@@ -52,7 +52,15 @@
 
         // Explanations
         .explanations {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
 
+            p {
+                margin-bottom: 25px;
+                font-weight: bold;
+                text-align: center;
+            }
         }
 
         // Middle Container
@@ -121,8 +129,8 @@
             .craft-btn {
                 margin-top: 20px;
                 align-self: flex-end;
-                width: 70px;
-                padding: 7px 0;
+                width: 90px;
+                padding: 8px 0;
                 transition: 500ms all;
                 background: white;
                 color: black;

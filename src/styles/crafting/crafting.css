@@ -433,6 +433,25 @@
       grid-template-columns: repeat(3, 1fr);
 }
 
+.crafting .content .explanations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.crafting .content .explanations p {
+  margin-bottom: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .crafting .content .middle-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -505,8 +524,8 @@
   margin-top: 20px;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  width: 70px;
-  padding: 7px 0;
+  width: 90px;
+  padding: 8px 0;
   -webkit-transition: 500ms all;
   transition: 500ms all;
   background: white;

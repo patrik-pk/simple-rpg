@@ -8,7 +8,7 @@ import mapDrops from '../logic/mapDrops'
 import deepCopy from '../logic/deepCopy'
 import '../styles/crafting/crafting.css'
 
-// Explain here
+
 function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
 
     // Unselect Items on Unmount 
@@ -27,10 +27,20 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
     // Level Menu Active
     const [levelMenuActive, setLevelMenuActive] = useState(0)
 
-    // Level Menu Classes
-    const levelMenuClass1 = levelMenuActive === 0 ? 'active' : ''
-    const levelMenuClass2 = levelMenuActive === 1 ? 'active' : ''
-    const levelMenuClass3 = levelMenuActive === 2 ? 'active' : ''
+    // Mapped Level Menu Items
+    const mappedLevelMenuItems = () => {
+        const data = ['Low Level', 'Medium Level', 'High Level']
+
+        const mapped = data.map((level, i) => {
+            return (
+                <li key={i} className={`menu-item ${levelMenuActive === i ? 'active' : ''}`} onClick={() => activateLevelMenu(i)}>
+                    <p>{level}</p>
+                </li>
+            )
+        })
+
+        return mapped
+    }
 
     // Drop Indexes Based On Level Type
     const [ dropIndex1, dropIndex2 ] = (() => {
@@ -53,14 +63,20 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
     // Rarity Menu Active
     const [rarityMenuActive, setRarityMenuActive] = useState(0)
 
-    // Rarity Menu Classes
-    const rarityMenuClass1 = rarityMenuActive === 0 ? 'active' : ''
-    const rarityMenuClass2 = rarityMenuActive === 1 ? 'active' : ''
-    const rarityMenuClass3 = rarityMenuActive === 2 ? 'active' : ''
-    const rarityMenuClass4 = rarityMenuActive === 3 ? 'active' : ''
-    const rarityMenuClass5 = rarityMenuActive === 4 ? 'active' : ''
-    const rarityMenuClass6 = rarityMenuActive === 5 ? 'active' : ''
-    const rarityMenuClass7 = rarityMenuActive === 6 ? 'active' : ''
+    // Mapped Rarity Menu Items
+    const mappedRarityMenuItems = () => {
+        const data = ['Mythic', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile']
+
+        const mapped = data.map((rarity, i) => {
+            return (
+                <li key={i} className={`menu-item ${rarityMenuActive === i ? 'active' : ''}`} onClick={() => activateRarityMenu(i)}>
+                    <p>{rarity}</p>
+                </li> 
+            )
+        })
+
+        return mapped
+    }
 
     // PLAYERS DROPS
 
@@ -148,17 +164,7 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
             {/* Level Menu */}
             <div className='level-menu'>
                 <ul className='menu-items'>
-
-                    <li className={`menu-item ${levelMenuClass1}`} onClick={() => activateLevelMenu(0)}>
-                        <p>Low Level</p>
-                    </li>
-                    <li className={`menu-item ${levelMenuClass2}`} onClick={() => activateLevelMenu(1)}>
-                        <p>Medium Level</p>
-                    </li>
-                    <li className={`menu-item ${levelMenuClass3}`} onClick={() => activateLevelMenu(2)}>
-                        <p>High Level</p>
-                    </li>
-
+                    { mappedLevelMenuItems() }
                 </ul>
             </div>
 
@@ -201,29 +207,7 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
                 {/* Rarity Menu */}
                 <div className='rarity-menu-container'>
                     <ul className='rarity-menu'>
-
-                        <li className={`menu-item ${rarityMenuClass1}`} onClick={() => activateRarityMenu(0)}>
-                            <p>Mythic</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass2}`} onClick={() => activateRarityMenu(1)}>
-                            <p>Aquatic</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass3}`} onClick={() => activateRarityMenu(2)}>
-                            <p>Avian</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass4}`} onClick={() => activateRarityMenu(3)}>
-                            <p>Dinosaur</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass5}`} onClick={() => activateRarityMenu(4)}>
-                            <p>Insect</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass6}`} onClick={() => activateRarityMenu(5)}>
-                            <p>Wildlife</p>
-                        </li>
-                        <li className={`menu-item ${rarityMenuClass7}`} onClick={() => activateRarityMenu(6)}>
-                            <p>Reptile</p>
-                        </li>
-
+                        { mappedRarityMenuItems() }
                     </ul>
                 </div>
 
