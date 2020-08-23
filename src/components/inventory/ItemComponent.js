@@ -102,7 +102,7 @@ function ItemComponent(props) {
         // Checks
         const isEquipped = destination === 'Equipped' ? true : false
         const isDrop = type === 'drop' ? true : false
-        const hasDropFunctionality = isDrop & (destination === 'Shop' || destination === 'Inventory') ? true : false
+        const hasDropFunctionality = isDrop && (destination === 'Shop' || destination === 'Inventory') ? true : false
 
         // Set Classes - first push items into array, 
         // then join them into single string with with space between them

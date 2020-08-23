@@ -5,16 +5,17 @@ import deepCopy from '../logic/deepCopy'
 //import DropItem from '../data/DropItem'
 import {
     ADD_ITEM_TO_INV,
+    REMOVE_INV_ITEMS,
     SET_INV_ITEM_SELECT,
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
     UNSELECT_INV_ITEMS,
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
-    REMOVE_INV_ITEMS,
     EQUIP_ITEM,
     SET_CRAFTABLE_ITEM_SELECT,
-    UNSELECT_CRAFTABLE_ITEMS
+    UNSELECT_CRAFTABLE_ITEMS,
+    REMOVE_DROPS_FROM_INV
 } from '../actions/types'
 
 const initialState = {
@@ -26,9 +27,9 @@ const initialState = {
 
     ],
     shopItems: [
-        { type: "Empty", key: 0 },
-        { type: "Empty", key: 1 },
-        { type: "Empty", key: 2 },
+        { type: 'Empty', key: 0 },
+        { type: 'Empty', key: 1 },
+        { type: 'Empty', key: 2 },
     ],
     craftableItems: craftableItems
 }
@@ -110,6 +111,23 @@ export default (state = initialState, action) => {
                 }
             }
 
+        // Remove Inventory Items
+        case REMOVE_INV_ITEMS:
+
+            // create an array of all the keys in payload items that will be removed
+            const mappedPayloadKeys = action.payload.map(payloadItem => payloadItem.key)
+
+            // filter out all the items that include one of the mapped payload id
+            const newItems = state.invItems.filter(item => !mappedPayloadKeys.includes(item.key))
+
+            // Add correct keys to items
+            newItems.forEach((item, i) => item.key = i)
+
+            return {
+                ...state,
+                invItems: newItems
+            }
+
         // Unselect Inventory Items
         case UNSELECT_INV_ITEMS:
             return {
@@ -168,23 +186,6 @@ export default (state = initialState, action) => {
                 })
             }
 
-        // Remove Inventory Items
-        case REMOVE_INV_ITEMS:
-
-            // create an array of all the keys in payload items that will be removed
-            const mappedPayloadKeys = action.payload.map(payloadItem => payloadItem.key)
-
-            // filter out all the items that include one of the mapped payload id
-            const newItems = state.invItems.filter(item => !mappedPayloadKeys.includes(item.key))
-
-            // Add correct keys to items
-            newItems.forEach((item, i) => item.key = i)
-
-            return {
-                ...state,
-                invItems: newItems
-            }
-
         // Equip Item
         case EQUIP_ITEM:
             const { selectedItem, equippedItem } = action.payload
@@ -219,28 +220,28 @@ export default (state = initialState, action) => {
                 })
             }
 
-            // SET CRAFTABLE ITEM ISSELECT
-            case SET_CRAFTABLE_ITEM_SELECT:
+        // Set Craftable Item isSelected
+        case SET_CRAFTABLE_ITEM_SELECT:
 
-                const newCraftableItems = deepCopy(state.craftableItems)
-                
-                newCraftableItems.forEach(levelType => {
-                    levelType.forEach(rarityType => {
-                        rarityType.forEach(item => {
-                            if (item.item.key === action.payload) {
-                                item.item.isSelected = !item.item.isSelected
-                            }
-                        })
+            const newCraftableItems = deepCopy(state.craftableItems)
+            
+            newCraftableItems.forEach(levelType => {
+                levelType.forEach(rarityType => {
+                    rarityType.forEach(item => {
+                        if (item.item.key === action.payload) {
+                            item.item.isSelected = !item.item.isSelected
+                        }
                     })
                 })
+            })
 
-                return {
-                    ...state,
-                    craftableItems: newCraftableItems
-                }
+            return {
+                ...state,
+                craftableItems: newCraftableItems
+            }
 
-            // UNSELECT ALL CRAFTABLE ITEMS
-            case UNSELECT_CRAFTABLE_ITEMS:
+        // Unselect All Craftable Items
+        case UNSELECT_CRAFTABLE_ITEMS:
 
             const unselectedCraftableItems = deepCopy(state.craftableItems)
 
@@ -252,13 +253,29 @@ export default (state = initialState, action) => {
                 })
             })
 
-                return {
-                    ...state,
-                    craftableItems: unselectedCraftableItems
-                }
+            return {
+                ...state,
+                craftableItems: unselectedCraftableItems
+            }
+
+        // Remove Drops From Inventory
+        case REMOVE_DROPS_FROM_INV:
+            return {
+                ...state,
+                invItems: state.invItems.map(item => {
+
+                    action.payload.forEach(drop => {
+                        if(item.name === drop.name) {
+                            item.amount -= drop.amount
+                        }
+                    })
+                    return item
+                })
+            }
+        
 
         // Default
         default:
             return state
-    }
+        }
 }

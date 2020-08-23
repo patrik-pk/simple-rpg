@@ -479,14 +479,22 @@
 .crafting .craft-btn {
   margin: 30px auto 0 auto;
   width: 70px;
-  border: 1px white solid;
   padding: 5px 0;
   -webkit-transition: 500ms all;
   transition: 500ms all;
-}
-
-.crafting .craft-btn:hover {
   background: white;
   color: black;
+  border: 1px black solid;
+}
+
+.crafting .craft-btn.active:hover {
+  background: white;
+  color: black;
+}
+
+.crafting .craft-btn.active {
+  background: black;
+  color: white;
+  border-color: white;
 }
 /*# sourceMappingURL=crafting.css.map */

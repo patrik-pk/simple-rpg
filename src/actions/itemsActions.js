@@ -1,21 +1,28 @@
 import {
     ADD_ITEM_TO_INV,
+    REMOVE_INV_ITEMS,
     UNSELECT_INV_ITEMS,
     SET_INV_ITEM_SELECT,
     UNSELECT_SHOP_ITEMS,
     SET_SHOP_ITEM_SELECT,
     REROLL_ITEMS,
     REMOVE_SHOP_ITEM,
-    REMOVE_INV_ITEMS,
     EQUIP_ITEM,
     SET_CRAFTABLE_ITEM_SELECT,
-    UNSELECT_CRAFTABLE_ITEMS
+    UNSELECT_CRAFTABLE_ITEMS,
+    REMOVE_DROPS_FROM_INV
 } from './types'
 
 // ADD ITEM TO INV
 export const addItemToInv = item => ({
     type: ADD_ITEM_TO_INV,
     payload: item
+})
+
+// REMOVE INVENTORY ITEMS
+export const removeInvItems = items => ({
+    type: REMOVE_INV_ITEMS,
+    payload: items
 })
 
 // UNSELECT INVENTORY ITEMS
@@ -52,12 +59,6 @@ export const removeShopItem = item => ({
     payload: item
 })
 
-// REMOVE INVENTORY ITEMS
-export const removeInvItems = items => ({
-    type: REMOVE_INV_ITEMS,
-    payload: items
-})
-
 // EQUIP ITEM
 export const equipItem = (selectedItem, equippedItem) => ({
     type: EQUIP_ITEM,
@@ -76,4 +77,10 @@ export const setCraftableItemSelect = key => ({
 // UNSELECT ALL CRAFTABLE ITEMS
 export const unselectCraftableItems = () => ({
     type: UNSELECT_CRAFTABLE_ITEMS,
+})
+
+// REMOVE DROPS FROM INVENTORY
+export const removeDropsFromInv = drops => ({
+    type: REMOVE_DROPS_FROM_INV,
+    payload: drops
 })

@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import InventoryRow from './inventory/InventoryRow'
-import { unselectCraftableItems } from '../actions/itemsActions'
+import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../actions/itemsActions'
 import mapDrops from '../logic/mapDrops'
+import deepCopy from '../logic/deepCopy'
 import '../styles/crafting/crafting.css'
 
-function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
+function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
 
     // Unselect Items on Unmount
     useEffect(() => {
@@ -43,10 +44,10 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
     // PLAYERS DROPS
 
     // Get Players Drops
-    const playerDropItems = invItems.filter(item => item.type === 'drop')
+    const playerDrops = invItems.filter(item => item.type === 'drop')
 
     // Mapped Player Drops
-    const playerDrops = mapDrops(playerDropItems, dropIndex1, dropIndex2)
+    const mappedPlayerDrops = mapDrops(playerDrops, dropIndex1, dropIndex2)
 
     // CRAFTABLE ITEMS
 
@@ -62,10 +63,54 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
     // NEEDED DROPS
 
     // Get Selected Item
-    const selectedItem = craftableItems[menuActive][0].filter(item => item.item.isSelected)
-    const selectedItemDrops = selectedItem[0] ? selectedItem[0].dropsNeeded : []
+    const selectedItemArr = craftableItems[menuActive][0].filter(item => item.item.isSelected)
+    const neededDrops = selectedItemArr[0] ? selectedItemArr[0].dropsNeeded : []
 
-    const neededDrops = mapDrops(selectedItemDrops, dropIndex1, dropIndex2)
+    const mappedNeededDrops = mapDrops(neededDrops, dropIndex1, dropIndex2)
+
+    
+    // CRAFT
+    
+    // Check if player has needed drops to craft the item
+    const compareDrops = () => {
+
+        // loop through need drops (return array of booleans)
+        const compared = neededDrops.map(neededDrop => {
+            let found = false
+
+            // nest loop through player drops, if the names match
+            //  and player has the amount, set found to true
+            playerDrops.forEach(playerDrop => {
+                if(playerDrop.name === neededDrop.name && playerDrop.amount >= neededDrop.amount) {
+                    found = true
+                }
+            })
+
+            return found
+        })
+
+        // if player has both drops with needed amount, return true
+        return compared[0] && compared[1] ? true : false
+    }
+
+    const craftClass = compareDrops() ? 'active' : '' 
+
+    // Craft Function - Remove players needed drops and add selected item to inventory
+    const craft = () => {
+        // Todo: Add inv items length conditions - player needs to have space in inventory
+        if(selectedItemArr.length === 1 && compareDrops()) {
+
+            // remove players drops needed to craft the item
+            removeDropsFromInv(neededDrops)
+
+            // make a deep copy of the selected item, edit its properties and add it to inventory
+            const item = deepCopy(selectedItemArr[0].item)
+            item.key = invItems.length
+            item.destination = 'Inventory'
+            item.isSelected = false
+            addItemToInv(item)
+        }
+    }
 
 
     // Render
@@ -94,8 +139,8 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
 
             {/* Players Drops */}
             <div className="player-drops">
-                <InventoryRow itemsProp={playerDrops.slice(0, 6)} />
-                <InventoryRow itemsProp={playerDrops.slice(6, 12)} />
+                <InventoryRow itemsProp={mappedPlayerDrops.slice(0, 6)} />
+                <InventoryRow itemsProp={mappedPlayerDrops.slice(6, 12)} />
             </div>
 
             {/* Craftable Items */}
@@ -106,12 +151,13 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems }) {
 
             {/* Drops Needed */}
             <div className='drops-needed'>
-                <InventoryRow itemsProp={neededDrops.slice(0, 6)} />
-                <InventoryRow itemsProp={neededDrops.slice(6, 12)} />
+                <InventoryRow itemsProp={mappedNeededDrops.slice(0, 6)} />
+                <InventoryRow itemsProp={mappedNeededDrops.slice(6, 12)} />
             </div>
 
             {/* Craft Button */}
-            <button className='craft-btn'>Craft</button>
+            {/* Todo: Success / Fail Alert on the left */}
+            <button className={`craft-btn ${craftClass}`} onClick={craft}>Craft</button>
 
         </div>
     )
@@ -127,4 +173,4 @@ const mapStateToProps = state => ({
     craftableItems: state.items.craftableItems
 })
 
-export default connect(mapStateToProps, { unselectCraftableItems })(Crafting)
+export default connect(mapStateToProps, { unselectCraftableItems, addItemToInv, removeDropsFromInv })(Crafting)
