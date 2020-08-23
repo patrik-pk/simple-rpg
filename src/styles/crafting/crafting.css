@@ -382,13 +382,13 @@
   text-align: center;
 }
 
-.crafting .crafting-menu {
+.crafting .level-menu {
   margin-top: 20px;
   border-top: 1px white solid;
   border-bottom: 1px white solid;
 }
 
-.crafting .crafting-menu .menu-items {
+.crafting .level-menu .menu-items {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -398,7 +398,7 @@
           justify-content: space-evenly;
 }
 
-.crafting .crafting-menu .menu-items .menu-item {
+.crafting .level-menu .menu-items .menu-item {
   width: auto;
   padding: 15px 0;
   cursor: pointer;
@@ -406,80 +406,107 @@
   transition: 500ms all;
 }
 
-.crafting .crafting-menu .menu-items .menu-item:hover {
+.crafting .level-menu .menu-items .menu-item:hover {
   background: white;
 }
 
-.crafting .crafting-menu .menu-items .menu-item:hover p {
+.crafting .level-menu .menu-items .menu-item:hover p {
   color: black;
 }
 
-.crafting .crafting-menu .menu-items .menu-item.active {
+.crafting .level-menu .menu-items .menu-item.active {
   background: white;
 }
 
-.crafting .crafting-menu .menu-items .menu-item.active p {
+.crafting .level-menu .menu-items .menu-item.active p {
   color: black;
 }
 
-.crafting .crafting-menu .menu-items .menu-item p {
+.crafting .level-menu .menu-items .menu-item p {
   text-align: center;
 }
 
-.crafting .player-drops {
-  margin: 30px auto 0 auto;
+.crafting .content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
 }
 
-.crafting .player-drops ul {
+.crafting .content .middle-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 276px;
+  margin: 0 auto;
+}
+
+.crafting .content .middle-container .player-drops {
+  margin: 30px auto 0 auto;
+  padding: 5px;
+  border: 1px white solid;
+}
+
+.crafting .content .middle-container .player-drops ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.crafting .player-drops ul .item-container {
+.crafting .content .middle-container .player-drops ul .item-container {
   width: 44px;
   height: 44px;
 }
 
-.crafting .craftable-items {
-  margin: 30px auto 0 auto;
+.crafting .content .middle-container .craftable-items {
+  margin: 20px auto 0 auto;
+  padding: 5px;
+  border: 1px white solid;
 }
 
-.crafting .craftable-items ul {
+.crafting .content .middle-container .craftable-items ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.crafting .craftable-items ul .item-container {
+.crafting .content .middle-container .craftable-items ul .item-container {
   width: 44px;
   height: 44px;
 }
 
-.crafting .craftable-items ul .item-container .item {
+.crafting .content .middle-container .craftable-items ul .item-container .item {
   width: 40px;
   height: 40px;
 }
 
-.crafting .drops-needed {
-  margin: 30px auto 0 auto;
+.crafting .content .middle-container .drops-needed {
+  margin: 20px auto 0 auto;
+  padding: 5px;
+  border: 1px white solid;
 }
 
-.crafting .drops-needed ul {
+.crafting .content .middle-container .drops-needed ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.crafting .drops-needed ul .item-container {
+.crafting .content .middle-container .drops-needed ul .item-container {
   width: 44px;
   height: 44px;
 }
 
-.crafting .craft-btn {
-  margin: 30px auto 0 auto;
+.crafting .content .middle-container .craft-btn {
+  margin-top: 20px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   width: 70px;
-  padding: 5px 0;
+  padding: 7px 0;
   -webkit-transition: 500ms all;
   transition: 500ms all;
   background: white;
@@ -487,14 +514,61 @@
   border: 1px black solid;
 }
 
-.crafting .craft-btn.active:hover {
+.crafting .content .middle-container .craft-btn.active:hover {
   background: white;
   color: black;
 }
 
-.crafting .craft-btn.active {
+.crafting .content .middle-container .craft-btn.active {
   background: black;
   color: white;
   border-color: white;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu {
+  width: 150px;
+  margin: 30px auto 0 auto;
+  border: 1px white solid;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px white solid;
+  cursor: pointer;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item:first-child {
+  margin-top: -1px;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item:last-child {
+  border-bottom: 0;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item:hover {
+  background: white;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item:hover p {
+  color: black;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item.active {
+  background: white;
+}
+
+.crafting .content .rarity-menu-container .rarity-menu .menu-item.active p {
+  color: black;
 }
 /*# sourceMappingURL=crafting.css.map */

@@ -1,8 +1,14 @@
 
 const rarities = {
 
-    // Craftable Items
-    mythic: { rarity: 'Mythic', rarStatMult: 2, rarValMult: 4, bonusAmount: 6 },    
+    // Craftable Items (bonus amount is not being used, becase bonuses are already declared for these items)
+    mythic: { rarity: 'Mythic', rarStatMult: 2, rarValMult: 4 },    
+    aquatic: { rarity: 'Aquatic', rarStatMult: 1.8, rarValMult: 3 },    
+    avian: { rarity: 'Avian', rarStatMult: 1.8, rarValMult: 3 },    
+    dinosaur: { rarity: 'Dinosaur', rarStatMult: 1.8, rarValMult: 3 },    
+    insect: { rarity: 'Insect', rarStatMult: 1.8, rarValMult: 3 },    
+    wildlife: { rarity: 'Wildlife', rarStatMult: 1.8, rarValMult: 3 },    
+    reptile: { rarity: 'Reptile', rarStatMult: 1.8, rarValMult: 3 },    
 
     // Normal Items
     legendary: { rarity: 'Legendary', rarStatMult: 1.7, rarValMult: 2.5, bonusAmount: 5 },

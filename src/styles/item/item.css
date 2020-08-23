@@ -647,6 +647,78 @@
   fill: #00e1e1;
 }
 
+.item-container.aquatic {
+  background: #00e1e1;
+}
+
+.item-container.aquatic .item {
+  background: #00e1e1;
+}
+
+.item-container.aquatic #name {
+  color: #00e1e1;
+}
+
+.item-container.avian {
+  background: #ff97b7;
+}
+
+.item-container.avian .item {
+  background: #ff97b7;
+}
+
+.item-container.avian #name {
+  color: #ff97b7;
+}
+
+.item-container.dinosaur {
+  background: #ed6a5a;
+}
+
+.item-container.dinosaur .item {
+  background: #ed6a5a;
+}
+
+.item-container.dinosaur #name {
+  color: #ed6a5a;
+}
+
+.item-container.insect {
+  background: #53dd6c;
+}
+
+.item-container.insect .item {
+  background: #53dd6c;
+}
+
+.item-container.insect #name {
+  color: #53dd6c;
+}
+
+.item-container.wildlife {
+  background: #e09767;
+}
+
+.item-container.wildlife .item {
+  background: #e09767;
+}
+
+.item-container.wildlife #name {
+  color: #e09767;
+}
+
+.item-container.reptile {
+  background: #02c39a;
+}
+
+.item-container.reptile .item {
+  background: #02c39a;
+}
+
+.item-container.reptile #name {
+  color: #02c39a;
+}
+
 .item-container.mythic {
   background: #d00000;
 }

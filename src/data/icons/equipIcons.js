@@ -68,6 +68,7 @@ import { ReactComponent as InsectHelmet } from '../../resources/icons/equipment/
 import { ReactComponent as InsectMace } from '../../resources/icons/equipment/special/insect_mace.svg'
 import { ReactComponent as InsectNecklace } from '../../resources/icons/equipment/special/insect_necklace.svg'
 import { ReactComponent as InsectPants } from '../../resources/icons/equipment/special/insect_pants.svg'
+import { ReactComponent as InsectShield } from '../../resources/icons/equipment/special/insect_shield.svg'
 
 // Reptile
 import { ReactComponent as ReptileChestplate } from '../../resources/icons/equipment/special/reptile_chestplate.svg'
@@ -163,6 +164,7 @@ const equipIcons = {
         mace: { displayedName: 'Mace', icon: InsectMace },
         necklace: { displayedName: 'Necklace', icon: InsectNecklace },
         pants: { displayedName: 'Pants', icon: InsectPants },  
+        shield: { displayedName: 'Shield', icon: InsectShield },  
     },
 
     // Reptile

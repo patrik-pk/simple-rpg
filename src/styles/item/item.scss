@@ -220,6 +220,48 @@
 
     // Rarity Classes
 
+    // aquatic
+    &.aquatic { 
+        background: $aquatic-color; 
+        .item { background: $aquatic-color; }
+        #name { color: $aquatic-color; }  
+    }
+
+    // avian
+    &.avian { 
+        background: $avian-color; 
+        .item { background: $avian-color; }
+        #name { color: $avian-color; }  
+    }
+
+    // dinosaur
+    &.dinosaur { 
+        background: $dinosaur-color; 
+        .item { background: $dinosaur-color; }
+        #name { color: $dinosaur-color; }  
+    }
+
+    // insect
+    &.insect { 
+        background: $insect-color; 
+        .item { background: $insect-color; }
+        #name { color: $insect-color; }  
+    }
+
+    // wildlife
+    &.wildlife { 
+        background: $wildlife-color; 
+        .item { background: $wildlife-color; }
+        #name { color: $wildlife-color; }  
+    }
+
+    // reptile
+    &.reptile { 
+        background: $reptile-color; 
+        .item { background: $reptile-color; }
+        #name { color: $reptile-color; }  
+    }
+
     // mythic
     &.mythic { 
         background: $mythic; 

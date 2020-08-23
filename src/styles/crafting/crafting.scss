@@ -13,7 +13,7 @@
     }
 
     // Menu
-    .crafting-menu {
+    .level-menu {
         margin-top: 20px;
         border-top: 1px white solid;
         border-bottom: 1px white solid;
@@ -45,75 +45,139 @@
         }
     }
 
-    // Players Drops
-    .player-drops {
-        margin: 30px auto 0 auto;
-        
-        // Item Row
-        ul {
-            display: flex;
+    // Content
+    .content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
 
-            // Item
-            .item-container {
-                width: 44px;
-                height: 44px;
-            }
+        // Explanations
+        .explanations {
+
         }
-    }
 
-    // Craftable Items
-    .craftable-items {
-        margin: 30px auto 0 auto;
-
-        ul {
+        // Middle Container
+        .middle-container {
             display: flex;
-
-            .item-container {
-                width: 44px;
-                height: 44px;
-
-                .item {
-                    width: 40px;
-                    height: 40px;
+            flex-direction: column;
+            width: 276px;
+            margin: 0 auto;
+    
+            // Players Drops
+            .player-drops {
+                margin: 30px auto 0 auto;
+                padding: 5px;
+                border: 1px white solid;
+                
+                // Item Row
+                ul {
+                    display: flex;
+        
+                    // Item
+                    .item-container {
+                        width: 44px;
+                        height: 44px;
+                    }
+                }
+            }
+        
+            // Craftable Items
+            .craftable-items {
+                margin: 20px auto 0 auto;
+                padding: 5px;
+                border: 1px white solid;
+        
+                ul {
+                    display: flex;
+        
+                    .item-container {
+                        width: 44px;
+                        height: 44px;
+        
+                        .item {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        
+            // Craft Section
+            .drops-needed {
+                margin: 20px auto 0 auto;
+                padding: 5px;
+                border: 1px white solid;
+        
+                ul {
+                    display: flex;
+        
+                    .item-container {
+                        width: 44px;
+                        height: 44px;
+                    }
+                }
+            }
+        
+            // Craft Button    
+            .craft-btn {
+                margin-top: 20px;
+                align-self: flex-end;
+                width: 70px;
+                padding: 7px 0;
+                transition: 500ms all;
+                background: white;
+                color: black;
+                border: 1px black solid;
+                
+        
+                &.active:hover {
+                    background: white;
+                    color: black;
+                }
+                
+                &.active {
+                    background: black;
+                    color: white;
+                    border-color: white;
                 }
             }
         }
-    }
 
-    // Craft Section
-    .drops-needed {
-        margin: 30px auto 0 auto;
+        // Rarity Menu
+        .rarity-menu-container {
 
-        ul {
-            display: flex;
+            .rarity-menu {
+                width: 150px;
+                margin: 30px auto 0 auto;
+                border: 1px white solid;
 
-            .item-container {
-                width: 44px;
-                height: 44px;
+                .menu-item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px 0;
+                    border-bottom: 1px white solid;
+                    cursor: pointer;
+                    transition: 500ms all;
+
+                    // fix white space between border and item
+                    // don't know why this happens
+                    &:first-child { margin-top: -1px; }
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    &:hover {
+                        background: white;
+                        p { color: black; }
+                    }
+
+                    &.active {
+                        background: white;
+                        p { color: black; }
+                    }
+                }
             }
-        }
-    }
-
-    // Craft Button
-    .craft-btn {
-        margin: 30px auto 0 auto;
-        width: 70px;
-        padding: 5px 0;
-        transition: 500ms all;
-        background: white;
-        color: black;
-        border: 1px black solid;
-        
-
-        &.active:hover {
-            background: white;
-            color: black;
-        }
-        
-        &.active {
-            background: black;
-            color: white;
-            border-color: white;
         }
     }
 }
