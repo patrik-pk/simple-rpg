@@ -102,15 +102,15 @@ function Player(props) {
                 <div className='actions' style={{display: canAttack === true ? 'flex' : 'none'}}>
                     
                     <div className='melee-column'>
-                        <Action data={{ id: 'ml', type: 'melee', strength: 'light', icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
-                        <Action data={{ id: 'mm', type: 'melee', strength: 'medium', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
-                        <Action data={{ id: 'ms', type: 'melee', strength: 'strong', icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
+                        <Action data={{ id: 'ml', type: 'melee', strength: 'light', hitChangeMult: 0.2, icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
+                        <Action data={{ id: 'mm', type: 'melee', strength: 'medium', hitChangeMult: 0.9, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
+                        <Action data={{ id: 'ms', type: 'melee', strength: 'strong', hitChangeMult: 1.8, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
                     </div>
     
                     <div className='ranged-column'>
-                        <Action data={{ id: 'rl', type: 'ranged', strength: 'light', icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
-                        <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
-                        <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />
+                        <Action data={{ id: 'rl', type: 'ranged', strength: 'light', hitChangeMult: 0.2, icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
+                        <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', hitChangeMult: 0.9, icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
+                        <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', hitChangeMult: 1.8, icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />
                     </div>
     
                 </div>

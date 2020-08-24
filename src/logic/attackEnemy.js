@@ -19,7 +19,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
     }
   })()
 
-  // Based on strengthOfAttack (light / medium / ranged) return dmg and hitChance
+  // Based on strengthOfAttack (light / medium / ranged) return dmg
   const strengthOfAtt = (() => {
     switch (strengthOfAttack) {
       case 'light': return randomGenerator(70, 90, 0.01)

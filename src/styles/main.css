@@ -857,16 +857,16 @@
   display: flex;
 }
 
-.battle-section .game-over .reward .right .item_container {
-  margin-right: 5px;
+.battle-section .game-over .reward .right .item-container {
+  margin-left: 5px;
 }
 
-.battle-section .game-over .reward .right .item_container:last-child {
-  margin-right: 0;
+.battle-section .game-over .reward .right .item-container:first-child {
+  margin-left: 0;
 }
 
 @media (max-width: 768px) {
-  .battle-section .game-over .reward .right .item_container .stats {
+  .battle-section .game-over .reward .right .item-container .stats {
     margin-bottom: 30px;
   }
 }

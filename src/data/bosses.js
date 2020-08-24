@@ -15,53 +15,53 @@ const bosses = [
     
     // Aquatic
     [
-        boss(8, aquatic.ray, 0, 'aquatic'),
-        boss(14, aquatic.anglerfish, 0, 'aquatic'),
-        boss(21, aquatic.hammerhead, 0, 'aquatic'),
-        boss(27, aquatic.shark, 0, 'aquatic'),
-        boss(40, aquatic.kraken, null, 'aquatic'),
+        boss(8, aquatic.ray, 0, 'Aquatic'),
+        boss(14, aquatic.anglerfish, 0, 'Aquatic'),
+        boss(21, aquatic.hammerhead, 0, 'Aquatic'),
+        boss(27, aquatic.shark, 0, 'Aquatic'),
+        boss(40, aquatic.kraken, null, 'Aquatic'),
     ],
     // Avians
     [
-        boss(9, avians.owl, 1, 'avian'),
-        boss(15, avians.falcon, 1, 'avian'),
-        boss(20, avians.hawk, 1, 'avian'),
-        boss(25, avians.microraptor, 1, 'avian'),
-        boss(30, avians.pterodactyl, 1, 'avian'),
+        boss(9, avians.owl, 1, 'Avian'),
+        boss(15, avians.falcon, 1, 'Avian'),
+        boss(20, avians.hawk, 1, 'Avian'),
+        boss(25, avians.microraptor, 1, 'Avian'),
+        boss(30, avians.pterodactyl, 1, 'Avian'),
     ],
     // Dinosaurs
     [   
-        boss(13, dinosaurs.dilong, 0, 'dinosaur'),
-        boss(18, dinosaurs.guanlong, 0, 'dinosaur'),
-        boss(22, dinosaurs.monoclonius, 0, 'dinosaur'),
-        boss(28, dinosaurs.irritator, 0, 'dinosaur'),
-        boss(32, dinosaurs.tyrannosaurus, 0, 'dinosaur'),
+        boss(13, dinosaurs.dilong, 0, 'Dinosaur'),
+        boss(18, dinosaurs.guanlong, 0, 'Dinosaur'),
+        boss(22, dinosaurs.monoclonius, 0, 'Dinosaur'),
+        boss(28, dinosaurs.irritator, 0, 'Dinosaur'),
+        boss(32, dinosaurs.tyrannosaurus, 0, 'Dinosaur'),
     ],
     // Insect
     [
-        boss(6, insect.mosquito, 1, 'insect'),
-        boss(10, insect.dragonfly, 1, 'insect'),
-        boss(16, insect.tarantula, 1, 'insect'),
-        boss(24, insect.scorpion, 1, 'insect'),
-        boss(29, insect.millipede, 1, 'insect'),
+        boss(6, insect.mosquito, 1, 'Insect'),
+        boss(10, insect.dragonfly, 1, 'Insect'),
+        boss(16, insect.tarantula, 1, 'Insect'),
+        boss(24, insect.scorpion, 1, 'Insect'),
+        boss(29, insect.millipede, 1, 'Insect'),
 
     ],
     // Wildlife
     [
-        boss(5, wildlife.rat, 1, 'wildlife'),
-        boss(11, wildlife.boar, 0, 'wildlife'),
-        boss(17, wildlife.bull, 0, 'wildlife'),
-        boss(23, wildlife.lion, 0, 'wildlife'),
-        boss(30, wildlife.tiger, 0, 'wildlife'),
+        boss(5, wildlife.rat, 1, 'Wildlife'),
+        boss(11, wildlife.boar, 0, 'Wildlife'),
+        boss(17, wildlife.bull, 0, 'Wildlife'),
+        boss(23, wildlife.lion, 0, 'Wildlife'),
+        boss(30, wildlife.tiger, 0, 'Wildlife'),
 
     ],
     // Reptiles
     [
-        boss(7, reptiles.chameleon, 1, 'reptile'),
-        boss(12, reptiles.iguana, 1, 'reptile'),
-        boss(19, reptiles.crocodile, 0, 'reptile'),
-        boss(26, reptiles.cobra, 1, 'reptile'),
-        boss(35, reptiles.dragon, 1, 'reptile'),
+        boss(7, reptiles.chameleon, 1, 'Reptile'),
+        boss(12, reptiles.iguana, 1, 'Reptile'),
+        boss(19, reptiles.crocodile, 0, 'Reptile'),
+        boss(26, reptiles.cobra, 1, 'Reptile'),
+        boss(35, reptiles.dragon, 1, 'Reptile'),
     ],
 ]
 

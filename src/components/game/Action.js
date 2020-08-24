@@ -17,15 +17,17 @@ import randomGenerator from '../../logic/randomGenerator'
 
 function Action(props) {
 
-    // Destructure from props
+    // Destructure From Props
     const {
-        data,
+        data: { id, type: attackType, strength, hitChanceMult, icon },
         dodge, 
         player, 
         enemy,
         character,
         game,
         invItems,
+        craftableItems,
+        dungeon,
         setCanAttack,
         gameWon,
         gameLost,
@@ -41,17 +43,10 @@ function Action(props) {
         addItemToInv
     } = props
 
-    const gameType = enemy.type === 'Boss' ? 'Boss' : 'Classic'
+    const { currentLevel } = character
+    const { type: gameType, enemyType: { drops }, currentHp, level: enemyLevel } = enemy
 
-    // Get hit chance multiplier
-    const hitChanceMult = (() => {
-        switch (data.strength) {
-            case 'light': return 0.2
-            case 'medium': return 0.9
-            case 'strong': return 1.8
-            default: return 1;
-        }
-    })()
+    // Get Chance To Hit
     const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
 
     // Start Round - actual game functionality
@@ -61,8 +56,9 @@ function Action(props) {
 
         resetPlayerDmgTaken()
         setCanAttack(false)
+
         // calculate damage dealt and return it along with didCrit boolean
-        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, data.type, data.strength, hitChanceMult)
+        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, attackType, strength, hitChanceMult)
 
         // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
         if(p_dmgDealt === 'dodged') {
@@ -70,7 +66,7 @@ function Action(props) {
         } else {
             enemyHit(p_dmgDealt, p_didCrit)
             // check if Enemy has 0 or less HP after damage dealt
-            if(enemy.currentHp - p_dmgDealt <= 0) {
+            if(currentHp - p_dmgDealt <= 0) {
 
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
@@ -81,15 +77,12 @@ function Action(props) {
 
                 // generate items
                 const rewardItems = (() => {
-                    // items array that will be returned
-                    let items = []
 
-                    // for Boss game generate 3 items, for Classic one 2-3
-                    const numberOfItems = gameType === 'Boss' ? 2 : randomGenerator(2, 3)
+                    let items = []
+                    let alreadyGeneratedDrops = []
 
                     // get possible drops from enemyType
-                    const possibleDrops = enemy.enemyType.drops
-                    let alreadyGeneratedDrops = []
+                    const possibleDrops = drops
 
                     // generate drop function
                     const generateUniqueDrop = (alreadyGenerated, i) => {
@@ -118,11 +111,37 @@ function Action(props) {
                     }
 
                     
-                    // generate items, first item is always equipment, others are drop
-                    for(let i = 0; i < numberOfItems; i++) {
+                    // generate items, first item is always equipment, others are drops
+                    for(let i = 0; i < 3; i++) {
                         if (i === 0) {
-                            const itemLevel = enemy.level > character.currentLevel ? enemy.level : character.currentLevel
-                            items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
+                            const itemLevel = enemyLevel > currentLevel ? enemyLevel : currentLevel
+
+                            // for classic game generate random item, for boss game get crafting item
+                            if(gameType === 'Classic') items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
+                            if(gameType === 'Boss') {
+                                console.log(craftableItems)
+                                console.log(enemy)
+
+                                // mythic (30%) / specie item (70%)
+                                // TODO: generate that item, add + current to dungeon
+
+                                // get levelType item based on level (low = 0-10, medium = 11 - 23, high = 24+)
+                                let itemLevelType
+                                if(enemyLevel <= 10) itemLevelType = 0
+                                else if(enemyLevel > 10 && enemyLevel <= 23) itemLevelType = 1
+                                else itemLevelType = 2
+
+                                // get matching index of the dungeon 
+                                // (actually place it above, because I need to add current dungeon +1 and used it here later on?)
+                                let matchingDungeonIndex = 0
+
+                                dungeon.forEach((item, dungeonIndex) => {
+                                    if (item.type === enemy.dungeon) {
+                                        matchingDungeonIndex = dungeonIndex
+                                    }
+                                })
+                            }
+                            
                         } 
                         else generateUniqueDrop(alreadyGeneratedDrops, i)
                     }
@@ -136,7 +155,7 @@ function Action(props) {
                 itemObtained(rewardItems)
 
                 // generate new classic enemies
-                generateClassicEnemies(rerollEnemies(character.currentLevel))
+                generateClassicEnemies(rerollEnemies(currentLevel))
 
                 // break out of this function
                 return
@@ -169,7 +188,7 @@ function Action(props) {
                     addReward(reward)
 
                     // generate new classic enemies
-                    generateClassicEnemies(rerollEnemies(character.currentLevel))
+                    generateClassicEnemies(rerollEnemies(currentLevel))
 
                     // break out of this function
                     return
@@ -198,8 +217,8 @@ function Action(props) {
                     <p>Hit chance: </p>
                     <p>{chanceToHit + '%'}</p>
                 </div>
-                <div className='icon' id={data.id}>
-                    { data.icon }
+                <div className='icon' id={id}>
+                    { icon }
                 </div>
             </button>
         </div>
@@ -212,6 +231,8 @@ Action.propTypes = {
     character: PropTypes.object.isRequired,
     game: PropTypes.object.isRequired,
     invItems: PropTypes.array.isRequired,
+    craftableItems: PropTypes.array.isRequired,
+    dungeon: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -219,7 +240,9 @@ const mapStateToProps = state => ({
     enemy: state.enemy,
     character: state.character,
     game: state.game,
-    invItems: state.items.invItems
+    invItems: state.items.invItems,
+    craftableItems: state.items.craftableItems,
+    dungeon: state.dungeon
 })
 
 export default connect(mapStateToProps, { 

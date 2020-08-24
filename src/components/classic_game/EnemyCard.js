@@ -47,8 +47,8 @@ function EnemyCard(props) {
     const [infoActive, setInfoActive] = useState(false)
     const infoClass = infoActive ? 'active' : ''
 
-    // Start Game
-    const startClassicGame = () => {
+    // Set Game
+    const setGame = () => {
         // reset player hp, damageTaken
         resetPlayer()
         // generate enemy
@@ -104,7 +104,7 @@ function EnemyCard(props) {
 
                 {/* Attack Button */}
                 { haveSpaceInv ?
-                    <Link to='/game' className='attack-container active' onClick={startClassicGame} >
+                    <Link to='/game' className='attack-container active' onClick={setGame} >
                         <Attack />
                     </Link>
                     :

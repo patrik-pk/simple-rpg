@@ -134,7 +134,7 @@ export default function generateEnemy(type, enemyLevel, playerLevel, specificEne
     const baseCrit = 35
     const baseDodge = 25
     const randomMult = () => randomGenerator(90, 110, 0.01)
-    const bossStrongStatMult = () => randomGenerator(135, 170, 0.01)
+    const bossStrongStatMult = () => randomGenerator(150, 170, 0.01)
 
     // Every boss has one type of armor stronger that the other, if this enemy
     // is type of 'Boss' and has strongStatIndex that matches the index,
@@ -142,9 +142,11 @@ export default function generateEnemy(type, enemyLevel, playerLevel, specificEne
     const armorRandMult = (index) => {
         if (type === 'Classic') return randomMult()
         if (type === 'Boss') {
-            if (!strongStatIndex) return randomMult()
+            if (typeof strongStatIndex === 'undefined' || strongStatIndex === null) return randomMult()
             else {
-                if (index === strongStatIndex) return bossStrongStatMult()
+                if (index === strongStatIndex) {
+                    return bossStrongStatMult()
+                }
                 else return randomMult()
             }
         }

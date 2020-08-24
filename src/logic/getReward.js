@@ -112,6 +112,7 @@ export default function getReward(enemy, character, status, enemyType) {
     })(newExp)
 
     // FINAL RETURN
+    // TODO: return two values - overleveled boolean (recalculating happens) and reward object
     return {
         acquiredGold,
         acquiredDiamonds,

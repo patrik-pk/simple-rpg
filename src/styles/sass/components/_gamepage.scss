@@ -420,10 +420,10 @@
             .right {
                 display: flex;
 
-                .item_container {
-                    margin-right: 5px;
-                    &:last-child {
-                        margin-right: 0;
+                .item-container {
+                    margin-left: 5px;
+                    &:first-child {
+                        margin-left: 0;
                     }
 
                     .stats {
