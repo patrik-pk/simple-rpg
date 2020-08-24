@@ -12,7 +12,8 @@ import {
     addItemToInv, 
     removeShopItem, 
     removeInvItems,
-    equipItem 
+    equipItem,
+    sortItems 
 } from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
 import { recalculatePlayerStats } from '../../actions/playerActions'
@@ -34,6 +35,7 @@ function Inventory(props) {
         removeShopItem, 
         removeInvItems,
         equipItem,
+        sortItems,
         recalculatePlayerStats,
         setDiamonds, 
         setGold 
@@ -41,8 +43,6 @@ function Inventory(props) {
     const { equippedItems, invItems, shopItems } = items
     const { gold, diamonds, currentLevel } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
-
-    console.log(invItems)
 
     // Unselect all Inventory & Shop Items on Unmount
     useEffect(() => {
@@ -69,11 +69,11 @@ function Inventory(props) {
         return newItems
     }
 
-    // Custom map for creating 6 InventoryRow components
+    // Custom map for creating X InventoryRow components
     const mappedRows = () => {
         const mapped = []
 
-        for(let i = 0; i < 6; i++) {
+        for(let i = 0; i < 7; i++) {
             mapped.push(<InventoryRow key={i} itemsProp={getItems(invItems, i * 6, (i * 6) + 6)} itemHandleClick={props.itemHandleClick} {...props} />)
         }
 
@@ -95,7 +95,7 @@ function Inventory(props) {
         if(rerollCondition) {
             let newShopItems = []
             
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
                 const random = randomGenerator(1, 100, 1)
                 // 75% chance to generate item, 25% to generate drop
                 if(random < 75) newShopItems.push(generateItem(currentLevel, 'Shop', i))
@@ -172,72 +172,97 @@ function Inventory(props) {
         return ''
     }
 
+    // Render
     return(
         <div className='inventory'>
-            
-            <div className='top'>
+
+            {/* Heading */}
+            <h3 className='heading'>Inventory</h3>
+
+            {/* Container */}
+            <div className='container'>
+
+                {/* Left - Equipped Items, Stats, Shop */}
                 <div className='left'>
-                    <div className='current_equipment'>
-                        <div className='wrapper'>
-                            <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} {...props}/>                                        
-                            <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} {...props}/>                                        
+
+                    {/* Top - Equipped Items, Stats */}
+                    <div className='top'>
+
+                        {/* Equipped Items */}
+                        <div className='current-equipment'>
+                            <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} {...props} />
+                            <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} {...props} />
                         </div>
-                    </div>
-                    <div className='player_stats'>
-                        <div className='wrapper'>
-                            <h4 className='name'>Stats</h4>
-                            <hr/>
+
+                        {/* Player Stats */}
+                        <div className='player-stats'>
+                            <h4 className='name'>Player Stats</h4>
                             <ul>
-                                <Stat name='HP:' value={maxHp}/>
-                                <Stat name='Armor:' value={armor}/>
-                                <Stat name='M-DMG:' value={meleeDamage}/>
-                                <Stat name='R-DMG:' value={rangedDamage}/>
-                                <Stat name='Crit(%):' value={critChance}/>
+                                <Stat name='HP:' value={maxHp} />
+                                <Stat name='Armor:' value={armor} />
+                                <Stat name='M-DMG:' value={meleeDamage} />
+                                <Stat name='R-DMG:' value={rangedDamage} />
+                                <Stat name='Crit(%):' value={critChance} />
                                 <Stat name='Block(%):' value={blockChance} />
-                                <br/>
-                                <Stat name='Beasts:' value={bonuses[0].value} />
-                                <Stat name='Dragons:' value={bonuses[1].value} />
-                                <Stat name='Insect:' value={bonuses[2].value} />
-                                <Stat name='Monsters:' value={bonuses[3].value} />
-                                <Stat name='Reptiles:' value={bonuses[4].value} />
+                                <br />
+                                <Stat name='Aquatic:' value={bonuses[0].value} />
+                                <Stat name='Avian:' value={bonuses[1].value} />
+                                <Stat name='Dinosaur:' value={bonuses[2].value} />
+                                <Stat name='Insect:' value={bonuses[3].value} />
+                                <Stat name='Wildlife:' value={bonuses[4].value} />
+                                <Stat name='Reptile:' value={bonuses[5].value} />
                             </ul>
                         </div>
+
                     </div>
-                </div>
-                <div className='right'>
-                    <div className='items_container'>
-                        <div className='wrapper'>
-                            <div className='items'>
-                                { mappedRows() }
-                            </div>
+
+                    {/* Shop */}
+                    <div className='shop'>
+
+                        {/* Items */}
+                        <div className='items'>
+                            <ItemComponent data={shopItems[0]} {...props} />
+                            <ItemComponent data={shopItems[1]} {...props} />
+                            <ItemComponent data={shopItems[2]} {...props} />
+                            <ItemComponent data={shopItems[3]} {...props} />
                         </div>
+
+                        {/* Options */}
                         <div className='options'>
-                            <div className='wrapper'>
-                                <button className={'equip_btn ' + equipActive} onClick={eqItem}>Equip</button>
-                                <button className={'sell_btn ' + sellActive} onClick={sellItem}>Sell</button>
-                            </div>
+                            <button className={`btn reroll-btn ${rerollActive}`} onClick={reroll}>Roll (1)</button>
+                            <button className={`btn buy-btn ${buyActive()}`} onClick={buyItem}>Buy</button>
                         </div>
+
                     </div>
+
                 </div>
+
+                {/* Right - Inventory Items */}
+                <div className='right'>
+
+                    {/* Items */}
+                    <div className='inventory-items'>
+                        { mappedRows() }
+                    </div>
+
+                    {/* Options */}
+                    <div className='options'>
+
+                        {/* Sort Button */}
+                        <button className='btn sort-btn active' onClick={sortItems}><p>*</p></button>
+
+                        {/* Equip & Sell Buttons */}
+                        <div className='options-right'>
+                            <button className={`btn equip-btn ${equipActive}`} onClick={eqItem}>Equip</button>
+                            <button className={`btn sell-btn ${sellActive}`} onClick={sellItem}>Sell</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div className='bottom'>
-                <div className='shop_container'>
-                    <div className='wrapper'>
-                        <div className='items'>
-                            <ul>
-                                <ItemComponent data={shopItems[0]} {...props}/>     
-                                <ItemComponent data={shopItems[1]} {...props}/>                                      
-                                <ItemComponent data={shopItems[2]} {...props}/>                                      
-                            </ul>
-                        </div>
-                        <div className='options'>
-                            <button className={'reroll_btn ' + rerollActive} onClick={reroll}>Roll (1)</button>
-                            <button className={'buy_btn ' + buyActive()} onClick={buyItem}>Buy</button>
-                        </div>
-                    </div>
-                </div>
-            </div>                      
         </div>
     )
 }
@@ -262,6 +287,7 @@ export default connect(mapStateToProps, {
     removeShopItem, 
     removeInvItems,
     equipItem,
+    sortItems,
     recalculatePlayerStats,
     setDiamonds, 
     setGold 

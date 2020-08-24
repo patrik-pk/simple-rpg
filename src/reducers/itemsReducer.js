@@ -15,7 +15,8 @@ import {
     EQUIP_ITEM,
     SET_CRAFTABLE_ITEM_SELECT,
     UNSELECT_CRAFTABLE_ITEMS,
-    REMOVE_DROPS_FROM_INV
+    REMOVE_DROPS_FROM_INV,
+    SORT_ITEMS
 } from '../actions/types'
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
         { type: 'Empty', key: 0 },
         { type: 'Empty', key: 1 },
         { type: 'Empty', key: 2 },
+        { type: 'Empty', key: 3 },
     ],
     craftableItems: craftableItems
 }
@@ -272,7 +274,26 @@ export default (state = initialState, action) => {
                     return item
                 })
             }
-        
+
+        // Sort Items
+        case SORT_ITEMS:
+
+            const sortedItems = []
+
+            const equip = []
+
+            state.invItems.forEach(item => {
+                if(item.type === 'equip') {
+                    equip.push(item)
+                }
+            })
+
+            console.log(equip)
+
+            return {
+                ...state,
+                //invItems: sortedItems
+            }
 
         // Default
         default:

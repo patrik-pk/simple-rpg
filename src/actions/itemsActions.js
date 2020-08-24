@@ -10,7 +10,8 @@ import {
     EQUIP_ITEM,
     SET_CRAFTABLE_ITEM_SELECT,
     UNSELECT_CRAFTABLE_ITEMS,
-    REMOVE_DROPS_FROM_INV
+    REMOVE_DROPS_FROM_INV,
+    SORT_ITEMS
 } from './types'
 
 // ADD ITEM TO INV
@@ -83,4 +84,9 @@ export const unselectCraftableItems = () => ({
 export const removeDropsFromInv = drops => ({
     type: REMOVE_DROPS_FROM_INV,
     payload: drops
+})
+
+// SORT ITEMS
+export const sortItems = () => ({
+    type: SORT_ITEMS
 })

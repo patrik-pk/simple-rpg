@@ -9,6 +9,38 @@
     color: orangered;
 }
 
+// Heading
+.heading {
+    padding-top: 20px;
+    font-size: 32px;
+    text-align: center;
+}
+
+// Buttons
+.btn {
+    width: 85px;
+    padding: 10px 0;
+    background: white;
+    color: black;
+    border: 1px black solid;
+    transition: 500ms all;
+    p { color: black; }
+
+    &.active:hover {
+        background: white;
+        color: black;
+        border-color: black;
+        p { color: black; }
+    }
+    
+    &.active {
+        background: black;
+        color: white;
+        border-color: white;
+        p { color: white; }
+    }
+}
+
 // Stat Container
 .stat-container {
 display: flex;

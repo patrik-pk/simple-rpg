@@ -6,6 +6,46 @@
   color: orangered;
 }
 
+.heading {
+  padding-top: 20px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.btn {
+  width: 85px;
+  padding: 10px 0;
+  background: white;
+  color: black;
+  border: 1px black solid;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.btn p {
+  color: black;
+}
+
+.btn.active:hover {
+  background: white;
+  color: black;
+  border-color: black;
+}
+
+.btn.active:hover p {
+  color: black;
+}
+
+.btn.active {
+  background: black;
+  color: white;
+  border-color: white;
+}
+
+.btn.active p {
+  color: white;
+}
+
 .stat-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1029,12 +1069,6 @@
   height: 100%;
 }
 
-.classic-game .heading {
-  margin-top: 20px;
-  font-size: 32px;
-  text-align: center;
-}
-
 .classic-game .reroll-enemies {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1095,12 +1129,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
-}
-
-.dungeon .heading {
-  margin-top: 20px;
-  font-size: 32px;
-  text-align: center;
 }
 
 .dungeon .dungeon-menu {
@@ -1439,371 +1467,160 @@
   border-color: #00e1e1;
 }
 
-.inventory {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
-.inventory .top {
-  width: 80% !important;
+.inventory .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 30px auto 0 auto;
+  width: 80%;
+  margin: auto;
+  padding-top: 40px;
 }
 
-@media (max-width: 768px) {
-  .inventory .top {
-    width: 95% !important;
-    margin: 10px auto 0 auto;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .inventory .top {
-    width: 90% !important;
-  }
-}
-
-.inventory .top .left {
+.inventory .container .left .top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
-.inventory .top .left .current_equipment {
+.inventory .container .left .top .current-equipment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
   background: black;
   border: 1px white solid;
 }
 
-.inventory .top .left .current_equipment .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .left .current_equipment .wrapper {
-    padding: 3px;
-  }
-}
-
-.inventory .top .left .current_equipment .wrapper ul li {
-  margin: 0 0 5px 0;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .left .current_equipment .wrapper ul li {
-    margin: 0 0 2px 0;
-  }
-}
-
-.inventory .top .left .current_equipment .wrapper ul li:last-child {
-  margin-bottom: 0;
-}
-
-.inventory .top .left .current_equipment ul:first-child {
+.inventory .container .left .top .current-equipment ul:first-child {
   margin-right: 10px;
 }
 
 @media (max-width: 768px) {
-  .inventory .top .left .current_equipment ul:first-child {
+  .inventory .container .left .top .current-equipment ul:first-child {
     margin-right: 2px;
   }
 }
 
-.inventory .top .left .player_stats {
-  min-width: 130px;
-  margin-top: 10px;
-  margin-left: 30px;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .left .player_stats {
-    min-width: 70px;
-    margin: 5px 10px 0 10px;
-    font-size: 10px;
-  }
-}
-
-.inventory .top .left .player_stats .wrapper hr {
-  border: 1px white solid;
+.inventory .container .left .top .current-equipment ul li {
   margin-bottom: 5px;
 }
 
-.inventory .top .left .player_stats .wrapper ul li {
+.inventory .container .left .top .current-equipment ul li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .inventory .container .left .top .current-equipment ul li {
+    margin-bottom: 2px;
+  }
+}
+
+.inventory .container .left .top .player-stats {
+  margin: 5px 0 0 30px;
+}
+
+@media (max-width: 768px) {
+  .inventory .container .left .top .player-stats {
+    font-size: 10px;
+    margin: 5px 0 0 10px;
+  }
+}
+
+.inventory .container .left .top .player-stats .name {
+  margin-bottom: 10px;
+}
+
+.inventory .container .left .top .player-stats ul li {
   padding: 0 3px;
 }
 
-.inventory .top .right .items_container {
-  position: relative;
-  background: black;
+.inventory .container .left .shop {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 20px;
   border: 1px white solid;
 }
 
-.inventory .top .right .items_container .wrapper {
-  padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .right .items_container .wrapper {
-    padding: 3px;
-  }
-}
-
-.inventory .top .right .items_container .wrapper .items {
+.inventory .container .left .shop .items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.inventory .top .right .items_container .wrapper .items ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.inventory .top .right .items_container .wrapper .items ul li {
-  margin: 0 5px 5px 0;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .right .items_container .wrapper .items ul li {
-    margin: 0 2px 2px 0;
-  }
-}
-
-.inventory .top .right .items_container .wrapper .items ul li:last-child {
-  margin-right: 0;
-}
-
-.inventory .top .right .items_container .options {
-  position: absolute;
-  right: -10px;
-  bottom: -60px;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .right .items_container .options {
-    bottom: -32px;
-    right: -2px;
-  }
-}
-
-.inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
-  width: 80px;
-  padding: 8px 0;
-  background: white;
-  color: black;
-  border: 1px white solid;
-}
-
-.inventory .top .right .items_container .options .equip_btn:hover, .inventory .top .right .items_container .options .sell_btn:hover {
-  background: white;
-  color: black;
-  border: 1px white solid;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
-    width: 40px;
-    padding: 3px 0;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .inventory .top .right .items_container .options .equip_btn, .inventory .top .right .items_container .options .sell_btn {
-    width: 80px;
-    padding: 8px 0;
-  }
-}
-
-.inventory .top .right .items_container .options .equip_btn {
-  margin-right: 10px;
-}
-
-@media (max-width: 768px) {
-  .inventory .top .right .items_container .options .equip_btn {
-    margin-right: 7px;
-  }
-}
-
-.inventory .top .right .items_container .options .equip_btn.active, .inventory .top .right .items_container .options .sell_btn.active {
-  background: black;
-  color: white;
-  border: 1px white solid;
-}
-
-.inventory .top .right .items_container .options .equip_btn.active:hover, .inventory .top .right .items_container .options .sell_btn.active:hover {
-  color: orangered;
-  border: 1px orangered solid;
-}
-
-.inventory .bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  width: 80% !important;
-  margin: 60px auto 0 auto;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-@media (max-width: 768px) {
-  .inventory .bottom {
-    width: 95% !important;
-    margin: 10px auto 0 auto;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .inventory .bottom {
-    width: 90% !important;
-    margin: 20px auto 0 auto;
-  }
-}
-
-.inventory .bottom .shop_container {
-  width: 200px;
-  height: 112px !important;
-  background: black;
-  border: 1px white solid;
-}
-
-@media (max-width: 768px) {
-  .inventory .bottom .shop_container {
-    width: 110px;
-    height: 70px !important;
-  }
-}
-
-.inventory .bottom .shop_container .wrapper {
-  padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .inventory .bottom .shop_container .wrapper {
-    padding: 5px;
-  }
-}
-
-.inventory .bottom .shop_container .wrapper .items ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-.inventory .bottom .shop_container .wrapper .items ul li {
-  margin: 0 5px 0 0;
+.inventory .container .left .shop .items .item-container {
+  margin-left: 5px;
 }
 
-.inventory .bottom .shop_container .wrapper .items ul li:last-child {
+.inventory .container .left .shop .items .item-container:first-child {
+  margin-left: 0;
+}
+
+.inventory .container .left .shop .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.inventory .container .right .inventory-items {
+  border: 1px white solid;
+  padding: 10px;
+}
+
+.inventory .container .right .inventory-items ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.inventory .container .right .inventory-items ul:last-child {
+  margin-bottom: 0px;
+}
+
+.inventory .container .right .inventory-items .item-container {
+  margin-right: 5px;
+}
+
+.inventory .container .right .inventory-items .item-container:last-child {
   margin-right: 0;
 }
 
-.inventory .bottom .shop_container .wrapper .options {
+.inventory .container .right .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 10px;
-  text-align: center;
 }
 
-@media (max-width: 768px) {
-  .inventory .bottom .shop_container .wrapper .options {
-    margin-top: 5px;
-  }
+.inventory .container .right .options .options-right .sell-btn {
+  margin-left: 10px;
 }
 
-.inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
-  width: 62px;
-  padding: 10px 0;
-  background: white;
-  color: black;
-  border: 1px white solid;
+.inventory .container .right .options .sort-btn {
+  position: relative;
+  width: 40px;
+  padding: 11px 0;
 }
 
-.inventory .bottom .shop_container .wrapper .options .reroll_btn:hover, .inventory .bottom .shop_container .wrapper .options .buy_btn:hover {
-  background: white;
-  color: black;
-  border: 1px white solid;
-}
-
-@media (max-width: 768px) {
-  .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
-    width: 43px;
-    padding: 5px 0;
-    font-size: 11px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .inventory .bottom .shop_container .wrapper .options .reroll_btn, .inventory .bottom .shop_container .wrapper .options .buy_btn {
-    width: 62px;
-    padding: 10px 0;
-  }
-}
-
-.inventory .bottom .shop_container .wrapper .options .reroll_btn.active, .inventory .bottom .shop_container .wrapper .options .buy_btn.active {
-  background: black;
-  color: white;
-}
-
-.inventory .bottom .shop_container .wrapper .options .reroll_btn.active:hover, .inventory .bottom .shop_container .wrapper .options .buy_btn.active:hover {
-  color: orangered;
-  border: 1px orangered solid;
-}
-
-.inventory .bottom .shop_container .wrapper .options button:first-child {
-  margin-right: 10px;
-}
-
-@media (max-width: 768px) {
-  .inventory .bottom .shop_container .wrapper .options button:first-child {
-    margin-right: 5px;
-  }
+.inventory .container .right .options .sort-btn p {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .crafting {
@@ -1815,12 +1632,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
-}
-
-.crafting .heading {
-  margin-top: 20px;
-  font-size: 32px;
-  text-align: center;
 }
 
 .crafting .level-menu, .crafting .dungeon-menu {

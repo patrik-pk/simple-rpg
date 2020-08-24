@@ -157,6 +157,8 @@ function Action(props) {
 
                                 // and get that item
                                 const item = deepCopy(craftableItems[levelTypeIndex][rarityIndex][randomItemTypeIndex].item)
+                                item.destination = 'Inventory'
+                                item.key = invItems.length
 
                                 items.push(item)
                             }

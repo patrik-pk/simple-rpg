@@ -1,283 +1,135 @@
 
-
-// Variables
-$box_fill: black;
-$box_border: 1px white solid;
-
-$btn_border_color: white;
-
-$info_color: white;
-
 // Inventory
 .inventory {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-
-    // Top
-    .top {
-        width: 80%!important;
+    
+    // Container
+    .container {
         display: flex;
         justify-content: space-between;
-        margin: 30px auto 0 auto;
+        width: 80%;
+        margin: auto;
+        padding-top: 40px;
 
-        @include mobile {
-            width: 95%!important;
-            margin: 10px auto 0 auto;
-        }
-
-        @include tablet {
-            width: 90%!important;
-        }
-
-        // Left (equipped items, player stats)
+        // Left (Equipped Items, Stats, Shop
         .left {
-            display: flex;
-            flex-direction: row;
-
-            // Current Equipment
-            .current_equipment {
-                background: $box_fill;
-                border: $box_border;
-                
-                .wrapper {
+    
+            // Top (Equipped Items & Stats)
+            .top {
+                display: flex;
+    
+                // Equipped Items
+                .current-equipment {
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
                     padding: 10px;
-                    @include mobile { padding: 3px; }
-
+                    background: black;
+                    border: 1px white solid;
+    
                     ul {
-
+                        &:first-child {
+                            margin-right: 10px;
+                            @include mobile { margin-right: 2px; }
+                        }
+    
                         li {
-                            margin: 0 0 5px 0; 
-                            @include mobile { margin: 0 0 2px 0; }
-                        }
-
-                        li:last-child {
-                            margin-bottom: 0;
+                            margin-bottom: 5px; 
+                            &:last-child { margin-bottom: 0; }
+                            @include mobile { margin-bottom: 2px; }
                         }
                     }
                 }
-
-                ul:first-child {
-                    margin-right: 10px;
-                    @include mobile { margin-right: 2px; }
-                }
-            }
-
-            // Player Stats
-            .player_stats {
-                min-width: 130px;
-                margin-top: 10px;
-                margin-left: 30px;
-
-                @include mobile {
-                    min-width: 70px;
-                    margin: 5px 10px 0 10px;
-                    font-size: 10px;
-                }
-
-                .wrapper {
-
-                    hr {
-                        border: 1px white solid;
-                        margin-bottom: 5px;
+    
+                // Player Stats
+                .player-stats {
+                    margin: 5px 0 0 30px;
+    
+                    @include mobile {
+                        font-size: 10px;
+                        margin: 5px 0 0 10px;
                     }
-
+    
+                    .name {
+                        margin-bottom: 10px;
+                    }
+    
                     ul {
                         li { padding: 0 3px; }
                     }
-                }
-            }
-        }
-
-        // Right (inventory items)
-        .right {
-
-            // Items Container
-            .items_container {
-                position: relative;
-                background: $box_fill;
-                border: $box_border;
-
-                // Wrapper
-                .wrapper {
-                    padding: 10px;
-                    @include mobile { padding: 3px; }
-
-                    .items {
-                        display: flex;
-                        flex-direction: column;
-                        
-                        ul {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: flex-end;
-
-                            li {
-                                margin: 0 5px 5px 0;
-                                @include mobile { margin: 0 2px 2px 0; }
-                            }
-
-                            li:last-child {
-                                margin-right: 0;
-                            }
-                        }
-                    }
-                }
-
-                // Options (sell, equip buttons)
-                .options {
-                    position: absolute;
-                    right: -10px;
-                    bottom: -60px;
-                    @include mobile { 
-                        bottom: -32px; 
-                        right: -2px;
-                    }
-
-                    .equip_btn, .sell_btn {
-                        // @include menu_button;
-                        width: 80px;
-                        padding: 8px 0;
-                        background: white;
-                        color: black;
-                        border: 1px $btn_border_color solid;
-                        &:hover {
-                            background: white;
-                            color: black;
-                            border: 1px $btn_border_color solid;
-                        }
-
-                        @include mobile {
-                            width: 40px;
-                            padding: 3px 0;
-                            font-size: 12px;
-                        }
-
-                        @include tablet {
-                            width: 80px;
-                            padding: 8px 0;
-                        }
-                    }
-
-                    
-                    .equip_btn {
-                        margin-right: 10px;
-                        @include mobile { margin-right: 7px; }
-                    }
-                    
-                    .equip_btn.active, .sell_btn.active {
-                        background: black;
-                        color: white;
-                        border: 1px white solid;
-                        &:hover {
-                            color: orangered;
-                            border: 1px orangered solid;
-                        }
-                    }
-
-                }
-            }
-
-        }
-    }
-
-    // Bottom (shop)
-    .bottom {
-        display: flex;
-        flex-direction: row;
-        width: 80%!important;
-        margin: 60px auto 0 auto;
-        justify-content: space-between;
-
-        @include mobile {
-            width: 95%!important;
-            margin: 10px auto 0 auto;
-        }
-
-        @include tablet {
-            width: 90%!important;
-            margin: 20px auto 0 auto;
-        }
-
-        // Shop
-        .shop_container {
-            width: 200px;
-            height: 112px!important;
-            background: $box_fill;
-            border: $box_border;
-            @include mobile {
-                width: 110px;
-                height: 70px!important;
+                }   
             }
     
-            .wrapper {
-                padding: 10px;
-                @include mobile { padding: 5px; }
-    
+            // Shop (Bottom)
+            .shop {
+                display: inline-block;
+                margin-top: 40px;
+                padding: 20px;
+                border: 1px white solid;
+                
                 // Items
                 .items {
-                    
-                    ul {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
+                    display: flex;
+                    justify-content: center;
     
-                        li {
-                            margin: 0 5px 0 0;
-                            &:last-child {
-                                margin-right: 0;
-                            }
-                        }
+                    .item-container {
+                        margin-left: 5px;
+                        &:first-child { margin-left: 0; }
                     }
                 }
     
-                // Options (reroll, buy button)
+                // Options
                 .options {
+                    display: flex;
+                    justify-content: space-between;
                     margin-top: 10px;
-                    @include mobile { margin-top: 5px; }
-                    text-align: center;
     
-                    .reroll_btn, .buy_btn {
-                        // @include menu_button;
-                        width: 62px;
-                        padding: 10px 0;
-                        background: white;
-                        color: black;
-                        border: 1px $btn_border_color solid;
-                        &:hover {
-                            background: white;
-                            color: black;
-                            border: 1px $btn_border_color solid;
-                        }
-
-                        @include mobile {
-                            width: 43px;
-                            padding: 5px 0;
-                            font-size: 11px;
-                        }
-
-                        @include tablet {
-                            width: 62px;
-                            padding: 10px 0;
-                        }
-
-                    }
-                    .reroll_btn.active, .buy_btn.active {
-                        background: black;
-                        color: white;
-                        &:hover {
-                            color: orangered;
-                            border: 1px orangered solid;
-                        }
-                    }
+                    // .reroll-btn, .buy-btn {}
+                }
+            }
+        }
     
-                    button:first-child {
-                        margin-right: 10px;
-                        @include mobile { margin-right: 5px; }
+        // Right (Inventory Items)
+        .right {
+
+            // Inventory Items
+            .inventory-items {
+                border: 1px white solid;
+                padding: 10px;
+
+                ul {
+                    display: flex;
+                    margin-bottom: 5px;
+                    &:last-child { margin-bottom: 0px; }
+                }
+
+                .item-container {
+                    margin-right: 5px;
+                    &:last-child { margin-right: 0; }
+                }
+            }
+
+            // Options
+            .options {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+
+                // Equip & Sell Buttons
+                .options-right {
+                    .sell-btn {
+                        margin-left: 10px;
+                    }
+                }
+
+                // Sort Button
+                .sort-btn {
+                    position: relative;
+                    width: 40px;
+                    padding: 11px 0;
+
+                    p {
+                        position: absolute;
+                        top: 60%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
                     }
                 }
             }
