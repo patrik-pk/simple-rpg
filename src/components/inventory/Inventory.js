@@ -42,6 +42,8 @@ function Inventory(props) {
     const { gold, diamonds, currentLevel } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
+    console.log(invItems)
+
     // Unselect all Inventory & Shop Items on Unmount
     useEffect(() => {
         return () => {

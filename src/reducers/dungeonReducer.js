@@ -1,5 +1,5 @@
 import {
-
+    ADD_DUNGEON
 } from '../actions/types'
 
 const initialState = [
@@ -13,6 +13,17 @@ const initialState = [
 
 export default (state = initialState, action) => {
     switch(action.type) {
+
+        // Add Dungeon
+        case ADD_DUNGEON:
+            return state.map((item, i) => {
+                if(i === action.payload) {
+                    item.current += 1
+                }
+                return item
+            })
+
+        // Default
         default:
             return state
     }

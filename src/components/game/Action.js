@@ -7,6 +7,8 @@ import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyAc
 import { playerBlocked, playerHit, resetPlayerDmgTaken } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
 import { addItemToInv } from '../../actions/itemsActions'
+import { addDungeon } from '../../actions/dungeonActions'
+
 import attackEnemy from '../../logic/attackEnemy'
 import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
@@ -14,6 +16,7 @@ import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import rerollEnemies from '../../logic/rerollEnemies'
 import randomGenerator from '../../logic/randomGenerator'
+import deepCopy from '../../logic/deepCopy'
 
 function Action(props) {
 
@@ -40,7 +43,8 @@ function Action(props) {
         playerHit,
         resetPlayerDmgTaken,
         addReward,
-        addItemToInv
+        addItemToInv,
+        addDungeon
     } = props
 
     const { currentLevel } = character
@@ -74,6 +78,18 @@ function Action(props) {
                 // generate reward and update state
                 const reward = getReward(enemy, character, 'Victory', gameType)
                 addReward(reward)
+
+                // get matching index of the dungeon 
+                let matchingDungeonIndex = 0
+                if(gameType === 'Boss') {
+                    dungeon.forEach((item, dungeonIndex) => {
+                        if (item.type === enemy.dungeon) {
+                            matchingDungeonIndex = dungeonIndex
+                        }
+                    })
+
+                    addDungeon(matchingDungeonIndex)
+                }
 
                 // generate items
                 const rewardItems = (() => {
@@ -114,32 +130,35 @@ function Action(props) {
                     // generate items, first item is always equipment, others are drops
                     for(let i = 0; i < 3; i++) {
                         if (i === 0) {
-                            const itemLevel = enemyLevel > currentLevel ? enemyLevel : currentLevel
+
+                            // set itemLevel to players current level, or to enemyLevel, 
+                            // if his level is higher than players, and the gameType is "Classic" 
+                            const itemLevel = (enemyLevel > currentLevel) && gameType === 'Classic' ? enemyLevel : currentLevel
 
                             // for classic game generate random item, for boss game get crafting item
                             if(gameType === 'Classic') items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
                             if(gameType === 'Boss') {
-                                console.log(craftableItems)
-                                console.log(enemy)
 
-                                // mythic (30%) / specie item (70%)
-                                // TODO: generate that item, add + current to dungeon
+                                // get levelTypeIndex based on level (low = 0-10, medium = 11 - 23, high = 24+)
+                                let levelTypeIndex
+                                if (enemyLevel <= 10) levelTypeIndex = 0
+                                else if (enemyLevel > 10 && enemyLevel <= 23) levelTypeIndex = 1
+                                else levelTypeIndex = 2
 
-                                // get levelType item based on level (low = 0-10, medium = 11 - 23, high = 24+)
-                                let itemLevelType
-                                if(enemyLevel <= 10) itemLevelType = 0
-                                else if(enemyLevel > 10 && enemyLevel <= 23) itemLevelType = 1
-                                else itemLevelType = 2
+                                // generate random index for rarity
+                                const randRarityIndex = randomGenerator(1, 10)
+                                // if its less than 4 (0, 1, 2 - 30%) set index to 0, which is 
+                                // where mythic items are at, else (70%) set it to matchingDungeonIndex + 1 
+                                // to generate item with same specie type as the boss
+                                const rarityIndex = randRarityIndex < 4 ? 0 : matchingDungeonIndex + 1
 
-                                // get matching index of the dungeon 
-                                // (actually place it above, because I need to add current dungeon +1 and used it here later on?)
-                                let matchingDungeonIndex = 0
+                                // random index for the type of item (bow, helmet, etc.)
+                                const randomItemTypeIndex = randomGenerator(0, 11)
 
-                                dungeon.forEach((item, dungeonIndex) => {
-                                    if (item.type === enemy.dungeon) {
-                                        matchingDungeonIndex = dungeonIndex
-                                    }
-                                })
+                                // and get that item
+                                const item = deepCopy(craftableItems[levelTypeIndex][rarityIndex][randomItemTypeIndex].item)
+
+                                items.push(item)
                             }
                             
                         } 
@@ -258,5 +277,6 @@ export default connect(mapStateToProps, {
     playerHit,
     resetPlayerDmgTaken,
     addReward,
-    addItemToInv 
+    addItemToInv,
+    addDungeon 
 })(Action)

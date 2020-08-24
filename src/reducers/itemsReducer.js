@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
             // MULTIPLE ITEMS
             if(Array.isArray(action.payload)) {
                 
-                const newItems = state.invItems
+                const newItems = deepCopy(state.invItems)
 
                 // loop throgh action.payload items
                 action.payload.forEach(item => {
@@ -53,11 +53,11 @@ export default (state = initialState, action) => {
                     }
                     // if it is drop
                     if(item.type === 'drop') {
-                        // filter invItems and return item if its name matches the payload name
+                        // filter invItems and return item if its name matches the payload name (player has that kind of item)
                         const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)
                         // if there is such item
                         if(filtered.length !== 0) {
-
+                            
                             // set newAmount to items amount + payload item amount
                             const newAmount = filtered[0].amount + item.amount
                             
