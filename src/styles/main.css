@@ -1086,6 +1086,17 @@
           flex-grow: 1;
 }
 
+.dungeon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
 .dungeon .heading {
   margin-top: 20px;
   font-size: 32px;
@@ -1110,7 +1121,7 @@
 
 .dungeon .dungeon-menu .menu-items .menu-item {
   width: auto;
-  padding: 15px 0;
+  padding: 13px 0;
   cursor: pointer;
   -webkit-transition: 500ms all;
   transition: 500ms all;
@@ -1134,6 +1145,21 @@
 
 .dungeon .dungeon-menu .menu-items .menu-item p {
   text-align: center;
+}
+
+.dungeon .boss-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .enemy-card {
@@ -1797,13 +1823,13 @@
   text-align: center;
 }
 
-.crafting .level-menu {
+.crafting .level-menu, .crafting .dungeon-menu {
   margin-top: 20px;
   border-top: 1px white solid;
   border-bottom: 1px white solid;
 }
 
-.crafting .level-menu .menu-items {
+.crafting .level-menu .menu-items, .crafting .dungeon-menu .menu-items {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -1813,7 +1839,7 @@
           justify-content: space-evenly;
 }
 
-.crafting .level-menu .menu-items .menu-item {
+.crafting .level-menu .menu-items .menu-item, .crafting .dungeon-menu .menu-items .menu-item {
   width: auto;
   padding: 15px 0;
   cursor: pointer;
@@ -1821,23 +1847,23 @@
   transition: 500ms all;
 }
 
-.crafting .level-menu .menu-items .menu-item:hover {
+.crafting .level-menu .menu-items .menu-item:hover, .crafting .dungeon-menu .menu-items .menu-item:hover {
   background: white;
 }
 
-.crafting .level-menu .menu-items .menu-item:hover p {
+.crafting .level-menu .menu-items .menu-item:hover p, .crafting .dungeon-menu .menu-items .menu-item:hover p {
   color: black;
 }
 
-.crafting .level-menu .menu-items .menu-item.active {
+.crafting .level-menu .menu-items .menu-item.active, .crafting .dungeon-menu .menu-items .menu-item.active {
   background: white;
 }
 
-.crafting .level-menu .menu-items .menu-item.active p {
+.crafting .level-menu .menu-items .menu-item.active p, .crafting .dungeon-menu .menu-items .menu-item.active p {
   color: black;
 }
 
-.crafting .level-menu .menu-items .menu-item p {
+.crafting .level-menu .menu-items .menu-item p, .crafting .dungeon-menu .menu-items .menu-item p {
   text-align: center;
 }
 

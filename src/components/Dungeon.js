@@ -1,32 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-// import DungeonItem from './DungeonItem'
 import EnemyCard from './classic_game/EnemyCard'
 import bosses from '../data/bosses'
 
-function Dungeon({ dungeon, currentLevel }) {
+function Dungeon({ dungeon }) {
+
+    // Dungeon Menu
+    const [menuActive, setMenuActive] = useState(0)
+
+    // Map Menu Items
+    const mappedMenuItems = dungeon.map((specie, i) => {
+        const current = specie.current < 5 ? `${specie.current + 1} / 5` : 'Finished'
+        return (
+            <li key={specie.type} className={`menu-item ${menuActive === i ? 'active' : ''}`} onClick={() => setMenuActive(i)}>
+                <p>{specie.type}</p>
+                <p>{current}</p>
+            </li>
+        )
+    })
 
     // Map Dungeon Items
-    // const dungeonItems = () => {
-    //     // Dungeon is a array of objects, these objects have two 
-    //     // properties - type (string of dungeon name) and current (number representing the current boss). 
-    //     return dungeon.map((item, i) => {
-    //         return <DungeonItem 
-    //             key={i}
-    //             // if current < 5, return boss from data/bosses.js (array of arrays),
-    //             // else return 'Finished'
-    //             boss={dungeon[i].current < 5 ? bosses[i][dungeon[i].current] : 'Finished'} 
-    //             dungeonName={item.type.charAt(0).toUpperCase() + item.type.slice(1)} 
-    //             count={dungeon[i].current} 
-    //         />
-    //     })
-    // }
-
     const dungeonItems = dungeon.map((item, i) => {
-        console.log(item)
-        //return <EnemyCard  />
         if(item.current >= 5) {
             return <p>{item.type} Finished</p> // replace with a component
         } else {
@@ -46,34 +42,14 @@ function Dungeon({ dungeon, currentLevel }) {
             {/* Dungeon Menu */}
             <div className='dungeon-menu'>
                 <ul className='menu-items'>
-                    <li className='menu-item'>
-                        <p>Aquatic</p>
-                    </li>
-                    <li className='menu-item active'>
-                        <p>Avian</p>
-                    </li>
-                    <li className='menu-item'>
-                        <p>Dinosaur</p>
-                    </li>
-                    <li className='menu-item'>
-                        <p>Insect</p>
-                    </li>
-                    <li className='menu-item'>
-                        <p>Wildlife</p>
-                    </li>
-                    <li className='menu-item'>
-                        <p>Reptile</p>
-                    </li>
+                    { mappedMenuItems }
                 </ul>
             </div>
 
             {/* Boss Section */}
             <div className='boss-section'>
-                {/* { dungeonItems() } */}
-
                 {/* Arrow left & arrow right? */}
-                {/* <EnemyCard /> */}
-                { dungeonItems[0] }
+                { dungeonItems[menuActive] }
             </div>
                         
         </div>
@@ -81,11 +57,10 @@ function Dungeon({ dungeon, currentLevel }) {
 }
 
 Dungeon.propTypes = {
-    currentLevel: PropTypes.number.isRequired,
+    dungeon: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-    currentLevel: state.character.currentLevel,
     dungeon: state.dungeon
 })
 
