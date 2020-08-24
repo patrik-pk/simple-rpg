@@ -21,8 +21,6 @@ import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
 import cps from '../../logic/calculatePlayerStats'
 
-import '../../styles/inventory/inventory.css'
-
 function Inventory(props) {
 
     // Destructure from props

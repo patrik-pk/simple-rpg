@@ -8,10 +8,6 @@ import Enemy from './Enemy'
 import Player from './Player'
 import ItemComponent from '../inventory/ItemComponent'
 
-import '../../styles/gamepage/gamepage.css'
-import '../../styles/item/item.css'
-
-
 function Game(props) {
 
     // Destructure From Props

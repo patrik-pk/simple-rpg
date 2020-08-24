@@ -1,0 +1,47 @@
+
+// Imports
+@import './sass/variables';
+@import './sass/utilities';
+@import './sass/media-queries';
+@import './sass/wrapper';
+
+@import './sass/components/sidemenu';
+@import './sass/components/gamepage';
+@import './sass/components/classic-game';
+@import './sass/components/dungeon';
+@import './sass/components/enemy-card';
+@import './sass/components/inventory';
+@import './sass/components/crafting';
+@import './sass/components/item';
+
+// Global Stylings
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    border-spacing: 0!important;
+    box-sizing: border-box;
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    // Link Tag
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    // Li Tag
+    li {
+        list-style: none;
+    }
+
+    // Button
+    button {
+        outline: 0;
+        border: 1px black solid;
+        background: none;
+        cursor: pointer;
+    }
+}

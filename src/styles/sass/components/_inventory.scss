@@ -1,5 +1,4 @@
 
-@import "../style.scss";
 
 // Variables
 $box_fill: black;
@@ -140,7 +139,7 @@ $info_color: white;
                     }
 
                     .equip_btn, .sell_btn {
-                        @include menu_button;
+                        // @include menu_button;
                         width: 80px;
                         padding: 8px 0;
                         background: white;
@@ -243,7 +242,7 @@ $info_color: white;
                     text-align: center;
     
                     .reroll_btn, .buy_btn {
-                        @include menu_button;
+                        // @include menu_button;
                         width: 62px;
                         padding: 10px 0;
                         background: white;

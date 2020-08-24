@@ -1,0 +1,46 @@
+
+// Dungeon Section
+.dungeon {
+    
+    // Heading
+    .heading {
+        margin-top: 20px;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    // Dungeon Menu
+    .dungeon-menu {
+        margin-top: 20px;
+        border-top: 1px white solid;
+        border-bottom: 1px white solid;
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            justify-content: space-evenly;
+
+            .menu-item {
+                width: auto;
+                padding: 15px 0;
+                cursor: pointer;
+                transition: 500ms all;
+                // border-right: 1px white solid;
+                // &:last-child { border-right: none; }
+
+                &:hover {
+                    background: white;
+                    p { color: black; }
+                }
+                &.active {
+                    background: white;
+                    p { color: black; }
+                }
+
+                p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

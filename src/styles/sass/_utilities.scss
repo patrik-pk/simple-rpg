@@ -1,0 +1,21 @@
+
+// Bold Class
+.bold {
+    font-weight: bold;
+}
+
+// Coloured Class
+.coloured {
+    color: orangered;
+}
+
+// Stat Container
+.stat-container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
+    p:nth-child(2) {
+        margin-left: 10px;
+    }
+}

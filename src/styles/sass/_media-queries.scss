@@ -1,0 +1,35 @@
+
+// Widths
+$extra-small-width: 500px;
+$extra-small-height: 300px;
+$mobile: 768px;
+$tablet: 1200px;
+
+// Everything in mobile mixin works here too, unless
+// its overwritten. This media query ensures that everything
+// is displayed correctly by allowing horizontal scroll, instead
+// of trying to fit it into a whole screen.
+@mixin extra-small-width {
+    @media(max-width: #{$extra-small-width}) {
+        @content;
+    }
+}
+
+// Allows overflow-y on extra small height (under 300px)
+@mixin extra-small-height {
+    @media(max-height: #{$extra-small-height}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media(max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$mobile}) and (max-width: #{$tablet}) {
+        @content;
+    }
+}

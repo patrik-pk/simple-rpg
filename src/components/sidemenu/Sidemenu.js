@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 import SidemenuLink from './SidemenuLink'
 import levelTresholds from '../../data/levelTresholds'
-import { ReactComponent as Logout } from '../../resources/icons/logout.svg'
 
 function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
 
@@ -16,21 +15,19 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
             + xpPercentage + '%)'
     }
 
-    // Replace with real Auth condition later
-    const isLogged = true
-    const loggedClass = isLogged ? 'active' : ''
-
     // Render
     return (
         <nav className='side-menu'>
 
             {/* CHARACTER INFO */}
 
-            <div className={`character-info ${loggedClass}`}>
+            <div className='character-info'>
+
                 {/* Icon */}
                 <div className='character-icon'>
 
                 </div>
+
                 {/* Info - name, currency, level */}
                 <div className='level-container'>
                     <div>
@@ -39,25 +36,15 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
                     </div>
                     <div className="xp-bar" style={xpStyle}></div>
                 </div>
+
             </div>
 
             {/* LINKS */}
-
-            { // Register & Login if isn't logged
-            !isLogged ?
-            <React.Fragment>
-                <SidemenuLink name='Login' linkTo='/login' isLocked={false} /> 
-                <SidemenuLink name='Register' linkTo='/register' isLocked={false} /> 
-            </React.Fragment> 
-            : null 
-            }
-            <SidemenuLink name='Classic Game' linkTo='/classic_game' isLocked={isLogged ? false : true} />
-            <SidemenuLink name='Dungeon' linkTo='/dungeon' isLocked={true} />
-            <SidemenuLink name='Inventory' linkTo='/inventory' isLocked={isLogged ? false : true} />
-            <SidemenuLink name='Crafting' linkTo='/crafting' isLocked={isLogged ? false : true} />
-            <SidemenuLink name='Home' linkTo='/' isLocked={isLogged ? false : true} />
-            {/* Logout if is logged */}
-            {isLogged ? <SidemenuLink name='Logout' linkTo='/' isLocked={false} icon={Logout} /> : null}
+            <SidemenuLink name='Classic Game' linkTo='/classic_game' isLocked={false} />
+            <SidemenuLink name='Dungeon' linkTo='/dungeon' isLocked={false} />
+            <SidemenuLink name='Inventory' linkTo='/inventory' isLocked={false} />
+            <SidemenuLink name='Crafting' linkTo='/crafting' isLocked={false} />
+            <SidemenuLink name='Home' linkTo='/' isLocked={false} />
             
         </nav>
     )

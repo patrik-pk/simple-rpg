@@ -6,7 +6,7 @@ import store from './store'
 import EventHandler from './components/EventHandler'
 import Game from './components/game/Game'
 import BoxRoutes from './BoxRoutes'
-import './styles/style.css'
+import './styles/main.css'
 
 export default function App() {
 

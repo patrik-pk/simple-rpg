@@ -1,0 +1,112 @@
+
+// Sidemenu
+.side-menu {
+    width: 300px;
+    height: 100%;
+    border-right: 1px white solid;
+
+    @include extra-small-width {
+        min-width: 130px;
+    }
+
+    @include mobile {
+        min-width: 25%;
+        max-width: 25%;
+        font-size: 10px;
+    }
+
+    @include tablet {
+        min-width: 25%;
+        max-width: 25%;
+    }
+
+    // Character Info
+    .character-info {
+        display: flex;
+        //border-bottom: 1px white solid;
+        padding: 10px;
+
+        // Character Icon
+        .character-icon {
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            border-radius: 5px;
+        }
+        
+        // Level Container (everything next to the icon)
+        .level-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 100;
+            margin-left: 10px;
+
+            // Div for Name + Level on the left, Currency on the right
+            div {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            // XP Bar
+            .xp-bar {
+                margin-top: 5px;
+                display: flex;
+                width: 100%;
+                background: white;
+                height: 10px;
+                flex-grow: 100;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    // Links
+    .nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px white solid;
+        transition: 200ms;
+        // Not Locked On Hover
+        &:not(.locked):hover {
+            p { color: black; }
+            background: white;
+            .link-icon.active {
+                svg {
+                    fill: black;
+                }
+            }
+        }
+
+        // Locked Link
+        &.locked {
+            p {
+                color: #444;
+            }
+            cursor: default;
+        }
+
+        // Link Icon
+        .link-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.active {
+                svg {
+                    fill: white;
+                }
+            }
+
+            svg {
+                width: 18px;
+                height: 18px;
+                fill: #444;
+            }
+        }
+
+        @include mobile {
+            padding: 8px 0 8px 12px;
+        }
+    }
+}

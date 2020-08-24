@@ -10,7 +10,6 @@ import {
     unselectCraftableItems 
 } from '../../actions/itemsActions'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
-import '../../styles/item/item.css'
 
 function ItemComponent(props) {
     

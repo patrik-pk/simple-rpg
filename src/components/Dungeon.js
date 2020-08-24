@@ -1,41 +1,81 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import DungeonItem from './DungeonItem'
+// import DungeonItem from './DungeonItem'
+import EnemyCard from './classic_game/EnemyCard'
 import bosses from '../data/bosses'
-import '../styles/dungeon/dungeon.css'
 
 function Dungeon({ dungeon, currentLevel }) {
 
     // Map Dungeon Items
-    const dungeonItems = () => {
-        // Dungeon is a array of objects, these objects have two 
-        // properties - type (string of dungeon name) and current (number representing the current boss). 
-        return dungeon.map((item, i) => {
-            return <DungeonItem 
-                key={i}
-                // if current < 5, return boss from data/bosses.js (array of arrays),
-                // else return 'Finished'
-                boss={dungeon[i].current < 5 ? bosses[i][dungeon[i].current] : 'Finished'} 
-                dungeonName={item.type.charAt(0).toUpperCase() + item.type.slice(1)} 
-                count={dungeon[i].current} 
-            />
-        })
-    }
+    // const dungeonItems = () => {
+    //     // Dungeon is a array of objects, these objects have two 
+    //     // properties - type (string of dungeon name) and current (number representing the current boss). 
+    //     return dungeon.map((item, i) => {
+    //         return <DungeonItem 
+    //             key={i}
+    //             // if current < 5, return boss from data/bosses.js (array of arrays),
+    //             // else return 'Finished'
+    //             boss={dungeon[i].current < 5 ? bosses[i][dungeon[i].current] : 'Finished'} 
+    //             dungeonName={item.type.charAt(0).toUpperCase() + item.type.slice(1)} 
+    //             count={dungeon[i].current} 
+    //         />
+    //     })
+    // }
+
+    const dungeonItems = dungeon.map((item, i) => {
+        console.log(item)
+        //return <EnemyCard  />
+        if(item.current >= 5) {
+            return <p>{item.type} Finished</p> // replace with a component
+        } else {
+            // return EnemyCard component with enemy from bosses.js, which is a
+            // nested array with first index representing specie and the second one actual boss
+            return <EnemyCard key={item.type} enemy={bosses[i][item.current]} />
+        }
+    })
+
 
     return (
         <div className='dungeon'>
-            <h2 id='page_name'>Dungeon</h2>
-            <p id='current_level'>Your level: {currentLevel}</p>
-            <div className='dungeon_container'>
-                { dungeonItems() }
+
+            {/* Heading */}
+            <h3 className='heading'>Dungeon</h3>
+
+            {/* Dungeon Menu */}
+            <div className='dungeon-menu'>
+                <ul className='menu-items'>
+                    <li className='menu-item'>
+                        <p>Aquatic</p>
+                    </li>
+                    <li className='menu-item active'>
+                        <p>Avian</p>
+                    </li>
+                    <li className='menu-item'>
+                        <p>Dinosaur</p>
+                    </li>
+                    <li className='menu-item'>
+                        <p>Insect</p>
+                    </li>
+                    <li className='menu-item'>
+                        <p>Wildlife</p>
+                    </li>
+                    <li className='menu-item'>
+                        <p>Reptile</p>
+                    </li>
+                </ul>
             </div>
-            <div id='tip'>
-                <p>TIP: Hover on boss's name to display his stats.</p>
+
+            {/* Boss Section */}
+            <div className='boss-section'>
+                {/* { dungeonItems() } */}
+
+                {/* Arrow left & arrow right? */}
+                {/* <EnemyCard /> */}
+                { dungeonItems[0] }
             </div>
-            <Link to='/menu' className='back_btn'>Back</Link>                          
+                        
         </div>
     )
 }

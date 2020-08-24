@@ -1,15 +1,4 @@
 
-@import "../style.scss";
-
-// HP Bar Background Colors Based On Specie 
-// (stylings at the bottom of the file)
-$avian-hpbar-bg: rgb(203, 75, 130);
-$dinosaur-hpbar-bg: rgb(147, 30, 16);
-$insect-hpbar-bg: rgb(25, 126, 43);
-$wildlife-hpbar-bg: rgb(138, 90, 68);
-$reptile-hpbar-bg: rgb(0, 97, 77);
-$aquatic-hpbar-bg: rgb(0, 127, 127);
-
 // Game Page
 .battle-section {
     height: 100vh;

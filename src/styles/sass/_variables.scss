@@ -1,0 +1,26 @@
+
+// Variables
+$item_bg: #999;
+$item_selected_color: white;
+
+$common: #555;
+$uncommon: green;
+$rare: blue;
+$epic: purple;
+$legendary: orangered;
+$mythic: #d00000;
+
+$avian-color: rgb(255, 151, 183);
+$dinosaur-color: rgb(237, 106, 90);
+$insect-color: rgb(83, 221, 108);
+$wildlife-color: rgb(224, 151, 103);
+$reptile-color: rgb(2, 195, 154);
+$aquatic-color: rgb(0, 225, 225);
+
+// HP Bar Background Colors Based On Specie (used in _gamepage.scss)
+$avian-hpbar-bg: rgb(203, 75, 130);
+$dinosaur-hpbar-bg: rgb(147, 30, 16);
+$insect-hpbar-bg: rgb(25, 126, 43);
+$wildlife-hpbar-bg: rgb(138, 90, 68);
+$reptile-hpbar-bg: rgb(0, 97, 77);
+$aquatic-hpbar-bg: rgb(0, 127, 127);

@@ -6,8 +6,6 @@ import InventoryRow from './inventory/InventoryRow'
 import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../actions/itemsActions'
 import mapDrops from '../logic/mapDrops'
 import deepCopy from '../logic/deepCopy'
-import '../styles/crafting/crafting.css'
-
 
 function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
 

@@ -6,8 +6,6 @@ import EnemyCard from './EnemyCard'
 import { generateClassicEnemies, setRolls } from '../../actions/gameActions'
 import rerollEnemies from '../../logic/rerollEnemies'
 
-import '../../styles/classic_game/classic_game.css'
-
 function ClassicGame(props) {
 
     // Destructure From Props

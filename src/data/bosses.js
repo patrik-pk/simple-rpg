@@ -12,6 +12,15 @@ const boss = (level, specificEnemy, strongStatIndex, specie) => {
 
 // Generate Bosses
 const bosses = [
+    
+    // Aquatic
+    [
+        boss(8, aquatic.ray, 0, 'aquatic'),
+        boss(14, aquatic.anglerfish, 0, 'aquatic'),
+        boss(21, aquatic.hammerhead, 0, 'aquatic'),
+        boss(27, aquatic.shark, 0, 'aquatic'),
+        boss(40, aquatic.kraken, null, 'aquatic'),
+    ],
     // Avians
     [
         boss(9, avians.owl, 1, 'avian'),
@@ -53,14 +62,6 @@ const bosses = [
         boss(19, reptiles.crocodile, 0, 'reptile'),
         boss(26, reptiles.cobra, 1, 'reptile'),
         boss(35, reptiles.dragon, 1, 'reptile'),
-    ],
-    // Aquatic
-    [
-        boss(8, aquatic.ray, 0, 'aquatic'),
-        boss(14, aquatic.anglerfish, 0, 'aquatic'),
-        boss(21, aquatic.hammerhead, 0, 'aquatic'),
-        boss(27, aquatic.shark, 0, 'aquatic'),
-        boss(40, aquatic.kraken, null, 'aquatic'),
     ],
 ]
 

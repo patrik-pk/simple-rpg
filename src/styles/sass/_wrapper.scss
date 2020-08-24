@@ -1,0 +1,83 @@
+
+// Wrapper
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    max-width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    width: auto;
+    background: black;
+
+    @include extra-small-width {
+        min-width: auto;
+        max-width: auto;
+        overflow-x: scroll;
+    }
+
+    @include extra-small-height {
+        min-height: 300px;
+        max-height: 300px;
+        overflow-y: scroll!important;
+        .content-container {
+            height: 100%;
+            .side-menu, .main-content {
+                height: 100%;
+            }
+        }
+    }
+
+    @include mobile {
+        display: block;
+    }
+
+    // Content Container
+    .content-container {
+        display: flex;
+        border: 1px white solid;
+        height: 600px;
+
+        @include extra-small-height {
+            min-height: 300px;
+        }
+
+        @include mobile {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+
+        @include tablet {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+
+        // Sidemenu would go here
+    
+        // Main Content
+        .main-content {
+            position: relative;
+            width: 800px;
+            height: 100%;
+            box-sizing: border-box;
+            background: black;
+
+            @include extra-small-width {
+                min-width: 370px;
+            }
+
+            @include mobile {
+                min-width: 75%;
+                max-width: 75%;
+            }
+
+            @include tablet {
+                min-width: 75%;
+                max-width: 75%;
+            }
+        }
+    }
+}
