@@ -24,22 +24,25 @@
     border: 1px black solid;
     transition: 500ms all;
     color: black;
-    cursor: default;
     p { color: black; }
 
     &.active:hover {
         background: white;
         border-color: black;
         color: black;
-        cursor: pointer;
         p { color: black; }
     }
-    
-    &.active {
+    &.active2:hover {
+        background: black;   
+        border-color: orangered;
+        color: orangered;
+        p { color: orangered; }
+    }
+
+    &.active, &.active2 {
         background: black;
         border-color: white;
         color: white;
-        cursor: pointer;
         p { color: white; }
     }
 }

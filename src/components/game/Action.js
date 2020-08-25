@@ -55,8 +55,8 @@ function Action(props) {
     const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
     
     // Calculate min and max damage that can player deal (without crit)
-    const minDmg = attackEnemy(player, enemy, attackType, strength, hitChanceMult, 'min')
-    const maxDmg = attackEnemy(player, enemy, attackType, strength, hitChanceMult, 'max')
+    const minDmg = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult, 'min')
+    const maxDmg = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult, 'max')
 
     // Start Round - actual game functionality
     const startRound = () => {
@@ -67,7 +67,7 @@ function Action(props) {
         setCanAttack(false)
 
         // calculate damage dealt and return it along with didCrit boolean
-        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, attackType, strength, hitChanceMult)
+        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult)
 
         // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
         if(p_dmgDealt === 'dodged') {

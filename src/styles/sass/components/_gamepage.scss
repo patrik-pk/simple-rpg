@@ -26,6 +26,7 @@
 
     // Game Over
     .game-over {
+        display: none;
         position: absolute;
         bottom: 5%;
         left: 50%;
@@ -34,6 +35,11 @@
         padding: 10px 0;
         background: black;
         border: 1px white solid;
+
+        &.active {
+            display: block;
+        }
+
         @include mobile {
             width: 200px;
             padding: 5px 0;

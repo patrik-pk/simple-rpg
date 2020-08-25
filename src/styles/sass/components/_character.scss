@@ -31,6 +31,7 @@
 
         // Floating Damage (animations are defined in its own file _animations.scss)
         .floating-damage {
+            display: none;
             position: absolute;
             bottom: 70px;
             left: 50%;
@@ -41,6 +42,10 @@
             &.crit::before { content: '!! ' }
             &.crit::after { content: ' !!' }
             
+            &.active {
+                display: block;
+            }
+
             @include mobile {
                 bottom: 35px;
                 font-size: 8px;

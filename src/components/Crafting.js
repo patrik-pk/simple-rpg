@@ -7,12 +7,15 @@ import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../act
 import mapDrops from '../logic/mapDrops'
 import deepCopy from '../logic/deepCopy'
 
-function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
+function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
 
     // Unselect Items on Unmount 
     useEffect(() => {
         return () => unselectCraftableItems()
     }, [unselectCraftableItems])
+
+    // Check if Player has space in inventory
+    const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 1 ? true : false
 
     // LEVEL MENU
 
@@ -129,13 +132,12 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
     }
 
     // Craft Class - if player can craft selected item, set to active
-    const craftClass = compareDrops() ? 'active' : '' 
+    const craftClass = compareDrops() && haveSpaceInv ? 'active' : '' 
 
 
     // Craft Function - Remove players needed drops and add selected item to inventory
     const craft = () => {
-        // Todo: Add inv items length conditions - player needs to have space in inventory
-        if(selectedItemArr.length === 1 && compareDrops()) {
+        if(selectedItemArr.length === 1 && compareDrops() && haveSpaceInv) {
 
             // remove players drops needed to craft the item
             removeDropsFromInv(neededDrops)
@@ -218,11 +220,13 @@ function Crafting({ invItems, craftableItems, unselectCraftableItems, addItemToI
 Crafting.propTypes = {
     invItems: PropTypes.array.isRequired,
     craftableItems: PropTypes.array.isRequired,
+    inventoryRows: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
     invItems: state.items.invItems,
-    craftableItems: state.items.craftableItems
+    craftableItems: state.items.craftableItems,
+    inventoryRows: state.items.inventoryRows
 })
 
 export default connect(mapStateToProps, { unselectCraftableItems, addItemToInv, removeDropsFromInv })(Crafting)

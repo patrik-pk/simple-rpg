@@ -1,11 +1,12 @@
 import randomGenerator from './randomGenerator'
+import levelTresholds from '../data/levelTresholds'
 
 // This function is used for to usecases
 // 1) calculating players damage to enemy, crit chance, and if he dodged
 //    in actual game functionality
 // 2) calculating min and max damage that can player deal, without crit
 //    for this purpose there is a optional parameter 'specific' which can be 'min' or 'max'
-export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack, hitChanceMult, specific) {
+export default function attackEnemy(player, enemy, enemyLevel, typeOfAttack, strengthOfAttack, hitChanceMult, specific) {
 
   // Based on typeOfAttack (melee / ranged) return weapon dmg, enemy dodge and enemy armor
   const typeOfAtt = (() => {
@@ -102,7 +103,7 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
   const damageDealt = (() => {
 
     // min DMG base that characters does when armor is too high
-    const minDmg = 30 * strengthOfAtt
+    const minDmg = 100 * strengthOfAtt * levelTresholds[enemyLevel].gameFlow
 
     // Damage Dealt = (TypeOfAttack DMG (coming from weapon Melee / Ranged) 
     // * StrengthOfAttack Multiplier (light/medium/strong) 

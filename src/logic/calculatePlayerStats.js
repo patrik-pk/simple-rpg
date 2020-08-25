@@ -2,72 +2,56 @@
 export default function calculatePlayerStats(equippedItems) {
 
     // Variables Declaration
-    let HP = 0
+    let maxHp = 0
     let armor = 0
-    let crit = 0
-    let block = 0
-    let meleeDMG = 0
-    let rangedDMG = 0
+    let critChance = 0
+    let blockChance = 0
+    let meleeDamage = 0
+    let rangedDamage = 0
 
-    let beasts = { name: 'beasts', value: 0 }
-    let dragons = { name: 'dragons', value: 0 }
-    let insect = { name: 'insect', value: 0 }
-    let monsters = { name: 'monsters', value: 0 }
-    let reptiles = { name: 'reptiles', value: 0 }
+    const bonuses = [
+        { name: 'aquatic', value: 0 },
+        { name: 'avian', value: 0 },
+        { name: 'dinosaur', value: 0 },
+        { name: 'insect', value: 0 },
+        { name: 'wildlife', value: 0 },
+        { name: 'reptile', value: 0 },
+    ]
 
     // Loop Through Equipped Items
     equippedItems.forEach(item => {
 
-        const statName = item.stats.statName
-        const statValue = item.stats.value
+        // get statName and statValue
+        const { statName, value } = item.stats
 
-        // assign value to matching stat
+        // and assign value to matching stat
         switch (statName) {
-            case 'HP': HP += statValue; break;
-            case 'Armor': armor += statValue; break;
-            case 'Crit. chance': crit += statValue; break;
-            case 'Block chance': block += statValue; break;
-            case 'M-DMG': meleeDMG += statValue; break;
-            case 'R-DMG': rangedDMG += statValue; break;
+            case 'HP': maxHp += value; break;
+            case 'Armor': armor += value; break;
+            case 'Crit. chance': critChance += value; break;
+            case 'Block chance': blockChance += value; break;
+            case 'M-DMG': meleeDamage += value; break;
+            case 'R-DMG': rangedDamage += value; break;
             default: break;
         }
 
-        // if item has bonuses,
-        if(item.bonuses !== null) {
-            const bonuses = item.bonuses
-           
-            // loop through them
-            for(let x = 0; x < bonuses.length; x++) {
-                const bonusName = bonuses[x].name
-                const bonusValue = bonuses[x].value
-
-                // and assign them to stats
-                switch (bonusName) {
-                    case 'beasts': beasts.value += bonusValue; break;
-                    case 'dragons': dragons.value += bonusValue; break;
-                    case 'insect': insect.value += bonusValue; break;
-                    case 'monsters': monsters.value += bonusValue; break;
-                    case 'reptiles': reptiles.value += bonusValue; break;
-                    default: break;
-                }
-            }
-        }      
+        // loop through bonuses and if the name matches add the value
+        // from itemBonus to bonuses 
+        item.bonuses.forEach(itemBonus => {
+            bonuses.forEach(bonus => {
+                if(itemBonus.name === bonus.name) bonus.value += itemBonus.value
+            })
+        })
     })
 
     // Final Return
     return {
-        maxHp: HP,
-        armor: armor,
-        meleeDamage: meleeDMG,
-        rangedDamage: rangedDMG,
-        critChance: crit,
-        blockChance: block,
-        bonuses: [
-            beasts,
-            dragons,
-            insect,
-            monsters,
-            reptiles
-        ],
+        maxHp,
+        armor,
+        meleeDamage,
+        rangedDamage,
+        critChance,
+        blockChance,
+        bonuses
     }
 }

@@ -19,6 +19,7 @@ function EnemyCard(props) {
     const { 
         enemy, 
         invItems, 
+        inventoryRows,
         resetPlayer, 
         setEnemy, 
         startGame 
@@ -57,10 +58,6 @@ function EnemyCard(props) {
         startGame()
     }
 
-
-    // Check if Player has space in inventory
-    const haveSpaceInv = invItems.length <= 33 ? true : false
-
     // Difficulty
     const difficultyVal = () => {
         if (type === 'Boss') return 'Boss'
@@ -73,6 +70,9 @@ function EnemyCard(props) {
             }
         }
     }
+
+    // Check if Player has space in inventory
+    const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 3 ? true : false
 
     // Specie To UpperCase
     const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
@@ -156,10 +156,12 @@ function EnemyCard(props) {
 
 EnemyCard.propTypes = {
     invItems: PropTypes.array.isRequired,
+    inventoryRows: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
     invItems: state.items.invItems,
+    inventoryRows: state.items.inventoryRows
 })
 
 export default connect(mapStateToProps, { resetPlayer, setEnemy, startGame })(EnemyCard)

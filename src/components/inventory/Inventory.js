@@ -20,6 +20,7 @@ import { recalculatePlayerStats } from '../../actions/playerActions'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
+import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 import cps from '../../logic/calculatePlayerStats'
 
 function Inventory(props) {
@@ -40,7 +41,7 @@ function Inventory(props) {
         setDiamonds, 
         setGold 
     } = props
-    const { equippedItems, invItems, shopItems } = items
+    const { equippedItems, invItems, shopItems, inventoryRows } = items
     const { gold, diamonds, currentLevel } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
@@ -52,6 +53,11 @@ function Inventory(props) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    // Watch for equippedItems, and re-calulate player stats if they change
+    useEffect(() => {
+        recalculatePlayerStats(cps(equippedItems))
+    }, [equippedItems, recalculatePlayerStats])
 
     // Slice item's into a 6 item array and put them into the InventoryRow Component
     const getItems = (items, min, max) => {
@@ -73,7 +79,7 @@ function Inventory(props) {
     const mappedRows = () => {
         const mapped = []
 
-        for(let i = 0; i < 7; i++) {
+        for(let i = 0; i < inventoryRows; i++) {
             mapped.push(<InventoryRow key={i} itemsProp={getItems(invItems, i * 6, (i * 6) + 6)} itemHandleClick={props.itemHandleClick} {...props} />)
         }
 
@@ -85,7 +91,8 @@ function Inventory(props) {
     const selectedShopItems = shopItems.filter(item => item.isSelected)
 
     // Conditions
-    const buyCondition = selectedShopItems.length === 1 && invItems.length <= 35 && gold >= selectedShopItems[0].goldValue
+    const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 1 ? true : false
+    const buyCondition = selectedShopItems.length === 1 && haveSpaceInv && gold >= selectedShopItems[0].goldValue
     const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].type !== 'drop'
     const rerollCondition = diamonds > 0 
     const sellCondition = selectedInvItems.length > 0
@@ -143,21 +150,28 @@ function Inventory(props) {
     // Equip Item
     const eqItem = () => {
         if(equipCondition) {
+            
             // find the matching type, that is already equipped
             const equipped = equippedItems.filter(item => item.name === selectedInvItems[0].name)
 
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])
+
             // recalculate player stats - cps (calculatePlayerstats) returns object with new values
             recalculatePlayerStats(cps(equippedItems))
         }
     }
 
     // Set Active Classes
-    const equipClass = equipCondition ? 'active' : ''
-    const sellClass = sellCondition ? 'active' : ''
-    const rerollClass = rerollCondition ? 'active' : ''
-    const buyClass = buyCondition ? 'active' : ''
+    const equipClass = equipCondition ? 'active2' : ''
+    const sellClass = sellCondition ? 'active2' : ''
+    const rerollClass = rerollCondition ? 'active2' : ''
+    const buyClass = buyCondition ? 'active2' : ''
+
+    // Map Bonuses
+    const mappedBonuses = bonuses.map((bonus, i) => {
+        return <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
+    })
 
     // Render
     return(
@@ -192,12 +206,7 @@ function Inventory(props) {
                                 <Stat name='Crit(%):' value={critChance} />
                                 <Stat name='Block(%):' value={blockChance} />
                                 <br />
-                                <Stat name='Aquatic:' value={bonuses[0].value} />
-                                <Stat name='Avian:' value={bonuses[1].value} />
-                                <Stat name='Dinosaur:' value={bonuses[2].value} />
-                                <Stat name='Insect:' value={bonuses[3].value} />
-                                <Stat name='Wildlife:' value={bonuses[4].value} />
-                                <Stat name='Reptile:' value={bonuses[5].value} />
+                                { mappedBonuses }
                             </ul>
                         </div>
 
@@ -236,7 +245,7 @@ function Inventory(props) {
                     <div className='options'>
 
                         {/* Sort Button */}
-                        <button className='btn sort-btn active' onClick={sortItems}><p>*</p></button>
+                        <button className='btn sort-btn active2' onClick={sortItems}><p>*</p></button>
 
                         {/* Equip & Sell Buttons */}
                         <div className='options-right'>

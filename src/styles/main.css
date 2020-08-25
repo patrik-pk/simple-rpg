@@ -20,7 +20,6 @@
   -webkit-transition: 500ms all;
   transition: 500ms all;
   color: black;
-  cursor: default;
 }
 
 .btn p {
@@ -31,21 +30,29 @@
   background: white;
   border-color: black;
   color: black;
-  cursor: pointer;
 }
 
 .btn.active:hover p {
   color: black;
 }
 
-.btn.active {
+.btn.active2:hover {
+  background: black;
+  border-color: orangered;
+  color: orangered;
+}
+
+.btn.active2:hover p {
+  color: orangered;
+}
+
+.btn.active, .btn.active2 {
   background: black;
   border-color: white;
   color: white;
-  cursor: pointer;
 }
 
-.btn.active p {
+.btn.active p, .btn.active2 p {
   color: white;
 }
 
@@ -419,6 +426,7 @@
 }
 
 .battle-section .game-over {
+  display: none;
   position: absolute;
   bottom: 5%;
   left: 50%;
@@ -428,6 +436,10 @@
   padding: 10px 0;
   background: black;
   border: 1px white solid;
+}
+
+.battle-section .game-over.active {
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -568,6 +580,7 @@
 }
 
 .character-container .top .floating-damage {
+  display: none;
   position: absolute;
   bottom: 70px;
   left: 50%;
@@ -585,6 +598,10 @@
 
 .character-container .top .floating-damage.crit::after {
   content: ' !!';
+}
+
+.character-container .top .floating-damage.active {
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -832,12 +849,17 @@
 }
 
 .actions {
+  display: none;
   position: absolute;
   top: 0;
   left: 250px;
   width: 200px;
   padding-left: 30px;
   z-index: 10;
+}
+
+.actions.active {
+  display: block;
 }
 
 .actions .forfeit-btn {

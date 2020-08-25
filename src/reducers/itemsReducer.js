@@ -1,8 +1,8 @@
 import startingItems from '../data/startingItems'
 import craftableItems from '../data/craftable_items/craftableItems'
-import EquipItem from '../data/EquipItem'
 import sortItemsValues from '../data/sortItemsValues'
 import deepCopy from '../logic/deepCopy'
+// import EquipItem from '../data/EquipItem'
 //import DropItem from '../data/DropItem'
 import {
     ADD_ITEM_TO_INV,
@@ -21,13 +21,9 @@ import {
 } from '../actions/types'
 
 const initialState = {
+    inventoryRows: 7,
     equippedItems: startingItems,
-    invItems: [
-        new EquipItem('Inventory', 0),
-        new EquipItem('Inventory', 1),
-        //new DropItem('Inventory', 2),
-
-    ],
+    invItems: [],
     shopItems: [
         { type: 'Empty', key: 0 },
         { type: 'Empty', key: 1 },

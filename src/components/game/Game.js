@@ -29,6 +29,9 @@ function Game(props) {
     // Generated Items
     const mappedItems = generatedItems ? generatedItems.map(item => <ItemComponent key={item.key} data={item} renderedInGame={true} />) : null
 
+    // Game Over Class
+    const gameOverClass = battleStatus !== 'inBattle' ? 'active' : ''
+
     // Render
     return(
         <section className='battle-section'>
@@ -40,7 +43,7 @@ function Game(props) {
             </div>
 
             {/* Game Over */}
-            <div className='game-over' style={{ display: battleStatus === 'inBattle' ? 'none' : 'block' }}>
+            <div className={`game-over ${gameOverClass}`}>
 
                 {/* End Text */}
                 <div className='end-text'>

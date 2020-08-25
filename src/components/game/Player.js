@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 import Action from './Action'
 import Stat from '../Stat'
+import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 import { ReactComponent as PlayerImage } from '../../resources/icons/creatures/target.svg'
 
 // Action SVGs
@@ -41,8 +42,15 @@ function Player(props) {
         const hpPercentage = (currentHp / maxHp) * 100
         const hpStyle = { width: `${hpPercentage > 0 ? hpPercentage : 0}%` }
     
-        // Crit Class
+        // Classes
         const critClass = receivedCrit ? 'crit' : ''
+        const floatingDmgClass = damageTaken !== '' ? 'active' : ''
+        const actionsClass = canAttack ? 'active' : ''
+
+        // Map Bonuses
+        const mappedBonuses = bonuses.map((bonus, i) => {
+            return <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
+        })
     
         // Render
         return(
@@ -55,7 +63,7 @@ function Player(props) {
                     <PlayerImage />
     
                     {/* Floating Damage */}
-                    <p className={`floating-damage ${critClass}`} style={{display: damageTaken === '' ? 'none' : 'block'}}>
+                    <p className={`floating-damage ${critClass} ${floatingDmgClass}`}>
                         {damageTaken}
                     </p>
     
@@ -87,21 +95,15 @@ function Player(props) {
                         <Stat name='Block(%):' value={blockChance} />
                     </ul>
                     <ul>
-                        <Stat name='Aquatic:' value={bonuses[0].value} />
-                        <Stat name='Avian:' value={bonuses[1].value} />
-                        <Stat name='Dinosaur:' value={bonuses[2].value} />
-                        <Stat name='Insect:' value={bonuses[3].value} />
-                        <Stat name='Wildlife:' value={bonuses[4].value} />
-                        <Stat name='Reptile:' value={bonuses[5].value} />
+                        { mappedBonuses }
                     </ul>
                 </div>
     
     
                 {/* Actions */}
-                <div className='actions' style={{display: canAttack ? 'block' : 'none'}}>
+                <div className={`actions ${actionsClass}`}>
 
                     {/* Forfeit Button */}
-                    {/* TODO: don't show when the game is over */}
                     <Link className='btn forfeit-btn active' to='/menu'>FF</Link>
                     
                     {/* TODO: Map Actions? */}

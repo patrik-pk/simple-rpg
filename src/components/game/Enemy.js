@@ -5,7 +5,7 @@ import Stat from '../Stat'
 
 function Enemy(props) {
 
-    const enemy = props.enemy
+    const { enemy } = props
 
     // Render Component only if there is a Enemy
     if(enemy) {
@@ -51,6 +51,7 @@ function Enemy(props) {
         // Classes
         const bossClass = type === 'Boss' ? 'boss' : ''
         const critClass = receivedCrit ? ' crit' : ''
+        const floatingDmgClass = damageTaken !== '' ? 'active' : ''
 
         // Render
         return (
@@ -63,7 +64,7 @@ function Enemy(props) {
                     { icon.render() }
     
                     {/* Floating Damage */}
-                    <p className={'floating-damage' + critClass} style={{ display: damageTaken === '' ? 'none' : 'block' }}>
+                    <p className={`floating-damage ${critClass} ${floatingDmgClass}`}>
                         {damageTaken}
                     </p>
                     
