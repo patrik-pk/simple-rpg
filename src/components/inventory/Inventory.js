@@ -85,7 +85,7 @@ function Inventory(props) {
     const selectedShopItems = shopItems.filter(item => item.isSelected)
 
     // Conditions
-    const buyCondition = selectedShopItems.length === 1 && invItems.length <= 35
+    const buyCondition = selectedShopItems.length === 1 && invItems.length <= 35 && gold >= selectedShopItems[0].goldValue
     const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].type !== 'drop'
     const rerollCondition = diamonds > 0 
     const sellCondition = selectedInvItems.length > 0
@@ -113,19 +113,17 @@ function Inventory(props) {
     const buyItem = () => {
         if(buyCondition) {
             const selectedItem = selectedShopItems[0]
-            if (gold >= selectedItem.goldValue) {
 
-                // make a copy of selectedItem
-                const item = Object.assign({}, selectedItem)
-                item.destination = 'Inventory'
-                item.isSelected = false
-                item.goldValue = Math.ceil(item.goldValue * 0.75)
-                item.key = invItems.length
+            // make a copy of selectedItem
+            const item = Object.assign({}, selectedItem)
+            item.destination = 'Inventory'
+            item.isSelected = false
+            item.goldValue = Math.ceil(item.goldValue * 0.75)
+            item.key = invItems.length
 
-                removeShopItem(selectedItem)
-                addItemToInv(item)
-                setGold(-selectedItem.goldValue)
-            } 
+            removeShopItem(selectedItem)
+            addItemToInv(item)
+            setGold(-selectedItem.goldValue)
         }
     }
 
@@ -155,22 +153,11 @@ function Inventory(props) {
         }
     }
 
-    // Set active classes
-    const equipActive = equipCondition ? 'active' : 'null'
-    const sellActive = sellCondition ? 'active' : 'null'
-    const rerollActive = rerollCondition ? 'active' : 'null'
-
-    // If Player has 1 selected shop item, has space in Inventory 
-    // and has money to buy that items, return active for buy btn class
-    const buyActive = () => {
-        if (buyCondition) {
-            const selectedItem = selectedShopItems[0]
-            if(gold >= selectedItem.goldValue) {
-                return 'active'
-            }
-        }
-        return ''
-    }
+    // Set Active Classes
+    const equipClass = equipCondition ? 'active' : ''
+    const sellClass = sellCondition ? 'active' : ''
+    const rerollClass = rerollCondition ? 'active' : ''
+    const buyClass = buyCondition ? 'active' : ''
 
     // Render
     return(
@@ -229,8 +216,8 @@ function Inventory(props) {
 
                         {/* Options */}
                         <div className='options'>
-                            <button className={`btn reroll-btn ${rerollActive}`} onClick={reroll}>Roll (1)</button>
-                            <button className={`btn buy-btn ${buyActive()}`} onClick={buyItem}>Buy</button>
+                            <button className={`btn reroll-btn ${rerollClass}`} onClick={reroll}>Roll (1)</button>
+                            <button className={`btn buy-btn ${buyClass}`} onClick={buyItem}>Buy</button>
                         </div>
 
                     </div>
@@ -253,8 +240,8 @@ function Inventory(props) {
 
                         {/* Equip & Sell Buttons */}
                         <div className='options-right'>
-                            <button className={`btn equip-btn ${equipActive}`} onClick={eqItem}>Equip</button>
-                            <button className={`btn sell-btn ${sellActive}`} onClick={sellItem}>Sell</button>
+                            <button className={`btn equip-btn ${equipClass}`} onClick={eqItem}>Equip</button>
+                            <button className={`btn sell-btn ${sellClass}`} onClick={sellItem}>Sell</button>
                         </div>
 
                     </div>

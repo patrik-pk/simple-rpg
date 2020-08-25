@@ -29,10 +29,6 @@ function Game(props) {
     // Generated Items
     const mappedItems = generatedItems ? generatedItems.map(item => <ItemComponent key={item.key} data={item} renderedInGame={true} />) : null
 
-    // Text Variables
-    const winText = 'Victory'
-    const loseText = 'Defeat'
-
     // Render
     return(
         <section className='battle-section'>
@@ -48,7 +44,7 @@ function Game(props) {
 
                 {/* End Text */}
                 <div className='end-text'>
-                    <p>{battleStatus === 'Victory' ? winText : loseText}</p>
+                    <p>{battleStatus}</p>
                 </div>
 
                 {/* Reward */}
@@ -72,17 +68,13 @@ function Game(props) {
 
                     {/* Right - Generated Item(s) */}
                     <ul className='right'>
-                        {
-                        battleStatus === 'Victory' ?
-                        mappedItems
-                        : null
-                        }
+                        { battleStatus === 'Victory' ? mappedItems : null }
                     </ul>
 
                 </div>
 
                 {/* Confirm Button */}
-                <Link className='confirm-btn' to='/menu' onClick={endGame}>Continue</Link>
+                <Link className='btn confirm-btn active' to='/menu' onClick={endGame}>Continue</Link>
             </div>
 
         </section>

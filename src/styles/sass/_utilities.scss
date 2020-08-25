@@ -21,22 +21,25 @@
     width: 85px;
     padding: 10px 0;
     background: white;
-    color: black;
     border: 1px black solid;
     transition: 500ms all;
+    color: black;
+    cursor: default;
     p { color: black; }
 
     &.active:hover {
         background: white;
-        color: black;
         border-color: black;
+        color: black;
+        cursor: pointer;
         p { color: black; }
     }
     
     &.active {
         background: black;
-        color: white;
         border-color: white;
+        color: white;
+        cursor: pointer;
         p { color: white; }
     }
 }

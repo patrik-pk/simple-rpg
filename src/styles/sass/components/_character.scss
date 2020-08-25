@@ -1,0 +1,195 @@
+
+// Character Container
+.character-container {
+    position: relative;
+    width: $character-width-dt;
+    height: 400px;
+    background: black;
+    border: 1px white solid;
+
+    @include mobile {
+        width: 125px;
+        height: 200px;
+    }
+
+    // Top (Img + Floating Damage)
+    .top {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+        width: 100%;
+        height: 42%;
+        background: black;
+
+        // Image (svg)
+        svg {
+            width: 75%;
+            height: 75%;
+            fill: white;
+        }
+
+        // Floating Damage (animations are defined in its own file _animations.scss)
+        .floating-damage {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            color: white!important;
+            font-weight: bold;
+            animation: floatOut 1.3s linear forwards;
+            &.crit::before { content: '!! ' }
+            &.crit::after { content: ' !!' }
+            
+            @include mobile {
+                bottom: 35px;
+                font-size: 8px;
+                animation: floatOutMobile 1.3s linear forwards;
+            }
+        }
+    }
+
+    // Middle (Info - HP, Name, Level)
+    .info {
+        height: 16%;
+        
+        // Name
+        .name {
+            height: 45%;
+            text-align: center;
+            color: white;
+            &.boss {
+                font-weight: bold;
+            }
+
+            @include mobile {
+                font-size: 10px;
+            }
+        }
+        
+        // HP
+        .hp {
+            position: relative;
+            height: 55%;
+
+            // Current HP
+            .hp-current {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgb(220, 0, 0);
+                transition: 500ms all;
+            }
+
+            // Max HP
+            .hp-max {
+                width: 100%;
+                height: 100%;
+                background: rgb(75, 0, 0);
+            }
+
+            // HP Value
+            .hp-value {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                z-index: 10;
+
+                @include mobile {
+                    font-size: 10px;
+                }
+            }
+        }
+
+    }
+
+    // Bottom (Stats)
+    .stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 42%;
+        padding: 15px 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+        @include mobile {
+            padding: 3px;
+            padding-bottom: 3px;
+            font-size: 8px;
+        }
+
+        // Ul
+        ul {
+            @include mobile { margin-top: 5px; }
+
+            // Stat Container (Li) 
+            .stat-container {
+                padding: 2px 0;
+                &.boss {
+                    p { color: orangered!important; }
+                }
+                @include mobile { padding: 1px 0; }
+
+                p:nth-child(2) {
+                    margin-left: 13px;
+                    @include mobile { margin-left: 3px; }
+                }
+            }
+            // .stat-container is styled in _utilities.scss 
+            // since it is used across multiple components
+        }
+    }
+
+    // Player Actions have their own file (actions.scss)
+}
+
+// Enemy Colored
+#enemy {
+    &.avian {
+        svg { fill: $avian-color; }
+        border-color: $avian-color;
+        p:not(.hp-value) { color: $avian-color; }
+        .hp-current { background: $avian-color; }
+        .hp-max { background: $avian-hpbar-bg; }
+    }
+    &.dinosaur {
+        svg { fill: $dinosaur-color; }
+        border-color: $dinosaur-color;
+        p:not(.hp-value) { color: $dinosaur-color; }
+        .hp-current { background: $dinosaur-color; }
+        .hp-max { background: $dinosaur-hpbar-bg; }
+    }
+    &.insect {
+        svg { fill: $insect-color; }
+        border-color: $insect-color;
+        p:not(.hp-value) { color: $insect-color; }
+        .hp-current { background: $insect-color; }
+        .hp-max { background: $insect-hpbar-bg; }
+    }
+    &.wildlife {
+        svg { fill: $wildlife-color; }
+        border-color: $wildlife-color;
+        p:not(.hp-value) { color: $wildlife-color; }
+        .hp-current { background: $wildlife-color; }
+        .hp-max { background: $wildlife-hpbar-bg; }
+    }
+    &.reptile {
+        svg { fill: $reptile-color; }
+        border-color: $reptile-color;
+        p:not(.hp-value) { color: $reptile-color; }
+        .hp-current { background: $reptile-color; }
+        .hp-max { background: $reptile-hpbar-bg; }
+    }
+    &.aquatic {
+        svg { fill: $aquatic-color; }
+        border-color: $aquatic-color;
+        p:not(.hp-value) { color: $aquatic-color; }
+        .hp-current { background: $aquatic-color; }
+        .hp-max { background: $aquatic-hpbar-bg; }
+    }
+}

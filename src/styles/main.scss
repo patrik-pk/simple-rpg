@@ -4,9 +4,12 @@
 @import './sass/utilities';
 @import './sass/media-queries';
 @import './sass/wrapper';
+@import './sass/animations';
 
 @import './sass/components/sidemenu';
 @import './sass/components/gamepage';
+@import './sass/components/character';
+@import './sass/components/actions';
 @import './sass/components/classic-game';
 @import './sass/components/dungeon';
 @import './sass/components/enemy-card';

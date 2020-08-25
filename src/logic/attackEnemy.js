@@ -1,6 +1,11 @@
 import randomGenerator from './randomGenerator'
 
-export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack, hitChanceMult) {
+// This function is used for to usecases
+// 1) calculating players damage to enemy, crit chance, and if he dodged
+//    in actual game functionality
+// 2) calculating min and max damage that can player deal, without crit
+//    for this purpose there is a optional parameter 'specific' which can be 'min' or 'max'
+export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttack, hitChanceMult, specific) {
 
   // Based on typeOfAttack (melee / ranged) return weapon dmg, enemy dodge and enemy armor
   const typeOfAtt = (() => {
@@ -21,16 +26,37 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Based on strengthOfAttack (light / medium / ranged) return dmg
   const strengthOfAtt = (() => {
+
+    // get specific index
+    const specificIndex = () => {
+      if(specific === 'min') return 0
+      if(specific === 'max') return 1
+    }
+
+    // dispersions for random dmg, first value = min, last one = max
+    const disp = [
+      [ 70, 90 ],
+      [ 90, 110 ],
+      [ 110, 130 ],
+    ]
+
+    // if there is a specific, return min/max dmg, else return random between min and max
+    const finalReturn = i => specific ? disp[i][specificIndex()] * 0.01 : randomGenerator(disp[i][0], disp[i][1], 0.01)
+
     switch (strengthOfAttack) {
-      case 'light': return randomGenerator(70, 90, 0.01)
-      case 'medium': return randomGenerator(90, 110, 0.01)
-      case 'strong': return randomGenerator(110, 130, 0.01)
+      case 'light': 
+        return finalReturn(0)
+      case 'medium': 
+        return finalReturn(1)
+      case 'strong': 
+        return finalReturn(2)
       default: break
     }
   })()
 
   // Calculate Enemy dodge based on his dodgeChance, return true or false
   const dodged = (() => {
+    if(specific) return
     // Enemy dodge chance
     let dodgeChance = typeOfAtt.dodge
     // Mulitply dodgeChance by hitChanceMutl, which is value to make it easier to
@@ -63,34 +89,42 @@ export default function attackEnemy(player, enemy, typeOfAttack, strengthOfAttac
 
   // Crit - calculate crit based on critChance and return object with multiplier value & didCrit boolean
   const crit = (() => {
+    if(specific) return { value: 1 }
+
     const critChance = player.critChance
     const random = randomGenerator(0, 100, 1)
 
-    if(critChance > random) return { didCrit: true, value: 2 }
+    if(critChance > random) return { didCrit: true, value: 1.5 }
     else return { didCrit: false, value: 1 }
   })()
 
   // Calculate Damage Dealt
   const damageDealt = (() => {
+
     // min DMG base that characters does when armor is too high
-    const minDmg = 30 * randomGenerator(85, 115, 0.01)
+    const minDmg = 30 * strengthOfAtt
 
     // Damage Dealt = (TypeOfAttack DMG (coming from weapon Melee / Ranged) 
     // * StrengthOfAttack Multiplier (light/medium/strong) 
     // * Specie Bonus Multiplier) - Enemy Armor
     let dmgDealt = (typeOfAtt.dmg * strengthOfAtt * bonusMultiplier) - typeOfAtt.armor
+
     // apply crit to dmgDealt substracted by Enemy Armor
     dmgDealt *= crit.value
+
     // if dmgDealt is less than minDmg, set damage dealt to random * minDmg, or let it be as it is
     dmgDealt = dmgDealt < minDmg ? minDmg : dmgDealt
+
     // finally round dmgDealt to a whole number
     dmgDealt = Math.round(dmgDealt)
+
     // and return it
     return dmgDealt
   })()
 
   // Final return
-  return {
+  if(specific) return damageDealt
+  else return {
     p_dmgDealt: damageDealt,
     p_didCrit: crit.didCrit
   }

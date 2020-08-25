@@ -1,0 +1,36 @@
+
+// Floating Damage Animation
+@keyframes floatOut {
+    0% {
+        bottom: 70px;
+    }
+    
+    75% {
+        bottom: 130px;
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 130px;
+        transform: scale(1.5);                            
+        opacity: 0;
+    }
+}
+
+// Floating Damage Animation For Mobile
+@keyframes floatOutMobile {
+    0% { 
+        bottom: 30px; 
+    }
+    75% {
+        bottom: 60px;
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        bottom: 60px;
+        transform: scale(1.5);                            
+        opacity: 0;
+    }
+}

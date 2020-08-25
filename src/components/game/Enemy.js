@@ -59,8 +59,10 @@ function Enemy(props) {
                 {/* Top - Image, Floating Damage */}
                 <div className='top'>
     
+                    {/* Icon */}
                     { icon.render() }
     
+                    {/* Floating Damage */}
                     <p className={'floating-damage' + critClass} style={{ display: damageTaken === '' ? 'none' : 'block' }}>
                         {damageTaken}
                     </p>
@@ -70,10 +72,12 @@ function Enemy(props) {
                 {/* Middle - Info (hp, name, level) */}
                 <div className='info'>
 
+                    {/* Name & Level */}
                     <p className={`name ${bossClass}`}>
                         {name} ({level})
                     </p>
 
+                    {/* HP */}
                     <div className='hp'>
                         <div className='hp-current' style={hpStyle}></div>
                         <div className='hp-max'></div>

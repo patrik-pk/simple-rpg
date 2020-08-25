@@ -1,0 +1,124 @@
+
+// Actions
+.actions {
+    position: absolute;
+    top: 0;
+    left: $character-width-dt;
+    width: 200px;
+    padding-left: 30px;
+    z-index: 10;
+
+    // Forfeit Button
+    .forfeit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    // Columns Container
+    .columns-container {
+        display: flex;
+        margin-top: 40px;
+
+        // variables for calculating
+        $action-size: 50px;
+        $info-ml: 20px;
+        $action-gap: 15px;
+
+        // Columns
+        .melee-column, .ranged-column {
+            display: flex;
+            flex-direction: column;
+    
+            // Action Button
+            .action-btn {
+                position: relative;
+                width: $action-size;
+                height: $action-size;
+                margin-top: $action-gap;
+                padding: 0;
+                &:first-child { margin-top: 0; } 
+                &:hover {
+                    path { fill: black!important; }
+                    .action-info {
+                        display: block;
+                    }
+                }
+                
+                // Icon
+                .icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+
+                    svg {
+                        width: 70%;
+                        height: 70%;
+                    }
+                }
+    
+                // Action Info (displays on hover)
+                .action-info {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: calc(#{$action-size} + #{$info-ml});
+                    padding: 12px;
+                    width: max-content;
+                    background: black;
+                    border: 1px white solid;
+
+                    p {
+                        color: white;
+                    }
+
+                    // Name
+                    .name {
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    // Hit Chance
+                    .hit-chance { 
+                        margin-top: 10px; 
+                    }
+
+                    // Min & Max Damage
+                    .dmg { 
+                        margin-top: 3px; 
+                    }
+                }
+            }
+        }
+    
+        // Melee Column
+        .melee-column {
+
+            // rotate 2nd and 3rd icon
+            .action-btn {
+                &:nth-child(2) {
+                    svg { transform: rotate(-45deg); }
+                }
+                &:nth-child(3) {
+                    svg { transform: rotate(-90deg); }
+                }
+            }
+            
+            // calculate left so that it displays at same position as in ranged column
+            .action-info {
+                left: calc(2 * #{$action-size} + #{$action-gap} + #{$info-ml})!important;
+            }
+        }
+    
+        // Ranged Column
+        .ranged-column {
+            margin-left: $action-gap;
+        }
+    }
+}

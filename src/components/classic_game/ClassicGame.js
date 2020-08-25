@@ -43,15 +43,8 @@ function ClassicGame(props) {
             
             {/* Reroll Enemies */}
             <div className='reroll-enemies'>
-
-                <div className='left'>
-                    <p>{timerDisplay}</p>
-                </div>
-
-                <div className='right'>
-                    <button className={`reroll-btn ${rerollClass}`} type='button' onClick={rerollActive ? reroll : null}>Reroll ({rolls})</button>    
-                </div>
-
+                <p className='reroll-timer'>{timerDisplay}</p>
+                <button className={`btn reroll-btn ${rerollClass}`} type='button' onClick={rerollActive ? reroll : null}>Reroll ({rolls})</button>    
             </div>
 
             {/* Enemies */}

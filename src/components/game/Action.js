@@ -17,12 +17,13 @@ import generateDrop from '../../logic/generateDrop'
 import rerollEnemies from '../../logic/rerollEnemies'
 import randomGenerator from '../../logic/randomGenerator'
 import deepCopy from '../../logic/deepCopy'
+import firstLetterUpperCase  from '../../logic/firstLetterUpperCase'
 
 function Action(props) {
 
     // Destructure From Props
     const {
-        data: { id, type: attackType, strength, hitChanceMult, icon },
+        data: { type: attackType, strength, hitChanceMult, icon },
         dodge, 
         player, 
         enemy,
@@ -52,6 +53,10 @@ function Action(props) {
 
     // Get Chance To Hit
     const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
+    
+    // Calculate min and max damage that can player deal (without crit)
+    const minDmg = attackEnemy(player, enemy, attackType, strength, hitChanceMult, 'min')
+    const maxDmg = attackEnemy(player, enemy, attackType, strength, hitChanceMult, 'max')
 
     // Start Round - actual game functionality
     const startRound = () => {
@@ -232,17 +237,21 @@ function Action(props) {
     }
 
     return (
-        <div className='action'>
-            <button onClick={startRound}>
-                <div className='hit_chance'>
-                    <p>Hit chance: </p>
-                    <p>{chanceToHit + '%'}</p>
-                </div>
-                <div className='icon' id={id}>
-                    { icon }
-                </div>
-            </button>
-        </div>
+        <li className='btn action-btn active' onClick={startRound}>
+
+            {/* Icon */}
+            <div className='icon'>
+                { icon }
+            </div>
+
+            {/* Info (displays on hover) */}
+            <div className='action-info'>
+                <p className='name'>{firstLetterUpperCase(attackType)} {firstLetterUpperCase(strength)}</p>
+                <p className='hit-chance'>Hit chance: {chanceToHit}%</p>
+                <p className='dmg'>DMG: {minDmg} - {maxDmg}</p>
+            </div>
+            
+        </li>
     )
 }
 

@@ -10,6 +10,7 @@
     margin: 0;
     background: $item_bg;
     border: 1px black solid;
+    box-sizing: content-box;
     transition: 500ms all;
 
     // selected

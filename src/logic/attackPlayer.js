@@ -27,7 +27,7 @@ export default function attackPlayer(player, enemy, character) {
         const critChance = enemy.critChance
         const random = randomGenerator(0, 100, 1)
 
-        if (critChance > random) return { didCrit: true, value: 2 }
+        if (critChance > random) return { didCrit: true, value: 1.5 }
         else return { didCrit: false, value: 1 }
     })()
 

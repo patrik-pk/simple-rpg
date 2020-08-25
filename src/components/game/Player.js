@@ -51,8 +51,10 @@ function Player(props) {
                 {/* Top - Image, Floating Damage */}
                 <div className='top'>
     
+                    {/* Icon */}
                     <PlayerImage />
     
+                    {/* Floating Damage */}
                     <p className={`floating-damage ${critClass}`} style={{display: damageTaken === '' ? 'none' : 'block'}}>
                         {damageTaken}
                     </p>
@@ -62,10 +64,10 @@ function Player(props) {
                 {/* Middle - Info(hp, name, level) */}
                 <div className='info'>
 
-                    <p className='name'>
-                        Player ({currentLevel})
-                    </p>
+                    {/* Name */}
+                    <p className='name'>Player ({currentLevel})</p>
 
+                    {/* HP */}
                     <div className='hp'>
                         <div className='hp-current' style={hpStyle}></div>
                         <div className='hp-max'></div>
@@ -85,32 +87,41 @@ function Player(props) {
                         <Stat name='Block(%):' value={blockChance} />
                     </ul>
                     <ul>
-                        <Stat name='Beasts:' value={bonuses[0].value} />
-                        <Stat name='Dragons:' value={bonuses[1].value} />
-                        <Stat name='Insect:' value={bonuses[2].value} />
-                        <Stat name='Monsters:' value={bonuses[3].value} />
-                        <Stat name='Reptiles:' value={bonuses[4].value} />
+                        <Stat name='Aquatic:' value={bonuses[0].value} />
+                        <Stat name='Avian:' value={bonuses[1].value} />
+                        <Stat name='Dinosaur:' value={bonuses[2].value} />
+                        <Stat name='Insect:' value={bonuses[3].value} />
+                        <Stat name='Wildlife:' value={bonuses[4].value} />
+                        <Stat name='Reptile:' value={bonuses[5].value} />
                     </ul>
                 </div>
     
-                {/* Forfeit Button */}
-                <div className='forfeit-container'>
-                    <Link to='/menu'>FF</Link>
-                </div>
     
                 {/* Actions */}
-                <div className='actions' style={{display: canAttack === true ? 'flex' : 'none'}}>
+                <div className='actions' style={{display: canAttack ? 'block' : 'none'}}>
+
+                    {/* Forfeit Button */}
+                    {/* TODO: don't show when the game is over */}
+                    <Link className='btn forfeit-btn active' to='/menu'>FF</Link>
                     
-                    <div className='melee-column'>
-                        <Action data={{ id: 'ml', type: 'melee', strength: 'light', hitChangeMult: 0.2, icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
-                        <Action data={{ id: 'mm', type: 'melee', strength: 'medium', hitChangeMult: 0.9, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
-                        <Action data={{ id: 'ms', type: 'melee', strength: 'strong', hitChangeMult: 1.8, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
-                    </div>
-    
-                    <div className='ranged-column'>
-                        <Action data={{ id: 'rl', type: 'ranged', strength: 'light', hitChangeMult: 0.2, icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
-                        <Action data={{ id: 'rm', type: 'ranged', strength: 'medium', hitChangeMult: 0.9, icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
-                        <Action data={{ id: 'rs', type: 'ranged', strength: 'strong', hitChangeMult: 1.8, icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />
+                    {/* TODO: Map Actions? */}
+                    {/* Columns Container */}
+                    <div className='columns-container'>
+
+                        {/* Melee Column */}
+                        <ul className='melee-column'>
+                            <Action data={{ type: 'melee', strength: 'light', hitChanceMult: 0.2, icon: <ActionMelee/> }} dodge={meleeDodgeChance} />
+                            <Action data={{ type: 'melee', strength: 'medium', hitChanceMult: 0.9, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
+                            <Action data={{ type: 'melee', strength: 'strong', hitChanceMult: 1.8, icon: <ActionMelee /> }} dodge={meleeDodgeChance} />
+                        </ul>
+        
+                        {/* Ranged Column */}
+                        <ul className='ranged-column'>
+                            <Action data={{ type: 'ranged', strength: 'light', hitChanceMult: 0.2, icon: <ActionRangedLight/> }} dodge={rangedDodgeChance} />
+                            <Action data={{ type: 'ranged', strength: 'medium', hitChanceMult: 0.9, icon: <ActionRangedMedium/> }} dodge={rangedDodgeChance} />
+                            <Action data={{ type: 'ranged', strength: 'strong', hitChanceMult: 1.8, icon: <ActionRangedStrong/> }} dodge={rangedDodgeChance} />
+                        </ul>
+
                     </div>
     
                 </div>
