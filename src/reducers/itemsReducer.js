@@ -1,6 +1,7 @@
 import startingItems from '../data/startingItems'
 import craftableItems from '../data/craftable_items/craftableItems'
 import EquipItem from '../data/EquipItem'
+import sortItemsValues from '../data/sortItemsValues'
 import deepCopy from '../logic/deepCopy'
 //import DropItem from '../data/DropItem'
 import {
@@ -278,21 +279,41 @@ export default (state = initialState, action) => {
         // Sort Items
         case SORT_ITEMS:
 
-            const sortedItems = []
+            // Loop through invItems and map them
+            const itemsToSort = state.invItems.map(item => {
 
-            const equip = []
+                // equip items are compared by their rarities, drop items are compared by their names
+                const comparedVal = item.type === 'equip' ? item.rarity : item.name
 
-            state.invItems.forEach(item => {
-                if(item.type === 'equip') {
-                    equip.push(item)
-                }
+                // get the index of that comparedVal from sortItemsValues, which is an
+                // array containing all the rarities and drop names 
+                // (e.g. 'mythic' is at index 0, while 'common' is at index 11)
+                const sortIndex = sortItemsValues.indexOf(comparedVal)
+
+                // return the item itself along with the sortIndex
+                return { item, sortIndex }
             })
 
-            console.log(equip)
+            // simple compare function for sortIndexes
+            function compare(a, b) {
+                if (a.sortIndex > b.sortIndex) return 1
+                if (b.sortIndex > a.sortIndex) return -1
+            }
 
+            // sort the items
+            const sortedItems = itemsToSort.sort(compare)
+
+            // map them, return only the item and re-assign the keys
+            const mappedItems = sortedItems.map((obj, i) => {
+                const item = obj.item
+                item.key = i
+                return item
+            })
+
+            // finally return the mapped items
             return {
                 ...state,
-                //invItems: sortedItems
+                invItems: mappedItems
             }
 
         // Default
