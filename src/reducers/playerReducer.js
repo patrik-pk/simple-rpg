@@ -3,7 +3,7 @@ import {
     PLAYER_BLOCKED,
     PLAYER_HIT,
     RESET_PLAYER_DMG_TAKEN,
-    RECALCULATE_PLAYER_STATS
+    UPDATE_PLAYER_STATS
 } from '../actions/types'
 
 const initialState = {
@@ -61,12 +61,13 @@ export default (state = initialState, action) => {
                 damageTaken: ''
             }
 
-        // Recalculate Players Stats
-        case RECALCULATE_PLAYER_STATS:
+        // Update Players Stats
+        case UPDATE_PLAYER_STATS:
             const values = action.payload
 
             return {
                 ...state,
+                currentHp: values.currentHp,
                 maxHp: values.maxHp,
                 armor: values.armor,
                 meleeDamage: values.meleeDamage,

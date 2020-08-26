@@ -16,13 +16,13 @@ import {
     sortItems 
 } from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
-import { recalculatePlayerStats } from '../../actions/playerActions'
+import { updatePlayerStats } from '../../actions/playerActions'
 import possibleDrops from '../../data/possibleDrops'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
-import cps from '../../logic/calculatePlayerStats'
+import calculatePlayerStats from '../../logic/calculatePlayerStats'
 
 function Inventory(props) {
 
@@ -38,7 +38,7 @@ function Inventory(props) {
         removeInvItems,
         equipItem,
         sortItems,
-        recalculatePlayerStats,
+        updatePlayerStats,
         setDiamonds, 
         setGold 
     } = props
@@ -57,8 +57,8 @@ function Inventory(props) {
 
     // Watch for equippedItems, and re-calulate player stats if they change
     useEffect(() => {
-        recalculatePlayerStats(cps(equippedItems))
-    }, [equippedItems, recalculatePlayerStats])
+        updatePlayerStats(calculatePlayerStats(equippedItems))
+    }, [equippedItems, updatePlayerStats])
 
     // Slice item's into a 6 item array and put them into the InventoryRow Component
     const getItems = (items, min, max) => {
@@ -192,8 +192,8 @@ function Inventory(props) {
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])
 
-            // recalculate player stats - cps (calculatePlayerstats) returns object with new values
-            recalculatePlayerStats(cps(equippedItems))
+            // recalculate player stats - returns object with new values
+            updatePlayerStats(calculatePlayerStats(equippedItems))
         }
     }
 
@@ -319,7 +319,7 @@ export default connect(mapStateToProps, {
     removeInvItems,
     equipItem,
     sortItems,
-    recalculatePlayerStats,
+    updatePlayerStats,
     setDiamonds, 
     setGold 
 })(Inventory)

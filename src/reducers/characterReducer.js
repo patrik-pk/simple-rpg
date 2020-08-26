@@ -6,10 +6,10 @@ import {
 } from '../actions/types'
 
 const initialState = {
-    experience: 0,
+    experience: 4000,
     acquiredXp: 0,
-    currentLevel: 20,
-    gameFlow: levelTresholds[0].gameFlow,
+    currentLevel: 6,
+    gameFlow: levelTresholds[6].gameFlow,
     gold: 150,
     diamonds: 100,
     acquiredGold: 0,

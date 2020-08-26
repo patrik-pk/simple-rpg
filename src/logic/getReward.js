@@ -11,7 +11,7 @@ export default function getReward(enemy, character, status, enemyType) {
         }
         if(enemyType === 'Classic') {
             if (status === 'Victory') return 3
-            if (status === 'Defeat') return 1
+            if (status === 'Defeat') return 2
         }
     })(status)
 
@@ -62,19 +62,21 @@ export default function getReward(enemy, character, status, enemyType) {
 
     // Gained XP
     const gainedXp = (() => {
+
+        // If Player lost, return 0
+        if(status === 'Defeat') return 0
+
         // In Classic Game xp = nextLevelXp / fightsNeededToLvl * randomXpMult
         if (enemyType === 'Classic') {
             return Math.round((nextLevelXp / fightsNeededToLvl) * randomXpMult)
         }
+
         // But In Boss Game, it's 30% of the xp based on enemy level 
         if (enemyType === 'Boss') {
-            if(status === 'Victory') {
-                const enemyLevel = enemy.level
-                const enemyXp = enemyLevel <= 30 ? levelTresholds[enemyLevel].xp : levelTresholds[30].xp
+            const enemyLevel = enemy.level
+            const enemyXp = enemyLevel <= 30 ? levelTresholds[enemyLevel].xp : levelTresholds[30].xp
 
-                return Math.round((enemyXp * 0.3) * randomXpMult)
-            }
-            if(status === 'Defeat') return 0
+            return Math.round((enemyXp * 0.3) * randomXpMult)
         }
     })()
 
@@ -105,11 +107,23 @@ export default function getReward(enemy, character, status, enemyType) {
                     currXp = nextXp
                 }
             }
-            return { xp: currXp, level: currentLevel }
+            return { 
+                xp: currXp, 
+                level: currentLevel, 
+                levelUp: { 
+                    didLevelUp: true, 
+                    newLevel: currentLevel 
+                } 
+            }
         } 
         // Else return currXp and currentLevel
-        else {
-            return { xp: currXp, level: currentLevel }
+        else return { 
+            xp: currXp, 
+            level: currentLevel, 
+            levelUp: { 
+                didLevelUp: false, 
+                newLevel: currentLevel 
+            } 
         }
     })(currXp)
 
@@ -123,6 +137,7 @@ export default function getReward(enemy, character, status, enemyType) {
         experience: setXp.xp,
         currentLevel: setXp.level,
         gameFlow: levelTresholds[setXp.level].gameFlow,
-        acquiredXp: gainedXp
+        acquiredXp: gainedXp,
+        levelUp: setXp.levelUp
     }
 }

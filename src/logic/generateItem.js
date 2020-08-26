@@ -143,7 +143,7 @@ export default function generateItem(level, destination, key, gameType, specific
         const bossMultiplier = gameType === 'Boss' ? 1.5 : 1
 
         // calculate the value
-        let value = Math.round(base * randomMultiplier * destinationMultiplier * bossMultiplier * rarValMult * gameFlow)
+        const value = Math.round(base * randomMultiplier * destinationMultiplier * bossMultiplier * rarValMult * gameFlow)
 
         // and return it
         return value

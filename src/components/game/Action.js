@@ -4,19 +4,21 @@ import PropTypes from 'prop-types'
 
 import { setCanAttack, gameWon, gameLost, itemObtained, generateClassicEnemies } from '../../actions/gameActions'
 import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyActions'
-import { playerBlocked, playerHit, resetPlayerDmgTaken } from '../../actions/playerActions'
+import { playerBlocked, playerHit, resetPlayerDmgTaken, updatePlayerStats } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
-import { addItemToInv } from '../../actions/itemsActions'
+import { addItemToInv, updateItems } from '../../actions/itemsActions'
 import { addDungeon } from '../../actions/dungeonActions'
 
 import attackEnemy from '../../logic/attackEnemy'
 import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
+import recalculateItems from '../../logic/recalculateItems'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import rerollEnemies from '../../logic/rerollEnemies'
 import randomGenerator from '../../logic/randomGenerator'
 import deepCopy from '../../logic/deepCopy'
+import calculatePlayerStats from '../../logic/calculatePlayerStats'
 import firstLetterUpperCase  from '../../logic/firstLetterUpperCase'
 
 function Action(props) {
@@ -31,6 +33,8 @@ function Action(props) {
         game,
         invItems,
         craftableItems,
+        equippedItems,
+        updateItems,
         dungeon,
         setCanAttack,
         gameWon,
@@ -43,12 +47,13 @@ function Action(props) {
         playerBlocked,
         playerHit,
         resetPlayerDmgTaken,
+        updatePlayerStats,
         addReward,
         addItemToInv,
         addDungeon
     } = props
 
-    const { currentLevel } = character
+    const { currentLevel, gameFlow } = character
     const { type: gameType, enemyType: { drops }, currentHp, level: enemyLevel } = enemy
 
     // Get Chance To Hit
@@ -79,10 +84,6 @@ function Action(props) {
 
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
-
-                // generate reward and update state
-                const reward = getReward(enemy, character, 'Victory', gameType)
-                addReward(reward)
 
                 // get matching index of the dungeon 
                 let matchingDungeonIndex = 0
@@ -136,12 +137,11 @@ function Action(props) {
                     for(let i = 0; i < 3; i++) {
                         if (i === 0) {
 
-                            // set itemLevel to players current level, or to enemyLevel, 
-                            // if his level is higher than players, and the gameType is "Classic" 
-                            const itemLevel = (enemyLevel > currentLevel) && gameType === 'Classic' ? enemyLevel : currentLevel
-
                             // for classic game generate random item, for boss game get crafting item
-                            if(gameType === 'Classic') items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
+                            if(gameType === 'Classic') {
+                                const itemLevel = enemyLevel > currentLevel ? enemyLevel : currentLevel
+                                items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
+                            }
                             if(gameType === 'Boss') {
 
                                 // get levelTypeIndex based on level (low = 0-10, medium = 11 - 23, high = 24+)
@@ -164,6 +164,8 @@ function Action(props) {
                                 const item = deepCopy(craftableItems[levelTypeIndex][rarityIndex][randomItemTypeIndex].item)
                                 item.destination = 'Inventory'
                                 item.key = invItems.length
+                                item.isCrafted = true
+                                item.craftedLevelType = levelTypeIndex
 
                                 items.push(item)
                             }
@@ -176,8 +178,31 @@ function Action(props) {
                     return items
                 })()
 
-                // add item to inventory and render it in Game.js
-                addItemToInv(rewardItems)
+                // generate reward and update state
+                const reward = getReward(enemy, character, 'Victory', gameType)
+                addReward(reward)
+
+                // Check if player leveled up, and recalculate stats if he did
+                const { didLevelUp, newLevel } = reward.levelUp
+
+                // Reward items will be added to inventory by recalculating, so they
+                // won't be added using addItemToInv action
+                if (didLevelUp) {
+                    const invItemsToRecalc = [ ...invItems, ...rewardItems ]
+                    const recalculated = recalculateItems(gameFlow, newLevel, craftableItems, invItemsToRecalc, equippedItems)
+
+                    // update player stats with updated equipped items
+                    updatePlayerStats(calculatePlayerStats(recalculated.equippedItems))
+
+                    // and update the items
+                    updateItems(recalculated)
+
+                } else {
+                    // add item to inventory
+                    addItemToInv(rewardItems)
+                }
+                
+                // render the item in Game.js
                 itemObtained(rewardItems)
 
                 // generate new classic enemies
@@ -262,6 +287,7 @@ Action.propTypes = {
     game: PropTypes.object.isRequired,
     invItems: PropTypes.array.isRequired,
     craftableItems: PropTypes.array.isRequired,
+    equippedItems: PropTypes.array.isRequired,
     dungeon: PropTypes.array.isRequired,
 }
 
@@ -272,6 +298,7 @@ const mapStateToProps = state => ({
     game: state.game,
     invItems: state.items.invItems,
     craftableItems: state.items.craftableItems,
+    equippedItems: state.items.equippedItems,
     dungeon: state.dungeon
 })
 
@@ -284,10 +311,12 @@ export default connect(mapStateToProps, {
     enemyDodged, 
     enemyHit,
     resetEnemyDmgTaken,
+    updatePlayerStats,
     playerBlocked,
     playerHit,
     resetPlayerDmgTaken,
     addReward,
     addItemToInv,
+    updateItems,
     addDungeon 
 })(Action)

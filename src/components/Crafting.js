@@ -147,6 +147,8 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
             item.key = invItems.length
             item.destination = 'Inventory'
             item.isSelected = false
+            item.isCrafted = true
+            item.craftedLevelType = levelMenuActive
             addItemToInv(item)
 
             // unselect craftable items

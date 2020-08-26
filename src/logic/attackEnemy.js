@@ -103,7 +103,7 @@ export default function attackEnemy(player, enemy, enemyLevel, typeOfAttack, str
   const damageDealt = (() => {
 
     // min DMG base that characters does when armor is too high
-    const minDmg = 100 * strengthOfAtt * levelTresholds[enemyLevel].gameFlow
+    const minDmg = 100 * strengthOfAtt * levelTresholds[enemyLevel <= 30 ? enemyLevel : 30].gameFlow
 
     // Damage Dealt = (TypeOfAttack DMG (coming from weapon Melee / Ranged) 
     // * StrengthOfAttack Multiplier (light/medium/strong) 

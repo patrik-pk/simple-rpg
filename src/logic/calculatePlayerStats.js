@@ -46,6 +46,7 @@ export default function calculatePlayerStats(equippedItems) {
 
     // Final Return
     return {
+        currentHp: maxHp,
         maxHp,
         armor,
         meleeDamage,
