@@ -10,6 +10,7 @@ import {
     unselectCraftableItems 
 } from '../../actions/itemsActions'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
+import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
 
 function ItemComponent(props) {
     
@@ -229,7 +230,10 @@ function ItemComponent(props) {
             )
         })
 
-        const itemValue = goldValue ? <p id='value'><span id='value-heading'>Value:</span> {goldValue}</p> : null
+        const itemValue = goldValue ? <div className='gold-value'>
+            <p className='value'>{goldValue}</p>
+            <div className='gold-icon'><Coin /></div>
+        </div> : null
 
         // RENDER
         return ( 
@@ -237,7 +241,9 @@ function ItemComponent(props) {
                 <div className='item' onClick={handleClick} >
 
                     {/* Icon */}
-                    { icon.render() } 
+                    <div className='item-icon'>
+                        { icon.render() } 
+                    </div>
 
                     {/* Info */}
                     <div className='stats'>

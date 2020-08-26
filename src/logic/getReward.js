@@ -37,17 +37,9 @@ export default function getReward(enemy, character, status, enemyType) {
     // Random Gold Multiplier
     const randomGoldMult = randomGenerator(80, 120, 0.01)
 
-    // Diamonds
-    const baseDiamonds = 1
-
-    // Random Diamonds Multiplier
-    const randomDiamondsMult = randomGenerator(100, 150, 0.01)
-
     // Calculations
     const acquiredGold = Math.round(baseGold * gameFlow * randomGoldMult * statusMultiplier * difficultyMultiplier)
-    const acquiredDiamonds = Math.round(baseDiamonds * randomDiamondsMult * statusMultiplier * difficultyMultiplier)
     const gold = character.gold + acquiredGold
-    const diamonds = character.diamonds + acquiredDiamonds
 
 
     // EXPERIENCE
@@ -131,9 +123,7 @@ export default function getReward(enemy, character, status, enemyType) {
     // TODO: return two values - overleveled boolean (recalculating happens) and reward object
     return {
         acquiredGold,
-        acquiredDiamonds,
         gold,
-        diamonds,
         experience: setXp.xp,
         currentLevel: setXp.level,
         gameFlow: levelTresholds[setXp.level].gameFlow,

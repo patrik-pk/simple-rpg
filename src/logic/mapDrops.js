@@ -31,7 +31,7 @@ export default function mapDrops(parameterDrops = [], key1, key2) {
             } 
         })
 
-        return new DropItem('Crafting', i, dropAmount, drop.name, drop.icon, [drop.classVal], 10 * dropAmount)
+        return new DropItem('Crafting', i, dropAmount, drop.name, drop.icon, [drop.classVal], 0)
     })
 
     // sort the array

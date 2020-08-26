@@ -4,8 +4,10 @@ import PropTypes from 'prop-types'
 
 import SidemenuLink from './SidemenuLink'
 import levelTresholds from '../../data/levelTresholds'
+import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
+import { ReactComponent as Dice } from '../../resources/icons/dice.svg'
 
-function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
+function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
 
     // XP Bar Styling
     const xpPercentage = (experience / levelTresholds[currentLevel].xp) * 100
@@ -30,9 +32,12 @@ function Sidemenu({ character: { experience, currentLevel, gold, diamonds } }) {
 
                 {/* Info - name, currency, level */}
                 <div className='level-container'>
-                    <div>
+                    <div className='top-container'>
                         <p className='name'>Player ({currentLevel})</p>
-                        <p>G: {gold} D: {diamonds}</p>
+                        <div className='currency'>
+                            <p className='gold'>{gold} <Coin/></p>
+                            <p className='rolls'>{rolls} <Dice/></p>
+                        </div>
                     </div>
                     <div className="xp-bar" style={xpStyle}></div>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setRolls, setRollTimer } from '../actions/gameActions'
+import { setRolls, setRollTimer } from '../actions/characterActions'
 
 // Component that handles time events
 function EventHandler(props) {
@@ -36,7 +36,7 @@ function EventHandler(props) {
 
     // Handle Adding Rolls
     useEffect(() => {
-        if (rolls < 3) {
+        if (rolls < 5) {
             if (canAddRoll) {
                 setCanAddRoll(false)
                 setRollTimer(timer)
@@ -62,8 +62,8 @@ EventHandler.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    rolls: state.game.rolls,
-    rollTimer: state.game.rollTimer
+    rolls: state.character.rolls,
+    rollTimer: state.character.rollTimer
 })
 
 export default connect(mapStateToProps, { setRolls, setRollTimer })(EventHandler)

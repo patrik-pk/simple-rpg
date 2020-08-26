@@ -15,7 +15,7 @@ import {
     equipItem,
     sortItems 
 } from '../../actions/itemsActions'
-import { setDiamonds, setGold } from '../../actions/characterActions'
+import { setRolls, setGold } from '../../actions/characterActions'
 import { updatePlayerStats } from '../../actions/playerActions'
 import possibleDrops from '../../data/possibleDrops'
 import generateItem from '../../logic/generateItem'
@@ -39,11 +39,11 @@ function Inventory(props) {
         equipItem,
         sortItems,
         updatePlayerStats,
-        setDiamonds, 
+        setRolls, 
         setGold 
     } = props
     const { equippedItems, invItems, shopItems, inventoryRows } = items
-    const { gold, diamonds, currentLevel, gameFlow } = character
+    const { gold, currentLevel, gameFlow, rolls } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
     // Unselect all Inventory & Shop Items on Unmount
@@ -95,7 +95,7 @@ function Inventory(props) {
     const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 1 ? true : false
     const buyCondition = selectedShopItems.length === 1 && haveSpaceInv && gold >= selectedShopItems[0].goldValue
     const equipCondition = selectedInvItems.length === 1 && selectedInvItems[0].type !== 'drop'
-    const rerollCondition = diamonds > 0 
+    const rerollCondition = rolls > 0 
     const sellCondition = selectedInvItems.length > 0
 
     // Reroll Items
@@ -103,9 +103,10 @@ function Inventory(props) {
         if(rerollCondition) {
             let newShopItems = []
             
+            // 50% chance to 4 generate items, 50% to generate 4 drop items
+            const random = randomGenerator(1, 100, 1)
+
             for (let i = 0; i < 4; i++) {
-                const random = randomGenerator(1, 100, 1)
-                // 50% chance to generate item, 50% to generate drop
                 if(random < 50) newShopItems.push(generateItem(currentLevel, 'Shop', i))
                 else {
                     const dropsArray = Object.values(possibleDrops)
@@ -147,7 +148,7 @@ function Inventory(props) {
 
             // set the shop items state
             rerollShopItems(newShopItems)
-            setDiamonds(-1)
+            setRolls(-1)
         }
     }
 
@@ -320,6 +321,6 @@ export default connect(mapStateToProps, {
     equipItem,
     sortItems,
     updatePlayerStats,
-    setDiamonds, 
+    setRolls, 
     setGold 
 })(Inventory)

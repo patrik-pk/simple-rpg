@@ -42,9 +42,31 @@
             margin-left: 10px;
 
             // Div for Name + Level on the left, Currency on the right
-            div {
+            .top-container {
                 display: flex;
                 justify-content: space-between;
+
+                // .name {}
+
+                // Currency
+                .currency {
+                    display: flex;
+
+                    .gold {
+                        svg { fill: gold; }
+                        color: gold;
+                    }
+
+                    .rolls {
+                        margin-left: 7px;
+                    }
+
+                    svg {
+                        width: 12px;
+                        height: 12px;
+                        fill: white;
+                    }
+                }
             }
 
             // XP Bar

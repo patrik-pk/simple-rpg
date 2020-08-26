@@ -1,19 +1,20 @@
 import levelTresholds from '../data/levelTresholds'
 import {
     ADD_REWARD,
-    SET_DIAMONDS,
-    SET_GOLD
+    SET_GOLD,
+    SET_ROLLS,
+    SET_ROLL_TIMER
 } from '../actions/types'
 
 const initialState = {
-    experience: 4000,
+    experience: 0,
     acquiredXp: 0,
     currentLevel: 6,
     gameFlow: levelTresholds[6].gameFlow,
     gold: 150,
-    diamonds: 100,
     acquiredGold: 0,
-    acquiredDiamonds: 0,
+    rolls: 5,
+    rollTimer: null
 }
 
 export default (state = initialState, action) => {
@@ -28,16 +29,7 @@ export default (state = initialState, action) => {
                 currentLevel: action.payload.currentLevel,
                 gameFlow: action.payload.gameFlow,
                 gold: action.payload.gold,
-                diamonds: action.payload.diamonds,
                 acquiredGold: action.payload.acquiredGold,
-                acquiredDiamonds: action.payload.acquiredDiamonds
-            }
-
-        // Set Diamonds (+ or -)
-        case SET_DIAMONDS:
-            return {
-                ...state,
-                diamonds: state.diamonds + action.payload
             }
 
         // Set Gold (+ or -)
@@ -45,6 +37,20 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 gold: state.gold + action.payload
+            }
+
+        // Set Rolls
+        case SET_ROLLS:
+            return {
+                ...state,
+                rolls: state.rolls += action.payload
+            }
+
+        // Set Roll Timer
+        case SET_ROLL_TIMER:
+            return {
+                ...state,
+                rollTimer: action.payload,
             }
 
         // Default

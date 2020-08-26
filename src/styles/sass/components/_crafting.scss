@@ -122,24 +122,6 @@
             .craft-btn {
                 margin-top: 20px;
                 align-self: flex-end;
-                width: 90px;
-                padding: 8px 0;
-                transition: 500ms all;
-                background: white;
-                color: black;
-                border: 1px black solid;
-                
-        
-                &.active:hover {
-                    background: white;
-                    color: black;
-                }
-                
-                &.active {
-                    background: black;
-                    color: white;
-                    border-color: white;
-                }
             }
         }
 

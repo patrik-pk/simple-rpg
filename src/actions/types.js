@@ -1,8 +1,9 @@
 
 // Character
 export const ADD_REWARD = 'GET_REWARD'
-export const SET_DIAMONDS = 'SET_DIAMONDS'
 export const SET_GOLD = 'SET_GOLD'
+export const SET_ROLLS = 'SET_ROLLS'
+export const SET_ROLL_TIMER = 'SET_ROLL_TIMER'
 
 // Items
 export const ADD_ITEM_TO_INV = 'ADD_ITEM_TO_INV'
@@ -31,8 +32,6 @@ export const GAME_WON = 'GAME_WON'
 export const GAME_LOST = 'GAME_LOST'
 export const ITEM_OBTAINED = 'ITEM_OBTAINED'
 export const GENERATE_CLASSIC_ENEMIES = 'GENERATE_CLASSIC_ENEMIES'
-export const SET_ROLLS = 'SET_ROLLS'
-export const SET_ROLL_TIMER = 'SET_ROLL_TIMER'
 
 // Player
 export const RESET_PLAYER = 'RESET_PLAYER'

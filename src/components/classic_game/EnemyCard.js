@@ -54,7 +54,7 @@ function EnemyCard(props) {
         resetPlayer()
         // generate enemy
         setEnemy(enemy)
-        // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
+        // set battleStatus to 'inBattle', canAttack to true, reset acquired gold
         startGame()
     }
 

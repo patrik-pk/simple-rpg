@@ -47,7 +47,7 @@ function DungeonItem(props) {
             resetPlayer()
             // generate enemy
             setEnemy(boss)
-            // set battleStatus to 'inBattle', canAttack to true, reset acquired gold & diamonds
+            // set battleStatus to 'inBattle', canAttack to true, reset acquired gold
             startGame()
         }
 

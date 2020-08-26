@@ -132,7 +132,7 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
     }
 
     // Craft Class - if player can craft selected item, set to active
-    const craftClass = compareDrops() && haveSpaceInv ? 'active' : '' 
+    const craftClass = compareDrops() && haveSpaceInv ? 'active2' : '' 
 
 
     // Craft Function - Remove players needed drops and add selected item to inventory
@@ -202,7 +202,7 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
                     </div>
 
                     {/* Craft Section */}
-                    <button className={`craft-btn ${craftClass}`} onClick={craft}>Craft</button>
+                    <button className={`btn craft-btn ${craftClass}`} onClick={craft}>Craft</button>
 
                 </div>
 

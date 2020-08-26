@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import EnemyCard from './EnemyCard'
-import { generateClassicEnemies, setRolls } from '../../actions/gameActions'
+import { setRolls } from '../../actions/characterActions'
+import { generateClassicEnemies } from '../../actions/gameActions'
 import rerollEnemies from '../../logic/rerollEnemies'
 
 function ClassicGame(props) {
@@ -29,7 +30,7 @@ function ClassicGame(props) {
 
     // Reroll Active
     const rerollActive = rolls > 0 ? true : false
-    const rerollClass = rerollActive ? 'active' : ''
+    const rerollClass = rerollActive ? 'active2' : ''
 
     // Timer Display
     const timerDisplay = rollTimer ? `Next roll in: ${rollTimer}` : 'Rolls are full'
@@ -65,8 +66,8 @@ ClassicGame.propTypes = {
 const mapStateToProps = state => ({
     currentLevel: state.character.currentLevel,
     classicEnemies: state.game.classicEnemies,
-    rolls: state.game.rolls,
-    rollTimer: state.game.rollTimer
+    rolls: state.character.rolls,
+    rollTimer: state.character.rollTimer
 })
 
 export default connect(mapStateToProps, { generateClassicEnemies, setRolls })(ClassicGame)

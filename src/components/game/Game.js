@@ -13,7 +13,7 @@ function Game(props) {
     // Destructure From Props
     const {
         game: { battleStatus, generatedItems },
-        character: { acquiredXp, acquiredGold, acquiredDiamonds },
+        character: { acquiredXp, acquiredGold },
         enemy, 
         endGame 
     } = props 
@@ -53,15 +53,11 @@ function Game(props) {
                 {/* Reward */}
                 <div className='reward'>
 
-                    {/* Left - Gold, Diamonds, Xp */}
+                    {/* Left - Gold, Xp */}
                     <ul className='left'>
                         <li>
                             <p>Gold:</p>
                             <p>{acquiredGold}</p>  
-                        </li>
-                        <li>
-                            <p>Diamonds:</p>
-                            <p>{acquiredDiamonds}</p>
                         </li>
                         <li>
                             <p>Experience:</p>
