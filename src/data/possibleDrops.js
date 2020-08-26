@@ -1,10 +1,11 @@
 import di from './icons/dropIcons'
 
 class PossibleDrop {
-    constructor(name, icon, classVal) {
+    constructor(name, icon, classVal, goldValue = 10) {
         this.name = name
         this.icon = icon
         this.classVal = classVal
+        this.goldValue = goldValue
     }
 }
 

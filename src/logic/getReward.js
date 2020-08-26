@@ -53,7 +53,7 @@ export default function getReward(enemy, character, status, enemyType) {
     // EXPERIENCE
 
     const currentXp = character.experience
-    const currentLevel = character.currentLevel
+    let currentLevel = character.currentLevel
     const nextLevelXp = levelTresholds[currentLevel].xp
 
     const fightsNeededToLvl = levelTresholds[currentLevel].fightsNeededToLevel
@@ -66,50 +66,52 @@ export default function getReward(enemy, character, status, enemyType) {
         if (enemyType === 'Classic') {
             return Math.round((nextLevelXp / fightsNeededToLvl) * randomXpMult)
         }
-        // But In Boss Game, it's 40% of nextLevelXp * randomXpMult
+        // But In Boss Game, it's 30% of the xp based on enemy level 
         if (enemyType === 'Boss') {
             if(status === 'Victory') {
-                return Math.round((nextLevelXp / 100 * 40) * randomXpMult)
+                const enemyLevel = enemy.level
+                const enemyXp = enemyLevel <= 30 ? levelTresholds[enemyLevel].xp : levelTresholds[30].xp
+
+                return Math.round((enemyXp * 0.3) * randomXpMult)
             }
             if(status === 'Defeat') return 0
         }
     })()
 
+    
     // New XP = currentXp + gainedXp (if you lose, you get 25% of gainedXp)
-    const newExp = (() => {
+    const currXp = (() => {
         if (status === 'Victory') return currentXp + gainedXp
         if (status === 'Defeat') return Math.round(currentXp + (gainedXp * 0.25))
     })()
 
     // Set Xp
-    const setXp = ((newExp) => {
+    const setXp = ((currXp) => {
         // If Player overleveled
-        if (newExp >= nextLevelXp) {
-            let currXp = newExp
-            let currLevel = currentLevel
-            let nextXp = levelTresholds[currLevel].xp
+        if (currXp >= nextLevelXp) {
+            let nextXp = levelTresholds[currentLevel].xp
             while (currXp > nextXp) {
-                // If currLevel is not maxLevel
-                if (currLevel !== levelTresholds[levelTresholds.length - 1].level) {
+                // If currentLevel is not maxLevel
+                if (currentLevel !== levelTresholds[levelTresholds.length - 1].level) {
                     // Increase level by 1
-                    currLevel += 1
+                    currentLevel += 1
                     // Substract next level XP from current XP
                     currXp -= nextXp
                     // Set next level XP to the next level (current level)
-                    nextXp = levelTresholds[currLevel].xp
+                    nextXp = levelTresholds[currentLevel].xp
                 } 
-                // If currLevel is max level => set currXp to nextXp and keep level the same
+                // If currentLevel is max level => set currXp to nextXp and keep level the same
                 else {
                     currXp = nextXp
                 }
             }
-            return { xp: currXp, level: currLevel }
+            return { xp: currXp, level: currentLevel }
         } 
-        // Else return newExp and currentLevel
+        // Else return currXp and currentLevel
         else {
-            return { xp: newExp, level: currentLevel }
+            return { xp: currXp, level: currentLevel }
         }
-    })(newExp)
+    })(currXp)
 
     // FINAL RETURN
     // TODO: return two values - overleveled boolean (recalculating happens) and reward object

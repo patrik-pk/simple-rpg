@@ -24,6 +24,7 @@
     border: 1px black solid;
     transition: 500ms all;
     color: black;
+    cursor: pointer;
     p { color: black; }
 
     &.active:hover {

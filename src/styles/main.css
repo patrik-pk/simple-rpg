@@ -20,6 +20,7 @@
   -webkit-transition: 500ms all;
   transition: 500ms all;
   color: black;
+  cursor: pointer;
 }
 
 .btn p {

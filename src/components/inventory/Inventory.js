@@ -17,6 +17,7 @@ import {
 } from '../../actions/itemsActions'
 import { setDiamonds, setGold } from '../../actions/characterActions'
 import { recalculatePlayerStats } from '../../actions/playerActions'
+import possibleDrops from '../../data/possibleDrops'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
@@ -42,7 +43,7 @@ function Inventory(props) {
         setGold 
     } = props
     const { equippedItems, invItems, shopItems, inventoryRows } = items
-    const { gold, diamonds, currentLevel } = character
+    const { gold, diamonds, currentLevel, gameFlow } = character
     const { maxHp, armor, meleeDamage, rangedDamage, critChance, blockChance, bonuses } = props.player
 
     // Unselect all Inventory & Shop Items on Unmount
@@ -104,13 +105,47 @@ function Inventory(props) {
             
             for (let i = 0; i < 4; i++) {
                 const random = randomGenerator(1, 100, 1)
-                // 75% chance to generate item, 25% to generate drop
-                if(random < 75) newShopItems.push(generateItem(currentLevel, 'Shop', i))
+                // 50% chance to generate item, 50% to generate drop
+                if(random < 50) newShopItems.push(generateItem(currentLevel, 'Shop', i))
                 else {
-                    newShopItems.push(generateDrop('Shop', i))
+                    const dropsArray = Object.values(possibleDrops)
+                    
+                    // get proper indexes based on level to generate low, medium or high level drops
+                    let dropIndexes = [0, 0]
+                    if(currentLevel <= 12) dropIndexes = [0, 3]
+                    else if(currentLevel > 12 && currentLevel <= 22) dropIndexes = [1, 4]
+                    else if(currentLevel > 22) dropIndexes = [2, 5]
+
+                    // get random drop index out of the two available
+                    const randomIndex = dropIndexes[Math.floor(Math.random() * dropIndexes.length)]
+
+                    // get random specie
+                    const randomSpecie = dropsArray[Math.floor(Math.random() * dropsArray.length)]
+
+                    // make an array out of that specie object 
+                    const specieArr = Object.values(randomSpecie)
+
+                    // get the drop from generated index
+                    const dropItem = specieArr[randomIndex]
+
+                    // destructure drop item
+                    const { name, icon, classVal, goldValue } = dropItem
+
+                    // get random amount
+                    const randomAmount = randomGenerator(3, 5)
+
+                    // get gameFlow, which has to be minimum of 1
+                    const gameFlowVal = gameFlow > 1 ? gameFlow : 1
+
+                    // multiply value by gameFlow and that amount
+                    const value = goldValue * gameFlowVal * randomAmount
+
+                    // push the item to the array
+                    newShopItems.push(generateDrop('Shop', i, randomAmount, name, icon, [classVal], value))
                 }
             }
 
+            // set the shop items state
             rerollShopItems(newShopItems)
             setDiamonds(-1)
         }

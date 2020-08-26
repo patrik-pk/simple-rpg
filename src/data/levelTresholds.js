@@ -31,7 +31,7 @@ let levelTresholds = [
     { level: 17, xp: 90000, gameFlow: 4.4, fightsNeededToLevel: 6 },
     { level: 18, xp: 110000, gameFlow: 4.9, fightsNeededToLevel: 7 },
     { level: 19, xp: 135000, gameFlow: 5.4, fightsNeededToLevel: 7 },
-    { level: 20, xp: 1620000, gameFlow: 5.9, fightsNeededToLevel: 7 },
+    { level: 20, xp: 162000, gameFlow: 5.9, fightsNeededToLevel: 7 },
     { level: 21, xp: 190000, gameFlow: 6.5, fightsNeededToLevel: 8 },
     { level: 22, xp: 220000, gameFlow: 7.1, fightsNeededToLevel: 8 },
     { level: 23, xp: 255000, gameFlow: 7.7, fightsNeededToLevel: 8 },
