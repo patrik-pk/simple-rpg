@@ -11,8 +11,8 @@ const startingItems = [
     new EquipItem(undefined, 4, 'Boots', 'Boots', 'Common', icons.boots.icon, { statName: 'Armor', value: 6 }),
     new EquipItem(undefined, 5, 'Sword', 'Sword', 'Common', icons.sword.icon, { statName: 'M-DMG', value: 125 }),
 
-    new EquipItem(undefined, 6, 'Necklace', 'Necklace', 'Common', icons.necklace.icon, { statName: 'HP', value: 175 }),
-    new EquipItem(undefined, 7, 'Earrings', 'Earrings', 'Common', icons.earrings.icon, { statName: 'HP', value: 175 }),
+    new EquipItem(undefined, 6, 'Necklace', 'Necklace', 'Common', icons.necklace.icon, { statName: 'HP', value: 100 }),
+    new EquipItem(undefined, 7, 'Earrings', 'Earrings', 'Common', icons.earrings.icon, { statName: 'HP', value: 100 }),
     new EquipItem(undefined, 8, 'Ring', 'Ring', 'Common', icons.ring.icon, { statName: 'Crit. chance', value: 10 }),
     new EquipItem(undefined, 9, 'Belt', 'Belt', 'Common', icons.belt.icon, { statName: 'Crit. chance', value: 10 }),
     new EquipItem(undefined, 10, 'Shield', 'Shield', 'Common', icons.shield.icon, { statName: 'Block chance', value: 15 }),

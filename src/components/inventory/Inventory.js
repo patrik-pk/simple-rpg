@@ -57,8 +57,8 @@ function Inventory(props) {
 
     // Watch for equippedItems, and re-calulate player stats if they change
     useEffect(() => {
-        updatePlayerStats(calculatePlayerStats(equippedItems))
-    }, [equippedItems, updatePlayerStats])
+        updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
+    }, [equippedItems, updatePlayerStats, currentLevel])
 
     // Slice item's into a 6 item array and put them into the InventoryRow Component
     const getItems = (items, min, max) => {
@@ -193,7 +193,7 @@ function Inventory(props) {
             equipItem(selectedInvItems[0], equipped[0])
 
             // recalculate player stats - returns object with new values
-            updatePlayerStats(calculatePlayerStats(equippedItems))
+            updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
         }
     }
 

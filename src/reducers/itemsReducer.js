@@ -54,14 +54,16 @@ export default (state = initialState, action) => {
                     // if it is drop
                     if(item.type === 'drop') {
                         // filter invItems and return item if its name matches the payload name (player has that kind of item)
-                        const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)
+                        const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)[0]
                         // if there is such item
-                        if(filtered.length !== 0) {
+                        if(filtered) {
                             
                             // set newAmount to items amount + payload item amount
-                            const newAmount = filtered[0].amount + item.amount
+                            const newAmount = filtered.amount + item.amount
                             
-                            newItems[filtered[0].key].amount = newAmount
+                            // update amount and goldValue
+                            newItems[filtered.key].goldValue = Math.round((filtered.goldValue / filtered.amount) * newAmount) 
+                            newItems[filtered.key].amount = newAmount
                         }
                         // else just push the item to the array 
                         else {
@@ -82,16 +84,17 @@ export default (state = initialState, action) => {
                 // If itemType is drop
                 if(action.payload.type === 'drop') {
                     // find item with same name
-                    const filtered = state.invItems.filter(item => item.name === action.payload.name)
+                    const filtered = state.invItems.filter(item => item.name === action.payload.name)[0]
                     // if there is one
-                    if(filtered.length !== 0) {
+                    if(filtered) {
                         // calculate amount (found item amount + new item amount)
-                        const newAmount = filtered[0].amount + action.payload.amount
+                        const newAmount = filtered.amount + action.payload.amount
                         // and update that item's amount
                         return { 
                             ...state,
                             invItems: state.invItems.map(item => {
-                                if(item.name === filtered[0].name) {
+                                if(item.name === filtered.name) {
+                                    item.goldValue = Math.round((item.goldValue / item.amount) * newAmount)
                                     item.amount = newAmount
                                 }
                                 return item

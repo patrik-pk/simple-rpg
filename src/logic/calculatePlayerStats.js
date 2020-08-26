@@ -1,8 +1,15 @@
+import levelTresholds from '../data/levelTresholds'
 
-export default function calculatePlayerStats(equippedItems) {
+export default function calculatePlayerStats(equippedItems, currentLevel) {
+
+    const gameFlow = levelTresholds[currentLevel].gameFlow >= 1 ? levelTresholds[currentLevel].gameFlow : 1
 
     // Variables Declaration
-    let maxHp = 0
+
+    // Multiply base value for HP * gameFlow (minimum value of 1), 
+    // 50% of HP is coming from here, other 50% are coming
+    // from equip items (25% necklace, 25% earrings)
+    let maxHp = Math.round(200 * gameFlow)
     let armor = 0
     let critChance = 0
     let blockChance = 0
@@ -43,7 +50,6 @@ export default function calculatePlayerStats(equippedItems) {
             })
         })
     })
-
     // Final Return
     return {
         currentHp: maxHp,

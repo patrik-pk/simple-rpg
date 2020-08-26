@@ -9,6 +9,7 @@ import { addReward } from '../../actions/characterActions'
 import { addItemToInv, updateItems } from '../../actions/itemsActions'
 import { addDungeon } from '../../actions/dungeonActions'
 
+import levelTresholds from '../../data/levelTresholds'
 import attackEnemy from '../../logic/attackEnemy'
 import attackPlayer from '../../logic/attackPlayer'
 import getReward from '../../logic/getReward'
@@ -85,7 +86,7 @@ function Action(props) {
                 // Battle Won - set battleStatus to 'Victory'
                 gameWon()
 
-                // get matching index of the dungeon 
+                // get matching index of the dungeon if its boss game, and update the state
                 let matchingDungeonIndex = 0
                 if(gameType === 'Boss') {
                     dungeon.forEach((item, dungeonIndex) => {
@@ -96,6 +97,13 @@ function Action(props) {
 
                     addDungeon(matchingDungeonIndex)
                 }
+
+                // generate reward and update state
+                const reward = getReward(enemy, character, 'Victory', gameType)
+                addReward(reward)
+
+                // Check if player leveled up
+                const { didLevelUp, newLevel } = reward.levelUp
 
                 // generate items
                 const rewardItems = (() => {
@@ -121,7 +129,7 @@ function Action(props) {
                         }
 
                         // generate random amount for drop
-                        const randomAmount = randomGenerator(30, 50) // 3 - 5
+                        const randomAmount = randomGenerator(3, 5)
 
                         // get drop based on index and push it to alreadyGenerated array, 
                         // so it can't be generated again
@@ -129,7 +137,8 @@ function Action(props) {
                         alreadyGeneratedDrops.push(index)
 
                         // push that drop into items array
-                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon, [classVal], randomAmount * goldValue))
+                        const dropGoldValue = randomAmount * goldValue * levelTresholds[newLevel].gameFlow
+                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon, [classVal], dropGoldValue))
                     }
 
                     
@@ -178,29 +187,26 @@ function Action(props) {
                     return items
                 })()
 
-                // generate reward and update state
-                const reward = getReward(enemy, character, 'Victory', gameType)
-                addReward(reward)
-
-                // Check if player leveled up, and recalculate stats if he did
-                const { didLevelUp, newLevel } = reward.levelUp
-
-                // Reward items will be added to inventory by recalculating, so they
-                // won't be added using addItemToInv action
+                // If player leveled up, recalculate items & stats. First reward item (always equip item) is passed
+                // into the recalculate function along with invItems, from which it is then updated in the Inventory.
+                // In the recalculate function drops goldValues are recalculated, and THEN the reward drops are passed
+                // into the inventory, where they are handled. 
                 if (didLevelUp) {
-                    const invItemsToRecalc = [ ...invItems, ...rewardItems ]
+                    const invItemsToRecalc = [ ...invItems, rewardItems[0] ]
                     const recalculated = recalculateItems(gameFlow, newLevel, craftableItems, invItemsToRecalc, equippedItems)
 
                     // update player stats with updated equipped items
-                    updatePlayerStats(calculatePlayerStats(recalculated.equippedItems))
+                    updatePlayerStats(calculatePlayerStats(recalculated.equippedItems, newLevel))
 
                     // and update the items
                     updateItems(recalculated)
 
-                } else {
-                    // add item to inventory
-                    addItemToInv(rewardItems)
-                }
+                    // then add the drops to the inventory
+                    addItemToInv([ rewardItems[1], rewardItems[2] ])
+
+                } 
+                // If he didn't, just push the items to the inventory
+                else addItemToInv(rewardItems)
                 
                 // render the item in Game.js
                 itemObtained(rewardItems)
