@@ -59,86 +59,86 @@ const reptileItems = {
         {
             item: genItem(5, 'reptile_low_0', reptile, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_1', reptile, chestplate, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_2', reptile, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_3', reptile, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_4', reptile, boots, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_5', reptile, sword, 6),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
 
         {
             item: genItem(5, 'reptile_low_6', reptile, necklace, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_7', reptile, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_8', reptile, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_9', reptile, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_10', reptile, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(5, 'reptile_low_11', reptile, bow, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small reptile soul', dropIcons.SmallSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'soft reptile leather', dropIcons.SoftLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'small reptile soul', dropIcons.smallSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'soft reptile leather', dropIcons.softLeather.icon, ['reptile-leather']),
             ]
         },
     ],
@@ -148,86 +148,86 @@ const reptileItems = {
         {
             item: genItem(otherAmount, 'reptile_medium_0', reptile, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_1', reptile, chestplate, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_2', reptile, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_3', reptile, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_4', reptile, boots, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_5', reptile, sword, 6),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
 
         {
             item: genItem(otherAmount, 'reptile_medium_6', reptile, necklace, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_7', reptile, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_8', reptile, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_9', reptile, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_10', reptile, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(otherAmount, 'reptile_medium_11', reptile, bow, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium reptile soul', dropIcons.MediumSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'medium reptile leather', dropIcons.MediumLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'medium reptile soul', dropIcons.mediumSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'medium reptile leather', dropIcons.mediumLeather.icon, ['reptile-leather']),
             ]
         },
     ],
@@ -237,86 +237,86 @@ const reptileItems = {
         {
             item: genItem(25, 'reptile_high_0', reptile, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_1', reptile, chestplate, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_2', reptile, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_3', reptile, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_4', reptile, boots, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_5', reptile, sword, 6),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
 
         {
             item: genItem(25, 'reptile_high_6', reptile, necklace, 5),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_7', reptile, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_8', reptile, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_9', reptile, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_10', reptile, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
         {
             item: genItem(25, 'reptile_high_11', reptile, bow, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large reptile soul', dropIcons.LargeSoul, ['reptile-soul']),
-                genDrop(otherAmount, 'tough reptile leather', dropIcons.ToughLeather, ['reptile-leather']),
+                genDrop(soulAmount, 'large reptile soul', dropIcons.largeSoul.icon, ['reptile-soul']),
+                genDrop(otherAmount, 'tough reptile leather', dropIcons.toughLeather.icon, ['reptile-leather']),
             ]
         },
     ]

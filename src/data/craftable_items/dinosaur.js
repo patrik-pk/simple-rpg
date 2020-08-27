@@ -59,86 +59,86 @@ const dinosaurItems = {
         {
             item: genItem(5, 'dinosaur_low_0', dinosaur, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_1', dinosaur, chestplate, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_2', dinosaur, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_3', dinosaur, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_4', dinosaur, boots, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_5', dinosaur, sword, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
 
         {
             item: genItem(5, 'dinosaur_low_6', dinosaur, necklace, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_7', dinosaur, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_8', dinosaur, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_9', dinosaur, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_10', dinosaur, shield, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(5, 'dinosaur_low_11', dinosaur, bow, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'small dinosaur soul', dropIcons.SmallSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'small fossil', dropIcons.SmallFossil, ['fossil']),
+                genDrop(soulAmount, 'small dinosaur soul', dropIcons.smallSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'small fossil', dropIcons.smallFossil.icon, ['fossil']),
             ]
         },
     ],
@@ -148,86 +148,86 @@ const dinosaurItems = {
         {
             item: genItem(otherAmount, 'dinosaur_medium_0', dinosaur, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_1', dinosaur, chestplate, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_2', dinosaur, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_3', dinosaur, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_4', dinosaur, boots, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_5', dinosaur, sword, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
 
         {
             item: genItem(otherAmount, 'dinosaur_medium_6', dinosaur, necklace, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_7', dinosaur, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_8', dinosaur, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_9', dinosaur, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_10', dinosaur, shield, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(otherAmount, 'dinosaur_medium_11', dinosaur, bow, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.MediumSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'medium fossil', dropIcons.MediumFossil, ['fossil']),
+                genDrop(soulAmount, 'medium dinosaur soul', dropIcons.mediumSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'medium fossil', dropIcons.mediumFossil.icon, ['fossil']),
             ]
         },
     ],
@@ -237,86 +237,86 @@ const dinosaurItems = {
         {
             item: genItem(25, 'dinosaur_high_0', dinosaur, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_1', dinosaur, chestplate, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_2', dinosaur, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_3', dinosaur, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_4', dinosaur, boots, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_5', dinosaur, sword, 4),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
 
         {
             item: genItem(25, 'dinosaur_high_6', dinosaur, necklace, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_7', dinosaur, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_8', dinosaur, ring, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_9', dinosaur, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_10', dinosaur, shield, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
         {
             item: genItem(25, 'dinosaur_high_11', dinosaur, bow, 3),
             dropsNeeded: [
-                genDrop(soulAmount, 'large dinosaur soul', dropIcons.LargeSoul, ['dinosaur-soul']),
-                genDrop(otherAmount, 'large fossil', dropIcons.LargeFossil, ['fossil']),
+                genDrop(soulAmount, 'large dinosaur soul', dropIcons.largeSoul.icon, ['dinosaur-soul']),
+                genDrop(otherAmount, 'large fossil', dropIcons.largeFossil.icon, ['fossil']),
             ]
         },
     ]

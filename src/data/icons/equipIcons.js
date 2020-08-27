@@ -74,89 +74,89 @@ const equipIcons = {
 
     // Type 1
     type1: {
-        helmet: { displayedName: 'Helmet', icon: HelmetType1 },
-        chestplate: { displayedName: 'Chestplate', icon: ChestplateType1 },
-        pants: { displayedName: 'Pants', icon: PantsType1 },
-        gloves: { displayedName: 'Gloves', icon: GlovesType1 },
-        boots: { displayedName: 'Boots', icon: BootsType1 },
-        necklace: { displayedName: 'Necklace', icon: NecklaceType1 },
-        earrings: { displayedName: 'Earrings', icon: EarringsType1 },
-        ring: { displayedName: 'Ring', icon: RingType1 },
-        belt: { displayedName: 'Belt', icon: BeltType1 },
-        sword: { displayedName: 'Sword', icon: SwordType1 },
-        bow: { displayedName: 'Bow', icon: BowType1 },
-        shield: { displayedName: 'Shield', icon: ShieldType1 },
+        helmet: { displayedName: 'Helmet', icon: HelmetType1, url: 'https://www.flaticon.com/free-icon/helmet_1597798' },
+        chestplate: { displayedName: 'Chestplate', icon: ChestplateType1, url: 'https://www.flaticon.com/free-icon/armor_1907775' },
+        pants: { displayedName: 'Pants', icon: PantsType1, url: 'https://www.flaticon.com/free-icon/armor_1597801' },
+        gloves: { displayedName: 'Gloves', icon: GlovesType1, url: 'https://www.flaticon.com/free-icon/gloves_2674335' },
+        boots: { displayedName: 'Boots', icon: BootsType1, url: 'https://www.flaticon.com/free-icon/boot_662989' },
+        necklace: { displayedName: 'Necklace', icon: NecklaceType1, url: 'https://www.flaticon.com/free-icon/necklace_1399585' },
+        earrings: { displayedName: 'Earrings', icon: EarringsType1, url: 'https://www.flaticon.com/free-icon/earrings_1235418' },
+        ring: { displayedName: 'Ring', icon: RingType1, url: 'https://www.flaticon.com/free-icon/diamond-ring_2046962' },
+        belt: { displayedName: 'Belt', icon: BeltType1, url: 'https://www.flaticon.com/free-icon/belt_1352390' },
+        sword: { displayedName: 'Sword', icon: SwordType1, url: 'https://www.flaticon.com/free-icon/sword_1907857' },
+        bow: { displayedName: 'Bow', icon: BowType1, url: 'https://www.flaticon.com/free-icon/bow_812196' },
+        shield: { displayedName: 'Shield', icon: ShieldType1, url: 'https://www.flaticon.com/free-icon/shield_861394' },
     },
 
     // Type 2
     type2: {
-        helmet: { displayedName: 'Helmet', icon: HelmetType2 },
-        chestplate: { displayedName: 'Chestplate', icon: ChestplateType2 },
-        pants: { displayedName: 'Pants', icon: PantsType2 },
-        gloves: { displayedName: 'Gloves', icon: GlovesType2 },
-        boots: { displayedName: 'Boots', icon: BootsType2 },
-        necklace: { displayedName: 'Necklace', icon: NecklaceType2 },
-        earrings: { displayedName: 'Earrings', icon: EarringsType2 },
-        ring: { displayedName: 'Ring', icon: RingType2 },
-        belt: { displayedName: 'Belt', icon: BeltType2 },
-        sword: { displayedName: 'Sword', icon: SwordType2 },
-        bow: { displayedName: 'Shuriken', icon: ShurikenType2 },
-        shield: { displayedName: 'Shield', icon: ShieldType2 },
+        helmet: { displayedName: 'Helmet', icon: HelmetType2, url: 'https://www.flaticon.com/free-icon/samurai_2159555' },
+        chestplate: { displayedName: 'Chestplate', icon: ChestplateType2, url: 'https://www.flaticon.com/free-icon/armor_1406138' },
+        pants: { displayedName: 'Pants', icon: PantsType2, url: 'https://www.flaticon.com/free-icon/pants_2069969' },
+        gloves: { displayedName: 'Gloves', icon: GlovesType2, url: 'https://www.flaticon.com/free-icon/gloves_2452305' },
+        boots: { displayedName: 'Boots', icon: BootsType2, url: 'https://www.flaticon.com/free-icon/boots_2051794' },
+        necklace: { displayedName: 'Necklace', icon: NecklaceType2, url: 'https://www.flaticon.com/free-icon/pendant_1555060' },
+        earrings: { displayedName: 'Earrings', icon: EarringsType2, url: 'https://www.flaticon.com/free-icon/earrings_1555049' },
+        ring: { displayedName: 'Ring', icon: RingType2, url: 'https://www.flaticon.com/free-icon/ring_1406128' },
+        belt: { displayedName: 'Belt', icon: BeltType2, url: 'https://www.flaticon.com/free-icon/belt_1154930' },
+        sword: { displayedName: 'Sword', icon: SwordType2, url: 'https://www.flaticon.com/free-icon/sword_486849' },
+        bow: { displayedName: 'Shuriken', icon: ShurikenType2, url: 'https://www.flaticon.com/free-icon/shuriken_2159568' },
+        shield: { displayedName: 'Shield', icon: ShieldType2, url: 'https://www.flaticon.com/free-icon/triangular-shield-with-sharp-tip_27314' },
     },
 
     // Aquatic
     aquatic: {
-        fins: { displayedName: 'Fins', icon: AquaticFins },
-        harpoon: { displayedName: 'Harpoon', icon: AquaticHarpoon },
-        necklace: { displayedName: 'Necklace', icon: AquaticNecklace },
-        ring: { displayedName: 'Ring', icon: AquaticRing },
-        trident: { displayedName: 'Trident', icon: AquaticTrident },
+        fins: { displayedName: 'Fins', icon: AquaticFins, url: 'https://www.flaticon.com/free-icon/dive_1737394' },
+        harpoon: { displayedName: 'Harpoon', icon: AquaticHarpoon, url: 'https://www.flaticon.com/free-icon/harpoon_1557590' },
+        necklace: { displayedName: 'Necklace', icon: AquaticNecklace, url: 'https://www.flaticon.com/free-icon/necklace_3366165' },
+        ring: { displayedName: 'Ring', icon: AquaticRing, url: 'https://www.flaticon.com/free-icon/massages-ring-for-spa_32057' },
+        trident: { displayedName: 'Trident', icon: AquaticTrident, url: 'https://www.flaticon.com/free-icon/trident_602892' },
     },
 
     // Avian
     avian: {
-        chestplate: { displayedName: 'Chestplate', icon: AvianChestplate },
-        boots: { displayedName: 'Boots', icon: AvianBoots },
-        earrings: { displayedName: 'Earrings', icon: AvianEarrings },
-        helmet: { displayedName: 'Helmet', icon: AvianHelmet },
-        necklace: { displayedName: 'Necklace', icon: AvianNecklace },
-        spear: { displayedName: 'Spear', icon: AvianSpear },
+        chestplate: { displayedName: 'Chestplate', icon: AvianChestplate, url: 'https://www.flaticon.com/free-icon/shirt_2653924' },
+        boots: { displayedName: 'Boots', icon: AvianBoots, url: 'https://www.flaticon.com/free-icon/boots_2653815' },
+        earrings: { displayedName: 'Earrings', icon: AvianEarrings, url: 'https://www.flaticon.com/free-icon/feather_2653857' },
+        helmet: { displayedName: 'Helmet', icon: AvianHelmet, url: 'https://www.flaticon.com/free-icon/bull-skull_2653819' },
+        necklace: { displayedName: 'Necklace', icon: AvianNecklace, url: 'https://www.flaticon.com/free-icon/necklace_2653910' },
+        spear: { displayedName: 'Spear', icon: AvianSpear, url: 'https://www.flaticon.com/free-icon/spears_2653929' },
     },
 
     // Dinosaur
     dinosaur: {
-        chestplate: { displayedName: 'Chestplate', icon: DinosaurChestplate },
-        axe: { displayedName: 'Axe', icon: DinosaurAxe },
-        boots: { displayedName: 'Boots', icon: DinosaurBoots },
-        crossbow: { displayedName: 'Crossbow', icon: DinosaurCrossbow },
-        shield: { displayedName: 'Shield', icon: DinosaurShield },
+        chestplate: { displayedName: 'Chestplate', icon: DinosaurChestplate, url: 'https://www.flaticon.com/free-icon/armor_2074748' },
+        axe: { displayedName: 'Axe', icon: DinosaurAxe, url: 'https://www.flaticon.com/free-icon/axe_705766' },
+        boots: { displayedName: 'Boots', icon: DinosaurBoots, url: 'https://www.flaticon.com/free-icon/boot_1120714' },
+        crossbow: { displayedName: 'Crossbow', icon: DinosaurCrossbow, url: 'https://www.flaticon.com/free-icon/crossbow_2328504' },
+        shield: { displayedName: 'Shield', icon: DinosaurShield, url: 'https://www.flaticon.com/free-icon/war-fighter-shield_17164' },
     },
 
     // Insect
     insect: {
-        chestplate: { displayedName: 'Chestplate', icon: InsectChestplate },
-        helmet: { displayedName: 'Helmet', icon: InsectHelmet },
-        mace: { displayedName: 'Mace', icon: InsectMace },
-        necklace: { displayedName: 'Necklace', icon: InsectNecklace },
-        pants: { displayedName: 'Pants', icon: InsectPants },  
-        shield: { displayedName: 'Shield', icon: InsectShield },  
-    },
-
-    // Reptile
-    reptile: {
-        chestplate: { displayedName: 'Chestplate', icon: ReptileChestplate },
-        boots: { displayedName: 'Boots', icon: ReptileBoots },
-        necklace: { displayedName: 'Necklace', icon: ReptileNecklace },
-        sword: { displayedName: 'Sword', icon: ReptileSword },
+        chestplate: { displayedName: 'Chestplate', icon: InsectChestplate, url: 'https://www.flaticon.com/free-icon/armor_1120690' },
+        helmet: { displayedName: 'Helmet', icon: InsectHelmet, url: 'https://www.flaticon.com/free-icon/helmet_942628' },
+        mace: { displayedName: 'Mace', icon: InsectMace, url: 'https://www.flaticon.com/free-icon/mace_507806' },
+        necklace: { displayedName: 'Necklace', icon: InsectNecklace, url: 'https://www.flaticon.com/free-icon/necklace_2753291' },
+        pants: { displayedName: 'Pants', icon: InsectPants, url: 'https://www.flaticon.com/free-icon/leggings_956877' },  
+        shield: { displayedName: 'Shield', icon: InsectShield, url: 'https://www.flaticon.com/free-icon/shield-against-bugs_36515' },  
     },
 
     // Wildlife
     wildlife: {
-        helmet: { displayedName: 'Helmet', icon: WildlifeHelmet },
-        necklace: { displayedName: 'Necklace', icon: WildlifeNecklace },
-        shield: { displayedName: 'Shield', icon: WildlifeShield },
-        tomahawk: { displayedName: 'Tomahawk', icon: WildlifeTomahawk },
-    }
+        helmet: { displayedName: 'Helmet', icon: WildlifeHelmet, url: 'https://www.flaticon.com/free-icon/bull-skull_1133761' },
+        necklace: { displayedName: 'Necklace', icon: WildlifeNecklace, url: 'https://www.flaticon.com/free-icon/necklace_3127231' },
+        shield: { displayedName: 'Shield', icon: WildlifeShield, url: 'https://www.flaticon.com/free-icon/war-horn-shield_17033' },
+        tomahawk: { displayedName: 'Tomahawk', icon: WildlifeTomahawk, url: 'https://www.flaticon.com/free-icon/tomahawk_2653940' },
+    },
+
+    // Reptile
+    reptile: {
+        chestplate: { displayedName: 'Chestplate', icon: ReptileChestplate, url: 'https://www.flaticon.com/free-icon/armor_2010228' },
+        boots: { displayedName: 'Boots', icon: ReptileBoots, url: 'https://www.flaticon.com/free-icon/boots_1555061' },
+        necklace: { displayedName: 'Necklace', icon: ReptileNecklace, url: 'https://www.flaticon.com/free-icon/necklace_837021' },
+        sword: { displayedName: 'Sword', icon: ReptileSword, url: 'https://www.flaticon.com/free-icon/sword_2464425' },
+    },
 }
 
 export default equipIcons

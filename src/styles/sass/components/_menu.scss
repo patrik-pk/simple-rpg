@@ -1,9 +1,13 @@
 
 // Menu (Global)
 .menu {
+    display: none!important;
     margin-top: 20px;
     border-top: 1px white solid;
     border-bottom: 1px white solid;
+    &.active {
+        display: block!important;
+    }
 
     // Menu Items
     .menu-items {
@@ -33,8 +37,8 @@
     }
 }
 
-// Rarity Menu
-.rarity-menu {
+// Little Sidemenus
+.rarity-menu, .credits-sidemenu {
     width: 150px;
     height: fit-content;
     margin: 30px auto 0 auto;
@@ -58,5 +62,4 @@
             &:last-child { border-bottom: 0; }
         }
     }
-
 }

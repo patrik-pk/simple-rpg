@@ -59,86 +59,86 @@ const aquaticItems = {
         {
             item: genItem(5, 'aquatic_low_0', aquatic, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_1', aquatic, chestplate, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_2', aquatic, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_3', aquatic, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_4', aquatic, boots, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_5', aquatic, sword, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
 
         {
             item: genItem(5, 'aquatic_low_6', aquatic, necklace, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_7', aquatic, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_8', aquatic, ring, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_9', aquatic, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_10', aquatic, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(5, 'aquatic_low_11', aquatic, bow, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'small aquatic soul', dropIcons.SmallSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'small aqua meat', dropIcons.SmallMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'small aquatic soul', dropIcons.smallSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'small aqua meat', dropIcons.smallMeat.icon, ['aqua-meat']),
             ]
         },
     ],
@@ -148,86 +148,86 @@ const aquaticItems = {
         {
             item: genItem(otherAmount, 'aquatic_medium_0', aquatic, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_1', aquatic, chestplate, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_2', aquatic, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_3', aquatic, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_4', aquatic, boots, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_5', aquatic, sword, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
 
         {
             item: genItem(otherAmount, 'aquatic_medium_6', aquatic, necklace, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_7', aquatic, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_8', aquatic, ring, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_9', aquatic, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_10', aquatic, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(otherAmount, 'aquatic_medium_11', aquatic, bow, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'medium aquatic soul', dropIcons.MediumSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'medium aqua meat', dropIcons.MediumMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'medium aquatic soul', dropIcons.mediumSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'medium aqua meat', dropIcons.mediumMeat.icon, ['aqua-meat']),
             ]
         },
     ],
@@ -237,86 +237,86 @@ const aquaticItems = {
         {
             item: genItem(25, 'aquatic_high_0', aquatic, helmet, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_1', aquatic, chestplate, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_2', aquatic, pants, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_3', aquatic, gloves, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_4', aquatic, boots, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_5', aquatic, sword, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
 
         {
             item: genItem(25, 'aquatic_high_6', aquatic, necklace, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_7', aquatic, earrings, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_8', aquatic, ring, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_9', aquatic, belt, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_10', aquatic, shield, 0),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
         {
             item: genItem(25, 'aquatic_high_11', aquatic, bow, 2),
             dropsNeeded: [
-                genDrop(soulAmount, 'large aquatic soul', dropIcons.LargeSoul, ['aquatic-soul']),
-                genDrop(otherAmount, 'large aqua meat', dropIcons.LargeMeat, ['aqua-meat']),
+                genDrop(soulAmount, 'large aquatic soul', dropIcons.largeSoul.icon, ['aquatic-soul']),
+                genDrop(otherAmount, 'large aqua meat', dropIcons.largeMeat.icon, ['aqua-meat']),
             ]
         },
     ]

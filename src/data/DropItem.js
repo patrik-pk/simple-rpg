@@ -6,7 +6,7 @@ class DropItem {
         key = 1,
         amount = 1,
         name = 'small feather',
-        icon = dropIcons.SmallFeather,
+        icon = dropIcons.smallFeather.icon,
         classes,
         goldValue = 10,
         isSelected = false,

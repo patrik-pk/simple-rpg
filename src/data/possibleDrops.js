@@ -13,62 +13,62 @@ const possibleDrops = {
 
     // aquatic
     aquatic: {
-        smallSoul: new PossibleDrop('small aquatic soul', di.SmallSoul, 'aquatic-soul'),
-        mediumSoul: new PossibleDrop('medium aquatic soul', di.MediumSoul, 'aquatic-soul'),
-        largeSoul: new PossibleDrop('large aquatic soul', di.LargeSoul, 'aquatic-soul'),
-        smallMeat: new PossibleDrop('small aqua meat', di.SmallMeat, 'aqua-meat'),
-        mediumMeat: new PossibleDrop('medium aqua meat', di.MediumMeat, 'aqua-meat'),
-        largeMeat: new PossibleDrop('large aqua meat', di.LargeMeat, 'aqua-meat'),
+        smallSoul: new PossibleDrop('small aquatic soul', di.smallSoul.icon, 'aquatic-soul'),
+        mediumSoul: new PossibleDrop('medium aquatic soul', di.mediumSoul.icon, 'aquatic-soul'),
+        largeSoul: new PossibleDrop('large aquatic soul', di.largeSoul.icon, 'aquatic-soul'),
+        smallMeat: new PossibleDrop('small aqua meat', di.smallMeat.icon, 'aqua-meat'),
+        mediumMeat: new PossibleDrop('medium aqua meat', di.mediumMeat.icon, 'aqua-meat'),
+        largeMeat: new PossibleDrop('large aqua meat', di.largeMeat.icon, 'aqua-meat'),
     },
 
     // avian
     avians: {
-        smallSoul: new PossibleDrop('small avian soul', di.SmallSoul, 'avian-soul'),
-        mediumSoul: new PossibleDrop('medium avian soul', di.MediumSoul, 'avian-soul'),
-        largeSoul: new PossibleDrop('large avian soul', di.LargeSoul, 'avian-soul'),
-        smallFeather: new PossibleDrop('small feather', di.SmallFeather, 'feather'),
-        mediumFeather: new PossibleDrop('medium feather', di.MediumFeather, 'feather'),
-        largeFeather: new PossibleDrop('large feather', di.LargeFeather, 'feather'),
+        smallSoul: new PossibleDrop('small avian soul', di.smallSoul.icon, 'avian-soul'),
+        mediumSoul: new PossibleDrop('medium avian soul', di.mediumSoul.icon, 'avian-soul'),
+        largeSoul: new PossibleDrop('large avian soul', di.largeSoul.icon, 'avian-soul'),
+        smallFeather: new PossibleDrop('small feather', di.smallFeather.icon, 'feather'),
+        mediumFeather: new PossibleDrop('medium feather', di.mediumFeather.icon, 'feather'),
+        largeFeather: new PossibleDrop('large feather', di.largeFeather.icon, 'feather'),
     },
 
     // dinosaur
     dinosaurs: {
-        smallSoul: new PossibleDrop('small dinosaur soul', di.SmallSoul, 'dinosaur-soul'),
-        mediumSoul: new PossibleDrop('medium dinosaur soul', di.MediumSoul, 'dinosaur-soul'),
-        largeSoul: new PossibleDrop('large dinosaur soul', di.LargeSoul, 'dinosaur-soul'),
-        smallFossil: new PossibleDrop('small fossil', di.SmallFossil, 'fossil'),
-        mediumFossil: new PossibleDrop('medium fossil', di.MediumFossil, 'fossil'),
-        largeFossil: new PossibleDrop('large fossil', di.LargeFossil, 'fossil'),
+        smallSoul: new PossibleDrop('small dinosaur soul', di.smallSoul.icon, 'dinosaur-soul'),
+        mediumSoul: new PossibleDrop('medium dinosaur soul', di.mediumSoul.icon, 'dinosaur-soul'),
+        largeSoul: new PossibleDrop('large dinosaur soul', di.largeSoul.icon, 'dinosaur-soul'),
+        smallFossil: new PossibleDrop('small fossil', di.smallFossil.icon, 'fossil'),
+        mediumFossil: new PossibleDrop('medium fossil', di.mediumFossil.icon, 'fossil'),
+        largeFossil: new PossibleDrop('large fossil', di.largeFossil.icon, 'fossil'),
     },
 
     // insect
     insect: {
-        smallSoul: new PossibleDrop('small insect soul', di.SmallSoul, 'insect-soul'),
-        mediumSoul: new PossibleDrop('medium insect soul', di.MediumSoul, 'insect-soul'),
-        largeSoul: new PossibleDrop('large insect soul', di.LargeSoul, 'insect-soul'),
-        weakPoison: new PossibleDrop('weak poison', di.WeakPoison, 'poison'),
-        mediumPoison: new PossibleDrop('medium poison', di.MediumPoison, 'poison'),
-        strongPoison: new PossibleDrop('strong poison', di.StrongPoison, 'poison'),
+        smallSoul: new PossibleDrop('small insect soul', di.smallSoul.icon, 'insect-soul'),
+        mediumSoul: new PossibleDrop('medium insect soul', di.mediumSoul.icon, 'insect-soul'),
+        largeSoul: new PossibleDrop('large insect soul', di.largeSoul.icon, 'insect-soul'),
+        weakPoison: new PossibleDrop('weak poison', di.weakPoison.icon, 'poison'),
+        mediumPoison: new PossibleDrop('medium poison', di.mediumPoison.icon, 'poison'),
+        strongPoison: new PossibleDrop('strong poison', di.strongPoison.icon, 'poison'),
     },
 
     // wildlife
     wildlife: {
-        smallSoul: new PossibleDrop('small wildlife soul', di.SmallSoul, 'wildlife-soul'),
-        mediumSoul: new PossibleDrop('medium wildlife soul', di.MediumSoul, 'wildlife-soul'),
-        largeSoul: new PossibleDrop('large wildlife soul', di.LargeSoul, 'wildlife-soul'),
-        softLeather: new PossibleDrop('soft wildlife leather', di.SoftLeather, 'wildlife-leather'),
-        mediumLeather: new PossibleDrop('medium wildlife leather', di.MediumLeather, 'wildlife-leather'),
-        toughLeather: new PossibleDrop('tough wildlife leather', di.ToughLeather, 'wildlife-leather'),
+        smallSoul: new PossibleDrop('small wildlife soul', di.smallSoul.icon, 'wildlife-soul'),
+        mediumSoul: new PossibleDrop('medium wildlife soul', di.mediumSoul.icon, 'wildlife-soul'),
+        largeSoul: new PossibleDrop('large wildlife soul', di.largeSoul.icon, 'wildlife-soul'),
+        softLeather: new PossibleDrop('soft wildlife leather', di.softLeather.icon, 'wildlife-leather'),
+        mediumLeather: new PossibleDrop('medium wildlife leather', di.mediumLeather.icon, 'wildlife-leather'),
+        toughLeather: new PossibleDrop('tough wildlife leather', di.toughLeather.icon, 'wildlife-leather'),
     },
 
     // reptile
     reptiles: {
-        smallSoul: new PossibleDrop('small reptile soul', di.SmallSoul, 'reptile-soul'),
-        mediumSoul: new PossibleDrop('medium reptile soul', di.MediumSoul, 'reptile-soul'),
-        largeSoul: new PossibleDrop('large reptile soul', di.LargeSoul, 'reptile-soul'),
-        softLeather: new PossibleDrop('soft reptile leather', di.SoftLeather, 'reptile-leather'),
-        mediumLeather: new PossibleDrop('medium reptile leather', di.MediumLeather, 'reptile-leather'),
-        toughLeather: new PossibleDrop('tough reptile leather', di.ToughLeather, 'reptile-leather'),
+        smallSoul: new PossibleDrop('small reptile soul', di.smallSoul.icon, 'reptile-soul'),
+        mediumSoul: new PossibleDrop('medium reptile soul', di.mediumSoul.icon, 'reptile-soul'),
+        largeSoul: new PossibleDrop('large reptile soul', di.largeSoul.icon, 'reptile-soul'),
+        softLeather: new PossibleDrop('soft reptile leather', di.softLeather.icon, 'reptile-leather'),
+        mediumLeather: new PossibleDrop('medium reptile leather', di.mediumLeather.icon, 'reptile-leather'),
+        toughLeather: new PossibleDrop('tough reptile leather', di.toughLeather.icon, 'reptile-leather'),
     },
 }
 

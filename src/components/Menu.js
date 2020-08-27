@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 export default function Menu({ data, menuActive, itemOnClick, menuClass }) {
 
+    // Mapped Menu Items
     const mappedMenuItems = data.map((item, i) => {
 
         // current is only for dungeon menu
@@ -22,8 +23,12 @@ export default function Menu({ data, menuActive, itemOnClick, menuClass }) {
         )
     })
 
+    // Active Class
+    const activeClass = mappedMenuItems.length !== 0 ? 'active' : ''
+
+    // Render
     return (
-        <div className={`menu ${menuClass}`}>
+        <div className={`menu ${menuClass} ${activeClass}`}>
             <ul className='menu-items'>
                 { mappedMenuItems }
             </ul>
