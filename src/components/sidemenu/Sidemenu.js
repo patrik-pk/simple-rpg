@@ -45,11 +45,12 @@ function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
             </div>
 
             {/* LINKS */}
-            <SidemenuLink name='Classic Game' linkTo='/classic_game' isLocked={false} />
-            <SidemenuLink name='Dungeon' linkTo='/dungeon' isLocked={false} />
-            <SidemenuLink name='Inventory' linkTo='/inventory' isLocked={false} />
-            <SidemenuLink name='Crafting' linkTo='/crafting' isLocked={false} />
-            <SidemenuLink name='Home' linkTo='/' isLocked={false} />
+            <SidemenuLink name='Classic Game' linkTo='/classic_game' />
+            <SidemenuLink name='Dungeon' linkTo='/dungeon' />
+            <SidemenuLink name='Inventory' linkTo='/inventory' />
+            <SidemenuLink name='Crafting' linkTo='/crafting' />
+            <SidemenuLink name='Credits' linkTo='/credits' />
+            <SidemenuLink name='Home' linkTo='/' />
             
         </nav>
     )

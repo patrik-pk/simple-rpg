@@ -5,39 +5,6 @@
     flex-direction: column;
     height: 100%;
 
-    // Menu
-    .level-menu, .dungeon-menu {
-        margin-top: 20px;
-        border-top: 1px white solid;
-        border-bottom: 1px white solid;
-
-        .menu-items {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            justify-content: space-evenly;
-
-            .menu-item {
-                width: auto;
-                padding: 15px 0;
-                cursor: pointer;
-                transition: 500ms all;
-
-                &:hover {
-                    background: white;
-                    p { color: black; }
-                }
-                &.active {
-                    background: white;
-                    p { color: black; }
-                }
-
-                p {
-                    text-align: center;
-                }
-            }
-        }
-    }
-
     // Content
     .content {
         display: grid;
@@ -122,44 +89,6 @@
             .craft-btn {
                 margin-top: 20px;
                 align-self: flex-end;
-            }
-        }
-
-        // Rarity Menu
-        .rarity-menu-container {
-
-            .rarity-menu {
-                width: 150px;
-                margin: 30px auto 0 auto;
-                border: 1px white solid;
-
-                .menu-item {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 10px 0;
-                    border-bottom: 1px white solid;
-                    cursor: pointer;
-                    transition: 500ms all;
-
-                    // fix white space between border and item
-                    // don't know why this happens
-                    &:first-child { margin-top: -1px; }
-
-                    &:last-child {
-                        border-bottom: 0;
-                    }
-
-                    &:hover {
-                        background: white;
-                        p { color: black; }
-                    }
-
-                    &.active {
-                        background: white;
-                        p { color: black; }
-                    }
-                }
             }
         }
     }

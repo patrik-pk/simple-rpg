@@ -1,0 +1,62 @@
+
+// Menu (Global)
+.menu {
+    margin-top: 20px;
+    border-top: 1px white solid;
+    border-bottom: 1px white solid;
+
+    // Menu Items
+    .menu-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        justify-content: space-evenly;
+
+        // Menu Item
+        .menu-item {
+            padding: 13px 0;
+            cursor: pointer;
+            transition: 500ms all;
+
+            &:hover {
+                background: white;
+                p { color: black; }
+            }
+            &.active {
+                background: white;
+                p { color: black; }
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+    }
+}
+
+// Rarity Menu
+.rarity-menu {
+    width: 150px;
+    height: fit-content;
+    margin: 30px auto 0 auto;
+    border: 1px white solid;
+
+    // Menu Items
+    .menu-items {
+        display: block;
+
+        // Menu Item
+        .menu-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px white solid;
+    
+            // fix white space between border and item
+            // don't know why this happens
+            &:first-child { margin-top: -1px; }
+            &:last-child { border-bottom: 0; }
+        }
+    }
+
+}

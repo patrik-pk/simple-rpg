@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import InventoryRow from './inventory/InventoryRow'
+import Menu from './Menu'
 import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../actions/itemsActions'
 import mapDrops from '../logic/mapDrops'
 import deepCopy from '../logic/deepCopy'
@@ -17,30 +18,14 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
     // Check if Player has space in inventory
     const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 1 ? true : false
 
-    // LEVEL MENU
+    // Level Menu
+    const [levelMenuActive, setLevelMenuActive] = useState(0)
+    const levelMenuData = ['Low Level', 'Medium Level', 'High Level']
 
     // Activate Level Menu
     const activateLevelMenu = index => {
         setLevelMenuActive(index)
         unselectCraftableItems()
-    }
-
-    // Level Menu Active
-    const [levelMenuActive, setLevelMenuActive] = useState(0)
-
-    // Mapped Level Menu Items
-    const mappedLevelMenuItems = () => {
-        const data = ['Low Level', 'Medium Level', 'High Level']
-
-        const mapped = data.map((level, i) => {
-            return (
-                <li key={i} className={`menu-item ${levelMenuActive === i ? 'active' : ''}`} onClick={() => activateLevelMenu(i)}>
-                    <p>{level}</p>
-                </li>
-            )
-        })
-
-        return mapped
     }
 
     // Drop Indexes Based On Level Type
@@ -53,30 +38,14 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
         }
     })()
 
-    // RARITY MENU
+    // Rarity Menu
+    const [rarityMenuActive, setRarityMenuActive] = useState(0)
+    const rarityMenuData = ['Mythic', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile']
 
     // Activate Rarity Menu
     const activateRarityMenu = index => {
         setRarityMenuActive(index)
         unselectCraftableItems()
-    }
-
-    // Rarity Menu Active
-    const [rarityMenuActive, setRarityMenuActive] = useState(0)
-
-    // Mapped Rarity Menu Items
-    const mappedRarityMenuItems = () => {
-        const data = ['Mythic', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile']
-
-        const mapped = data.map((rarity, i) => {
-            return (
-                <li key={i} className={`menu-item ${rarityMenuActive === i ? 'active' : ''}`} onClick={() => activateRarityMenu(i)}>
-                    <p>{rarity}</p>
-                </li> 
-            )
-        })
-
-        return mapped
     }
 
     // PLAYERS DROPS
@@ -164,11 +133,7 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
             <h3 className='heading'>Crafting</h3>
 
             {/* Level Menu */}
-            <div className='level-menu'>
-                <ul className='menu-items'>
-                    { mappedLevelMenuItems() }
-                </ul>
-            </div>
+            <Menu data={levelMenuData} menuActive={levelMenuActive} itemOnClick={activateLevelMenu} menuClass='crafting-level-menu' />
 
             {/* Content */}
             <div className='content'>
@@ -207,11 +172,7 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
                 </div>
 
                 {/* Rarity Menu */}
-                <div className='rarity-menu-container'>
-                    <ul className='rarity-menu'>
-                        { mappedRarityMenuItems() }
-                    </ul>
-                </div>
+                <Menu data={rarityMenuData} menuActive={rarityMenuActive} itemOnClick={activateRarityMenu} menuClass='rarity-menu' />
 
             </div>
 

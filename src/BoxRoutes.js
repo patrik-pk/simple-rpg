@@ -7,6 +7,7 @@ import ClassicGame from './components/classic_game/ClassicGame'
 import Dungeon from './components/Dungeon'
 import Inventory from './components/inventory/Inventory'
 import Crafting from './components/Crafting'
+import Credits from './components/Credits'
 import NotFound from './components/NotFound'
 
 export default function BoxRoutes() {
@@ -21,6 +22,7 @@ export default function BoxRoutes() {
                         <Route path='/dungeon' component={Dungeon} />
                         <Route path='/inventory' component={Inventory} />
                         <Route path='/crafting' component={Crafting} />
+                        <Route path='/credits' component={Credits} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

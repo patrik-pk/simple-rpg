@@ -3,23 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import EnemyCard from './classic_game/EnemyCard'
+import Menu from './Menu'
 import bosses from '../data/bosses'
 
 function Dungeon({ dungeon }) {
 
-    // Dungeon Menu
+    // Dungeon Menu Active (handled in Menu.js component)
     const [menuActive, setMenuActive] = useState(0)
-
-    // Map Menu Items
-    const mappedMenuItems = dungeon.map((specie, i) => {
-        const current = specie.current < 5 ? `${specie.current + 1} / 5` : 'Finished'
-        return (
-            <li key={specie.type} className={`menu-item ${menuActive === i ? 'active' : ''}`} onClick={() => setMenuActive(i)}>
-                <p>{specie.type}</p>
-                <p>{current}</p>
-            </li>
-        )
-    })
 
     // Map Dungeon Items
     const dungeonItems = dungeon.map((item, i) => {
@@ -32,7 +22,6 @@ function Dungeon({ dungeon }) {
         }
     })
 
-
     return (
         <div className='dungeon'>
 
@@ -40,11 +29,7 @@ function Dungeon({ dungeon }) {
             <h3 className='heading'>Dungeon</h3>
 
             {/* Dungeon Menu */}
-            <div className='dungeon-menu'>
-                <ul className='menu-items'>
-                    { mappedMenuItems }
-                </ul>
-            </div>
+            <Menu data={dungeon} menuActive={menuActive} itemOnClick={setMenuActive} menuClass='dungeon-menu' />
 
             {/* Boss Section */}
             <div className='boss-section'>

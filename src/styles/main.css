@@ -331,6 +331,11 @@
 
 .side-menu .character-info .level-container .top-container .currency .rolls {
   margin-left: 7px;
+  color: #a50000;
+}
+
+.side-menu .character-info .level-container .top-container .currency .rolls svg {
+  fill: #a50000;
 }
 
 .side-menu .character-info .level-container .top-container .currency svg {
@@ -1059,50 +1064,6 @@
   height: 100%;
 }
 
-.dungeon .dungeon-menu {
-  margin-top: 20px;
-  border-top: 1px white solid;
-  border-bottom: 1px white solid;
-}
-
-.dungeon .dungeon-menu .menu-items {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[6];
-      grid-template-columns: repeat(6, 1fr);
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item {
-  width: auto;
-  padding: 13px 0;
-  cursor: pointer;
-  -webkit-transition: 500ms all;
-  transition: 500ms all;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item:hover {
-  background: white;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item:hover p {
-  color: black;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item.active {
-  background: white;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item.active p {
-  color: black;
-}
-
-.dungeon .dungeon-menu .menu-items .menu-item p {
-  text-align: center;
-}
-
 .dungeon .boss-section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1562,50 +1523,6 @@
   height: 100%;
 }
 
-.crafting .level-menu, .crafting .dungeon-menu {
-  margin-top: 20px;
-  border-top: 1px white solid;
-  border-bottom: 1px white solid;
-}
-
-.crafting .level-menu .menu-items, .crafting .dungeon-menu .menu-items {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.crafting .level-menu .menu-items .menu-item, .crafting .dungeon-menu .menu-items .menu-item {
-  width: auto;
-  padding: 15px 0;
-  cursor: pointer;
-  -webkit-transition: 500ms all;
-  transition: 500ms all;
-}
-
-.crafting .level-menu .menu-items .menu-item:hover, .crafting .dungeon-menu .menu-items .menu-item:hover {
-  background: white;
-}
-
-.crafting .level-menu .menu-items .menu-item:hover p, .crafting .dungeon-menu .menu-items .menu-item:hover p {
-  color: black;
-}
-
-.crafting .level-menu .menu-items .menu-item.active, .crafting .dungeon-menu .menu-items .menu-item.active {
-  background: white;
-}
-
-.crafting .level-menu .menu-items .menu-item.active p, .crafting .dungeon-menu .menu-items .menu-item.active p {
-  color: black;
-}
-
-.crafting .level-menu .menu-items .menu-item p, .crafting .dungeon-menu .menu-items .menu-item p {
-  text-align: center;
-}
-
 .crafting .content {
   display: -ms-grid;
   display: grid;
@@ -1704,53 +1621,6 @@
   margin-top: 20px;
   -ms-flex-item-align: end;
       align-self: flex-end;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu {
-  width: 150px;
-  margin: 30px auto 0 auto;
-  border: 1px white solid;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px white solid;
-  cursor: pointer;
-  -webkit-transition: 500ms all;
-  transition: 500ms all;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item:first-child {
-  margin-top: -1px;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item:last-child {
-  border-bottom: 0;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item:hover {
-  background: white;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item:hover p {
-  color: black;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item.active {
-  background: white;
-}
-
-.crafting .content .rarity-menu-container .rarity-menu .menu-item.active p {
-  color: black;
 }
 
 .item-container {
@@ -2217,6 +2087,84 @@
 
 .item-container.common #name {
   color: #555;
+}
+
+.menu {
+  margin-top: 20px;
+  border-top: 1px white solid;
+  border-bottom: 1px white solid;
+}
+
+.menu .menu-items {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(50px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.menu .menu-items .menu-item {
+  padding: 13px 0;
+  cursor: pointer;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+
+.menu .menu-items .menu-item:hover {
+  background: white;
+}
+
+.menu .menu-items .menu-item:hover p {
+  color: black;
+}
+
+.menu .menu-items .menu-item.active {
+  background: white;
+}
+
+.menu .menu-items .menu-item.active p {
+  color: black;
+}
+
+.menu .menu-items .menu-item p {
+  text-align: center;
+}
+
+.rarity-menu {
+  width: 150px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 30px auto 0 auto;
+  border: 1px white solid;
+}
+
+.rarity-menu .menu-items {
+  display: block;
+}
+
+.rarity-menu .menu-items .menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px white solid;
+}
+
+.rarity-menu .menu-items .menu-item:first-child {
+  margin-top: -1px;
+}
+
+.rarity-menu .menu-items .menu-item:last-child {
+  border-bottom: 0;
 }
 
 * {
