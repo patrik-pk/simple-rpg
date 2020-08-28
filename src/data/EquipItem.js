@@ -5,6 +5,7 @@ import equipIcons from './icons/equipIcons'
 // the reason for this is because displayedName isn't always the same as name
 class EquipItem {
     constructor(
+        iconKey = 'type2-shuriken',
         destination = 'Equipped',
         key,
         name = 'Helmet',
@@ -23,8 +24,9 @@ class EquipItem {
         goldValue = 10,
         level = 0,
         isSelected = false,
-        type = 'equip'
+        type = 'equip',
     ) {
+        this.iconKey = iconKey
         this.destination = destination
         this.key = key
         this.name = name

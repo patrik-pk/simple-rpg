@@ -3,7 +3,8 @@ import {
     PLAYER_BLOCKED,
     PLAYER_HIT,
     RESET_PLAYER_DMG_TAKEN,
-    UPDATE_PLAYER_STATS
+    UPDATE_PLAYER_STATS,
+    LOAD_STATE
 } from '../actions/types'
 
 const initialState = {
@@ -76,6 +77,10 @@ export default (state = initialState, action) => {
                 blockChance: values.blockChance,
                 bonuses: values.bonuses
             }
+
+        // Load State
+        case LOAD_STATE:
+            return action.payload.player
         
         // Default
         default: 

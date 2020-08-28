@@ -130,7 +130,7 @@ function Inventory(props) {
                     const dropItem = specieArr[randomIndex]
 
                     // destructure drop item
-                    const { name, icon, classVal, goldValue } = dropItem
+                    const { iconKey, name, icon, classVal, goldValue } = dropItem
 
                     // get random amount
                     const randomAmount = randomGenerator(3, 5)
@@ -142,7 +142,7 @@ function Inventory(props) {
                     const value = goldValue * gameFlowVal * randomAmount
 
                     // push the item to the array
-                    newShopItems.push(generateDrop('Shop', i, randomAmount, name, icon, [classVal], value))
+                    newShopItems.push(generateDrop(iconKey, 'Shop', i, randomAmount, name, icon, [classVal], value))
                 }
             }
 

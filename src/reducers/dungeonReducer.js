@@ -1,5 +1,6 @@
 import {
-    ADD_DUNGEON
+    ADD_DUNGEON,
+    LOAD_STATE
 } from '../actions/types'
 
 const initialState = [
@@ -22,6 +23,9 @@ export default (state = initialState, action) => {
                 }
                 return item
             })
+
+        case LOAD_STATE:
+            return action.payload.dungeon
 
         // Default
         default:

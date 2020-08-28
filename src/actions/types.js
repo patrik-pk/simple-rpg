@@ -46,3 +46,6 @@ export const CLEAR_ENEMY = 'CLEAR_ENEMY'
 export const ENEMY_DODGED = 'ENEMY_DODGED'
 export const ENEMY_HIT = 'ENEMY_HIT'
 export const RESET_ENEMY_DMG_TAKEN = 'RESET_ENEMY_DMG_TAKEN'
+
+// Loading
+export const LOAD_STATE = 'LOAD_STATE'

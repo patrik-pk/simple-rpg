@@ -48,7 +48,7 @@ const genItem = (level, key, rarity, type, iconIndex) => {
 const genDrop = (amount, name, icon, classes) => {
     // key (2nd argument) is used in Inventory to display items at proper place,
     // this DropItem is used just to display static drops that are needed for crafting
-    return new DropItem('Crafting', 0, amount, name, icon, classes, null)
+    return new DropItem(null, 'Crafting', 0, amount, name, icon, classes, null)
 }
 
 // Exported object

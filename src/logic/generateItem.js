@@ -23,7 +23,7 @@ export default function generateItem(level, destination, key, gameType, specific
     })()
 
     // Generate Type - If there is specific type generate that type, else generate random item type from /data/possibleItem.js
-    const { statName, baseStat, statMultiplier, type, genIcon: { displayedName, icon } } = (() => {
+    const { statName, baseStat, statMultiplier, type, genIcon: { iconKey, displayedName, icon } } = (() => {
         if(specific.itemType) {
             const { type, iconIndex } = specific.itemType
             const itemType = deepCopy(type)
@@ -151,6 +151,7 @@ export default function generateItem(level, destination, key, gameType, specific
 
     // Final Return
     return new EquipItem(
+        iconKey,
         destination,
         key,
         type,
@@ -161,6 +162,6 @@ export default function generateItem(level, destination, key, gameType, specific
         bonuses,
         goldValue,
         level >= 5 ? level : 5,
-        false
+        false,
     )
 }

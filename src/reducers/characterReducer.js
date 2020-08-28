@@ -3,7 +3,8 @@ import {
     ADD_REWARD,
     SET_GOLD,
     SET_ROLLS,
-    SET_ROLL_TIMER
+    SET_ROLL_TIMER,
+    LOAD_STATE
 } from '../actions/types'
 
 const initialState = {
@@ -52,6 +53,10 @@ export default (state = initialState, action) => {
                 ...state,
                 rollTimer: action.payload,
             }
+
+        // Load State
+        case LOAD_STATE:
+            return action.payload.character
 
         // Default
         default:

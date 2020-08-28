@@ -133,12 +133,12 @@ function Action(props) {
 
                         // get drop based on index and push it to alreadyGenerated array, 
                         // so it can't be generated again
-                        const { name, icon, classVal, goldValue } = possibleDrops[index]
+                        const { iconKey, name, icon, classVal, goldValue } = possibleDrops[index]
                         alreadyGeneratedDrops.push(index)
 
                         // push that drop into items array
                         const dropGoldValue = randomAmount * goldValue * levelTresholds[newLevel].gameFlow
-                        items.push(generateDrop('Inventory', invItems.length + i, randomAmount, name, icon, [classVal], dropGoldValue))
+                        items.push(generateDrop(iconKey, 'Inventory', invItems.length + i, randomAmount, name, icon, [classVal], dropGoldValue))
                     }
 
                     

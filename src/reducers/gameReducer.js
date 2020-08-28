@@ -6,6 +6,7 @@ import {
     GAME_LOST,
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
+    LOAD_STATE
 } from '../actions/types'
 
 const initialState = {
@@ -70,6 +71,10 @@ export default (state = initialState, action) => {
                 ...state,
                 classicEnemies: action.payload
             }
+
+        // Load State
+        case LOAD_STATE:
+            return action.payload.game
 
         // Default
         default:

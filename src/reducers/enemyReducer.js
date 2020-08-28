@@ -3,7 +3,8 @@ import {
     CLEAR_ENEMY,
     ENEMY_DODGED,
     ENEMY_HIT,
-    RESET_ENEMY_DMG_TAKEN
+    RESET_ENEMY_DMG_TAKEN,
+    LOAD_STATE
 } from '../actions/types'
 
 
@@ -38,6 +39,10 @@ export default (state = initialState, action) => {
                 ...state,
                 damageTaken: ''
             }
+
+        case LOAD_STATE:
+            return action.payload.state ? action.payload.state : null
+
         // Default
         default:
             return state

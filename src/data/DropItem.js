@@ -2,6 +2,7 @@ import dropIcons from './icons/dropIcons'
 
 class DropItem {
     constructor(
+        iconKey = 'small-feather',
         destination = 'Inventory',
         key = 1,
         amount = 1,
@@ -12,6 +13,7 @@ class DropItem {
         isSelected = false,
         type = 'drop'
     ) {
+        this.iconKey = iconKey
         this.destination = destination
         this.key = key
         this.amount = amount

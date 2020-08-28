@@ -18,7 +18,8 @@ import {
     UNSELECT_CRAFTABLE_ITEMS,
     REMOVE_DROPS_FROM_INV,
     SORT_ITEMS,
-    UPDATE_ITEMS
+    UPDATE_ITEMS,
+    LOAD_STATE
 } from '../actions/types'
 
 const initialState = {
@@ -324,6 +325,10 @@ export default (state = initialState, action) => {
                 invItems: action.payload.invItems,
                 equippedItems: action.payload.equippedItems,
             }
+
+        // Load State
+        case LOAD_STATE:
+            return action.payload.items
 
         // Default
         default:
