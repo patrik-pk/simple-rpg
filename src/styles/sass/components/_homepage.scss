@@ -1,0 +1,101 @@
+
+// Home Page
+.home-page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: black;
+
+    // Content
+    .content {
+        margin-bottom: 30px;
+
+        // Heading
+        .headings {
+            text-align: center;
+            
+            // Main Heading
+            .main-heading {
+                font-size: 40px;
+
+                .colorized {
+                    color: orangered;
+                }
+            }
+    
+            // Sub Heading
+            .sub-heading {
+                font-size: 20px;
+                margin-top: 10px;
+                font-weight: normal;
+            }
+        }
+
+        // Continue
+        .continue {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+
+            .continue-link {
+                display: block;
+                width: 120px;
+                padding: 8px 0;
+                text-align: center;
+            }
+        }
+
+    }
+
+    // Corner Text
+    .corner {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+
+        // Github Link
+        .github-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px white solid;
+            // border-radius: 10px;
+            &:hover {
+                .star-icon {
+                    svg { fill: orangered }
+                }
+                .amount { border-color: orangered; }
+                p { color: orangered; }
+                border-color: orangered;
+            }
+
+            // Star Icon
+            .star-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 7px;
+
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    fill: white;
+                }
+            }
+
+            // Github Text
+            .github-text {
+                margin-right: 5px;
+            }
+            
+            // Stars Amount
+            .amount {
+                height: 100%;
+                padding: 7px;
+                border-left: 1px white solid;
+            }
+        }
+    }
+}

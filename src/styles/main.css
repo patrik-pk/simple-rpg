@@ -422,6 +422,124 @@
   }
 }
 
+.home-page {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  background: black;
+}
+
+.home-page .content {
+  margin-bottom: 30px;
+}
+
+.home-page .content .headings {
+  text-align: center;
+}
+
+.home-page .content .headings .main-heading {
+  font-size: 40px;
+}
+
+.home-page .content .headings .main-heading .colorized {
+  color: orangered;
+}
+
+.home-page .content .headings .sub-heading {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+.home-page .content .continue {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+}
+
+.home-page .content .continue .continue-link {
+  display: block;
+  width: 120px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.home-page .corner {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.home-page .corner .github-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px white solid;
+}
+
+.home-page .corner .github-link:hover {
+  border-color: orangered;
+}
+
+.home-page .corner .github-link:hover .star-icon svg {
+  fill: orangered;
+}
+
+.home-page .corner .github-link:hover .amount {
+  border-color: orangered;
+}
+
+.home-page .corner .github-link:hover p {
+  color: orangered;
+}
+
+.home-page .corner .github-link .star-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 7px;
+}
+
+.home-page .corner .github-link .star-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: white;
+}
+
+.home-page .corner .github-link .github-text {
+  margin-right: 5px;
+}
+
+.home-page .corner .github-link .amount {
+  height: 100%;
+  padding: 7px;
+  border-left: 1px white solid;
+}
+
 .battle-section {
   height: 100vh;
   overflow: hidden !important;

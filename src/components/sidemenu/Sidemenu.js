@@ -50,6 +50,7 @@ function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
             <SidemenuLink name='Inventory' linkTo='/inventory' />
             <SidemenuLink name='Crafting' linkTo='/crafting' />
             <SidemenuLink name='Credits' linkTo='/credits' />
+            <SidemenuLink name='Load & Save' linkTo='/load_and_save' />
             <SidemenuLink name='Home' linkTo='/' />
             
         </nav>
