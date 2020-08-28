@@ -28,7 +28,7 @@ export default function HomePage() {
                 </div>
 
                 <div className='continue'>
-                    <Link className='btn continue-link active2' to='/inventory'>Continue</Link>
+                    <Link className='btn continue-link active2' to='/load_and_save'>Continue</Link>
                 </div>
 
             </div>

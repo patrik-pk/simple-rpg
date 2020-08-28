@@ -7,7 +7,7 @@ import Dungeon from './components/Dungeon'
 import Inventory from './components/inventory/Inventory'
 import Crafting from './components/Crafting'
 import Credits from './components/Credits'
-import LoadSave from './components/LoadSave'
+import LoadSave from './components/load_and_save/LoadSave'
 import NotFound from './components/NotFound'
 
 export default function BoxRoutes() {

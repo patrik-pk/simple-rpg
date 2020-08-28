@@ -1,0 +1,73 @@
+
+// Load And Save
+.load-and-save {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // Content
+    .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 80%;
+        margin: 60px auto 0 auto;
+    
+        // Found Saves
+        .found-saves {
+            width: 370px;
+            margin: 0 auto;
+            // border: 1px white solid;
+    
+            // Saves Heading
+            .saves-heading {
+                margin-bottom: 10px;
+                font-size: 18px;
+                font-weight: normal;
+            }
+    
+            // Save Item
+            .save-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 60px;
+                margin-bottom: 15px;
+                padding: 0 10px;
+                border: 1px white solid;
+                &:last-child { margin-bottom: 0; }
+                &.empty {
+                    justify-content: center;
+                }
+    
+                // Item Options
+                .item-options {
+    
+                    .btn {
+                        width: 70px;
+                        padding: 8px 0;
+                        margin-left: 10px;
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Save Button
+        .save-btn {
+            margin: 40px auto 0 auto;
+            width: 100px;
+        }
+    }
+
+    // Note
+    .note {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+}
