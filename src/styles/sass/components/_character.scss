@@ -172,8 +172,16 @@
     }
 }
 
-// Enemy Colored
-#enemy {
+// Player
+#player {
+    svg {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+// Enemy & Player Colored
+#enemy, #player {
     &.avian {
         svg { fill: $avian-color; }
         border-color: $avian-color;

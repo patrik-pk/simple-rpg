@@ -50,6 +50,12 @@ export default function calculatePlayerStats(equippedItems, currentLevel) {
             })
         })
     })
+
+    // Get dominant bonus
+    const mappedValues = bonuses.map(bonus => bonus.value)
+    const highestIndex = mappedValues.indexOf(Math.max(...mappedValues))
+    const classVal = bonuses[highestIndex].name
+
     // Final Return
     return {
         currentHp: maxHp,
@@ -59,6 +65,7 @@ export default function calculatePlayerStats(equippedItems, currentLevel) {
         rangedDamage,
         critChance,
         blockChance,
-        bonuses
+        bonuses,
+        classVal
     }
 }

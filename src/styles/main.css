@@ -269,10 +269,24 @@
 }
 
 .side-menu .character-info .character-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 50px;
   height: 50px;
-  background: #ccc;
+  background: white;
   border-radius: 5px;
+}
+
+.side-menu .character-info .character-icon svg {
+  width: 70%;
+  height: 70%;
 }
 
 @media (max-width: 991.98px) {
@@ -1169,123 +1183,128 @@
   }
 }
 
-#enemy.avian {
+#player svg {
+  width: 60%;
+  height: 60%;
+}
+
+#enemy.avian, #player.avian {
   border-color: #ff97b7;
 }
 
-#enemy.avian svg {
+#enemy.avian svg, #player.avian svg {
   fill: #ff97b7;
 }
 
-#enemy.avian p:not(.hp-value) {
+#enemy.avian p:not(.hp-value), #player.avian p:not(.hp-value) {
   color: #ff97b7;
 }
 
-#enemy.avian .hp-current {
+#enemy.avian .hp-current, #player.avian .hp-current {
   background: #ff97b7;
 }
 
-#enemy.avian .hp-max {
+#enemy.avian .hp-max, #player.avian .hp-max {
   background: #cb4b82;
 }
 
-#enemy.dinosaur {
+#enemy.dinosaur, #player.dinosaur {
   border-color: #ed6a5a;
 }
 
-#enemy.dinosaur svg {
+#enemy.dinosaur svg, #player.dinosaur svg {
   fill: #ed6a5a;
 }
 
-#enemy.dinosaur p:not(.hp-value) {
+#enemy.dinosaur p:not(.hp-value), #player.dinosaur p:not(.hp-value) {
   color: #ed6a5a;
 }
 
-#enemy.dinosaur .hp-current {
+#enemy.dinosaur .hp-current, #player.dinosaur .hp-current {
   background: #ed6a5a;
 }
 
-#enemy.dinosaur .hp-max {
+#enemy.dinosaur .hp-max, #player.dinosaur .hp-max {
   background: #931e10;
 }
 
-#enemy.insect {
+#enemy.insect, #player.insect {
   border-color: #53dd6c;
 }
 
-#enemy.insect svg {
+#enemy.insect svg, #player.insect svg {
   fill: #53dd6c;
 }
 
-#enemy.insect p:not(.hp-value) {
+#enemy.insect p:not(.hp-value), #player.insect p:not(.hp-value) {
   color: #53dd6c;
 }
 
-#enemy.insect .hp-current {
+#enemy.insect .hp-current, #player.insect .hp-current {
   background: #53dd6c;
 }
 
-#enemy.insect .hp-max {
+#enemy.insect .hp-max, #player.insect .hp-max {
   background: #197e2b;
 }
 
-#enemy.wildlife {
+#enemy.wildlife, #player.wildlife {
   border-color: #e09767;
 }
 
-#enemy.wildlife svg {
+#enemy.wildlife svg, #player.wildlife svg {
   fill: #e09767;
 }
 
-#enemy.wildlife p:not(.hp-value) {
+#enemy.wildlife p:not(.hp-value), #player.wildlife p:not(.hp-value) {
   color: #e09767;
 }
 
-#enemy.wildlife .hp-current {
+#enemy.wildlife .hp-current, #player.wildlife .hp-current {
   background: #e09767;
 }
 
-#enemy.wildlife .hp-max {
+#enemy.wildlife .hp-max, #player.wildlife .hp-max {
   background: #8a5a44;
 }
 
-#enemy.reptile {
+#enemy.reptile, #player.reptile {
   border-color: #02c39a;
 }
 
-#enemy.reptile svg {
+#enemy.reptile svg, #player.reptile svg {
   fill: #02c39a;
 }
 
-#enemy.reptile p:not(.hp-value) {
+#enemy.reptile p:not(.hp-value), #player.reptile p:not(.hp-value) {
   color: #02c39a;
 }
 
-#enemy.reptile .hp-current {
+#enemy.reptile .hp-current, #player.reptile .hp-current {
   background: #02c39a;
 }
 
-#enemy.reptile .hp-max {
+#enemy.reptile .hp-max, #player.reptile .hp-max {
   background: #00614d;
 }
 
-#enemy.aquatic {
+#enemy.aquatic, #player.aquatic {
   border-color: #00e1e1;
 }
 
-#enemy.aquatic svg {
+#enemy.aquatic svg, #player.aquatic svg {
   fill: #00e1e1;
 }
 
-#enemy.aquatic p:not(.hp-value) {
+#enemy.aquatic p:not(.hp-value), #player.aquatic p:not(.hp-value) {
   color: #00e1e1;
 }
 
-#enemy.aquatic .hp-current {
+#enemy.aquatic .hp-current, #player.aquatic .hp-current {
   background: #00e1e1;
 }
 
-#enemy.aquatic .hp-max {
+#enemy.aquatic .hp-max, #player.aquatic .hp-max {
   background: #007f7f;
 }
 
@@ -1387,6 +1406,10 @@
 
 .actions .columns-container .melee-column .action-btn:first-child, .actions .columns-container .ranged-column .action-btn:first-child {
   margin-top: 0;
+}
+
+.actions .columns-container .melee-column .action-btn:hover, .actions .columns-container .ranged-column .action-btn:hover {
+  border-color: white !important;
 }
 
 .actions .columns-container .melee-column .action-btn:hover path, .actions .columns-container .ranged-column .action-btn:hover path {
@@ -1539,6 +1562,83 @@
   .actions .columns-container .ranged-column {
     margin-left: 7px;
   }
+}
+
+.actions.aquatic .forfeit-btn, .actions.aquatic .action-btn, .actions.aquatic .action-info {
+  border-color: #00e1e1 !important;
+}
+
+.actions.aquatic .forfeit-btn .icon path, .actions.aquatic .action-btn .icon path, .actions.aquatic .action-info .icon path {
+  fill: #00e1e1 !important;
+}
+
+.actions.aquatic .forfeit-btn.forfeit-btn, .actions.aquatic .action-btn.forfeit-btn, .actions.aquatic .action-info.forfeit-btn {
+  color: #00e1e1;
+}
+
+.actions.avian .forfeit-btn, .actions.avian .action-btn, .actions.avian .action-info {
+  border-color: #ff97b7 !important;
+}
+
+.actions.avian .forfeit-btn .icon path, .actions.avian .action-btn .icon path, .actions.avian .action-info .icon path {
+  fill: #ff97b7 !important;
+}
+
+.actions.avian .forfeit-btn.forfeit-btn, .actions.avian .action-btn.forfeit-btn, .actions.avian .action-info.forfeit-btn {
+  color: #ff97b7;
+}
+
+.actions.dinosaur .forfeit-btn, .actions.dinosaur .action-btn, .actions.dinosaur .action-info {
+  border-color: #ed6a5a !important;
+}
+
+.actions.dinosaur .forfeit-btn .icon path, .actions.dinosaur .action-btn .icon path, .actions.dinosaur .action-info .icon path {
+  fill: #ed6a5a !important;
+}
+
+.actions.dinosaur .forfeit-btn.forfeit-btn, .actions.dinosaur .action-btn.forfeit-btn, .actions.dinosaur .action-info.forfeit-btn {
+  color: #ed6a5a;
+}
+
+.actions.insect .forfeit-btn, .actions.insect .action-btn, .actions.insect .action-info {
+  border-color: #53dd6c !important;
+}
+
+.actions.insect .forfeit-btn .icon path, .actions.insect .action-btn .icon path, .actions.insect .action-info .icon path {
+  fill: #53dd6c !important;
+}
+
+.actions.insect .forfeit-btn.forfeit-btn, .actions.insect .action-btn.forfeit-btn, .actions.insect .action-info.forfeit-btn {
+  color: #53dd6c;
+}
+
+.actions.wildlife .forfeit-btn, .actions.wildlife .action-btn, .actions.wildlife .action-info {
+  border-color: #e09767 !important;
+}
+
+.actions.wildlife .forfeit-btn .icon path, .actions.wildlife .action-btn .icon path, .actions.wildlife .action-info .icon path {
+  fill: #e09767 !important;
+}
+
+.actions.wildlife .forfeit-btn.forfeit-btn, .actions.wildlife .action-btn.forfeit-btn, .actions.wildlife .action-info.forfeit-btn {
+  color: #e09767;
+}
+
+.actions.reptile .forfeit-btn, .actions.reptile .action-btn, .actions.reptile .action-info {
+  border-color: #02c39a !important;
+}
+
+.actions.reptile .forfeit-btn .icon path, .actions.reptile .action-btn .icon path, .actions.reptile .action-info .icon path {
+  fill: #02c39a !important;
+}
+
+.actions.reptile .forfeit-btn.forfeit-btn, .actions.reptile .action-btn.forfeit-btn, .actions.reptile .action-info.forfeit-btn {
+  color: #02c39a;
+}
+
+.actions .forfeit-btn:hover {
+  border-color: white !important;
+  color: black !important;
 }
 
 .classic-game {

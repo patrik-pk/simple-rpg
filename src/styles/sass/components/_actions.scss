@@ -84,6 +84,7 @@
                 padding: 0;
                 &:first-child { margin-top: 0; } 
                 &:hover {
+                    border-color: white!important;
                     path { fill: black!important; }
                     .action-info {
                         display: block;
@@ -217,5 +218,69 @@
                 margin-left: $action-gap-small;
             }
         }
+    }
+}
+
+// Action Colored
+.actions {
+
+    // aquatic
+    &.aquatic {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $aquatic-color!important;
+            .icon { path { fill: $aquatic-color!important; } }
+            &.forfeit-btn { color: $aquatic-color; }
+        }
+    }
+
+    // avian
+    &.avian {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $avian-color!important;
+            .icon { path { fill: $avian-color!important; } }
+            &.forfeit-btn { color: $avian-color; }
+        }
+    }
+
+    // dinosaur
+    &.dinosaur {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $dinosaur-color!important;
+            .icon { path { fill: $dinosaur-color!important; } }
+            &.forfeit-btn { color: $dinosaur-color; }
+        }
+    }
+
+    // insect
+    &.insect {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $insect-color!important;
+            .icon { path { fill: $insect-color!important; } }
+            &.forfeit-btn { color: $insect-color; }
+        }
+    }
+
+    // wildlife
+    &.wildlife {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $wildlife-color!important;
+            .icon { path { fill: $wildlife-color!important; } }
+            &.forfeit-btn { color: $wildlife-color; }
+        }
+    }
+
+    // reptile
+    &.reptile {
+        .forfeit-btn, .action-btn, .action-info {
+            border-color: $reptile-color!important;
+            .icon { path { fill: $reptile-color!important; } }
+            &.forfeit-btn { color: $reptile-color; }
+        }
+    }
+
+    // overwrite forfeit button
+    .forfeit-btn:hover {
+        border-color: white!important;
+        color: black!important;
     }
 }

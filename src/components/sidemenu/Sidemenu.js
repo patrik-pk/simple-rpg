@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import SidemenuLink from './SidemenuLink'
 import levelTresholds from '../../data/levelTresholds'
+import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
 import { ReactComponent as Dice } from '../../resources/icons/dice.svg'
 
@@ -27,7 +28,7 @@ function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
 
                 {/* Icon */}
                 <div className='character-icon'>
-
+                    <PlayerIcon />
                 </div>
 
                 {/* Info - name, currency, level */}

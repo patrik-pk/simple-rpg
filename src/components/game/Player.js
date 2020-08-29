@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Action from './Action'
 import Stat from '../Stat'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
-import { ReactComponent as PlayerImage } from '../../resources/icons/creatures/target.svg'
+import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 
 // Action SVGs
 import { ReactComponent as ActionMelee } from '../../resources/icons/actions/action_melee.svg'
@@ -33,6 +33,7 @@ function Player(props) {
                 bonuses,
                 receivedCrit,
                 damageTaken,
+                classVal: playerClass
             }, 
             enemy: { meleeDodgeChance, rangedDodgeChance }, 
             canAttack 
@@ -51,16 +52,16 @@ function Player(props) {
         const mappedBonuses = bonuses.map((bonus, i) => {
             return <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
         })
-    
+
         // Render
         return(
-            <div className='character-container' id='player'>
+            <div className={`character-container ${playerClass}`} id='player'>
     
                 {/* Top - Image, Floating Damage */}
                 <div className='top'>
     
                     {/* Icon */}
-                    <PlayerImage />
+                    <PlayerIcon />
     
                     {/* Floating Damage */}
                     <p className={`floating-damage ${critClass} ${floatingDmgClass}`}>
@@ -101,7 +102,7 @@ function Player(props) {
     
     
                 {/* Actions */}
-                <div className={`actions ${actionsClass}`}>
+                <div className={`actions ${actionsClass} ${playerClass}`}>
 
                     {/* Forfeit Button */}
                     <Link className='btn forfeit-btn active' to='/menu'>FF</Link>

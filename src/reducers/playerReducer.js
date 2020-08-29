@@ -16,15 +16,16 @@ const initialState = {
     critChance: 20,
     blockChance: 0,
     bonuses: [
+        { name: 'aquatic', value: 0 },
         { name: 'avian', value: 0 },
         { name: 'dinosaur', value: 0 },
         { name: 'insect', value: 0 },
         { name: 'wildlife', value: 0 },
         { name: 'reptile', value: 0 },
-        { name: 'aquatic', value: 0 },
     ],
     damageTaken: '',
-    receivedCrit: false
+    receivedCrit: false,
+    classVal: 'aquatic'
 }
 
 export default (state = initialState, action) => {
@@ -75,7 +76,8 @@ export default (state = initialState, action) => {
                 rangedDamage: values.rangedDamage,
                 critChance: values.critChance,
                 blockChance: values.blockChance,
-                bonuses: values.bonuses
+                bonuses: values.bonuses,
+                classVal: values.classVal
             }
 
         // Load State

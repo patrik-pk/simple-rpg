@@ -21,10 +21,18 @@
 
         // Character Icon
         .character-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 50px;
             height: 50px;
-            background: #ccc;
+            background: white;
             border-radius: 5px;
+
+            svg {
+                width: 70%;
+                height: 70%;
+            }
 
             @include medium {
                 width: 32px;

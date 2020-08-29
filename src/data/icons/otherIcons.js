@@ -1,3 +1,4 @@
+import { ReactComponent as Knight } from '../../resources/icons/knight.svg'
 import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
 import { ReactComponent as Info } from '../../resources/icons/info.svg'
 import { ReactComponent as Close } from '../../resources/icons/close.svg'
@@ -9,6 +10,7 @@ import { ReactComponent as MeleeAction } from '../../resources/icons/actions/act
 import { ReactComponent as RangedAction } from '../../resources/icons/actions/action_ranged_light.svg'
 
 const otherIcons = {
+    knight: { name: 'Player Icon', icon: Knight, url: 'https://www.flaticon.com/free-icon/knight_2863130' },
     attack: { name: 'Attack Button', icon: Attack, url: 'https://www.flaticon.com/free-icon/sword_942612' },
     info: { name: 'Info Button', icon: Info, url: 'https://www.flaticon.com/free-icon/info_159645' },
     close: { name: 'Close Button', icon: Close, url: 'https://www.flaticon.com/free-icon/close_1828778' },
