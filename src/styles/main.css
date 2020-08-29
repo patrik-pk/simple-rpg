@@ -2959,6 +2959,12 @@
 }
 
 .item-container .item .stats .name-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   min-width: 150px;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -3000,7 +3006,6 @@
 
 .item-container .item .stats .name-container #name {
   width: 100%;
-  text-align: center;
   font-weight: bold;
   font-size: 16px;
 }
