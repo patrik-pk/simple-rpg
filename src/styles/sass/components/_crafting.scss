@@ -20,6 +20,16 @@
                 margin-bottom: 25px;
                 font-weight: bold;
                 text-align: center;
+
+                @include medium {
+                    margin-bottom: 15px;
+                    font-size: 12px;
+                }
+
+                @include small {
+                    font-size: 10px;
+                    margin-bottom: 12px;
+                }
             }
         }
 
@@ -29,66 +39,100 @@
             flex-direction: column;
             width: 276px;
             margin: 0 auto;
-    
-            // Players Drops
-            .player-drops {
-                margin: 30px auto 0 auto;
-                padding: 5px;
+
+            @include large {
+                width: 215px;
+            }
+
+            @include medium {
+                width: 177px;
+            }
+
+            @include small {
+                width: 153px;
+            }
+
+            // Item Containers
+            .player-drops, .craftable-items, .drops-needed {
+                margin: 20px auto 0 auto;
                 border: 1px white solid;
-                
-                // Item Row
+                padding: 5px;
+
+                @include medium {
+                    margin-top: 10px;
+                    padding: 3px;
+                }
+
+                // Row
                 ul {
                     display: flex;
-        
+
                     // Item
                     .item-container {
                         width: 44px;
                         height: 44px;
-                    }
-                }
-            }
-        
-            // Craftable Items
-            .craftable-items {
-                margin: 20px auto 0 auto;
-                padding: 5px;
-                border: 1px white solid;
-        
-                ul {
-                    display: flex;
-        
-                    .item-container {
-                        width: 44px;
-                        height: 44px;
-        
+
+                        @include large {
+                            width: 32px;
+                            height: 32px;;
+                        }
+
+                        @include medium {
+                            width: 26px;
+                            height: 26px;
+                        }
+
+                        @include small {
+                            width: 22px;
+                            height: 22px;
+                        }
+
                         .item {
                             width: 40px;
                             height: 40px;
+
+                            @include large {
+                                width: 29px;
+                                height: 29px;
+                            }
+
+                            @include medium {
+                                width: 24px;
+                                height: 24px;
+                            }
+
+                            @include small {
+                                width: 22px;
+                                height: 22px;
+                            }
                         }
                     }
                 }
             }
-        
-            // Craft Section
-            .drops-needed {
-                margin: 20px auto 0 auto;
-                padding: 5px;
-                border: 1px white solid;
-        
-                ul {
-                    display: flex;
-        
-                    .item-container {
-                        width: 44px;
-                        height: 44px;
-                    }
+
+            // Players Drops
+            .player-drops {
+                margin-top: 30px;
+
+                @include large {
+                    margin-top: 20px;
                 }
             }
-        
+
             // Craft Button    
             .craft-btn {
                 margin-top: 20px;
                 align-self: flex-end;
+
+                @include large {
+                    margin-top: 10px;
+                    padding: 6px 0;
+                }
+
+                @include small {
+                    padding: 4px 0;
+                    font-size: 10px;
+                }
             }
         }
     }

@@ -10,6 +10,14 @@
         margin: auto;
         padding-top: 40px;
 
+        @include large {
+            padding-top: 20px;
+        }
+
+        @include small {
+            padding-top: 10px;
+        }
+
         // Left (Equipped Items, Stats, Shop
         .left {
     
@@ -23,17 +31,31 @@
                     padding: 10px;
                     background: black;
                     border: 1px white solid;
+
+                    @include medium {
+                        padding: 5px;
+                    }
     
                     ul {
                         &:first-child {
                             margin-right: 10px;
-                            @include mobile { margin-right: 2px; }
+
+                            @include medium {
+                                margin-right: 5px;
+                            }
+
+                            @include medium {
+                                margin-right: 3px;
+                            }
                         }
     
                         li {
                             margin-bottom: 5px; 
                             &:last-child { margin-bottom: 0; }
-                            @include mobile { margin-bottom: 2px; }
+
+                            @include medium {
+                                margin-bottom: 3px;
+                            }
                         }
                     }
                 }
@@ -41,18 +63,49 @@
                 // Player Stats
                 .player-stats {
                     margin: 5px 0 0 30px;
-    
-                    @include mobile {
-                        font-size: 10px;
-                        margin: 5px 0 0 10px;
+
+                    @include large {
+                        margin: 0 0 0 15px;
+                    }
+
+                    @include small {
+                        margin: 0 0 0 10px;
                     }
     
                     .name {
                         margin-bottom: 10px;
+
+                        @include large {
+                            margin-bottom: 5px;
+                        }
+
+                        @include medium {
+                            font-size: 12px;
+                        }
+
+                        @include small {
+                            font-size: 10px;
+                        }
                     }
     
                     ul {
-                        li { padding: 0 3px; }
+                        li { 
+                            padding: 0 3px; 
+
+                            @include large {
+                                font-size: 14px;
+                            }
+
+                            @include medium {
+                                font-size: 11px;
+                            }
+
+                            @include small {
+                                font-size: 9px;
+                                line-height: 11px;
+                            }
+                        }
+
                     }
                 }   
             }
@@ -63,6 +116,16 @@
                 margin-top: 40px;
                 padding: 20px;
                 border: 1px white solid;
+
+                @include large {
+                    margin-top: 20px;
+                    padding: 10px;
+                }
+
+                @include medium {
+                    margin-top: 15px;
+                    padding: 7px;
+                }
                 
                 // Items
                 .items {
@@ -80,6 +143,10 @@
                     display: flex;
                     justify-content: space-between;
                     margin-top: 10px;
+
+                    @include medium {
+                        margin-top: 5px;
+                    }
     
                     // .reroll-btn, .buy-btn {}
                 }
@@ -94,15 +161,27 @@
                 border: 1px white solid;
                 padding: 10px;
 
+                @include medium {
+                    padding: 5px;
+                }
+
                 ul {
                     display: flex;
                     margin-bottom: 5px;
                     &:last-child { margin-bottom: 0px; }
+
+                    @include medium {
+                        margin-bottom: 3px;
+                    }
                 }
 
                 .item-container {
                     margin-right: 5px;
                     &:last-child { margin-right: 0; }
+
+                    @include medium {
+                        margin-right: 3px;
+                    }
                 }
             }
 
@@ -112,10 +191,18 @@
                 justify-content: space-between;
                 margin-top: 10px;
 
+                @include small {
+                    margin-top: 7px;
+                }
+
                 // Equip & Sell Buttons
                 .options-right {
                     .sell-btn {
                         margin-left: 10px;
+
+                        @include small {
+                            margin-left: 5px;
+                        }
                     }
                 }
 
@@ -124,6 +211,19 @@
                     position: relative;
                     width: 40px;
                     padding: 11px 0;
+
+                    @include large {
+                        width: 35px;
+                        padding: 7px 0;
+                    }
+
+                    @include medium {
+                        width: 30px;
+                    }
+
+                    @include small {
+                        width: 25px;
+                    }
 
                     p {
                         position: absolute;

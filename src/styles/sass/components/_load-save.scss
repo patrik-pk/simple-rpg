@@ -13,18 +13,22 @@
         flex-grow: 1;
         width: 80%;
         margin: 60px auto 0 auto;
+
+        @include large {
+            margin-top: 30px;
+        }
+
+        @include small {
+            margin-top: 15px;
+        }
     
         // Found Saves
         .found-saves {
             width: 370px;
             margin: 0 auto;
-            // border: 1px white solid;
-    
-            // Saves Heading
-            .saves-heading {
-                margin-bottom: 10px;
-                font-size: 18px;
-                font-weight: normal;
+
+            @include medium {
+                width: 350px;
             }
     
             // Save Item
@@ -40,6 +44,17 @@
                 &.empty {
                     justify-content: center;
                 }
+
+                @include medium {
+                    height: 45px;
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                }
+
+                @include small {
+                    height: 40px;
+                    font-size: 10px;
+                }
     
                 // Item Options
                 .item-options {
@@ -51,6 +66,16 @@
                         &:first-child {
                             margin-left: 0;
                         }
+
+                        @include medium {
+                            width: 60px;
+                            padding: 6px 0;
+                            font-size: 12px;
+                        }
+
+                        @include small {
+                            font-size: 10px;
+                        }
                     }
                 }
             }
@@ -60,6 +85,18 @@
         .save-btn {
             margin: 40px auto 0 auto;
             width: 100px;
+
+            @include large {
+                margin-top: 20px;
+                width: 80px;
+                padding: 8px 0;
+            }
+
+            @include medium {
+                margin-top: 20px;
+                width: 70px;
+                padding: 6px 0;
+            }
         }
     }
 
@@ -69,5 +106,13 @@
         bottom: 10px;
         width: 100%;
         text-align: center;
+
+        @include medium {
+            font-size: 12px;
+        }
+
+        @include small {
+            font-size: 10px;
+        }
     }
 }

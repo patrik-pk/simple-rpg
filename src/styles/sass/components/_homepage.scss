@@ -20,6 +20,10 @@
             .main-heading {
                 font-size: 40px;
 
+                @include small {
+                    font-size: 32px;
+                }
+
                 .colorized {
                     color: orangered;
                 }
@@ -30,6 +34,11 @@
                 font-size: 20px;
                 margin-top: 10px;
                 font-weight: normal;
+
+                @include small {
+                    margin-top: 5px;
+                    font-size: 16px;
+                }
             }
         }
 
@@ -39,11 +48,20 @@
             justify-content: center;
             margin-top: 30px;
 
+            @include small {
+                margin-top: 15px;
+            }
+
             .continue-link {
                 display: block;
                 width: 120px;
                 padding: 8px 0;
                 text-align: center;
+
+                @include small {
+                    width: 80px;
+                    padding: 6px 0;
+                }
             }
         }
 
@@ -71,30 +89,49 @@
                 border-color: orangered;
             }
 
+            .star-icon, .amount {
+                padding: 7px;
+
+                @include small {
+                    padding: 5px;
+                }
+            }
+
             // Star Icon
             .star-icon {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 7px;
 
                 svg {
                     width: 14px;
                     height: 14px;
                     fill: white;
+
+                    @include small {
+                        width: 10px;
+                        height: 10px;
+                    }
                 }
             }
 
             // Github Text
             .github-text {
                 margin-right: 5px;
+
+                @include small {
+                    font-size: 12px;
+                }
             }
             
             // Stars Amount
             .amount {
                 height: 100%;
-                padding: 7px;
                 border-left: 1px white solid;
+
+                @include small {
+                    font-size: 12px;
+                }
             }
         }
     }

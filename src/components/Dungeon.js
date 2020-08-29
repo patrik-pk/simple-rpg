@@ -18,7 +18,7 @@ function Dungeon({ dungeon }) {
         } else {
             // return EnemyCard component with enemy from bosses.js, which is a
             // nested array with first index representing specie and the second one actual boss
-            return <EnemyCard key={item.type} enemy={bosses[i][item.current]} />
+            return <EnemyCard propClass='dungeon' key={item.type} enemy={bosses[i][item.current]} />
         }
     })
 

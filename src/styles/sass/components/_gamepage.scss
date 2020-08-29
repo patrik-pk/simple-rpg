@@ -13,15 +13,13 @@
         flex-direction: row;
         justify-content: space-between;
 
-        @include mobile {
-            padding: 120px 40px 0 40px;
+        @include large {
+            padding: 120px 80px 0 80px;
         }
 
-        @include tablet {
-            padding: 120px 50px 0 50px;
+        @include medium {
+            padding: 30px 30px 0 30px;
         }
-
-        // .character-container would go here, but I made own file for it (check _character.scss)
     }
 
     // Game Over
@@ -36,21 +34,30 @@
         background: black;
         border: 1px white solid;
 
-        &.active {
-            display: block;
+        @include medium {
+            width: 240px;
+            padding: 7px;
         }
 
-        @include mobile {
+        @include small {
             width: 200px;
-            padding: 5px 0;
+            padding: 5px;
+        }
+
+        &.active {
+            display: block;
         }
 
         // End Text
         .end-text {
             text-align: center;
             font-size: 20px;
-            @include mobile {
-                padding-top: 4px;
+
+            @include medium {
+                font-size: 16px;
+            }
+
+            @include small {
                 font-size: 12px;
             }
         }
@@ -62,9 +69,16 @@
             align-items: center;
             margin-top: 15px;
             padding: 0 30px;
-            @include mobile {
+
+            @include medium {
+                margin-top: 10px;
+                padding: 0 5px;
+                font-size: 12px;
+            }
+
+            @include small {
                 margin-top: 7px;
-                padding: 0 10px;
+                font-size: 9px;
             }
 
             // Left (Acquired XP, Gold)
@@ -77,11 +91,6 @@
                         margin-bottom: 2px;
                         &:last-child {
                             margin-left: 12px;
-                        }
-
-                        @include mobile {
-                            margin-bottom: 1px;
-                            font-size: 9px;
                         }
                     }
                 }
@@ -97,10 +106,8 @@
                         margin-left: 0;
                     }
 
-                    .stats {
-                        @include mobile {
-                            margin-bottom: 30px;
-                        }
+                    @include small {
+                        margin-left: 3px;
                     }
                 }
             }
@@ -112,12 +119,15 @@
             margin: 12px auto 0 auto;
             padding: 8px 0;
             text-align: center;
-            
-            @include mobile {
-                width: 60px;
-                margin-top: 8px;
+
+            @include medium {
+                margin-top: 7px;
+                padding: 6px 0;
+            }
+
+            @include small {
                 padding: 4px 0;
-                font-size: 10px;
+                font-size: 8px;
             }
         }
     } 

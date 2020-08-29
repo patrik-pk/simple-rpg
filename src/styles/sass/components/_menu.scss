@@ -9,6 +9,14 @@
         display: block!important;
     }
 
+    @include medium {
+        margin-top: 10px;
+    }
+
+    @include small {
+        margin-top: 7px;
+    }
+
     // Menu Items
     .menu-items {
         display: grid;
@@ -20,6 +28,19 @@
             padding: 13px 0;
             cursor: pointer;
             transition: 500ms all;
+
+            @include large {
+                padding: 10px 0;
+            }
+
+            @include medium {
+                font-size: 14px;
+            }
+
+            @include small {
+                padding: 7px 0;
+                font-size: 12px;
+            }
 
             &:hover {
                 background: white;
@@ -44,6 +65,11 @@
     margin: 30px auto 0 auto;
     border: 1px white solid;
 
+    @include small {
+        width: 100px;
+        margin-top: 20px;
+    }
+
     // Menu Items
     .menu-items {
         display: block;
@@ -60,6 +86,53 @@
             // don't know why this happens
             &:first-child { margin-top: -1px; }
             &:last-child { border-bottom: 0; }
+
+            @include large {
+                padding: 8px 0;
+            }
+
+            @include medium {
+                font-size: 12px;
+                padding: 7px 0;
+            }
+
+            @include small {
+                font-size: 10px;
+                padding: 5px 0;
+            }
+        }
+    }
+}
+
+// Rarity Menu
+.rarity-menu {
+
+    @include large {
+        margin-top: 20px;
+    }
+}
+
+// Dungeon Menu
+.dungeon-menu {
+
+    .menu-item {
+
+        @include medium {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px!important;
+            border-right: 1px white solid;
+            &:last-child {
+                border-right: 0;
+            }
+            p:last-child {
+                letter-spacing: -1px;
+            }
+        }
+
+        @include small {
+            padding: 7px!important;
+            font-size: 10px!important;
         }
     }
 }

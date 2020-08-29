@@ -12,6 +12,16 @@
         display: block;
     }
 
+    @include medium {
+        left: $character-width-medium;
+        padding-left: 20px;
+    }
+
+    @include small {
+        left: $character-width-small;
+        padding-left: 12px;
+    }
+
     // Forfeit Button
     .forfeit-btn {
         display: flex;
@@ -21,6 +31,17 @@
         height: 50px;
         margin-top: 20px;
         padding: 0;
+
+        @include medium {
+            width: 40px;
+            height: 40px;
+        }
+
+        @include small {
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+        }
     }
 
     // Columns Container
@@ -32,6 +53,22 @@
         $action-size: 50px;
         $info-ml: 20px;
         $action-gap: 15px;
+
+        $action-size-med: 40px;
+        $info-ml-med: 15px;
+        $action-gap-med: 10px;
+
+        $action-size-small: 30px;
+        $info-ml-small: 12px;
+        $action-gap-small: 7px;
+
+        @include medium {
+            margin-top: 20px;
+        }
+
+        @include small {
+            margin-top: 15px;
+        }
 
         // Columns
         .melee-column, .ranged-column {
@@ -51,6 +88,18 @@
                     .action-info {
                         display: block;
                     }
+                }
+
+                @include medium {
+                    width: $action-size-med;
+                    height: $action-size-med;
+                    margin-top: $action-gap-med;
+                }
+
+                @include medium {
+                    width: $action-size-small;
+                    height: $action-size-small;
+                    margin-top: $action-gap-small;
                 }
                 
                 // Icon
@@ -78,8 +127,21 @@
                     background: black;
                     border: 1px white solid;
 
+                    @include medium {
+                        left: calc(#{$action-size-med} + #{$info-ml-med});
+                    }
+
+                    @include small {
+                        left: calc(#{$action-size-small} + #{$info-ml-small});
+                        padding: 7px;
+                    }
+
                     p {
                         color: white;
+
+                        @include small {
+                            font-size: 10px;
+                        }
                     }
 
                     // Name
@@ -88,14 +150,29 @@
                         text-align: center;
                     }
 
+                    .hit-chance, .dmg {
+
+                        @include small {
+                            font-size: 8px;    
+                        }
+                    }
+
                     // Hit Chance
                     .hit-chance { 
                         margin-top: 10px; 
+
+                        @include small {
+                            margin-top: 3px;
+                        }
                     }
 
                     // Min & Max Damage
                     .dmg { 
                         margin-top: 3px; 
+
+                        @include small {
+                            margin-top: 1px;
+                        }
                     }
                 }
             }
@@ -117,12 +194,28 @@
             // calculate left so that it displays at same position as in ranged column
             .action-info {
                 left: calc(2 * #{$action-size} + #{$action-gap} + #{$info-ml})!important;
+
+                @include medium {
+                   left: calc(2 * #{$action-size-med} + #{$action-gap-med} + #{$info-ml-med})!important; 
+                }
+
+                @include small {
+                   left: calc(2 * #{$action-size-small} + #{$action-gap-small} + #{$info-ml-small})!important; 
+                }
             }
         }
     
         // Ranged Column
         .ranged-column {
             margin-left: $action-gap;
+
+            @include medium {
+                margin-left: $action-gap-med;
+            }
+
+            @include small {
+                margin-left: $action-gap-small;
+            }
         }
     }
 }

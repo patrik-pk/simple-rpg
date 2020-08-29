@@ -11,51 +11,20 @@
     width: auto;
     background: black;
 
-    @include extra-small-width {
-        min-width: auto;
-        max-width: auto;
-        overflow-x: scroll;
-    }
-
-    @include extra-small-height {
-        min-height: 300px;
-        max-height: 300px;
-        overflow-y: scroll!important;
-        .content-container {
-            height: 100%;
-            .side-menu, .main-content {
-                height: 100%;
-            }
-        }
-    }
-
-    @include mobile {
-        display: block;
-    }
-
     // Content Container
     .content-container {
         display: flex;
         border: 1px white solid;
         height: 600px;
-
-        @include extra-small-height {
-            min-height: 300px;
+        
+        @include large {
+            height: 480px;
         }
-
-        @include mobile {
+        
+        @include medium {
             width: 100%;
             height: 100vh;
-            border: none;
         }
-
-        @include tablet {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-
-        // Sidemenu would go here
     
         // Main Content
         .main-content {
@@ -65,18 +34,12 @@
             box-sizing: border-box;
             background: black;
 
-            @include extra-small-width {
-                min-width: 370px;
+            @include large {
+                width: 640px;
             }
 
-            @include mobile {
-                min-width: 75%;
-                max-width: 75%;
-            }
-
-            @include tablet {
-                min-width: 75%;
-                max-width: 75%;
+            @include medium {
+                width: 100vw;
             }
         }
     }

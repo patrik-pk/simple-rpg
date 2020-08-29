@@ -5,17 +5,59 @@
     display: flex;
     flex-direction: column;
     width: 30%;
-    height: 330px;
+    height: 320px;
     border: 1px white solid;
+
+    &.dungeon {
+        height: 340px;
+
+        @include large {
+            height: 280px;
+        }
+
+        @include medium {
+            width: 25%;
+            height: 240px;
+        }
+
+        @include small {
+            height: 180px;
+        }
+    }
+
+    @include large {
+        width: 30%;
+        height: 280px;
+    }
+
+    @include medium {
+        height: 240px;;
+    }
+
+    @include small {
+        height: 180px;
+    }
     
     // Top - Name (level) + Attack Button
     .top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 14px;
         padding: 5px 5px 5px 10px;
         border-bottom: 1px white solid;
+
+        @include large {
+            font-size: 14px;
+        }
+
+        @include medium {
+            font-size: 12px;
+        }
+
+        @include small {
+            font-size: 10px;
+            padding: 3px 3px 3px 7px;   
+        }
 
         // .name {}
 
@@ -26,9 +68,39 @@
             width: 32px;
             height: 32px;
 
+            @include large {
+                width: 24px;
+                height: 24px;
+            }
+
+            @include medium {
+                width: 20px;
+                height: 20px;
+            }
+
+            @include small {
+                width: 16px;
+                height: 16px;
+            }
+
             svg {
                 width: 14px;
                 height: 14px;
+
+                @include large {
+                    width: 12px;
+                    height: 12px;
+                }
+
+                @include medium {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                @include small {
+                    width: 8px;
+                    height: 8px;
+                }
             }
         }
     }
@@ -41,10 +113,37 @@
         border-bottom: 1px white solid;
         height: 170px;
 
+        @include large {
+            height: 150px;
+        }
+
+        @include medium {
+            height: 130px;
+        }
+
+        @include small {
+            height: 100px;
+        }
+
         svg {
             width: 100px;
             height: 100px;
             fill: white;
+
+            @include large {
+                width: 80px;
+                height: 80px;
+            }
+
+            @include medium {
+                width: 70px;
+                height: 70px;
+            }
+
+            @include small {
+                width: 55px;
+                height: 55px;
+            }
         }
     }
 
@@ -63,6 +162,21 @@
             align-items: center;
             width: 50px;
             height: 50px;
+
+            @include large {
+                width: 40px;
+                height: 40px;
+            }
+
+            @include medium {
+                width: 35px;
+                height: 35px;
+            }
+
+            @include small {
+                width: 25px;
+                height: 25px;
+            }
             
             svg {
                 width: 75%;
@@ -81,6 +195,18 @@
                 font-size: 14px;
                 &.active {
                     display: block;
+                }
+
+                @include large {
+                    font-size: 12px;
+                }
+
+                @include medium {
+                    font-size: 10px;
+                }
+
+                @include small {
+                    font-size: 8px;
                 }
             }
         }
@@ -101,6 +227,14 @@
             margin-top: 15px;
             &:not(.active) {
                 svg { fill: white!important; }
+            }
+
+            @include medium {
+                margin-top: 10px;
+            }
+
+            @include small {
+                margin-top: 7px;
             }
 
             &:hover {
@@ -152,12 +286,47 @@
                 svg {
                     width: 16px;
                     height: 16px;
+
+                    @include medium {
+                        width: 10px;
+                        height: 10px;
+                    }
+
+                    @include small {
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+
+                @include medium {
+                    width: 22px;
+                    height: 22px;
+                }
+
+                @include small {
+                    top: 3px;
+                    right: 3px;
+                    width: 18px;
+                    height: 18px;
                 }
             }
 
             // Name (+ level)
             .name {
                 padding-top: 45px;
+
+                @include large {
+                    padding-top: 35px;
+                }
+
+                @include medium {
+                    padding-top: 25px;
+                    font-size: 14px;
+                }
+
+                @include small {
+                    font-size: 11px;
+                }
                 
                 p {
                     font-weight: bold;
@@ -168,6 +337,20 @@
             // Stats
             .stats {
                 padding: 25px 20px 10px 20px;
+
+                @include large {
+                    padding-top: 20px;
+                }
+
+                @include medium {
+                    padding-top: 15px;
+                    font-size: 14px;
+                }
+
+                @include small {
+                    padding: 10px 10px 10px 10px;
+                    font-size: 10px;
+                }
             }
         }
     }

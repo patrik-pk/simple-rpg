@@ -10,8 +10,8 @@ import {
 const initialState = {
     experience: 0,
     acquiredXp: 0,
-    currentLevel: 6,
-    gameFlow: levelTresholds[6].gameFlow,
+    currentLevel: 0,
+    gameFlow: levelTresholds[0].gameFlow,
     gold: 150,
     acquiredGold: 0,
     rolls: 5,

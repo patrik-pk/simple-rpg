@@ -13,18 +13,27 @@
     box-sizing: content-box;
     transition: 500ms all;
 
+    @include large {
+        width: 32px;
+        height: 32px;
+    }
+
+    @include medium {
+        width: 26px;
+        height: 26px;
+    }
+
+    @include small {
+        width: 22px;
+        height: 22px;
+    }
+
     // selected
     &.selected { 
         background: $item_selected_color!important; 
         border: 1px $item_selected_color solid; 
     }
 
-    // mobile
-    @include mobile {
-        width: 26px;
-        height: 26px;
-    }
-    
     // Item
     .item {
         position: relative;
@@ -42,9 +51,19 @@
             }
         }
 
-        @include mobile {
-            width: 23px;
-            height: 23px;
+        @include large {
+            width: 29px;
+            height: 29px;
+        }
+
+        @include medium {
+            width: 24px;
+            height: 24px;
+        }
+
+        @include small {
+            width: 22px;
+            height: 22px;
         }
 
         // Item Icon
@@ -55,14 +74,10 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 26px;
-                height: 26px;
+                width: 70%;
+                height: 70%;
                 transition: 500ms all;
-    
-                @include mobile {
-                    width: 18px;
-                    height: 18px;
-                }
+
             }
         }
 
@@ -73,7 +88,12 @@
             right: 1px;
             color: white;
             font-size: 13px;
-            @include mobile {
+
+            @include medium {
+                font-size: 10px;
+            }
+
+            @include small {
                 bottom: 0;
                 font-size: 8px;
             }
@@ -91,12 +111,6 @@
             z-index: 100;
             text-align: left;
             font-size: 14px;
-            @include mobile {
-                min-width: 150px;
-                margin-left: 210px;
-                font-size: 10px;
-                padding: 5px;
-            }
 
             // Bonus, Stat, Name Container
             .bonus-container, .stat-container, .name-container {
@@ -123,10 +137,6 @@
                     text-align: center;
                     font-weight: bold;
                     font-size: 16px;
-                    @include mobile { 
-                        font-size: 12px;
-                        margin-bottom: 5px;
-                    }
                 }
             }
 

@@ -22,7 +22,8 @@ function EnemyCard(props) {
         inventoryRows,
         resetPlayer, 
         setEnemy, 
-        startGame 
+        startGame,
+        propClass
     } = props
 
     const {
@@ -78,7 +79,7 @@ function EnemyCard(props) {
     const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
 
     return (
-        <div className={`enemy-card ${specie}`}>
+        <div className={`enemy-card ${specie} ${propClass}`}>
 
             {/* Top */}
             <div className='top'>

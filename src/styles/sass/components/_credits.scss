@@ -13,18 +13,26 @@
         overflow-y: scroll;
         &::-webkit-scrollbar { display: none; }
 
+        @include medium {
+            padding: 20px 20px 20px 0;
+        }
+
         // Icons
         .icons {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
             grid-auto-rows: 180px;
-            column-gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
             row-gap: 10px;
+            column-gap: 10px;
             flex-grow: 1;
             margin-right: 30px;
             overflow-y: scroll;
             &::-webkit-scrollbar {
                 width: 10px;
+
+                @include small {
+                    width: 7px;
+                }
             }
             &::-webkit-scrollbar-track {
                 background: #222;   
@@ -36,6 +44,18 @@
             }
             &::-webkit-scrollbar-button {
                 display: none;
+            }
+
+            @include medium {
+                grid-auto-rows: 150px;
+                margin-right: 25px;
+            }
+
+            @include small {
+                grid-auto-rows: 120px;
+                row-gap: 5px;
+                column-gap: 5px;
+                margin-right: 15px;
             }
 
             // make creature icons larger
@@ -56,6 +76,14 @@
                 // Name
                 .name {
                     font-size: 18px;
+
+                    @include medium {
+                        font-size: 14px;
+                    }
+
+                    @include small {
+                        font-size: 12px;
+                    }
                 }
 
                 // Icon
@@ -66,6 +94,16 @@
                     width: 70px;
                     height: 70px;
                     margin-top: 15px;
+
+                    @include medium {
+                        width: 60px;
+                        height: 60px;
+                    }
+
+                    @include small {
+                        width: 50px;
+                        height: 50px;
+                    }
 
                     svg {
                         width: 70%;
@@ -80,6 +118,12 @@
                     padding: 5px 0;
                     text-align: center;
                     margin-top: 15px;
+
+                    @include small {
+                        width: 50px;
+                        margin-top: 10px;
+                        padding: 3px 0;
+                    }
                 }
             }
         }
