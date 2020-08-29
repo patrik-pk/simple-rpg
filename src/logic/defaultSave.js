@@ -17,7 +17,7 @@ export default function defaultSave() {
         acquiredXp: 0,
         currentLevel: randomLevel,
         gameFlow: levelTresholds[randomLevel].gameFlow,
-        gold: Math.round(150 * levelTresholds[randomLevel].gameFlow * randomGenerator(95, 105, 0.01)),
+        gold: 200/*Math.round(150 * levelTresholds[randomLevel].gameFlow * randomGenerator(95, 105, 0.01))*/,
         acquiredGold: 0,
         rolls: 5,
         rollTimer: null
