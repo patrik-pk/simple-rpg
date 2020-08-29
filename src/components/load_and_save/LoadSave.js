@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import SaveItem from './SaveItem'
 import { loadState } from '../../actions/loadActions'
 import rerollEnemies from '../../logic/rerollEnemies'
-import SaveItem from './SaveItem'
+import recalculateItems from '../../logic/recalculateItems'
+import calculatePlayerStats from '../../logic/calculatePlayerStats'
 import randomGenerator from '../../logic/randomGenerator'
 import equipIcons from '../../data/icons/equipIcons'
 import dropIcons from '../../data/icons/dropIcons'
@@ -22,6 +24,10 @@ function LoadSave({ state, loadState }) {
     // Load all saves from localStorage
     const loadAllSaves = () => {
         const savesArr = []
+
+        // load default save if there is nothing in the localStorage
+        // if(localStorage.length === 0) saveData(defaultSave()) 
+        // localStorage.setItem('000Default', defaultSave())
 
         // loop through localStorage and create save item for each index
         for(let i = 0; i < 4; i++) {
@@ -56,8 +62,7 @@ function LoadSave({ state, loadState }) {
         let loadedState = localStorage.getItem(key)
         loadedState = JSON.parse(loadedState)
 
-        // This is propably the worst section of code in this
-        // project. After stringifying (saving) state into localStorage,
+        // Unfortunately after stringifying (saving) state into localStorage,
         // every icon from each item gets removed because it is a symbol.
         // So here I have to assign proper icon to every item.
         loadedState = assignProperIcons(loadedState)
@@ -72,7 +77,7 @@ function LoadSave({ state, loadState }) {
     }
 
     // Save Data
-    const saveData = () => {
+    const saveData = parameterState => {
         // only 4 items can be saved
         if(!(localStorage.length < 4)) return
 
@@ -86,7 +91,7 @@ function LoadSave({ state, loadState }) {
         const key = randomGenerator(100, 999) + date
 
         // stringify current state
-        const stringifiedState = JSON.stringify(state)
+        const stringifiedState = JSON.stringify(parameterState)
 
         // and save it to localStorage
         localStorage.setItem(key, stringifiedState)
@@ -113,7 +118,7 @@ function LoadSave({ state, loadState }) {
                 </div>
 
                 {/* Save Button */}
-                <button className={`btn save-btn ${saveClass}`} onClick={saveData}>Save</button>
+                <button className={`btn save-btn ${saveClass}`} onClick={() => saveData(state)}>Save</button>
 
             </div>
 
@@ -183,16 +188,7 @@ const assignProperIcons = loadedState => {
         }
     })
 
-    // loadedState.game.classicEnemies.forEach(enemy => {
-    //     enemy.enemyType.drops.forEach(drop => {
-    //         const index = mappedDropIconKeys.indexOf(drop.iconKey)
-    //         drop.icon = dropArr[index].icon
-    //         console.log(drop.icon)
-    //     })
-    // })
-    
-    console.log(loadedState)
-
+    // Reroll Enemies
     loadedState.game.classicEnemies = rerollEnemies(loadedState.character.currentLevel)
 
     // Return updated state

@@ -8,11 +8,11 @@ import {
 } from '../actions/types'
 
 const initialState = {
-    currentHp: 200,
+    currentHp: 300,
     maxHp: 300,
-    armor: 0,
-    meleeDamage: 1,
-    rangedDamage: 150000,
+    armor: 30,
+    meleeDamage: 150,
+    rangedDamage: 150,
     critChance: 20,
     blockChance: 0,
     bonuses: [

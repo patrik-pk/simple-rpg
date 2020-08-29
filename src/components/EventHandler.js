@@ -3,16 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { setRolls, setRollTimer } from '../actions/characterActions'
+import { updatePlayerStats } from '../actions/playerActions'
+import calculatePlayerStats from '../logic/calculatePlayerStats'
+import defaultSave from '../logic/defaultSave'
 
 // Component that handles time events
-function EventHandler(props) {
-
-    // Destructure From Props
-    const {
-        rolls,
-        setRolls,
-        setRollTimer
-    } = props
+function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTimer, updatePlayerStats }) {
 
     const [canAddRoll, setCanAddRoll] = useState(true)
     const timer = 15
@@ -35,6 +31,13 @@ function EventHandler(props) {
 
     //     tick()
     // }
+
+    // Calculate Player Stats & create default save 
+    // if localStorage is empty on App Init
+    useEffect(() => {
+        if(localStorage.length === 0) localStorage.setItem('123Default', JSON.stringify(defaultSave()))
+        updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
+    }, [updatePlayerStats, equippedItems, currentLevel])
 
     // Handle Adding Rolls
     useEffect(() => {
@@ -61,11 +64,15 @@ function EventHandler(props) {
 
 EventHandler.propTypes = {
     rolls: PropTypes.number.isRequired,
+    equippedItems: PropTypes.array.isRequired,
+    currentLevel: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
     rolls: state.character.rolls,
-    rollTimer: state.character.rollTimer
+    rollTimer: state.character.rollTimer,
+    equippedItems: state.items.equippedItems,
+    currentLevel: state.character.currentLevel
 })
 
-export default connect(mapStateToProps, { setRolls, setRollTimer })(EventHandler)
+export default connect(mapStateToProps, { setRolls, setRollTimer, updatePlayerStats })(EventHandler)

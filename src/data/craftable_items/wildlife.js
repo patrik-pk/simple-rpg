@@ -29,11 +29,11 @@ const specificBonuses = [
     { name: 'dinosaur', value: 0 },
     { name: 'insect', value: 0 },
     { name: 'reptile', value: 0 },
-    { name: 'wildlife', value: 100 },
+    { name: 'wildlife', value: 75 },
 ]
 
-const soulAmount = 10
-const otherAmount = 15
+const soulAmount = 25
+const otherAmount = 25
 
 // Functions To Simplify Syntax
 const genItem = (level, key, rarity, type, iconIndex) => {
@@ -146,42 +146,42 @@ const wildlifeItems = {
     // MEDIUM
     medium: [
         {
-            item: genItem(otherAmount, 'wildlife_medium_0', wildlife, helmet, 4),
+            item: genItem(15, 'wildlife_medium_0', wildlife, helmet, 4),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_1', wildlife, chestplate, 0),
+            item: genItem(15, 'wildlife_medium_1', wildlife, chestplate, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_2', wildlife, pants, 0),
+            item: genItem(15, 'wildlife_medium_2', wildlife, pants, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_3', wildlife, gloves, 0),
+            item: genItem(15, 'wildlife_medium_3', wildlife, gloves, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_4', wildlife, boots, 0),
+            item: genItem(15, 'wildlife_medium_4', wildlife, boots, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_5', wildlife, sword, 7),
+            item: genItem(15, 'wildlife_medium_5', wildlife, sword, 7),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
@@ -189,42 +189,42 @@ const wildlifeItems = {
         },
 
         {
-            item: genItem(otherAmount, 'wildlife_medium_6', wildlife, necklace, 6),
+            item: genItem(15, 'wildlife_medium_6', wildlife, necklace, 6),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_7', wildlife, earrings, 0),
+            item: genItem(15, 'wildlife_medium_7', wildlife, earrings, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_8', wildlife, ring, 0),
+            item: genItem(15, 'wildlife_medium_8', wildlife, ring, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_9', wildlife, belt, 0),
+            item: genItem(15, 'wildlife_medium_9', wildlife, belt, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_10', wildlife, shield, 4),
+            item: genItem(15, 'wildlife_medium_10', wildlife, shield, 4),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'wildlife_medium_11', wildlife, bow, 0),
+            item: genItem(15, 'wildlife_medium_11', wildlife, bow, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium wildlife soul', dropIcons.mediumSoul.icon, ['wildlife-soul']),
                 genDrop(otherAmount, 'medium wildlife leather', dropIcons.mediumLeather.icon, ['wildlife-leather']),

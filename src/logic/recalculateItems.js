@@ -1,4 +1,5 @@
 import levelTresholds from '../data/levelTresholds'
+import randomGenerator from '../logic/randomGenerator'
 
 // after level up, certain items need to be updated
 // - craftable items in Crafting section
@@ -22,8 +23,8 @@ export default function recalculateItems(gameFlow, newLevel, craftableItems, inv
 
     // Get proper index for updating items based on newLevel (0 = low, 1 = medium, 2 = high)
     let levelTypeIndex = 0
-    if(newLevel < 15) levelTypeIndex = 0
-    if(newLevel > 15 && newLevel < 25) levelTypeIndex = 1
+    if(newLevel <= 15) levelTypeIndex = 0
+    if(newLevel > 15 && newLevel <= 25) levelTypeIndex = 1
     if(newLevel > 25) levelTypeIndex = 2
 
     // Recalculate Craftable Items
@@ -82,7 +83,8 @@ export default function recalculateItems(gameFlow, newLevel, craftableItems, inv
             else if(item.type ==='drop') {
     
                 // just update the goldValue
-                item.goldValue = Math.round(item.goldValue * (newGameFlow / oldGameFlow)) 
+                // item.goldValue = Math.round(item.goldValue * (newGameFlow / oldGameFlow)) 
+                item.goldValue = Math.round(10 * item.amount * newGameFlow)
             }
         })  
 

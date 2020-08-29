@@ -128,7 +128,7 @@ function Action(props) {
                         }
 
                         // generate random amount for drop
-                        const randomAmount = randomGenerator(3, 5)
+                        const randomAmount = randomGenerator(3, 7)
 
                         // get drop based on index and push it to alreadyGenerated array, 
                         // so it can't be generated again
@@ -136,8 +136,8 @@ function Action(props) {
                         alreadyGeneratedDrops.push(index)
 
                         // push that drop into items array
-                        const dropGoldValue = randomAmount * goldValue * levelTresholds[newLevel].gameFlow
-                        items.push(generateDrop(iconKey, 'Inventory', invItems.length + i, randomAmount, name, icon, [classVal], dropGoldValue))
+                        const dropGoldValue = Math.round(randomAmount * goldValue * levelTresholds[newLevel].gameFlow)
+                        items.push(generateDrop(iconKey, 'Inventory', invItems.length + i, randomAmount, name, icon, [classVal ? classVal : []], dropGoldValue))
                     }
 
                     
@@ -153,10 +153,11 @@ function Action(props) {
                             if(gameType === 'Boss') {
 
                                 // get levelTypeIndex based on level (low = 0-10, medium = 11 - 23, high = 24+)
-                                let levelTypeIndex
+                                let levelTypeIndex = 0
                                 if (enemyLevel <= 10) levelTypeIndex = 0
                                 else if (enemyLevel > 10 && enemyLevel <= 23) levelTypeIndex = 1
-                                else levelTypeIndex = 2
+                                else if (enemyLevel > 23) levelTypeIndex = 2
+                                console.log(levelTypeIndex)
 
                                 // generate random index for rarity
                                 const randRarityIndex = randomGenerator(1, 10)
@@ -213,7 +214,7 @@ function Action(props) {
                 itemObtained(obtainedItems)
 
                 // generate new classic enemies
-                generateClassicEnemies(currentLevel)
+                generateClassicEnemies(newLevel)
 
                 // break out of this function
                 return

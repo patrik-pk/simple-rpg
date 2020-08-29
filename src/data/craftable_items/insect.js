@@ -27,13 +27,13 @@ const specificBonuses = [
     { name: 'aquatic', value: 0 },
     { name: 'insect', value: 0 },
     { name: 'insect', value: 0 },
-    { name: 'insect', value: 100 },
+    { name: 'insect', value: 75 },
     { name: 'reptile', value: 0 },
     { name: 'wildlife', value: 0 },
 ]
 
-const soulAmount = 10
-const otherAmount = 15
+const soulAmount = 25
+const otherAmount = 25
 
 // Functions To Simplify Syntax
 const genItem = (level, key, rarity, type, iconIndex) => {
@@ -146,42 +146,42 @@ const insectItems = {
     // MEDIUM
     medium: [
         {
-            item: genItem(otherAmount, 'insect_medium_0', insect, helmet, 3),
+            item: genItem(15, 'insect_medium_0', insect, helmet, 3),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_1', insect, chestplate, 4),
+            item: genItem(15, 'insect_medium_1', insect, chestplate, 4),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_2', insect, pants, 2),
+            item: genItem(15, 'insect_medium_2', insect, pants, 2),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_3', insect, gloves, 0),
+            item: genItem(15, 'insect_medium_3', insect, gloves, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_4', insect, boots, 1),
+            item: genItem(15, 'insect_medium_4', insect, boots, 1),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_5', insect, sword, 5),
+            item: genItem(15, 'insect_medium_5', insect, sword, 5),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
@@ -189,42 +189,42 @@ const insectItems = {
         },
 
         {
-            item: genItem(otherAmount, 'insect_medium_6', insect, necklace, 4),
+            item: genItem(15, 'insect_medium_6', insect, necklace, 4),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_7', insect, earrings, 0),
+            item: genItem(15, 'insect_medium_7', insect, earrings, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_8', insect, ring, 0),
+            item: genItem(15, 'insect_medium_8', insect, ring, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_9', insect, belt, 0),
+            item: genItem(15, 'insect_medium_9', insect, belt, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_10', insect, shield, 3),
+            item: genItem(15, 'insect_medium_10', insect, shield, 3),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),
             ]
         },
         {
-            item: genItem(otherAmount, 'insect_medium_11', insect, bow, 0),
+            item: genItem(15, 'insect_medium_11', insect, bow, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium insect soul', dropIcons.mediumSoul.icon, ['insect-soul']),
                 genDrop(otherAmount, 'medium poison', dropIcons.mediumPoison.icon, ['poison']),

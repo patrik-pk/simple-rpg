@@ -25,15 +25,15 @@ const { avian } = rarities
 // Variables
 const specificBonuses = [
     { name: 'aquatic', value: 0 },
-    { name: 'avian', value: 100 },
+    { name: 'avian', value: 75 },
     { name: 'dinosaur', value: 0 },
     { name: 'insect', value: 0 },
     { name: 'reptile', value: 0 },
     { name: 'wildlife', value: 0 },
 ]
 
-const soulAmount = 10
-const otherAmount = 15
+const soulAmount = 25
+const otherAmount = 25
 
 // Functions To Simplify Syntax
 const genItem = (level, key, rarity, type, iconIndex) => {
@@ -146,42 +146,42 @@ const avianItems = {
     // MEDIUM
     medium: [
         {
-            item: genItem(otherAmount, 'avian_medium_0', avian, helmet, 2),
+            item: genItem(15, 'avian_medium_0', avian, helmet, 2),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_1', avian, chestplate, 2),
+            item: genItem(15, 'avian_medium_1', avian, chestplate, 2),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_2', avian, pants, 0),
+            item: genItem(15, 'avian_medium_2', avian, pants, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_3', avian, gloves, 0),
+            item: genItem(15, 'avian_medium_3', avian, gloves, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_4', avian, boots, 3),
+            item: genItem(15, 'avian_medium_4', avian, boots, 3),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_5', avian, sword, 3),
+            item: genItem(15, 'avian_medium_5', avian, sword, 3),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
@@ -189,42 +189,42 @@ const avianItems = {
         },
 
         {
-            item: genItem(otherAmount, 'avian_medium_6', avian, necklace, 3),
+            item: genItem(15, 'avian_medium_6', avian, necklace, 3),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_7', avian, earrings, 2),
+            item: genItem(15, 'avian_medium_7', avian, earrings, 2),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_8', avian, ring, 0),
+            item: genItem(15, 'avian_medium_8', avian, ring, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_9', avian, belt, 0),
+            item: genItem(15, 'avian_medium_9', avian, belt, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_10', avian, shield, 0),
+            item: genItem(15, 'avian_medium_10', avian, shield, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),
             ]
         },
         {
-            item: genItem(otherAmount, 'avian_medium_11', avian, bow, 0),
+            item: genItem(15, 'avian_medium_11', avian, bow, 0),
             dropsNeeded: [
                 genDrop(soulAmount, 'medium avian soul', dropIcons.mediumSoul.icon, ['avian-soul']),
                 genDrop(otherAmount, 'medium feather', dropIcons.mediumFeather.icon, ['feather']),

@@ -25,7 +25,7 @@ class EquipItem {
         level = 0,
         isSelected = false,
         type = 'equip',
-        classes
+        classes = []
     ) {
         this.iconKey = iconKey
         this.destination = destination

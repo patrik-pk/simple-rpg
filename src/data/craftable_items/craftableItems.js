@@ -6,7 +6,7 @@ import insect from './insect'
 import wildlife from './wildlife'
 import reptile from './reptile'
 
-// Exported Craftable Items
+// Exported Craftable Items - I will clean this up soon don't worry
 const craftableItems = [
 
     // Low

@@ -70,7 +70,21 @@ function Inventory(props) {
             // if item at index of i exists, put it into array
             if(sliced[i]) {
                 const item = sliced[i]
-                if(type === 'inventory' && i > 2) item.classes = ['stats-left']
+                const hasLeftClass = item.classes.includes('stats-left')
+
+                if(type === 'inventory' && i > 2) {
+
+                    if(!hasLeftClass) {
+                        item.classes = [...item.classes, 'stats-left'] 
+                    }
+                } 
+                else {
+                    if(hasLeftClass) {
+                        const leftIndex = item.classes.indexOf('stats-left')
+                        item.classes.splice(leftIndex, 1)
+                    }
+                }
+
                 newItems.push(item) 
             }
             // if it doesn't push null into the array
