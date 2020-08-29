@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 import SaveItem from './SaveItem'
 import { loadState } from '../../actions/loadActions'
 import rerollEnemies from '../../logic/rerollEnemies'
-import recalculateItems from '../../logic/recalculateItems'
-import calculatePlayerStats from '../../logic/calculatePlayerStats'
 import randomGenerator from '../../logic/randomGenerator'
 import equipIcons from '../../data/icons/equipIcons'
 import dropIcons from '../../data/icons/dropIcons'
@@ -24,10 +22,6 @@ function LoadSave({ state, loadState }) {
     // Load all saves from localStorage
     const loadAllSaves = () => {
         const savesArr = []
-
-        // load default save if there is nothing in the localStorage
-        // if(localStorage.length === 0) saveData(defaultSave()) 
-        // localStorage.setItem('000Default', defaultSave())
 
         // loop through localStorage and create save item for each index
         for(let i = 0; i < 4; i++) {

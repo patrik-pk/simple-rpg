@@ -1,5 +1,5 @@
 import levelTresholds from '../data/levelTresholds'
-import randomGenerator from '../logic/randomGenerator'
+// import randomGenerator from '../logic/randomGenerator'
 
 // after level up, certain items need to be updated
 // - craftable items in Crafting section
