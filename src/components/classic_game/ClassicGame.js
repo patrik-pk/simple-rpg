@@ -32,7 +32,7 @@ function ClassicGame(props) {
     const rerollClass = rerollActive ? 'active2' : ''
 
     // Timer Display
-    const timerDisplay = rollTimer ? `Next roll in: ${rollTimer}` : 'Rolls are full'
+    const timerDisplay = rollTimer ? `*Adding rolls every ${rollTimer}s*` : 'Rolls are full'
 
     // Render
     return (

@@ -15,24 +15,26 @@ function EventHandler(props) {
     } = props
 
     const [canAddRoll, setCanAddRoll] = useState(true)
-    const timer = 10
+    const timer = 15
 
-    // Countdown Function
-    const countdown = (duration) => {
-        let seconds = duration
+    // Countdown Function - causes to rerender components every tick, 
+    // so not being used until I manage to fix this
 
-        const tick = () => {
-            seconds--
-            if (seconds > 0) {
-                setTimeout(() => {
-                    setRollTimer(seconds)
-                    tick()
-                }, 1000)
-            }
-        }
+    // const countdown = (duration) => {
+    //     let seconds = duration
 
-        tick()
-    }
+    //     const tick = () => {
+    //         seconds--
+    //         if (seconds > 0) {
+    //             setTimeout(() => {
+    //                 setRollTimer(seconds)
+    //                 tick()
+    //             }, 1000)
+    //         }
+    //     }
+
+    //     tick()
+    // }
 
     // Handle Adding Rolls
     useEffect(() => {
@@ -40,7 +42,7 @@ function EventHandler(props) {
             if (canAddRoll) {
                 setCanAddRoll(false)
                 setRollTimer(timer)
-                countdown(timer)
+                // countdown(timer)
 
                 setTimeout(() => {
                     setRolls(1)
