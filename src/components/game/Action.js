@@ -16,7 +16,6 @@ import getReward from '../../logic/getReward'
 import recalculateItems from '../../logic/recalculateItems'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
-import rerollEnemies from '../../logic/rerollEnemies'
 import randomGenerator from '../../logic/randomGenerator'
 import deepCopy from '../../logic/deepCopy'
 import calculatePlayerStats from '../../logic/calculatePlayerStats'
@@ -209,10 +208,12 @@ function Action(props) {
                 else addItemToInv(rewardItems)
                 
                 // render the item in Game.js
-                itemObtained(rewardItems)
+                const obtainedItems = deepCopy(rewardItems)
+                obtainedItems[0].classes = ['stats-up']
+                itemObtained(obtainedItems)
 
                 // generate new classic enemies
-                generateClassicEnemies(rerollEnemies(currentLevel))
+                generateClassicEnemies(currentLevel)
 
                 // break out of this function
                 return
@@ -245,7 +246,7 @@ function Action(props) {
                     addReward(reward)
 
                     // generate new classic enemies
-                    generateClassicEnemies(rerollEnemies(currentLevel))
+                    generateClassicEnemies(currentLevel)
 
                     // break out of this function
                     return

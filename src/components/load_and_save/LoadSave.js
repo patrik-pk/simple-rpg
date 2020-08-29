@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { loadState } from '../../actions/loadActions'
+import rerollEnemies from '../../logic/rerollEnemies'
 import SaveItem from './SaveItem'
 import randomGenerator from '../../logic/randomGenerator'
 import equipIcons from '../../data/icons/equipIcons'
@@ -171,7 +172,7 @@ const assignProperIcons = loadedState => {
         }
     })
 
-    // And with invItems
+    // Inventory Items
     loadedState.items.invItems.forEach(item => {
         if (item.type === 'equip') {
             const index = mappedEquipIconKeys.indexOf(item.iconKey)
@@ -182,6 +183,18 @@ const assignProperIcons = loadedState => {
         }
     })
 
+    // loadedState.game.classicEnemies.forEach(enemy => {
+    //     enemy.enemyType.drops.forEach(drop => {
+    //         const index = mappedDropIconKeys.indexOf(drop.iconKey)
+    //         drop.icon = dropArr[index].icon
+    //         console.log(drop.icon)
+    //     })
+    // })
+    
+    console.log(loadedState)
+
+    loadedState.game.classicEnemies = rerollEnemies(loadedState.character.currentLevel)
+
     // Return updated state
     return loadedState
 }
@@ -191,7 +204,7 @@ LoadSave.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    state
+    state: state
 })
 
 export default connect(mapStateToProps, { loadState })(LoadSave)

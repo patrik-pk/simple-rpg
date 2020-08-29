@@ -25,6 +25,7 @@ class EquipItem {
         level = 0,
         isSelected = false,
         type = 'equip',
+        classes
     ) {
         this.iconKey = iconKey
         this.destination = destination
@@ -39,6 +40,7 @@ class EquipItem {
         this.level = level
         this.isSelected = isSelected
         this.type = type
+        this.classes = classes
     }
 }
 

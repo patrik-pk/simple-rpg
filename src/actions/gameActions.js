@@ -41,7 +41,7 @@ export const itemObtained = item => ({
 }) 
 
 // GENERATE CLASSIC ENEMIES
-export const generateClassicEnemies = newEnemies => ({
+export const generateClassicEnemies = currentLevel => ({
     type: GENERATE_CLASSIC_ENEMIES,
-    payload: newEnemies
+    payload: currentLevel
 })

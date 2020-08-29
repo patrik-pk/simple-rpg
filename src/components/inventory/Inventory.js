@@ -61,14 +61,18 @@ function Inventory(props) {
     }, [equippedItems, updatePlayerStats, currentLevel])
 
     // Slice item's into a 6 item array and put them into the InventoryRow Component
-    const getItems = (items, min, max) => {
+    const getItems = (type, items, min, max) => {
         const sliced = items.slice(min, max) 
         let newItems = []
 
         // Loop through max-min (6),
         for(let i = 0; i < max-min; i++) {
             // if item at index of i exists, put it into array
-            if(sliced[i]) newItems.push(sliced[i]) 
+            if(sliced[i]) {
+                const item = sliced[i]
+                if(type === 'inventory' && i > 2) item.classes = ['stats-left']
+                newItems.push(item) 
+            }
             // if it doesn't push null into the array
             else newItems.push(null)
         }
@@ -81,7 +85,7 @@ function Inventory(props) {
         const mapped = []
 
         for(let i = 0; i < inventoryRows; i++) {
-            mapped.push(<InventoryRow key={i} itemsProp={getItems(invItems, i * 6, (i * 6) + 6)} itemHandleClick={props.itemHandleClick} {...props} />)
+            mapped.push(<InventoryRow key={i} itemsProp={getItems('inventory', invItems, i * 6, (i * 6) + 6)} itemHandleClick={props.itemHandleClick} {...props} />)
         }
 
         return mapped
@@ -227,8 +231,8 @@ function Inventory(props) {
 
                         {/* Equipped Items */}
                         <div className='current-equipment'>
-                            <InventoryRow itemsProp={getItems(equippedItems, 0, 6)} {...props} />
-                            <InventoryRow itemsProp={getItems(equippedItems, 6, 12)} {...props} />
+                            <InventoryRow itemsProp={getItems('equip', equippedItems, 0, 6)} {...props} />
+                            <InventoryRow itemsProp={getItems('equip', equippedItems, 6, 12)} {...props} />
                         </div>
 
                         {/* Player Stats */}
@@ -253,10 +257,7 @@ function Inventory(props) {
 
                         {/* Items */}
                         <div className='items'>
-                            <ItemComponent data={shopItems[0]} {...props} />
-                            <ItemComponent data={shopItems[1]} {...props} />
-                            <ItemComponent data={shopItems[2]} {...props} />
-                            <ItemComponent data={shopItems[3]} {...props} />
+                            { shopItems.map(item => <ItemComponent key={item.key} data={item} />) }
                         </div>
 
                         {/* Options */}

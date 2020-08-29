@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import EnemyCard from './EnemyCard'
 import { setRolls } from '../../actions/characterActions'
 import { generateClassicEnemies } from '../../actions/gameActions'
-import rerollEnemies from '../../logic/rerollEnemies'
 
 function ClassicGame(props) {
 
@@ -22,11 +21,11 @@ function ClassicGame(props) {
     // Reroll
     const reroll = () => {
         setRolls(-1)
-        generateClassicEnemies(rerollEnemies(currentLevel))
+        generateClassicEnemies(currentLevel)
     }
 
     // If there are no classicEnemies, generate them - they have no starting value
-    if(classicEnemies.length === 0) generateClassicEnemies(rerollEnemies(currentLevel))
+    if(classicEnemies.length === 0) generateClassicEnemies(currentLevel)
 
     // Reroll Active
     const rerollActive = rolls > 0 ? true : false

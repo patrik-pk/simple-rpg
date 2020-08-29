@@ -149,6 +149,10 @@ export default function generateItem(level, destination, key, gameType, specific
         return value
     })()
 
+    const classes = (destination === 'Shop' || destination === 'Game') 
+        ? ['stats-up'] 
+        : null
+
     // Final Return
     return new EquipItem(
         iconKey,
@@ -163,5 +167,7 @@ export default function generateItem(level, destination, key, gameType, specific
         goldValue,
         level >= 5 ? level : 5,
         false,
+        'equip',
+        classes
     )
 }

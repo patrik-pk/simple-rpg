@@ -1,3 +1,4 @@
+import rerollEnemies from '../logic/rerollEnemies'
 import {
     START_GAME, 
     END_GAME,
@@ -67,9 +68,10 @@ export default (state = initialState, action) => {
 
         // Generate Classic Enemies
         case GENERATE_CLASSIC_ENEMIES:
+
             return {
                 ...state,
-                classicEnemies: action.payload
+                classicEnemies: rerollEnemies(action.payload)
             }
 
         // Load State
