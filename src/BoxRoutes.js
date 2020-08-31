@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Sidemenu from './components/sidemenu/Sidemenu'
-import ClassicGame from './components/classic_game/ClassicGame'
+import ClassicGame from './components/ClassicGame/ClassicGame'
 import Dungeon from './components/Dungeon'
 import Inventory from './components/inventory/Inventory'
 import Crafting from './components/Crafting'

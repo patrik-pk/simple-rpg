@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import EnemyCard from './EnemyCard'
+import EnemyCard from '../EnemyCard/EnemyCard'
 import { setRolls } from '../../actions/characterActions'
 import { generateClassicEnemies } from '../../actions/gameActions'
 

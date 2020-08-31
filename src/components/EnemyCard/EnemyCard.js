@@ -15,7 +15,7 @@ import { ReactComponent as Info } from '../../resources/icons/info.svg'
 
 function EnemyCard(props) {
 
-    // Destructure From Props
+    // Destructure Props
     const { 
         enemy, 
         invItems, 
@@ -53,30 +53,17 @@ function EnemyCard(props) {
     const setGame = () => {
         // reset player hp, damageTaken
         resetPlayer()
-        // generate enemy
+        // set enemy
         setEnemy(enemy)
         // set battleStatus to 'inBattle', canAttack to true, reset acquired gold
         startGame()
-    }
-
-    // Difficulty
-    const difficultyVal = () => {
-        if (type === 'Boss') return 'Boss'
-        else {
-            switch (difficulty) {
-                case 1: return 'Easy'
-                case 2: return 'Medium'
-                case 3: return 'Hard'
-                default: break;
-            }
-        }
     }
 
     // Check if Player has space in inventory
     const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 3 ? true : false
 
     // Specie To UpperCase
-    const specieName = specie.charAt(0).toUpperCase() + specie.slice(1)
+    const specieName = firstLetterUpperCase(specie)
 
     return (
         <div className={`enemy-card ${specie} ${propClass}`}>
@@ -145,7 +132,7 @@ function EnemyCard(props) {
                         <Stat name='R-Dodge(%):' value={Math.round(rangedDodgeChance)} />
                         <Stat name='Damage:' value={damage} />
                         <Stat name='Crit(%):' value={critChance} />
-                        <Stat name='Difficulty:' value={difficultyVal()} />
+                        <Stat name='Difficulty:' value={difficultyName(difficulty, type)} />
                         <Stat name='Specie:' value={specieName} />
                     </ul>
                 </div>
@@ -153,6 +140,17 @@ function EnemyCard(props) {
 
         </div>
     )
+}
+
+// Set Difficulty Name Based On Difficulty Index
+const difficultyName = (difficulty, type) => {
+    if (type === 'Boss') return 'Boss'
+    else switch (difficulty) {
+        case 1: return 'Easy'
+        case 2: return 'Medium'
+        case 3: return 'Hard'
+        default: break;
+    }
 }
 
 EnemyCard.propTypes = {

@@ -10,10 +10,10 @@ import { addItemToInv, updateItems } from '../../actions/itemsActions'
 import { addDungeon } from '../../actions/dungeonActions'
 
 import levelTresholds from '../../data/levelTresholds'
-import attackEnemy from '../../logic/attackEnemy'
-import attackPlayer from '../../logic/attackPlayer'
-import getReward from '../../logic/getReward'
-import recalculateItems from '../../logic/recalculateItems'
+import attackEnemy from './attackEnemy'
+import attackPlayer from './attackPlayer'
+import getReward from './getReward'
+import recalculateItems from './recalculateItems'
 import generateItem from '../../logic/generateItem'
 import generateDrop from '../../logic/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
@@ -102,7 +102,7 @@ function Action(props) {
                 addReward(reward)
 
                 // Check if player leveled up
-                const { didLevelUp, newLevel } = reward.levelUp
+                const { didLevelUp, currentLevel: newLevel } = reward
 
                 // generate items
                 const rewardItems = (() => {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Action from './Action'
+import Action from '../Action/Action'
 import Stat from '../Stat'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
 import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'

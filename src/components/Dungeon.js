@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import EnemyCard from './classic_game/EnemyCard'
+import EnemyCard from './EnemyCard/EnemyCard'
 import Menu from './Menu'
 import bosses from '../data/bosses'
 
