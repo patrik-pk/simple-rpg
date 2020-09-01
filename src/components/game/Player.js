@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import Action from '../Action/Action'
 import Stat from '../Stat'
-import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
+import { firstLetterUpperCase } from '../../shared/utils'
 import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 
 // Action SVGs
@@ -49,9 +49,9 @@ function Player(props) {
         const actionsClass = canAttack ? 'active' : ''
 
         // Map Bonuses
-        const mappedBonuses = bonuses.map((bonus, i) => {
-            return <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
-        })
+        const mappedBonuses = bonuses.map((bonus, i) => 
+            <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
+        )
 
         // Render
         return(
@@ -100,14 +100,12 @@ function Player(props) {
                     </ul>
                 </div>
     
-    
                 {/* Actions */}
                 <div className={`actions ${actionsClass} ${playerClass}`}>
 
                     {/* Forfeit Button */}
                     <Link className='btn forfeit-btn active' to='/menu'>FF</Link>
                     
-                    {/* TODO: Map Actions? */}
                     {/* Columns Container */}
                     <div className='columns-container'>
 
@@ -130,7 +128,7 @@ function Player(props) {
                 </div>
             </div>
         )
-    } else return null
+    }
 }
 
 Player.propTypes = {

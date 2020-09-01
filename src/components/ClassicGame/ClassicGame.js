@@ -8,7 +8,7 @@ import { generateClassicEnemies } from '../../actions/gameActions'
 
 function ClassicGame(props) {
 
-    // Destructure From Props
+    // Destructure Props
     const { 
         generateClassicEnemies,
         setRolls,
@@ -24,7 +24,7 @@ function ClassicGame(props) {
         generateClassicEnemies(currentLevel)
     }
 
-    // If there are no classicEnemies, generate them - they have no starting value
+    // If there are no classicEnemies, generate them
     if(classicEnemies.length === 0) generateClassicEnemies(currentLevel)
 
     // Reroll Active

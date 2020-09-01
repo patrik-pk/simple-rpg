@@ -12,25 +12,6 @@ function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTim
     const [canAddRoll, setCanAddRoll] = useState(true)
     const timer = 15
 
-    // Countdown Function - causes to rerender components every tick, 
-    // so not being used until I manage to fix this
-
-    // const countdown = (duration) => {
-    //     let seconds = duration
-
-    //     const tick = () => {
-    //         seconds--
-    //         if (seconds > 0) {
-    //             setTimeout(() => {
-    //                 setRollTimer(seconds)
-    //                 tick()
-    //             }, 1000)
-    //         }
-    //     }
-
-    //     tick()
-    // }
-
     // Calculate Player Stats & create default save 
     // if localStorage is empty on App Init
     useEffect(() => {
@@ -44,7 +25,6 @@ function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTim
             if (canAddRoll) {
                 setCanAddRoll(false)
                 setRollTimer(timer)
-                // countdown(timer)
 
                 setTimeout(() => {
                     setRolls(1)

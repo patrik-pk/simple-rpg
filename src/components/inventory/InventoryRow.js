@@ -1,13 +1,8 @@
 import React from 'react'
-import ItemComponent from './ItemComponent'
+import Item from '../Item/Item'
 
-export default function InventoryRow(props) {
-
-    const mapped =  props.itemsProp.map((item, i) => <ItemComponent key={i} data={item} {...props} handleClick={props.itemHandleClick} />)
-
+export default function InventoryRow({ itemsProp }) {
     return (
-        <ul>
-        { mapped }
-        </ul>
+        <ul>{ itemsProp.map((item, i) => <Item key={i} data={item} />) }</ul>
     )
 }

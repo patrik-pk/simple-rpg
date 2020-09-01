@@ -14,7 +14,7 @@ export default (player, enemy, enemyLevel, typeOfAttack, strengthOfAttack, hitCh
   const didEnemyDodge = logic.calculateDodge(specific, typeOfAttackValues, hitChanceMultiplier)
 
   // if enemy dodged, return 'dodged' and don't continue
-  if(didEnemyDodge) return { p_dmgDealt: 'dodged', p_didCrit: false }
+  if(didEnemyDodge) return { dmgDealt: 'dodged', didCrit: false }
 
   const strengthOfAttackMultiplier = logic.setStrengthOfAttackMultiplier(specific, strengthOfAttack)
   const bonusMultiplier = logic.setBonusMultiplier(enemy.enemyType.specie, player.bonuses)
@@ -23,7 +23,7 @@ export default (player, enemy, enemyLevel, typeOfAttack, strengthOfAttack, hitCh
 
   // Final return
   if(specific) return damageDealt
-  else return { p_dmgDealt: damageDealt, p_didCrit: crit.didCrit }
+  else return { dmgDealt: damageDealt, didCrit: crit.didCrit }
 }
 
 // Logic

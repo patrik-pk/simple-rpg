@@ -3,7 +3,7 @@ import { randomGenerator } from '../../shared/utils'
 export default (player, enemy, character) => {
 
     // If player blocked the attack, return 'blocked' and don't continue
-    if (player.blockChance > randomGenerator(0, 99)) return { e_dmgDealt: 'blocked', e_didCrit: false }
+    if (player.blockChance > randomGenerator(0, 99)) return { dmgDealt: 'blocked', didCrit: false }
 
     // Set gameFlow based on player level with minimum value of 1
     const gameFlow = character.gameFlow >= 5 ? character.gameFlow : 1
@@ -12,7 +12,7 @@ export default (player, enemy, character) => {
     const damageDealt = logic.calculateDamageDealt(enemy.damage, player.armor, didEnemyCrit.value, gameFlow)
 
     // Return damageDealt along with didCrit boolean
-    return { e_dmgDealt: damageDealt, e_didCrit: didEnemyCrit.didCrit }
+    return { dmgDealt: damageDealt, didCrit: didEnemyCrit.didCrit }
 }
 
 // Logic

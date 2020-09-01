@@ -7,7 +7,7 @@ import Stat from '../Stat'
 import { setEnemy } from '../../actions/enemyActions'
 import { resetPlayer } from '../../actions/playerActions'
 import { startGame } from '../../actions/gameActions'
-import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
+import { firstLetterUpperCase } from '../../shared/utils'
 
 import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
 import { ReactComponent as Close } from '../../resources/icons/close.svg'
@@ -51,16 +51,13 @@ function EnemyCard(props) {
 
     // Set Game
     const setGame = () => {
-        // reset player hp, damageTaken
         resetPlayer()
-        // set enemy
         setEnemy(enemy)
-        // set battleStatus to 'inBattle', canAttack to true, reset acquired gold
         startGame()
     }
 
     // Check if Player has space in inventory
-    const haveSpaceInv = invItems.length <= (inventoryRows * 6) - 3 ? true : false
+    const hasSpaceInInventory = invItems.length <= (inventoryRows * 6) - 3 ? true : false
 
     // Specie To UpperCase
     const specieName = firstLetterUpperCase(specie)
@@ -91,7 +88,7 @@ function EnemyCard(props) {
                 </div>
 
                 {/* Attack Button */}
-                { haveSpaceInv ?
+                { hasSpaceInInventory ?
                     <Link to='/game' className='attack-container active' onClick={setGame} >
                         <Attack />
                     </Link>

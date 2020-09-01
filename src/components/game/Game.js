@@ -6,11 +6,11 @@ import PropTypes from 'prop-types'
 import { endGame } from '../../actions/gameActions'
 import Enemy from './Enemy'
 import Player from './Player'
-import ItemComponent from '../inventory/ItemComponent'
+import Item from '../Item/Item'
 
 function Game(props) {
 
-    // Destructure From Props
+    // Destructure props
     const {
         game: { battleStatus, generatedItems },
         character: { acquiredXp, acquiredGold },
@@ -20,16 +20,16 @@ function Game(props) {
 
     const history = useHistory()
 
-    // Game On Mount - if enemy doesn't exist (happens on refresh), redirect to /menu
+    // Game on mount - if enemy doesn't exist (happens on refresh), redirect to /menu
     useEffect(() => {
         !enemy && history.push('/menu')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Generated Items
-    const mappedItems = generatedItems ? generatedItems.map(item => <ItemComponent key={item.key} data={item} renderedInGame={true} />) : null
+    // Generated items
+    const mappedItems = generatedItems ? generatedItems.map(item => <Item key={item.key} data={item} renderedInGame={true} />) : null
 
-    // Game Over Class
+    // Game over class
     const gameOverClass = battleStatus !== 'inBattle' ? 'active' : ''
 
     // Render

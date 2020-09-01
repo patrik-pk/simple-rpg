@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import InventoryRow from './InventoryRow'
-import ItemComponent from './ItemComponent'
+import Item from '../Item/Item'
 import Stat from '../Stat'
 import { 
     unselectInvItems, 
@@ -16,12 +16,10 @@ import {
     sortItems 
 } from '../../actions/itemsActions'
 import { setRolls, setGold } from '../../actions/characterActions'
-import { updatePlayerStats } from '../../actions/playerActions'
-import possibleDrops from '../../data/possibleDrops'
-import generateItem from '../../shared/generateItem'
-import generateDrop from '../../shared/generateDrop'
-import randomGenerator from '../../logic/randomGenerator'
-import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
+// import { updatePlayerStats } from '../../actions/playerActions'
+import getItems from './getItems'
+import generateNewShopItems from './generateNewShopItems'
+import { firstLetterUpperCase } from '../../shared/utils'
 
 function Inventory(props) {
 
@@ -37,7 +35,7 @@ function Inventory(props) {
         removeInvItems,
         equipItem,
         sortItems,
-        updatePlayerStats,
+        // updatePlayerStats,
         setRolls, 
         setGold 
     } = props
@@ -54,52 +52,11 @@ function Inventory(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Watch for equippedItems, and re-calulate player stats if they change
-    useEffect(() => {
-        updatePlayerStats(equippedItems, currentLevel)
-    }, [equippedItems, updatePlayerStats, currentLevel])
-
-    // Slice item's into a 6 item array and put them into the InventoryRow Component
-    const getItems = (type, items, min, max) => {
-        const sliced = items.slice(min, max) 
-        let newItems = []
-
-        // Loop through max-min (6),
-        for(let i = 0; i < max-min; i++) {
-            // if item at index of i exists, put it into array
-            if(sliced[i]) {
-                const item = sliced[i]
-                const hasLeftClass = item.classes.includes('stats-left')
-
-                if(type === 'inventory' && i > 2) {
-
-                    if(!hasLeftClass) {
-                        item.classes = [...item.classes, 'stats-left'] 
-                    }
-                } 
-                else {
-                    if(hasLeftClass) {
-                        const leftIndex = item.classes.indexOf('stats-left')
-                        item.classes.splice(leftIndex, 1)
-                    }
-                }
-
-                newItems.push(item) 
-            }
-            // if it doesn't push null into the array
-            else newItems.push(null)
-        }
-
-        return newItems
-    }
-
     // Custom map for creating X InventoryRow components
     const mappedRows = () => {
         const mapped = []
-
-        for(let i = 0; i < inventoryRows; i++) {
-            mapped.push(<InventoryRow key={i} itemsProp={getItems('inventory', invItems, i * 6, (i * 6) + 6)} itemHandleClick={props.itemHandleClick} {...props} />)
-        }
+        for(let i = 0; i < inventoryRows; i++)
+            mapped.push(<InventoryRow key={i} itemsProp={getItems('inventory', invItems, i * 6, (i * 6) + 6)} />)
 
         return mapped
     }
@@ -118,52 +75,7 @@ function Inventory(props) {
     // Reroll Items
     const reroll = () => {
         if(rerollCondition) {
-            let newShopItems = []
-            
-            // 50% chance to 4 generate items, 50% to generate 4 drop items
-            const random = randomGenerator(0, 99)
-
-            for (let i = 0; i < 4; i++) {
-                if(random < 50) newShopItems.push(generateItem(currentLevel, 'Shop', i))
-                else {
-                    const dropsArray = Object.values(possibleDrops)
-                    
-                    // get proper indexes based on level to generate low, medium or high level drops
-                    let dropIndexes = [0, 0]
-                    if(currentLevel <= 12) dropIndexes = [0, 3]
-                    else if(currentLevel > 12 && currentLevel <= 22) dropIndexes = [1, 4]
-                    else if(currentLevel > 22) dropIndexes = [2, 5]
-
-                    // get random drop index out of the two available
-                    const randomIndex = dropIndexes[Math.floor(Math.random() * dropIndexes.length)]
-
-                    // get random specie
-                    const randomSpecie = dropsArray[Math.floor(Math.random() * dropsArray.length)]
-
-                    // make an array out of that specie object 
-                    const specieArr = Object.values(randomSpecie)
-
-                    // get the drop from generated index
-                    const dropItem = specieArr[randomIndex]
-
-                    // destructure drop item
-                    const { iconKey, name, icon, classVal, goldValue } = dropItem
-
-                    // get random amount
-                    const randomAmount = randomGenerator(3, 5)
-
-                    // get gameFlow, which has to be minimum of 1
-                    const gameFlowVal = gameFlow > 1 ? gameFlow : 1
-
-                    // multiply value by gameFlow and that amount
-                    const value = goldValue * gameFlowVal * randomAmount
-
-                    // push the item to the array
-                    newShopItems.push(generateDrop(iconKey, 'Shop', i, randomAmount, name, icon, [classVal], value))
-                }
-            }
-
-            // set the shop items state
+            const newShopItems = generateNewShopItems(currentLevel, gameFlow)
             rerollShopItems(newShopItems)
             setRolls(-1)
         }
@@ -172,18 +84,15 @@ function Inventory(props) {
     // Buy Item
     const buyItem = () => {
         if(buyCondition) {
-            const selectedItem = selectedShopItems[0]
-
-            // make a copy of selectedItem
-            const item = Object.assign({}, selectedItem)
+            const item = Object.assign({}, selectedShopItems[0])
             item.destination = 'Inventory'
             item.isSelected = false
             item.goldValue = Math.ceil(item.goldValue * 0.75)
             item.key = invItems.length
 
-            removeShopItem(selectedItem)
+            removeShopItem(selectedShopItems[0])
             addItemToInv(item)
-            setGold(-selectedItem.goldValue)
+            setGold(-selectedShopItems[0].goldValue)
         }
     }
 
@@ -191,9 +100,7 @@ function Inventory(props) {
     const sellItem = () => {
         if(sellCondition) {
             let goldVal = 0
-            selectedInvItems.forEach(item => {
-                goldVal += item.goldValue
-            })
+            selectedInvItems.forEach(item => goldVal += item.goldValue)
 
             removeInvItems(selectedInvItems)
             setGold(goldVal)
@@ -203,15 +110,17 @@ function Inventory(props) {
     // Equip Item
     const eqItem = () => {
         if(equipCondition) {
-            
+
             // find the matching type, that is already equipped
             const equipped = equippedItems.filter(item => item.name === selectedInvItems[0].name)
 
             // put selected item into equipped items and put the current equipped item into inventory
             equipItem(selectedInvItems[0], equipped[0])
 
-            // recalculate player stats - returns object with new values
-            updatePlayerStats(equippedItems, currentLevel)
+            // items are recalculated in EventHandler.js, so it shouldn't be needed here,
+            // I will delete this later if everything runs fine
+            // // recalculate player stats - returns object with new values
+            // updatePlayerStats(equippedItems, currentLevel)
         }
     }
 
@@ -222,9 +131,9 @@ function Inventory(props) {
     const buyClass = buyCondition ? 'active2' : ''
 
     // Map Bonuses
-    const mappedBonuses = bonuses.map((bonus, i) => {
-        return <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
-    })
+    const mappedBonuses = bonuses.map((bonus, i) =>
+        <Stat key={bonus.name} name={`${firstLetterUpperCase(bonus.name)}:`} value={bonuses[i].value} />
+    )
 
     // Render
     return(
@@ -270,7 +179,7 @@ function Inventory(props) {
 
                         {/* Items */}
                         <div className='items'>
-                            { shopItems.map(item => <ItemComponent key={item.key} data={item} />) }
+                            { shopItems.map(item => <Item key={item.key} data={item} />) }
                         </div>
 
                         {/* Options */}
@@ -334,7 +243,7 @@ export default connect(mapStateToProps, {
     removeInvItems,
     equipItem,
     sortItems,
-    updatePlayerStats,
+    // updatePlayerStats,
     setRolls, 
     setGold 
 })(Inventory)

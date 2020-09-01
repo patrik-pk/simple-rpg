@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import InventoryRow from './inventory/InventoryRow'
+import InventoryRow from './Inventory/InventoryRow'
 import Menu from './Menu'
 import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../actions/itemsActions'
 import mapDrops from '../logic/mapDrops'

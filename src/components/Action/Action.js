@@ -62,7 +62,10 @@ function Action(props) {
         setCanAttack(false)
 
         // calculate damage dealt and return it along with didCrit boolean
-        const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult)
+        const { 
+            dmgDealt: p_dmgDealt, 
+            didCrit: p_didCrit 
+        } = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult)
 
         // if enemy dodged, just set damageTaken to 'Missed', else substract enemys hp by damage dealt
         if(p_dmgDealt === 'dodged') enemyDodged()
@@ -70,6 +73,7 @@ function Action(props) {
             enemyHit(p_dmgDealt, p_didCrit)
             // check if Enemy has 0 or less HP after damage dealt
             if(currentHp - p_dmgDealt <= 0) {
+
                 setBattleStatus('Victory')
                 if(gameType === 'Boss') addDungeon(enemy.dungeon)
 
@@ -77,7 +81,6 @@ function Action(props) {
                 const { didLevelUp, currentLevel: newLevel } = reward
                 addReward(reward)
 
-                // generate items
                 const rewardItems = generateRewardItems(
                     gameType, 
                     invItems.length, 
@@ -89,29 +92,22 @@ function Action(props) {
                     newLevel
                 )
 
-                
                 // If player leveled up, recalculate items & stats. First reward item (always equip item) is passed
                 // into the recalculate function along with invItems, from which it is then updated in the Inventory.
                 // In the recalculate function drops goldValues are recalculated, and THEN the reward drops are passed
-                // into the inventory, where they are handled. 
+                // into the inventory, where their goldValues are handled. 
                 if (didLevelUp) {
                     const invItemsToRecalc = [ ...invItems, rewardItems[0] ]
                     const recalculated = recalculateItems(gameFlow, newLevel, craftableItems, invItemsToRecalc, equippedItems)
-
-                    // update player stats with updated equipped items
                     updatePlayerStats(recalculated.equippedItems, newLevel)
-
-                    // and update the items
                     updateItems(recalculated)
-
-                    // then add the drops to the inventory
                     addItemToInv([ rewardItems[1], rewardItems[2] ])
 
                 } 
-                // If he didn't, just push the items to the inventory
+                // If he didn't, just push all of the reward items into the inventory
                 else addItemToInv(rewardItems)
                 
-                // render the item in Game.js
+                // render the item in Game.js with 'stats-up' class
                 const obtainedItems = deepCopy(rewardItems)
                 obtainedItems[0].classes = ['stats-up']
                 itemObtained(obtainedItems)
@@ -124,26 +120,22 @@ function Action(props) {
             }
         }
 
-        // ENEMY ATTACKS PLAYER AFTER X SECONDS
+        // Then the round continues by enemy attacking player after timeout
 
-        // calculate damage dealt and return it along with didCrit boolean
-        // this function has to fire before setTimeout, because the values are needed in
-        // the second setTimeout
-        const { e_dmgDealt, e_didCrit } = attackPlayer(player, enemy, character)
+        // calculate enemy damage dealt and return it along with didCrit boolean
+        const { dmgDealt: e_dmgDealt, didCrit: e_didCrit } = attackPlayer(player, enemy, character)
 
         setTimeout(() => {
             
             // if Player blocked, just set damageTaken to 'Blocked', else substract Player hp by dmg
-            if(e_dmgDealt === 'blocked') {
-                playerBlocked()
-            } else {
+            if(e_dmgDealt === 'blocked') playerBlocked()
+            else {
                 playerHit(e_dmgDealt, e_didCrit)
 
                 // check if Player has 0 or less HP after damage dealt
                 if (player.currentHp - e_dmgDealt <= 0) {
                     setBattleStatus('Defeat')
-                    
-                    // generate reward and update state
+
                     const reward = getReward(enemy, character, 'Defeat', gameType)
                     addReward(reward)
 
@@ -157,19 +149,15 @@ function Action(props) {
 
         }, game.gameTimer)
 
-        // PLAYER CAN ATTACK AGAIN AFTER X * 2 SECONDS 
-
+        // After timeout * 2 player can attack again 
         setTimeout(() => {
-            // If player didn't lose, he can attack again
-            // and start this function over again
-            if (player.currentHp - e_dmgDealt > 0 || e_dmgDealt === 'blocked') {
+            if (player.currentHp - e_dmgDealt > 0 || e_dmgDealt === 'blocked')
                 setCanAttack(true)
-            }
             resetEnemyDmgTaken()
         }, game.gameTimer * 2)
-
     }
 
+    // Render
     return (
         <li className='btn action-btn active' onClick={startRound}>
 

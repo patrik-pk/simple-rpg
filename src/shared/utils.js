@@ -46,11 +46,9 @@ export const shuffleArray = arr => {
 
 // Make a deep copy of an object
 export const deepCopy = input => {
+    if (typeof input !== 'object' || input === null) return input
 
     let output, value, key
-
-    if (typeof input !== "object" || input === null) return input
-
     // Create an array or object to hold the values
     output = Array.isArray(input) ? [] : {}
 

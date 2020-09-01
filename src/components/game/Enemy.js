@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Stat from '../Stat'
 
-function Enemy(props) {
+function Enemy({ enemy }) {
 
-    const { enemy } = props
-
-    // Render Component only if there is a Enemy
+    // Render component only if there is a enemy
     if(enemy) {
     
-        // Destructure From Props
+        // Destructure props
         const { 
             currentHp, 
             maxHp,
@@ -28,7 +26,7 @@ function Enemy(props) {
             difficulty 
         } = enemy
 
-        // HP Bar Styling
+        // Current hp bar (div) styling
         const hpPercentage = (currentHp / maxHp) * 100
         const hpStyle = { width: `${hpPercentage > 0 ? hpPercentage : 0}%` }
     
