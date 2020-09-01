@@ -264,17 +264,34 @@ export default (state = initialState, action) => {
 
         // Remove Drops From Inventory
         case REMOVE_DROPS_FROM_INV:
+
+            const newInvItems = []
+            const mappedPayloadNames = action.payload.map(drop => drop.name)
+
+            // loop through invItems
+            state.invItems.forEach(invItem => {
+                // if invItem is drop and its name is included in payload
+                if (invItem.type === 'drop' && mappedPayloadNames.includes(invItem.name)) {
+                    // get the index of that payload
+                    const payloadIndex = mappedPayloadNames.indexOf(invItem.name)
+                    // if invItem amount is higher than matching payload amount
+                    if(invItem.amount > action.payload[payloadIndex].amount) {
+                        // substract invItem amount by payload amount push it 
+                        // to the array, if it isn't, don't add anything (remove the drop)
+                        invItem.amount -= action.payload[payloadIndex].amount
+                        newInvItems.push(invItem)
+                    }
+                } 
+                // if one of those is false, just push the invItem to the array
+                else newInvItems.push(invItem)
+            })
+
+            // re-assign proper keys
+            newInvItems.forEach((item, i) => item.key = i)
+
             return {
                 ...state,
-                invItems: state.invItems.map(item => {
-
-                    action.payload.forEach(drop => {
-                        if(item.name === drop.name) {
-                            item.amount -= drop.amount
-                        }
-                    })
-                    return item
-                })
+                invItems: newInvItems
             }
 
         // Sort Items

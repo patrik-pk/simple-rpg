@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import InventoryRow from './Inventory/InventoryRow'
-import Menu from './Menu'
-import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../actions/itemsActions'
-import mapDrops from '../logic/mapDrops'
-import deepCopy from '../logic/deepCopy'
+import InventoryRow from '../Inventory/InventoryRow'
+import Menu from '../Menu'
+import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../../actions/itemsActions'
+import mapDrops from './mapDrops'
+import compareDrops from './compareDrops'
+import { deepCopy } from '../../shared/utils'
 
 function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
 
@@ -48,71 +49,28 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
         unselectCraftableItems()
     }
 
-    // PLAYERS DROPS
-
-    // Get Players Drops
-    const playerDrops = invItems.filter(item => item.type === 'drop')
-
-    // Mapped Player Drops
-    const mappedPlayerDrops = mapDrops(playerDrops, dropIndex1, dropIndex2)
-
-    // CRAFTABLE ITEMS
-
     // Get Matching Items - that match level type menu and rarity type menu
-    // - first index is for level type (low, medium, high)
+    // - first index represents level type (low, medium, high)
     // - the second one is for rarity type (mythic, avian, etc.)
     const matchingCraftableItems = craftableItems[levelMenuActive][rarityMenuActive]
 
-    const displayedCraftableItems = matchingCraftableItems.map(item => {
-        return item.item
-    })
+    // Get Selected Item, Player Drops & Needed Drops For That Item
+    const selectedItem = craftableItems[levelMenuActive][rarityMenuActive].find(item => item.item.isSelected)
+    const playerDrops = invItems.filter(item => item.type === 'drop')
+    const neededDrops = selectedItem ? selectedItem.dropsNeeded : []
 
-    // NEEDED DROPS
-
-    // Get Selected Item
-    const selectedItemArr = craftableItems[levelMenuActive][rarityMenuActive].filter(item => item.item.isSelected)
-    const neededDrops = selectedItemArr[0] ? selectedItemArr[0].dropsNeeded : []
-
-    const mappedNeededDrops = mapDrops(neededDrops, dropIndex1, dropIndex2)
-
+    // Check If Player has Needed Drops
+    const hasPlayerNeededDrops = compareDrops(neededDrops, playerDrops)
     
-    // CRAFT
-    
-    // Check if player has needed drops to craft the item
-    const compareDrops = () => {
-
-        // loop through need drops (return array of booleans)
-        const compared = neededDrops.map(neededDrop => {
-            let found = false
-
-            // nest loop through player drops, if the names match
-            //  and player has the amount, set found to true
-            playerDrops.forEach(playerDrop => {
-                if(playerDrop.name === neededDrop.name && playerDrop.amount >= neededDrop.amount) {
-                    found = true
-                }
-            })
-
-            return found
-        })
-
-        // if player has both drops with needed amount, return true
-        return compared[0] && compared[1] ? true : false
-    }
-
-    // Craft Class - if player can craft selected item, set to active
-    const craftClass = compareDrops() && haveSpaceInv ? 'active2' : '' 
-
-
     // Craft Function - Remove players needed drops and add selected item to inventory
     const craft = () => {
-        if(selectedItemArr.length === 1 && compareDrops() && haveSpaceInv) {
+        if(selectedItem && hasPlayerNeededDrops && haveSpaceInv) {
 
             // remove players drops needed to craft the item
             removeDropsFromInv(neededDrops)
 
             // make a deep copy of the selected item, edit its properties and add it to inventory
-            const item = deepCopy(selectedItemArr[0].item)
+            const item = deepCopy(selectedItem.item)
             item.key = invItems.length
             item.destination = 'Inventory'
             item.isSelected = false
@@ -124,6 +82,14 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
             unselectCraftableItems()
         }
     }
+
+    // Mapped Items & Drops for rendering
+    const mappedPlayerDrops = mapDrops(playerDrops, dropIndex1, dropIndex2)
+    const displayedCraftableItems = matchingCraftableItems.map(item => item.item)
+    const mappedNeededDrops = mapDrops(neededDrops, dropIndex1, dropIndex2)
+
+    // Crit Class
+    const craftClass = hasPlayerNeededDrops && haveSpaceInv ? 'active2' : '' 
 
     // Render
     return (

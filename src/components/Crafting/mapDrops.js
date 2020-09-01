@@ -1,5 +1,5 @@
-import possibleDrops from '../data/possibleDrops'
-import DropItem from '../data/DropItem'
+import possibleDrops from '../../data/possibleDrops'
+import DropItem from '../../data/DropItem'
 
 
 // This function maps all the possible drops, making actual items 

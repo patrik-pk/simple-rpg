@@ -1,11 +1,10 @@
 import levelTresholds from '../data/levelTresholds'
-import randomGenerator from './randomGenerator'
 import generateItem from '../shared/generateItem'
 import generateDrop from '../shared/generateDrop'
 import possibleItems from '../data/possibleItems'
 import possibleDrops from '../data/possibleDrops'
 import craftableItems from '../data/craftable_items/craftableItems'
-import shuffleArray from './shuffleArray'
+import { randomGenerator, deepCopy, shuffleArray } from '../shared/utils'
 
 export default function defaultSave() {
 
@@ -110,11 +109,11 @@ const generateRandomInvItems = currentLevel => {
     // Equip
     const equip = []
 
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 5; i++) {
         const randomRarity = randomGenerator(0, 6)
         const randomType = randomGenerator(0, 11)
 
-        const item = craftableItems[0][randomRarity][randomType].item
+        const item = deepCopy(craftableItems[0][randomRarity][randomType].item)
         item.destination = 'Inventory'
         item.isCrafted = true
         item.craftedLevelType = 0
@@ -134,7 +133,7 @@ const generateRandomInvItems = currentLevel => {
         specieArr.forEach((pd, i) => {
 
             if(i === 0 || i === 3) {
-                const randomAmount = randomGenerator(11, 40)
+                const randomAmount = randomGenerator(15, 30)
     
                 drops.push(generateDrop(
                     pd.iconKey, 
