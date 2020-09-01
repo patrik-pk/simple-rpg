@@ -89,6 +89,7 @@ function Action(props) {
                     newLevel
                 )
 
+                
                 // If player leveled up, recalculate items & stats. First reward item (always equip item) is passed
                 // into the recalculate function along with invItems, from which it is then updated in the Inventory.
                 // In the recalculate function drops goldValues are recalculated, and THEN the reward drops are passed
