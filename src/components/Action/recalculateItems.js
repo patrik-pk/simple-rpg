@@ -7,7 +7,7 @@ import rarities from '../../data/rarities'
 // - craftable items in Crafting section
 // - players crafted items in both inventory & equipped
 // - players drops value
-export default function recalculateItems(gameFlow, newLevel, craftableItems, invItems, equippedItems) {
+export default (gameFlow, newLevel, craftableItems, invItems, equippedItems) => {
 
     // get gameFlow, with minimum value of 1
     const oldGameFlow = gameFlow >= 1 ? gameFlow : 1

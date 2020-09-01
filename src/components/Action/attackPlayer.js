@@ -1,6 +1,6 @@
 import { randomGenerator } from '../../shared/utils'
 
-export default function attackPlayer(player, enemy, character) {
+export default (player, enemy, character) => {
 
     // If player blocked the attack, return 'blocked' and don't continue
     if (player.blockChance > randomGenerator(0, 99)) return { e_dmgDealt: 'blocked', e_didCrit: false }

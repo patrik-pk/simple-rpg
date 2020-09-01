@@ -3,7 +3,7 @@ import {
 } from './types'
 
 // ADD DUNGEON
-export const addDungeon = index => ({
+export const addDungeon = dungeonName => ({
     type: ADD_DUNGEON,
-    payload: index
+    payload: dungeonName
 })

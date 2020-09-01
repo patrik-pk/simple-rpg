@@ -31,7 +31,10 @@ export const resetPlayerDmgTaken = () => ({
 })
 
 // UPDATE PLAYERS STATS
-export const updatePlayerStats = values => ({
+export const updatePlayerStats = (equippedItems, currentLevel) => ({
     type: UPDATE_PLAYER_STATS,
-    payload: values
+    payload: {
+        equippedItems,
+        currentLevel
+    }
 })

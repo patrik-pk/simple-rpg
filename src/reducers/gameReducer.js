@@ -3,11 +3,10 @@ import {
     START_GAME, 
     END_GAME,
     SET_CAN_ATTACK,
-    GAME_WON,
-    GAME_LOST,
+    SET_BATTLE_STATUS,
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
-    LOAD_STATE
+    LOAD_STATE,
 } from '../actions/types'
 
 const initialState = {
@@ -45,18 +44,11 @@ export default (state = initialState, action) => {
                 canAttack: action.payload
             }
 
-        // Game Won
-        case GAME_WON:
+        // Set Battle Status
+        case SET_BATTLE_STATUS:
             return {
                 ...state,
-                battleStatus: 'Victory',
-            }
-
-        // Game Lost
-        case GAME_LOST:
-            return {
-                ...state,
-                battleStatus: 'Defeat'
+                battleStatus: action.payload
             }
 
         // Items Obtained
@@ -68,7 +60,6 @@ export default (state = initialState, action) => {
 
         // Generate Classic Enemies
         case GENERATE_CLASSIC_ENEMIES:
-
             return {
                 ...state,
                 classicEnemies: rerollEnemies(action.payload)

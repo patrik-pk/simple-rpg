@@ -2,28 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setCanAttack, gameWon, gameLost, itemObtained, generateClassicEnemies } from '../../actions/gameActions'
+import { setCanAttack, setBattleStatus, itemObtained, generateClassicEnemies } from '../../actions/gameActions'
 import { enemyDodged, enemyHit, resetEnemyDmgTaken } from '../../actions/enemyActions'
 import { playerBlocked, playerHit, resetPlayerDmgTaken, updatePlayerStats } from '../../actions/playerActions'
 import { addReward } from '../../actions/characterActions'
 import { addItemToInv, updateItems } from '../../actions/itemsActions'
 import { addDungeon } from '../../actions/dungeonActions'
 
-import levelTresholds from '../../data/levelTresholds'
 import attackEnemy from './attackEnemy'
 import attackPlayer from './attackPlayer'
 import getReward from './getReward'
 import recalculateItems from './recalculateItems'
-import generateItem from '../../logic/generateItem'
-import generateDrop from '../../logic/generateDrop'
-import randomGenerator from '../../logic/randomGenerator'
-import deepCopy from '../../logic/deepCopy'
-import calculatePlayerStats from '../../logic/calculatePlayerStats'
-import firstLetterUpperCase  from '../../logic/firstLetterUpperCase'
+import generateRewardItems from './generateRewardItems'
+import { deepCopy, firstLetterUpperCase } from '../../shared/utils'
 
 function Action(props) {
 
-    // Destructure From Props
+    // Destructure Props
     const {
         data: { type: attackType, strength, hitChanceMult, icon },
         dodge, 
@@ -37,8 +32,7 @@ function Action(props) {
         updateItems,
         dungeon,
         setCanAttack,
-        gameWon,
-        gameLost,
+        setBattleStatus,
         itemObtained, 
         generateClassicEnemies,
         enemyDodged, 
@@ -52,140 +46,48 @@ function Action(props) {
         addItemToInv,
         addDungeon
     } = props
-
     const { currentLevel, gameFlow } = character
-    const { type: gameType, enemyType: { drops }, currentHp, level: enemyLevel } = enemy
+    const { type: gameType, enemyType: { drops: enemyDrops }, currentHp, level: enemyLevel } = enemy
 
-    // Get Chance To Hit
+    // calculate hit chance, min and max damage that can player deal (without crit)
     const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
-    
-    // Calculate min and max damage that can player deal (without crit)
     const minDmg = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult, 'min')
     const maxDmg = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult, 'max')
 
-    // Start Round - actual game functionality
+    // Start round - actual game functionality
     const startRound = () => {
 
-        // PLAYER ATTACKS ENEMY
-
+        // Round starts by player attacking enemy
         resetPlayerDmgTaken()
         setCanAttack(false)
 
         // calculate damage dealt and return it along with didCrit boolean
         const { p_dmgDealt, p_didCrit } = attackEnemy(player, enemy, enemyLevel, attackType, strength, hitChanceMult)
 
-        // if Enemy dodged, just set damageTaken to 'Missed', else substract Enemy hp by dmg
-        if(p_dmgDealt === 'dodged') {
-            enemyDodged()
-        } else {
+        // if enemy dodged, just set damageTaken to 'Missed', else substract enemys hp by damage dealt
+        if(p_dmgDealt === 'dodged') enemyDodged()
+        else {
             enemyHit(p_dmgDealt, p_didCrit)
             // check if Enemy has 0 or less HP after damage dealt
             if(currentHp - p_dmgDealt <= 0) {
+                setBattleStatus('Victory')
+                if(gameType === 'Boss') addDungeon(enemy.dungeon)
 
-                // Battle Won - set battleStatus to 'Victory'
-                gameWon()
-
-                // get matching index of the dungeon if its boss game, and update the state
-                let matchingDungeonIndex = 0
-                if(gameType === 'Boss') {
-                    dungeon.forEach((item, dungeonIndex) => {
-                        if (item.type === enemy.dungeon) {
-                            matchingDungeonIndex = dungeonIndex
-                        }
-                    })
-
-                    addDungeon(matchingDungeonIndex)
-                }
-
-                // generate reward and update state
                 const reward = getReward(enemy, character, 'Victory', gameType)
+                const { didLevelUp, currentLevel: newLevel } = reward
                 addReward(reward)
 
-                // Check if player leveled up
-                const { didLevelUp, currentLevel: newLevel } = reward
-
                 // generate items
-                const rewardItems = (() => {
-
-                    let items = []
-                    let alreadyGeneratedDrops = []
-
-                    // get possible drops from enemyType
-                    const possibleDrops = drops
-
-                    // generate drop function
-                    const generateUniqueDrop = (alreadyGenerated, i) => {
-
-                        // if all the possible drops have been generated, break out
-                        if (alreadyGenerated.length === possibleDrops.length) return
-
-                        // generate random index for drop 
-                        let index = randomGenerator(0, possibleDrops.length - 1)
-
-                        // if the index is in alreadyGenerated array, keep generating new one
-                        while (alreadyGenerated.includes(index)) {
-                            index = randomGenerator(0, possibleDrops.length - 1)
-                        }
-
-                        // generate random amount for drop
-                        const randomAmount = randomGenerator(3, 7)
-
-                        // get drop based on index and push it to alreadyGenerated array, 
-                        // so it can't be generated again
-                        const { iconKey, name, icon, classVal, goldValue } = possibleDrops[index]
-                        alreadyGeneratedDrops.push(index)
-
-                        // push that drop into items array
-                        const dropGoldValue = Math.round(randomAmount * goldValue * levelTresholds[newLevel].gameFlow)
-                        items.push(generateDrop(iconKey, 'Inventory', invItems.length + i, randomAmount, name, icon, [classVal ? classVal : []], dropGoldValue))
-                    }
-
-                    
-                    // generate items, first item is always equipment, others are drops
-                    for(let i = 0; i < 3; i++) {
-                        if (i === 0) {
-
-                            // for classic game generate random item, for boss game get crafting item
-                            if(gameType === 'Classic') {
-                                const itemLevel = enemyLevel > currentLevel ? enemyLevel : currentLevel
-                                items.push(generateItem(itemLevel, 'Inventory', invItems.length, gameType))  
-                            }
-                            if(gameType === 'Boss') {
-
-                                // get levelTypeIndex based on level (low = 0-10, medium = 11 - 23, high = 24+)
-                                let levelTypeIndex = 0
-                                if (enemyLevel <= 10) levelTypeIndex = 0
-                                else if (enemyLevel > 10 && enemyLevel <= 23) levelTypeIndex = 1
-                                else if (enemyLevel > 23) levelTypeIndex = 2
-                                console.log(levelTypeIndex)
-
-                                // generate random index for rarity
-                                const randRarityIndex = randomGenerator(1, 10)
-                                // if its less than 4 (0, 1, 2 - 30%) set index to 0, which is 
-                                // where mythic items are at, else (70%) set it to matchingDungeonIndex + 1 
-                                // to generate item with same specie type as the boss
-                                const rarityIndex = randRarityIndex < 4 ? 0 : matchingDungeonIndex + 1
-
-                                // random index for the type of item (bow, helmet, etc.)
-                                const randomItemTypeIndex = randomGenerator(0, 11)
-
-                                // and get that item
-                                const item = deepCopy(craftableItems[levelTypeIndex][rarityIndex][randomItemTypeIndex].item)
-                                item.destination = 'Inventory'
-                                item.key = invItems.length
-                                item.isCrafted = true
-                                item.craftedLevelType = levelTypeIndex
-
-                                items.push(item)
-                            }
-                            
-                        } 
-                        else generateUniqueDrop(alreadyGeneratedDrops, i)
-                    }
-
-                    // return items
-                    return items
-                })()
+                const rewardItems = generateRewardItems(
+                    gameType, 
+                    invItems.length, 
+                    enemyLevel, 
+                    enemyDrops, 
+                    enemy.dungeon, 
+                    dungeon, 
+                    craftableItems, 
+                    newLevel
+                )
 
                 // If player leveled up, recalculate items & stats. First reward item (always equip item) is passed
                 // into the recalculate function along with invItems, from which it is then updated in the Inventory.
@@ -196,7 +98,7 @@ function Action(props) {
                     const recalculated = recalculateItems(gameFlow, newLevel, craftableItems, invItemsToRecalc, equippedItems)
 
                     // update player stats with updated equipped items
-                    updatePlayerStats(calculatePlayerStats(recalculated.equippedItems, newLevel))
+                    updatePlayerStats(recalculated.equippedItems, newLevel)
 
                     // and update the items
                     updateItems(recalculated)
@@ -238,9 +140,7 @@ function Action(props) {
 
                 // check if Player has 0 or less HP after damage dealt
                 if (player.currentHp - e_dmgDealt <= 0) {
-
-                    // Battle Won - set battleStatus to 'Victory'
-                    gameLost()
+                    setBattleStatus('Defeat')
                     
                     // generate reward and update state
                     const reward = getReward(enemy, character, 'Defeat', gameType)
@@ -312,8 +212,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setCanAttack,
-    gameWon,
-    gameLost,
+    setBattleStatus,
     itemObtained, 
     generateClassicEnemies,
     enemyDodged, 

@@ -1,7 +1,7 @@
 import levelTresholds from '../data/levelTresholds'
 import randomGenerator from './randomGenerator'
-import generateItem from './generateItem'
-import generateDrop from './generateDrop'
+import generateItem from '../shared/generateItem'
+import generateDrop from '../shared/generateDrop'
 import possibleItems from '../data/possibleItems'
 import possibleDrops from '../data/possibleDrops'
 import craftableItems from '../data/craftable_items/craftableItems'
@@ -39,12 +39,12 @@ export default function defaultSave() {
 
     // Dungeon
     const dungeon = [
-        { type: 'Aquatic', current: randomGenerator(1, 2) },
-        { type: 'Avian', current: randomGenerator(1, 2) },
-        { type: 'Dinosaur', current: randomGenerator(0, 3) },
-        { type: 'Insect', current: randomGenerator(1, 2) },
-        { type: 'Wildlife', current: randomGenerator(1, 2) },
-        { type: 'Reptile', current: randomGenerator(1, 3) },
+        { type: 'Aquatic', current: 0 },
+        { type: 'Avian', current: 0 },
+        { type: 'Dinosaur', current: 0 },
+        { type: 'Insect', current: 0 },
+        { type: 'Wildlife', current: 0 },
+        { type: 'Reptile', current: 0 },
     ]
 
     // Game

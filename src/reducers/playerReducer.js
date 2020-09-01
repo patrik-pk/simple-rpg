@@ -6,6 +6,7 @@ import {
     UPDATE_PLAYER_STATS,
     LOAD_STATE
 } from '../actions/types'
+import calculatePlayerStats from '../shared/calculatePlayerStats'
 
 const initialState = {
     currentHp: 300,
@@ -65,7 +66,8 @@ export default (state = initialState, action) => {
 
         // Update Players Stats
         case UPDATE_PLAYER_STATS:
-            const values = action.payload
+            const { equippedItems, currentLevel } = action.payload
+            const values = calculatePlayerStats(equippedItems, currentLevel)
 
             return {
                 ...state,

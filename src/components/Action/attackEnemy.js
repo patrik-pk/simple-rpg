@@ -7,7 +7,7 @@ import levelTresholds from '../../data/levelTresholds'
 //    in actual game functionality
 // 2) to calculate min and max damage that can player deal, without crit
 //    for this purpose there is a optional parameter 'specific' which can be 'min' or 'max'
-export default function attackEnemy(player, enemy, enemyLevel, typeOfAttack, strengthOfAttack, hitChanceMultiplier, specific) {
+export default (player, enemy, enemyLevel, typeOfAttack, strengthOfAttack, hitChanceMultiplier, specific) => {
 
   // Calculate values
   const typeOfAttackValues = logic.setTypeOfAttackValues(typeOfAttack, player, enemy)

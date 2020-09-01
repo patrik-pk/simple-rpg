@@ -17,13 +17,12 @@ export default (state = initialState, action) => {
 
         // Add Dungeon
         case ADD_DUNGEON:
-            return state.map((item, i) => {
-                if(i === action.payload) {
-                    item.current += 1
-                }
+            return state.map(item => {
+                if(item.type === action.payload) item.current += 1
                 return item
             })
 
+        // Load State
         case LOAD_STATE:
             return action.payload.dungeon
 

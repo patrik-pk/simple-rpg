@@ -1,7 +1,7 @@
 import levelTresholds from '../../data/levelTresholds'
 import { randomGenerator } from '../../shared/utils'
 
-export default function getReward(enemy, character, status, enemyType) {
+export default (enemy, character, status, enemyType) => {
     
     // Gameflow and enemy difficutly multiplier
     const gameFlow = character.gameFlow < 1 ? 1 : character.gameFlow

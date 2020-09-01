@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 import { setRolls, setRollTimer } from '../actions/characterActions'
 import { updatePlayerStats } from '../actions/playerActions'
-import calculatePlayerStats from '../logic/calculatePlayerStats'
 import defaultSave from '../logic/defaultSave'
 
 // Component that handles time events
@@ -36,7 +35,7 @@ function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTim
     // if localStorage is empty on App Init
     useEffect(() => {
         if(localStorage.length === 0) localStorage.setItem('123Default', JSON.stringify(defaultSave()))
-        updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
+        updatePlayerStats(equippedItems, currentLevel)
     }, [updatePlayerStats, equippedItems, currentLevel])
 
     // Handle Adding Rolls

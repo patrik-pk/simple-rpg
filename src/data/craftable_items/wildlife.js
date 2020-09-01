@@ -1,5 +1,5 @@
 import DropItem from '../DropItem'
-import generateItem from '../../logic/generateItem'
+import generateItem from '../../shared/generateItem'
 import possibleItems from '../possibleItems'
 import dropIcons from '../icons/dropIcons'
 import rarities from '../rarities'

@@ -2,8 +2,7 @@ import {
     START_GAME,
     END_GAME,
     SET_CAN_ATTACK,
-    GAME_WON,
-    GAME_LOST,
+    SET_BATTLE_STATUS,
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
 } from './types'
@@ -24,14 +23,10 @@ export const setCanAttack = bool => ({
     payload: bool
 })
 
-// GAME WON
-export const gameWon = () => ({
-    type: GAME_WON
-})
-
-// GAME LOST
-export const gameLost = () => ({
-    type: GAME_LOST
+// SET BATTLE STATUS
+export const setBattleStatus = value => ({
+    type: SET_BATTLE_STATUS,
+    payload: value
 })
 
 // ITEM OBTAINED

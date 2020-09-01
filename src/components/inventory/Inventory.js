@@ -18,11 +18,10 @@ import {
 import { setRolls, setGold } from '../../actions/characterActions'
 import { updatePlayerStats } from '../../actions/playerActions'
 import possibleDrops from '../../data/possibleDrops'
-import generateItem from '../../logic/generateItem'
-import generateDrop from '../../logic/generateDrop'
+import generateItem from '../../shared/generateItem'
+import generateDrop from '../../shared/generateDrop'
 import randomGenerator from '../../logic/randomGenerator'
 import firstLetterUpperCase from '../../logic/firstLetterUpperCase'
-import calculatePlayerStats from '../../logic/calculatePlayerStats'
 
 function Inventory(props) {
 
@@ -57,7 +56,7 @@ function Inventory(props) {
 
     // Watch for equippedItems, and re-calulate player stats if they change
     useEffect(() => {
-        updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
+        updatePlayerStats(equippedItems, currentLevel)
     }, [equippedItems, updatePlayerStats, currentLevel])
 
     // Slice item's into a 6 item array and put them into the InventoryRow Component
@@ -122,7 +121,7 @@ function Inventory(props) {
             let newShopItems = []
             
             // 50% chance to 4 generate items, 50% to generate 4 drop items
-            const random = randomGenerator(1, 100, 1)
+            const random = randomGenerator(0, 99)
 
             for (let i = 0; i < 4; i++) {
                 if(random < 50) newShopItems.push(generateItem(currentLevel, 'Shop', i))
@@ -212,7 +211,7 @@ function Inventory(props) {
             equipItem(selectedInvItems[0], equipped[0])
 
             // recalculate player stats - returns object with new values
-            updatePlayerStats(calculatePlayerStats(equippedItems, currentLevel))
+            updatePlayerStats(equippedItems, currentLevel)
         }
     }
 
