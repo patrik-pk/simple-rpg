@@ -1,4 +1,4 @@
-import rerollEnemies from '../logic/rerollEnemies'
+import rerollEnemies from '../shared/rerollEnemies'
 import {
     START_GAME, 
     END_GAME,

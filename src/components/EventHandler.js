@@ -12,12 +12,15 @@ function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTim
     const [canAddRoll, setCanAddRoll] = useState(true)
     const timer = 15
 
-    // Calculate Player Stats & create default save 
-    // if localStorage is empty on App Init
+    // Calculate player stats if they change
     useEffect(() => {
-        if(localStorage.length === 0) localStorage.setItem('123Default', JSON.stringify(defaultSave()))
         updatePlayerStats(equippedItems, currentLevel)
     }, [updatePlayerStats, equippedItems, currentLevel])
+
+    // On App init if there is nothing in localStorage, put there a default save
+    useEffect(() => {
+        if (localStorage.length === 0) localStorage.setItem('123Default', JSON.stringify(defaultSave()))
+    }, [])
 
     // Handle Adding Rolls
     useEffect(() => {

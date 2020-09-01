@@ -22,7 +22,7 @@ function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
     return (
         <nav className='side-menu'>
 
-            {/* CHARACTER INFO */}
+            {/* Character Info */}
 
             <div className='character-info'>
 
@@ -45,7 +45,7 @@ function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
 
             </div>
 
-            {/* LINKS */}
+            {/* Links */}
             <SidemenuLink name='Classic Game' linkTo='/classic_game' />
             <SidemenuLink name='Dungeon' linkTo='/dungeon' />
             <SidemenuLink name='Inventory' linkTo='/inventory' />

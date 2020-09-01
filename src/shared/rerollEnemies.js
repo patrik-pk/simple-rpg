@@ -1,10 +1,10 @@
-import generateEnemy from './generateEnemy'
-import shuffleArray from './shuffleArray'
+import generateEnemy from '../logic/generateEnemy'
+import { shuffleArray } from './utils'
 
 // Reroll - generate 3 enemies with unique enemyType, with 
 // different level - first has one level less than player, second has the same
 // and the third has one level more than player, then randomize the array
-export default function rerollEnemies(playerLevel) {
+export default playerLevel => {
 
     const enemies = []
     const alreadyGenerated = []

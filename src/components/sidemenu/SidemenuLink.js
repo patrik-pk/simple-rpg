@@ -20,7 +20,7 @@ export default function SidemenuLink({ name, linkTo, isLocked, icon }) {
             <Link className='nav-link' to={linkTo} >
                 <p className='link-name'>{name}</p>
                 {icon ?
-                <div className="link-icon active">
+                <div className='link-icon active'>
                     { icon.render() }
                 </div> : null
                 }
