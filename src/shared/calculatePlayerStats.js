@@ -1,4 +1,4 @@
-import levelTresholds from '../data/levelTresholds'
+import levelTresholds from './data/levelTresholds'
 
 export default (equippedItems, currentLevel) => {
 

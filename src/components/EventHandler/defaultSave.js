@@ -1,9 +1,9 @@
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 import generateItem from '../../shared/generateItem'
-import generateDrop from '../../shared/generateDrop'
-import possibleItems from '../../data/possibleItems'
-import possibleDrops from '../../data/possibleDrops'
-import craftableItems from '../../data/craftable_items/craftableItems'
+import DropItem from '../../shared/data/DropItem'
+import possibleItems from '../../shared/data/possibleItems'
+import possibleDrops from '../../shared/data/possibleDrops'
+import craftableItems from '../../shared/data/craftable_items/craftableItems'
 import { randomGenerator, deepCopy, shuffleArray } from '../../shared/utils'
 
 export default function defaultSave() {
@@ -138,7 +138,7 @@ const logic = {
                 if(i === 0 || i === 3) {
                     const randomAmount = randomGenerator(15, 30)
         
-                    drops.push(generateDrop(
+                    drops.push(new DropItem(
                         pd.iconKey, 
                         'Inventory', 
                         0, 
@@ -146,7 +146,7 @@ const logic = {
                         pd.name,
                         pd.icon,
                         [pd.classVal],
-                        Math.round(randomAmount * 10 * levelTresholds[currentLevel].gameFlow)
+                        Math.round(randomAmount * 7.5 * levelTresholds[currentLevel].gameFlow)
                     ))
                 }
             })

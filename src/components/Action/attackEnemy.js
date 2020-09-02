@@ -1,5 +1,5 @@
 import { randomGenerator } from '../../shared/utils'
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 
 
 // NOTE: This function has two purposes

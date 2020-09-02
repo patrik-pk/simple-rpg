@@ -9,7 +9,7 @@ class DropItem {
         name = 'small feather',
         icon = dropIcons.smallFeather.icon,
         classes = [],
-        goldValue = 10,
+        goldValue = 7.5,
         isSelected = false,
         type = 'drop'
     ) {

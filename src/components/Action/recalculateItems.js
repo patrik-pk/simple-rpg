@@ -1,7 +1,7 @@
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 import { randomGenerator } from '../../shared/utils'
-import possibleItems from '../../data/possibleItems'
-import rarities from '../../data/rarities'
+import possibleItems from '../../shared/data/possibleItems'
+import rarities from '../../shared/data/rarities'
 
 // After leveling up certain items need to be updated:
 // - craftable items in Crafting section

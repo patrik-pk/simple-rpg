@@ -1,6 +1,6 @@
-import startingItems from '../../data/startingItems'
-import craftableItems from '../../data/craftable_items/craftableItems'
-import sortItemsValues from '../../data/sortItemsValues'
+import startingItems from '../../shared/data/startingItems'
+import craftableItems from '../../shared/data/craftable_items/craftableItems'
+import sortItemsValues from '../../shared/data/sortItemsValues'
 import { deepCopy } from '../../shared/utils'
 import {
     ADD_ITEM_TO_INV,

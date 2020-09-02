@@ -1,5 +1,5 @@
-import generateEnemy from '../shared/generateEnemy'
-import possibleEnemies from './possibleEnemies'
+import generateEnemy from '../../shared/generateEnemy'
+import possibleEnemies from '../../shared/data/possibleEnemies'
 
 // Destructure from props
 const { avians, dinosaurs, insect, wildlife, reptiles, aquatic } = possibleEnemies
@@ -21,7 +21,7 @@ const bosses = [
         boss(27, aquatic.shark, 0, 'Aquatic'),
         boss(40, aquatic.kraken, null, 'Aquatic'),
     ],
-    // Avians
+    // Avian
     [
         boss(9, avians.owl, 1, 'Avian'),
         boss(15, avians.falcon, 1, 'Avian'),
@@ -29,7 +29,7 @@ const bosses = [
         boss(25, avians.microraptor, 1, 'Avian'),
         boss(30, avians.pterodactyl, 1, 'Avian'),
     ],
-    // Dinosaurs
+    // Dinosaur
     [   
         boss(13, dinosaurs.dilong, 0, 'Dinosaur'),
         boss(18, dinosaurs.guanlong, 0, 'Dinosaur'),
@@ -55,7 +55,7 @@ const bosses = [
         boss(30, wildlife.tiger, 0, 'Wildlife'),
 
     ],
-    // Reptiles
+    // Reptile
     [
         boss(7, reptiles.chameleon, 1, 'Reptile'),
         boss(12, reptiles.iguana, 1, 'Reptile'),

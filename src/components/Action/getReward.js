@@ -1,4 +1,4 @@
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 import { randomGenerator } from '../../shared/utils'
 
 export default (enemy, character, status, enemyType) => {

@@ -1,6 +1,5 @@
-import possibleDrops from '../../data/possibleDrops'
-import DropItem from '../../data/DropItem'
-
+import possibleDrops from '../../shared/data/possibleDrops'
+import DropItem from '../../shared/data/DropItem'
 
 // This function maps all the possible drops, making actual items 
 // from them and adding amount to those that player has / that are needed for crafting

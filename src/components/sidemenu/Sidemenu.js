@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import SidemenuLink from './SidemenuLink'
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
 import { ReactComponent as Dice } from '../../resources/icons/dice.svg'

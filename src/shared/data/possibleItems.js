@@ -1,12 +1,5 @@
 import equipIcons from './icons/equipIcons'
 
-// type is used for where the item should go when equipped,
-// iconInfo is an array of icons, that each have property name and icon, it is processed in generateItem.js,
-// statName is name used for stat displaying and calculations,
-// baseStat is a base value for every item,
-// statMultiplier is specifically targeted for armor items to generate
-// different amount on different type of armor (e. g. chestplate has more armor than boots)
-
 class PossibleItem {
     constructor(type, iconInfo, statName, baseStat, statMultiplier) {
         this.type = type
@@ -17,7 +10,6 @@ class PossibleItem {
     }
 }
 
-// Destructure Icons A Little
 const {
     type1: t1,
     type2: t2,
@@ -29,7 +21,6 @@ const {
     wildlife: wf
 } = equipIcons
 
-// All possible items that you can find in the game
 const possibleItems = {
     helmet: new PossibleItem('Helmet', [ t1.helmet, t2.helmet, av.helmet, is.helmet, wf.helmet ], 'Armor', 20, 0.7),
     chestplate: new PossibleItem('Chestplate', [ t1.chestplate, t2.chestplate, av.chestplate, dn.chestplate, is.chestplate, rp.chestplate ], 'Armor', 20, 1),

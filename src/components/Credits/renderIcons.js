@@ -1,9 +1,9 @@
 import React from 'react'
 
-import creatureIcons from '../../data/icons/creatureIcons'
-import dropIcons from '../../data/icons/dropIcons'
-import equipIcons from '../../data/icons/equipIcons'
-import otherIcons from '../../data/icons/otherIcons'
+import creatureIcons from '../../shared/data/icons/creatureIcons'
+import dropIcons from '../../shared/data/icons/dropIcons'
+import equipIcons from '../../shared/data/icons/equipIcons'
+import otherIcons from '../../shared/data/icons/otherIcons'
 
 // Render Icons
 export default (index1, index2) => {

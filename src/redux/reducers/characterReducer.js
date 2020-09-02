@@ -1,4 +1,4 @@
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 import {
     ADD_REWARD,
     SET_GOLD,

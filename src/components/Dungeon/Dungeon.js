@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import EnemyCard from '../EnemyCard/EnemyCard'
 import Menu from '../Menu/Menu'
-import bosses from '../../data/bosses'
+import bosses from './bosses'
 
 function Dungeon({ dungeon }) {
 

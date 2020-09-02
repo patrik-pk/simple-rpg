@@ -1,8 +1,7 @@
-import EquipItem from '../data/EquipItem'
-import possibleItems from '../data/possibleItems'
-import possibleBonuses from '../data/possibleBonuses'
-import levelTresholds from '../data/levelTresholds'
-import rarities from '../data/rarities'
+import EquipItem from './data/EquipItem'
+import possibleItems from './data/possibleItems'
+import levelTresholds from './data/levelTresholds'
+import rarities from './data/rarities'
 import { randomGenerator, deepCopy } from '../shared/utils'
 
 export default (level, destination, key, gameType, specific = {}) => {
@@ -42,6 +41,16 @@ export default (level, destination, key, gameType, specific = {}) => {
         classes
     )
 }
+
+// Possible bonuses
+const possibleBonuses = [
+    'avian',
+    'dinosaur',
+    'insect',
+    'wildlife',
+    'reptile',
+    'aquatic',
+]
 
 // Logic
 const logic = {

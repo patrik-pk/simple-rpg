@@ -1,7 +1,7 @@
 import { randomGenerator } from '../../shared/utils'
-import possibleDrops from '../../data/possibleDrops'
 import generateItem from '../../shared/generateItem'
-import DropItem from '../../data/DropItem'
+import possibleDrops from '../../shared/data/possibleDrops'
+import DropItem from '../../shared/data/DropItem'
 
 export default (currentLevel, gameFlow) => {
     const newShopItems = []

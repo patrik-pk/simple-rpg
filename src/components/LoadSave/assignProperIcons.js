@@ -1,6 +1,6 @@
 import rerollEnemies from '../../shared/rerollEnemies'
-import equipIcons from '../../data/icons/equipIcons'
-import dropIcons from '../../data/icons/dropIcons'
+import equipIcons from '../../shared/data/icons/equipIcons'
+import dropIcons from '../../shared/data/icons/dropIcons'
 
 // Assign Proper Icons
 export default loadedState => {

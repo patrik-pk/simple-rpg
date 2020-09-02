@@ -1,13 +1,13 @@
-import { ReactComponent as Knight } from '../../resources/icons/knight.svg'
-import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
-import { ReactComponent as Info } from '../../resources/icons/info.svg'
-import { ReactComponent as Close } from '../../resources/icons/close.svg'
-import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
-import { ReactComponent as Dice } from '../../resources/icons/dice.svg'
-import { ReactComponent as Star } from '../../resources/icons/star.svg'
-// import { ReactComponent as Lock } from '../../resources/icons/lock.svg'
-import { ReactComponent as MeleeAction } from '../../resources/icons/actions/action_melee.svg'
-import { ReactComponent as RangedAction } from '../../resources/icons/actions/action_ranged_light.svg'
+import { ReactComponent as Knight } from '../../../resources/icons/knight.svg'
+import { ReactComponent as Attack } from '../../../resources/icons/attack.svg'
+import { ReactComponent as Info } from '../../../resources/icons/info.svg'
+import { ReactComponent as Close } from '../../../resources/icons/close.svg'
+import { ReactComponent as Coin } from '../../../resources/icons/coin.svg'
+import { ReactComponent as Dice } from '../../../resources/icons/dice.svg'
+import { ReactComponent as Star } from '../../../resources/icons/star.svg'
+// import { ReactComponent as Lock } from '../../../resources/icons/lock.svg'
+import { ReactComponent as MeleeAction } from '../../../resources/icons/actions/action_melee.svg'
+import { ReactComponent as RangedAction } from '../../../resources/icons/actions/action_ranged_light.svg'
 
 const otherIcons = {
     knight: { name: 'Player Icon', icon: Knight, url: 'https://www.flaticon.com/free-icon/knight_2863130' },

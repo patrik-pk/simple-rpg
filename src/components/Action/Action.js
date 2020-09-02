@@ -15,7 +15,7 @@ import getReward from './getReward'
 import recalculateItems from './recalculateItems'
 import generateRewardItems from './generateRewardItems'
 import { deepCopy, firstLetterUpperCase } from '../../shared/utils'
-import levelTresholds from '../../data/levelTresholds'
+import levelTresholds from '../../shared/data/levelTresholds'
 
 function Action(props) {
 

@@ -1,6 +1,6 @@
 import { randomGenerator } from '../../shared/utils'
-import levelTresholds from '../../data/levelTresholds'
-import DropItem from '../../data/DropItem'
+import levelTresholds from '../../shared/data/levelTresholds'
+import DropItem from '../../shared/data/DropItem'
 
 // Generate unique drop, although there are only 2 different ones every time
 export default (items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, newLevel) => {
