@@ -102,7 +102,20 @@ const logic = {
         return possibleItemsArr.map((item, i) => {
             const type = item
             const iconIndex = randomGenerator(0, 1)
-            return generateItem(currentLevel, 'Equipped', i, 'Classic', { itemType: { type, iconIndex } })
+
+            // generate random weapons from craftable items (index 5 = sword, 11 = bow)
+            if(i === 5 || i === 11) {
+                const randomRarity = randomGenerator(0, 6)
+
+                const item = deepCopy(craftableItems[0][randomRarity][i].item)   
+                item.destination = 'Equipped'
+                item.isCrafted = true
+                item.craftedLevelType = 0
+                
+                return item             
+            }
+            // other items generate randomly (no craftable items)
+            else return generateItem(currentLevel, 'Equipped', i, 'Classic', { itemType: { type, iconIndex } })
         })
     },
     
@@ -112,7 +125,7 @@ const logic = {
         // Equip
         const equip = []
     
-        for(let i = 0; i < 5; i++) {
+        for(let i = 0; i < 3; i++) {
             const randomRarity = randomGenerator(0, 6)
             const randomType = randomGenerator(0, 11)
     
