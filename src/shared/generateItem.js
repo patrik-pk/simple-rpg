@@ -16,7 +16,7 @@ export default (level, destination, key, gameType, specific = {}) => {
     } = logic.getItemType(specific.itemType)
 
     const { rarity, rarStatMult, rarValMult, bonusAmount } = logic.getRarity(specific.rarity)
-    const stats = logic.calculateStat(statName, baseStat, statMultiplier, rarStatMult, gameFlow)
+    const stats = logic.calculateStat(statName, baseStat, statMultiplier, rarStatMult, gameFlow, specific.statValue)
     const bonuses = logic.getBonuses(specific.bonuses, bonusAmount, gameType)
     const goldValue = logic.generateGoldValue(destination, rarValMult, gameFlow)
 
@@ -104,10 +104,11 @@ const logic = {
     },
 
     // Calculate stat - crit chance and block chance don't scale with gameFlow, so don't multiply them by it
-    calculateStat: (statName, baseStat, statMultiplier, rarStatMult, gameFlow) => {
+    calculateStat: (statName, baseStat, statMultiplier, rarStatMult, gameFlow, specificStatValue) => {
 
         let value = baseStat * statMultiplier * rarStatMult * randomGenerator(95, 105, 0.01)
         value = (statName === 'Crit. chance' || statName === 'Block chance') ? value : value *= gameFlow
+        if(specificStatValue) value += specificStatValue // this is for craftable items with crit and block chance
         value = Math.round(value)
 
         return { statName, value }

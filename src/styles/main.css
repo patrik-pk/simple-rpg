@@ -791,24 +791,59 @@
   }
 }
 
-.load-and-save .content .save-btn {
+.load-and-save .content .options {
   margin: 40px auto 0 auto;
+}
+
+@media (max-width: 1199.98px) {
+  .load-and-save .content .options {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .load-and-save .content .options {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .load-and-save .content .options {
+    margin-top: 10px;
+  }
+}
+
+.load-and-save .content .options .reset-btn, .load-and-save .content .options .save-btn {
   width: 100px;
 }
 
 @media (max-width: 1199.98px) {
-  .load-and-save .content .save-btn {
-    margin-top: 20px;
+  .load-and-save .content .options .reset-btn, .load-and-save .content .options .save-btn {
     width: 80px;
     padding: 8px 0;
   }
 }
 
 @media (max-width: 991.98px) {
-  .load-and-save .content .save-btn {
-    margin-top: 20px;
+  .load-and-save .content .options .reset-btn, .load-and-save .content .options .save-btn {
     width: 70px;
     padding: 6px 0;
+  }
+}
+
+.load-and-save .content .options .save-btn {
+  margin-left: 30px;
+}
+
+@media (max-width: 991.98px) {
+  .load-and-save .content .options .save-btn {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .load-and-save .content .options .save-btn {
+    margin-left: 10px;
   }
 }
 

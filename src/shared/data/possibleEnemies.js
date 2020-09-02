@@ -39,7 +39,7 @@ class EnemyType {
     }
 }
 
-// Possible Enemies Object (exported)
+// Possible Enemies Object
 const possibleEnemies = {
     // Aquatic
     aquatic: {

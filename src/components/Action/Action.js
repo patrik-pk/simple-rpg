@@ -17,7 +17,7 @@ import generateRewardItems from './generateRewardItems'
 import { deepCopy, firstLetterUpperCase } from '../../shared/utils'
 import levelTresholds from '../../shared/data/levelTresholds'
 
-function Action(props) {
+const Action = props => {
 
     // Destructure Props
     const {

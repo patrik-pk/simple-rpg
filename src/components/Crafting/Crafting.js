@@ -9,7 +9,7 @@ import mapDrops from './mapDrops'
 import compareDrops from './compareDrops'
 import { deepCopy } from '../../shared/utils'
 
-function Crafting({ 
+const Crafting = ({ 
     invItems, 
     craftableItems, 
     inventoryRows, 
@@ -17,7 +17,7 @@ function Crafting({
     addItemToInv, 
     removeDropsFromInv, 
     gameFlow 
-}) {
+}) => {
 
     // Unselect Items on Unmount 
     useEffect(() => {

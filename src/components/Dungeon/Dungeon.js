@@ -6,7 +6,7 @@ import EnemyCard from '../EnemyCard/EnemyCard'
 import Menu from '../Menu/Menu'
 import bosses from './bosses'
 
-function Dungeon({ dungeon }) {
+const Dungeon = ({ dungeon }) => {
 
     // Dungeon Menu Active (handled in Menu.js component)
     const [menuActive, setMenuActive] = useState(0)

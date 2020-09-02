@@ -13,7 +13,7 @@ import { ReactComponent as Attack } from '../../resources/icons/attack.svg'
 import { ReactComponent as Close } from '../../resources/icons/close.svg'
 import { ReactComponent as Info } from '../../resources/icons/info.svg'
 
-function EnemyCard(props) {
+const EnemyCard = props => {
 
     // Destructure Props
     const { 

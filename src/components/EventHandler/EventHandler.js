@@ -7,7 +7,14 @@ import { updatePlayerStats } from '../../redux/actions/playerActions'
 import defaultSave from './defaultSave'
 
 // Component that handles time events
-function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTimer, updatePlayerStats }) {
+const EventHandler = ({ 
+    rolls, 
+    equippedItems, 
+    currentLevel, 
+    setRolls, 
+    setRollTimer, 
+    updatePlayerStats 
+}) => {
 
     const [canAddRoll, setCanAddRoll] = useState(true)
     const timer = 15

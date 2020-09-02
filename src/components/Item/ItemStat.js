@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ItemStat({ isDrop, comparison, stats }) {
+export default ({ isDrop, comparison, stats }) => {
 
     if (isDrop) return null
 

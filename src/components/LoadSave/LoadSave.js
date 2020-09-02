@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { loadState } from '../../redux/actions/loadActions'
+import { resetState, loadState } from '../../redux/actions/loadActions'
 import loadAllSaves from './loadAllSaves'
 import assignProperIcons from './assignProperIcons'
 import { randomGenerator } from '../../shared/utils'
 
-function LoadSave({ state, loadState }) {
+const LoadSave = ({ state, resetState, loadState }) => {
 
     // Load saves on mount
     useEffect(() => {
@@ -78,7 +78,10 @@ function LoadSave({ state, loadState }) {
                 </div>
 
                 {/* Save Button */}
-                <button className={`btn save-btn ${saveClass}`} onClick={() => saveData(state)}>Save</button>
+                <div className='options'>
+                    <button className='btn reset-btn active2' onClick={resetState}>Reset</button>
+                    <button className={`btn save-btn ${saveClass}`} onClick={() => saveData(state)}>Save</button>
+                </div>
 
             </div>
 
@@ -98,4 +101,4 @@ const mapStateToProps = state => ({
     state: state
 })
 
-export default connect(mapStateToProps, { loadState })(LoadSave)
+export default connect(mapStateToProps, { resetState, loadState })(LoadSave)

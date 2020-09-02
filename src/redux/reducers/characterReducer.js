@@ -4,6 +4,7 @@ import {
     SET_GOLD,
     SET_ROLLS,
     SET_ROLL_TIMER,
+    RESET_STATE,
     LOAD_STATE
 } from '../types'
 
@@ -53,6 +54,10 @@ export default (state = initialState, action) => {
                 ...state,
                 rollTimer: action.payload,
             }
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

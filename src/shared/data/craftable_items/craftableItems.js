@@ -25,8 +25,8 @@ const possibleItemsArray = Object.values(possibleItems)
 //             12x item for each type (bow, sword, helmet, etc.)
 //             [
 //                 {
-//                     dropsNeeded: [], drops needed array
-//                     item: {} item object
+//                     item: {}, item object
+//                     dropsNeeded: [] drops needed array
 //                 }
 //             ]
 //         ]
@@ -43,13 +43,23 @@ data.forEach((levelType, levelTypeIndex) => {
 
         for(let i = 0; i < 12; i++) {
 
+            // for ring, belt and shield add small amount to their stats,
+            // since they don't scale with gameFlow (crit chance and block chance)
+            // and they would be the same at low, medium and high level
+            const getStatValue = () => {
+                if(i === 8 || i === 9) return levelTypeIndex * 2 // ring & belt
+                if(i === 10) return levelTypeIndex * 3 // shield
+                else return undefined
+            }
+
             const specific = {
                 rarity,
                 itemType: { 
                     type: possibleItemsArray[i], 
                     iconIndex: iconIndexes[i] 
                 },
-                bonuses: createBonuses(bonusValues)
+                bonuses: createBonuses(bonusValues),
+                statValue: getStatValue()
             }
             
             const item = generateItem(

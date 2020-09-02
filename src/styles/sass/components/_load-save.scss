@@ -81,21 +81,47 @@
             }
         }
 
-        // Save Button
-        .save-btn {
+        // Options
+        .options {
             margin: 40px auto 0 auto;
-            width: 100px;
 
             @include large {
-                margin-top: 20px;
-                width: 80px;
-                padding: 8px 0;
+                margin-top: 30px;
             }
 
             @include medium {
                 margin-top: 20px;
-                width: 70px;
-                padding: 6px 0;
+            }
+
+            @include small {
+                margin-top: 10px;
+            }
+
+            // Reset & Save Button
+            .reset-btn, .save-btn {
+                width: 100px;
+    
+                @include large {
+                    width: 80px;
+                    padding: 8px 0;
+                }
+    
+                @include medium {
+                    width: 70px;
+                    padding: 6px 0;
+                }
+            }
+
+            .save-btn {
+                margin-left: 30px;
+
+                @include medium {
+                    margin-left: 20px;
+                }
+
+                @include small {
+                    margin-left: 10px;
+                }
             }
         }
     }

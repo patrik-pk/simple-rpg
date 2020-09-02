@@ -4,6 +4,7 @@ import {
     ENEMY_DODGED,
     ENEMY_HIT,
     RESET_ENEMY_DMG_TAKEN,
+    RESET_STATE,
     LOAD_STATE
 } from '../types'
 
@@ -43,6 +44,10 @@ export default (state = initialState, action) => {
                 ...state,
                 damageTaken: ''
             }
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

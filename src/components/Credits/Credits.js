@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Menu from '../Menu/Menu'
 import renderIcons from './renderIcons'
 
-export default function Credits() {
+const Credits = () => {
 
     // Top Menu
     const [topMenuActive, setTopMenuActive] = useState(0)
@@ -48,4 +48,6 @@ export default function Credits() {
         </div>
     )
 }
+
+export default Credits
 

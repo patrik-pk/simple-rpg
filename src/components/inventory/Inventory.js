@@ -20,7 +20,7 @@ import getItems from './getItems'
 import generateNewShopItems from './generateNewShopItems'
 import { firstLetterUpperCase } from '../../shared/utils'
 
-function Inventory(props) {
+const Inventory = props => {
 
     // Destructure from props
     const { 
@@ -87,6 +87,7 @@ function Inventory(props) {
             item.isSelected = false
             item.goldValue = Math.ceil(item.goldValue * 0.75)
             item.key = invItems.length
+            item.classes = item.classes.filter(classVal => classVal !== 'stats-up')
 
             removeShopItem(selectedShopItems[0])
             addItemToInv(item, gameFlow)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NotFound() {
+export default () => {
     return (
         <div className='not-found'>
             <p>Not Found</p>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Star } from '../../resources/icons/star.svg'
 
-export default function HomePage() {
+const HomePage = () => {
 
     const [stars, setStars] = useState('?')
 
@@ -52,3 +52,5 @@ export default function HomePage() {
         </div>
     )
 }
+
+export default HomePage

@@ -10,18 +10,18 @@ export default (type, items, min, max) => {
         if (sliced[i]) {
             const item = sliced[i]
             const hasLeftClass = item.classes.includes('stats-left')
-    
+            
             // add 'stats-left' class to inventory items with indexes of 4, 5 and 6,
             // (the ones on the right side) their stats on hover will be displayed on the left
-            if (type === 'inventory' && i > 2 && !hasLeftClass) {
-                item.classes = [...item.classes, 'stats-left']
+            if (type === 'inventory' && i > 2) {
+                if(!hasLeftClass)
+                    item.classes = [...item.classes, 'stats-left']
             }
             // if it doesn't match any of those conditions, and the item has the
             // 'stats-left' class, remove it
             else {
                 if (hasLeftClass) {
-                    const leftIndex = item.classes.indexOf('stats-left')
-                    item.classes.splice(leftIndex, 1)
+                    item.classes = item.classes.filter(classVal => classVal !== 'stats-left')
                 }
             }
     
@@ -30,6 +30,6 @@ export default (type, items, min, max) => {
         // if it doesn't push empty item into the array
         else newItems.push({ type: 'Empty' })
     }
-    
+
     return newItems
 }

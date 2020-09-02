@@ -1,5 +1,6 @@
 import {
     ADD_DUNGEON,
+    RESET_STATE,
     LOAD_STATE
 } from '../types'
 
@@ -21,6 +22,10 @@ export default (state = initialState, action) => {
                 if(item.type === action.payload) item.current += 1
                 return item
             })
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

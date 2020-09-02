@@ -47,4 +47,5 @@ export const ENEMY_HIT = 'ENEMY_HIT'
 export const RESET_ENEMY_DMG_TAKEN = 'RESET_ENEMY_DMG_TAKEN'
 
 // Loading
+export const RESET_STATE = 'RESET_STATE'
 export const LOAD_STATE = 'LOAD_STATE'

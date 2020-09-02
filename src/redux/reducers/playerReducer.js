@@ -4,6 +4,7 @@ import {
     PLAYER_HIT,
     RESET_PLAYER_DMG_TAKEN,
     UPDATE_PLAYER_STATS,
+    RESET_STATE,
     LOAD_STATE
 } from '../types'
 import calculatePlayerStats from '../../shared/calculatePlayerStats'
@@ -81,6 +82,10 @@ export default (state = initialState, action) => {
                 bonuses: values.bonuses,
                 classVal: values.classVal
             }
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

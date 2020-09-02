@@ -14,7 +14,7 @@ import { ReactComponent as ActionRangedLight } from '../../resources/icons/actio
 import { ReactComponent as ActionRangedMedium } from '../../resources/icons/actions/action_ranged_medium.svg'
 import { ReactComponent as ActionRangedStrong } from '../../resources/icons/actions/action_ranged_strong.svg'
 
-function Player(props) {
+const Player = props => {
 
     // Render Component only if there is a Enemy
     if(props.enemy) {
@@ -104,7 +104,7 @@ function Player(props) {
                 <div className={`actions ${actionsClass} ${playerClass}`}>
 
                     {/* Forfeit Button */}
-                    <Link className='btn forfeit-btn active' to='/menu'>FF</Link>
+                    <Link className='btn forfeit-btn active' to='/inventory'>FF</Link>
                     
                     {/* Columns Container */}
                     <div className='columns-container'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { firstLetterUpperCase } from '../../shared/utils'
 
-export default function ItemBonuses({ isDrop, comparison, bonuses }) {
+export default ({ isDrop, comparison, bonuses }) => {
     return (
         <div className='bonuses'>
             { isDrop ? null : bonuses.map((bonus, i) => {

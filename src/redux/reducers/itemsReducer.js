@@ -17,6 +17,7 @@ import {
     REMOVE_DROPS_FROM_INV,
     SORT_ITEMS,
     UPDATE_ITEMS,
+    RESET_STATE,
     LOAD_STATE
 } from '../types'
 
@@ -301,6 +302,10 @@ export default (state = initialState, action) => {
                 invItems: action.payload.invItems,
                 equippedItems: action.payload.equippedItems,
             }
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

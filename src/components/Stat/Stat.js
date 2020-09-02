@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Stat({ name, value, enemy }) {
+export default ({ name, value, enemy }) => {
     
     const strongStatClass = () => {
         if (enemy && enemy.type === 'Boss' && (name === 'M-Armor:' || name === 'R-Armor:')) {
@@ -20,5 +20,3 @@ function Stat({ name, value, enemy }) {
         </li>
     )
 }
-
-export default Stat

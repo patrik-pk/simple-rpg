@@ -1,7 +1,7 @@
 import React from 'react'
 import { firstLetterUpperCase } from '../../shared/utils'
 
-export default function ItemName({ isDrop, comparison, name, rarity, displayedName, level }) {
+export default ({ isDrop, comparison, name, rarity, displayedName, level }) => {
 
     if (isDrop) {
         const upperCaseName = firstLetterUpperCase(name)

@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default function SaveItem({ id, date, level, onLoad, onDelete }) {
-    
+export default ({ id, date, level, onLoad, onDelete }) => {
     return id === 'empty'
         ? 
         <li className='save-item empty'>

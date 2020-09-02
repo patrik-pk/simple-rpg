@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -6,26 +6,25 @@ import EnemyCard from '../EnemyCard/EnemyCard'
 import { setRolls } from '../../redux/actions/characterActions'
 import { generateClassicEnemies } from '../../redux/actions/gameActions'
 
-function ClassicGame(props) {
+const ClassicGame = ({ 
+    generateClassicEnemies,
+    setRolls,
+    currentLevel,
+    classicEnemies,
+    rolls,
+    rollTimer  
+}) => {
 
-    // Destructure Props
-    const { 
-        generateClassicEnemies,
-        setRolls,
-        currentLevel, 
-        classicEnemies,
-        rolls,
-        rollTimer 
-    } = props
+    // If there are no classicEnemies, generate them on mount
+    useEffect(() => {
+        if (classicEnemies.length === 0) generateClassicEnemies(currentLevel)
+    }, [classicEnemies.length, currentLevel, generateClassicEnemies])
 
     // Reroll
     const reroll = () => {
         setRolls(-1)
         generateClassicEnemies(currentLevel)
     }
-
-    // If there are no classicEnemies, generate them
-    if(classicEnemies.length === 0) generateClassicEnemies(currentLevel)
 
     // Reroll Active
     const rerollActive = rolls > 0 ? true : false

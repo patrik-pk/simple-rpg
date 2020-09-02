@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function Menu({ data, menuActive, itemOnClick, menuClass }) {
+const Menu = ({ data, menuActive, itemOnClick, menuClass }) => {
 
     // Mapped Menu Items
     const mappedMenuItems = data.map((item, i) => {
@@ -42,3 +42,5 @@ Menu.propTypes = {
     itemOnClick: PropTypes.func.isRequired,
     menuClass: PropTypes.string,
 }
+
+export default Menu

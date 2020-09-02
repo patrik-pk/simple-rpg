@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Stat from '../Stat/Stat'
 
-function Enemy({ enemy }) {
+const Enemy = ({ enemy }) => {
 
     // Render component only if there is a enemy
     if(enemy) {

@@ -8,7 +8,7 @@ import Enemy from './Enemy'
 import Player from './Player'
 import Item from '../Item/Item'
 
-function Game(props) {
+const Game = props => {
 
     // Destructure props
     const {
@@ -73,7 +73,7 @@ function Game(props) {
                 </div>
 
                 {/* Confirm Button */}
-                <Link className='btn confirm-btn active' to='/menu' onClick={endGame}>Continue</Link>
+                <Link className='btn confirm-btn active' to='/inventory' onClick={endGame}>Continue</Link>
             </div>
 
         </section>

@@ -15,7 +15,7 @@ import {
 } from '../../redux/actions/itemsActions'
 import compareItem from './compareItem'
 
-function Item(props) {
+const Item = props => {
 
     // If item has data & isn't of type 'Empty' (for shop items) render item
     if (props.data && props.data.type !== 'Empty') {

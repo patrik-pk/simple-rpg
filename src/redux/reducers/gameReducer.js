@@ -6,6 +6,7 @@ import {
     SET_BATTLE_STATUS,
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
+    RESET_STATE,
     LOAD_STATE,
 } from '../types'
 
@@ -64,6 +65,10 @@ export default (state = initialState, action) => {
                 ...state,
                 classicEnemies: rerollEnemies(action.payload)
             }
+
+        // Reset State
+        case RESET_STATE:
+            return initialState
 
         // Load State
         case LOAD_STATE:

@@ -10,7 +10,7 @@ import Credits from '../Credits/Credits'
 import LoadSave from '../LoadSave/LoadSave'
 import NotFound from '../NotFound/NotFound'
 
-export default function BoxRoutes() {
+export default () => {
     return (
         <section className='page-wrapper' >
             <div className='content-container'>

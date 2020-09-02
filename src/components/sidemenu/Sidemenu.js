@@ -8,7 +8,7 @@ import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 import { ReactComponent as Coin } from '../../resources/icons/coin.svg'
 import { ReactComponent as Dice } from '../../resources/icons/dice.svg'
 
-function Sidemenu({ character: { experience, currentLevel, gold, rolls } }) {
+const Sidemenu = ({ character: { experience, currentLevel, gold, rolls } }) => {
 
     // XP Bar Styling
     const xpPercentage = (experience / levelTresholds[currentLevel].xp) * 100

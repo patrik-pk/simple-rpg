@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Lock } from '../../resources/icons/lock.svg'
 
-export default function SidemenuLink({ name, linkTo, isLocked, icon }) {
+export default ({ name, linkTo, isLocked, icon }) => {
 
     // Some links should be locked before logging in, but since there is
     // no authentification implemented (yet), it's not used.
