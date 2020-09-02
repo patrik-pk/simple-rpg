@@ -15,6 +15,7 @@ import getReward from './getReward'
 import recalculateItems from './recalculateItems'
 import generateRewardItems from './generateRewardItems'
 import { deepCopy, firstLetterUpperCase } from '../../shared/utils'
+import levelTresholds from '../../data/levelTresholds'
 
 function Action(props) {
 
@@ -101,11 +102,11 @@ function Action(props) {
                     const recalculated = recalculateItems(gameFlow, newLevel, craftableItems, invItemsToRecalc, equippedItems)
                     updatePlayerStats(recalculated.equippedItems, newLevel)
                     updateItems(recalculated)
-                    addItemToInv([ rewardItems[1], rewardItems[2] ])
+                    addItemToInv([ rewardItems[1], rewardItems[2] ], levelTresholds[newLevel].gameFlow)
 
                 } 
                 // If he didn't, just push all of the reward items into the inventory
-                else addItemToInv(rewardItems)
+                else addItemToInv(rewardItems, levelTresholds[newLevel].gameFlow)
                 
                 // render the item in Game.js with 'stats-up' class
                 const obtainedItems = deepCopy(rewardItems)

@@ -143,7 +143,7 @@ const logic = {
     generateGoldValue: (destination, rarValMult, gameFlow) => {
 
         const base = 20
-        const destinationMultiplier = destination === 'Shop' ? 1.6 : 1
+        const destinationMultiplier = destination === 'Shop' ? 1.33 : 1
 
         return Math.round(base * destinationMultiplier * rarValMult * gameFlow * randomGenerator(95, 105, 0.01))
     }

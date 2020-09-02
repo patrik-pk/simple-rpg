@@ -8,6 +8,7 @@ export default (currentLevel, gameFlow) => {
 
     // 50% chance to 4 generate items, 50% to generate 4 drop items
     const random = randomGenerator(0, 99)
+    const shopMultiplier = 1.33
 
     for (let i = 0; i < 4; i++) {
         if (random < 50) newShopItems.push(generateItem(currentLevel, 'Shop', i))
@@ -39,10 +40,10 @@ export default (currentLevel, gameFlow) => {
             const randomAmount = randomGenerator(3, 5)
 
             // get gameFlow, which has to be minimum of 1
-            const gameFlowVal = gameFlow > 1 ? gameFlow : 1
+            gameFlow = gameFlow > 1 ? gameFlow : 1
 
             // multiply value by gameFlow and that amount
-            const value = goldValue * gameFlowVal * randomAmount
+            const value = Math.round(goldValue * gameFlow * randomAmount * shopMultiplier)
 
             // push the item to the array
             newShopItems.push(new DropItem(

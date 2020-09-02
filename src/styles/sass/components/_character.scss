@@ -152,9 +152,6 @@
             // Stat Container (Li) 
             .stat-container {
                 padding: 2px 0;
-                &.boss {
-                    p { color: orangered!important; }
-                }
 
                 @include small {
                     padding: 1px 0;

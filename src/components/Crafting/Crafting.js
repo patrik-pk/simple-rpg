@@ -3,13 +3,21 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import InventoryRow from '../Inventory/InventoryRow'
-import Menu from '../Menu'
+import Menu from '../Menu/Menu'
 import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../../actions/itemsActions'
 import mapDrops from './mapDrops'
 import compareDrops from './compareDrops'
 import { deepCopy } from '../../shared/utils'
 
-function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableItems, addItemToInv, removeDropsFromInv }) {
+function Crafting({ 
+    invItems, 
+    craftableItems, 
+    inventoryRows, 
+    unselectCraftableItems, 
+    addItemToInv, 
+    removeDropsFromInv, 
+    gameFlow 
+}) {
 
     // Unselect Items on Unmount 
     useEffect(() => {
@@ -76,7 +84,7 @@ function Crafting({ invItems, craftableItems, inventoryRows, unselectCraftableIt
             item.isSelected = false
             item.isCrafted = true
             item.craftedLevelType = levelMenuActive
-            addItemToInv(item)
+            addItemToInv(item, gameFlow)
 
             // unselect craftable items
             unselectCraftableItems()
@@ -150,12 +158,14 @@ Crafting.propTypes = {
     invItems: PropTypes.array.isRequired,
     craftableItems: PropTypes.array.isRequired,
     inventoryRows: PropTypes.number.isRequired,
+    gameFlow: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
     invItems: state.items.invItems,
     craftableItems: state.items.craftableItems,
-    inventoryRows: state.items.inventoryRows
+    inventoryRows: state.items.inventoryRows,
+    gameFlow: state.character.gameFlow
 })
 
 export default connect(mapStateToProps, { unselectCraftableItems, addItemToInv, removeDropsFromInv })(Crafting)

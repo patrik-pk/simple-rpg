@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
-import { ReactComponent as Star } from '../resources/icons/star.svg'
+import { ReactComponent as Star } from '../../resources/icons/star.svg'
 
 export default function HomePage() {
 
@@ -14,6 +13,7 @@ export default function HomePage() {
         ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
             .then(response => response.json())
             .then(data => setStars(data.watchers_count))
+            .catch(error => console.error(`Error ${error}`))
     }, [setStars])
 
     // Render

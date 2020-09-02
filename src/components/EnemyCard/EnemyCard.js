@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Stat from '../Stat'
+import Stat from '../Stat/Stat'
 import { setEnemy } from '../../actions/enemyActions'
 import { resetPlayer } from '../../actions/playerActions'
 import { startGame } from '../../actions/gameActions'

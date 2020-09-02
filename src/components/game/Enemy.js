@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Stat from '../Stat'
+import Stat from '../Stat/Stat'
 
 function Enemy({ enemy }) {
 

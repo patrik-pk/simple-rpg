@@ -22,7 +22,7 @@ function Game(props) {
 
     // Game on mount - if enemy doesn't exist (happens on refresh), redirect to /menu
     useEffect(() => {
-        !enemy && history.push('/menu')
+        if(!enemy) history.push('/menu')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

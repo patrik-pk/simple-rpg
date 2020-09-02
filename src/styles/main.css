@@ -107,8 +107,29 @@
           justify-content: space-between;
 }
 
+.stat-container.strong-stat p {
+  color: orangered !important;
+}
+
 .stat-container p:nth-child(2) {
   margin-left: 10px;
+}
+
+.not-found {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.not-found p {
+  font-size: 20px;
 }
 
 .page-wrapper {
@@ -1161,10 +1182,6 @@
 
 .character-container .stats ul .stat-container {
   padding: 2px 0;
-}
-
-.character-container .stats ul .stat-container.boss p {
-  color: orangered !important;
 }
 
 @media (max-width: 767.98px) {

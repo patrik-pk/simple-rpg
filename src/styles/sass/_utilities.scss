@@ -77,11 +77,28 @@
 
 // Stat Container
 .stat-container {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &.strong-stat {
+        p {
+            color: orangered!important;
+        }
+    }
 
     p:nth-child(2) {
         margin-left: 10px;
+    }
+}
+
+// Not Found
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    p {
+        font-size: 20px;
     }
 }

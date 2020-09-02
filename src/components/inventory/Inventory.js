@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import InventoryRow from './InventoryRow'
 import Item from '../Item/Item'
-import Stat from '../Stat'
+import Stat from '../Stat/Stat'
 import { 
     unselectInvItems, 
     unselectShopItems, 
@@ -91,7 +91,7 @@ function Inventory(props) {
             item.key = invItems.length
 
             removeShopItem(selectedShopItems[0])
-            addItemToInv(item)
+            addItemToInv(item, gameFlow)
             setGold(-selectedShopItems[0].goldValue)
         }
     }

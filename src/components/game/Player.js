@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Action from '../Action/Action'
-import Stat from '../Stat'
+import Stat from '../Stat/Stat'
 import { firstLetterUpperCase } from '../../shared/utils'
 import { ReactComponent as PlayerIcon } from '../../resources/icons/knight.svg'
 
@@ -128,7 +128,8 @@ function Player(props) {
                 </div>
             </div>
         )
-    }
+    } 
+    else return null
 }
 
 Player.propTypes = {

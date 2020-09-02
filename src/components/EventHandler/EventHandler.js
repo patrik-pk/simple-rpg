@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setRolls, setRollTimer } from '../actions/characterActions'
-import { updatePlayerStats } from '../actions/playerActions'
-import defaultSave from '../logic/defaultSave'
+import { setRolls, setRollTimer } from '../../actions/characterActions'
+import { updatePlayerStats } from '../../actions/playerActions'
+import defaultSave from './defaultSave'
 
 // Component that handles time events
 function EventHandler({ rolls, equippedItems, currentLevel, setRolls, setRollTimer, updatePlayerStats }) {

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import EnemyCard from './EnemyCard/EnemyCard'
-import Menu from './Menu'
-import bosses from '../data/bosses'
+import EnemyCard from '../EnemyCard/EnemyCard'
+import Menu from '../Menu/Menu'
+import bosses from '../../data/bosses'
 
 function Dungeon({ dungeon }) {
 
@@ -33,7 +33,6 @@ function Dungeon({ dungeon }) {
 
             {/* Boss Section */}
             <div className='boss-section'>
-                {/* Arrow left & arrow right? */}
                 { dungeonItems[menuActive] }
             </div>
                         

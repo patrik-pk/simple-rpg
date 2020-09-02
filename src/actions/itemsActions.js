@@ -15,10 +15,13 @@ import {
     UPDATE_ITEMS
 } from './types'
 
-// ADD ITEM TO INV
-export const addItemToInv = item => ({
+// ADD ITEM TO INV - always array
+export const addItemToInv = (items, gameFlow) => ({
     type: ADD_ITEM_TO_INV,
-    payload: item
+    payload: {
+        items: Array.isArray(items) ? items : [items],
+        gameFlow,
+    }
 })
 
 // REMOVE INVENTORY ITEMS

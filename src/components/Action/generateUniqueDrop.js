@@ -6,6 +6,10 @@ import DropItem from '../../data/DropItem'
 export default (items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, newLevel) => {
     if (alreadyGeneratedDrops.length === enemyDrops.length) return
 
+    const gameFlow = levelTresholds[newLevel].gameFlow > 1 
+        ? levelTresholds[newLevel].gameFlow 
+        : 1
+        
     // generate random index, if that index is already generated, keep generating
     // new one, then push that index into already generated array
     let index = randomGenerator(0, enemyDrops.length - 1)
@@ -14,7 +18,7 @@ export default (items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, new
 
     const { iconKey, name, icon, classVal, goldValue } = enemyDrops[index]
     const randomAmount = randomGenerator(3, 7)
-    const dropGoldValue = Math.round(randomAmount * goldValue * levelTresholds[newLevel].gameFlow)
+    const dropGoldValue = Math.round(randomAmount * goldValue * gameFlow)
     const classes = [classVal && classVal]
 
     items.push(new DropItem(

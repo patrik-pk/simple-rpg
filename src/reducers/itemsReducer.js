@@ -41,79 +41,40 @@ export default (state = initialState, action) => {
         // Add Item(s) To Inventory
         case ADD_ITEM_TO_INV:
 
-            // MULTIPLE ITEMS
-            if(Array.isArray(action.payload)) {
-                
-                const newItems = deepCopy(state.invItems)
+            const newInventoryItems = deepCopy(state.invItems)
+            const gameFlow = action.payload.gameFlow > 1 ? action.payload.gameFlow : 1
 
-                // loop throgh action.payload items
-                action.payload.forEach(item => {
-                    // if its equipment item, just push it to the Array
-                    if(item.type === 'equip') {
-                        newItems.push(item)
-                    }
-                    // if it is drop
-                    if(item.type === 'drop') {
-                        // filter invItems and return item if its name matches the payload name (player has that kind of item)
-                        const filtered = state.invItems.filter(filtItem => filtItem.name === item.name)[0]
-                        // if there is such item
-                        if(filtered) {
-                            
-                            // set newAmount to items amount + payload item amount
-                            const newAmount = filtered.amount + item.amount
-                            
-                            // update amount and goldValue
-                            newItems[filtered.key].goldValue = Math.round((filtered.goldValue / filtered.amount) * newAmount) 
-                            newItems[filtered.key].amount = newAmount
-                        }
-                        // else just push the item to the array 
-                        else {
-                            newItems.push(item)
-                        }
-                    }
-                })
-
-                return {
-                    ...state,
-                    invItems: newItems
+            // loop throgh action.payload items
+            action.payload.items.forEach(item => {
+                // if item is equip item, just push it to the Array
+                if(item.type === 'equip') {
+                    newInventoryItems.push(item)
                 }
+                // if item is drop
+                if(item.type === 'drop') {
+                    // find if there is a drop with same name as payload drop, meaning player has the same drop in inventory
+                    const matchingDrop = state.invItems.find(invItem => invItem.name === item.name)
+                    // if there is such drop
+                    if(matchingDrop) {
+                        // set newAmount to inventory drop amount + payload drop amount
+                        const newAmount = matchingDrop.amount + item.amount
+                        
+                        // update amount and goldValue of the matching drop in inventory
+                        newInventoryItems[matchingDrop.key].amount = newAmount 
+                        newInventoryItems[matchingDrop.key].goldValue = Math.round(7.5 * newAmount * gameFlow) 
+                    }
+                    // else just push the item to the array 
+                    else {
+                        newInventoryItems.push(item)
+                    }
+                }
+            })
+
+            return {
+                ...state,
+                invItems: newInventoryItems
             }
             
-            // SINGLE ITEM
-            else {
-    
-                // If itemType is drop
-                if(action.payload.type === 'drop') {
-                    // find item with same name
-                    const filtered = state.invItems.filter(item => item.name === action.payload.name)[0]
-                    // if there is one
-                    if(filtered) {
-                        // calculate amount (found item amount + new item amount)
-                        const newAmount = filtered.amount + action.payload.amount
-                        // and update that item's amount
-                        return { 
-                            ...state,
-                            invItems: state.invItems.map(item => {
-                                if(item.name === filtered.name) {
-                                    item.goldValue = Math.round((item.goldValue / item.amount) * newAmount)
-                                    item.amount = newAmount
-                                }
-                                return item
-                            })
-                        }
-                    } 
-                    // if there is no item with same name, just add the item to the array
-                    else return {
-                        ...state,
-                        invItems: [...state.invItems, action.payload]
-                    }
-                } 
-                // else just add the item to the array
-                else return {
-                    ...state,
-                    invItems: [...state.invItems, action.payload]
-                }
-            }
 
         // Remove Inventory Items
         case REMOVE_INV_ITEMS:

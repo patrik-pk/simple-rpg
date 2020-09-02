@@ -86,7 +86,7 @@ const logic = {
 
             // if it is drop, update its goldValue
             else if (item.type === 'drop') {
-                item.goldValue = Math.round(10 * item.amount * gameFlow)
+                item.goldValue = Math.round(7.5 * item.amount * gameFlow)
             }
         })
 

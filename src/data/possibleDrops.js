@@ -1,7 +1,7 @@
 import di from './icons/dropIcons'
 
 class PossibleDrop {
-    constructor(iconKey, name, icon, classVal, goldValue = 10) {
+    constructor(iconKey, name, icon, classVal, goldValue = 7.5) {
         this.iconKey = iconKey
         this.name = name
         this.icon = icon
