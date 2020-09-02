@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './redux/store'
 
 import EventHandler from './components/EventHandler/EventHandler'
 import HomePage from './components/HomePage/HomePage'
 import Game from './components/Game/Game'
-import BoxRoutes from './BoxRoutes'
+import BoxRoutes from './components/BoxRoutes/BoxRoutes'
 import './styles/main.css'
 
 export default () =>

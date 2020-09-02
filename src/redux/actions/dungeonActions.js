@@ -1,8 +1,8 @@
 import {
     ADD_DUNGEON
-} from './types'
+} from '../types'
 
-// ADD DUNGEON
+// Add Dungeon
 export const addDungeon = dungeonName => ({
     type: ADD_DUNGEON,
     payload: dungeonName

@@ -1,4 +1,4 @@
-import generateEnemy from '../logic/generateEnemy'
+import generateEnemy from '../shared/generateEnemy'
 import possibleEnemies from './possibleEnemies'
 
 // Destructure from props

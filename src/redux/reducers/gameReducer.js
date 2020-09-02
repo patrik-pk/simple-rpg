@@ -1,4 +1,4 @@
-import rerollEnemies from '../shared/rerollEnemies'
+import rerollEnemies from '../../shared/rerollEnemies'
 import {
     START_GAME, 
     END_GAME,
@@ -7,7 +7,7 @@ import {
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
     LOAD_STATE,
-} from '../actions/types'
+} from '../types'
 
 const initialState = {
     classicEnemies: [],

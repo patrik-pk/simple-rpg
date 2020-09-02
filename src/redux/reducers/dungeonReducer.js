@@ -1,7 +1,7 @@
 import {
     ADD_DUNGEON,
     LOAD_STATE
-} from '../actions/types'
+} from '../types'
 
 const initialState = [
     { type: 'Aquatic', current: 0 },

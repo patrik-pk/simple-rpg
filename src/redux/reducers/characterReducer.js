@@ -1,11 +1,11 @@
-import levelTresholds from '../data/levelTresholds'
+import levelTresholds from '../../data/levelTresholds'
 import {
     ADD_REWARD,
     SET_GOLD,
     SET_ROLLS,
     SET_ROLL_TIMER,
     LOAD_STATE
-} from '../actions/types'
+} from '../types'
 
 const initialState = {
     experience: 0,

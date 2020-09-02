@@ -12,7 +12,7 @@ import {
     setShopItemSelect, 
     setCraftableItemSelect, 
     unselectCraftableItems 
-} from '../../actions/itemsActions'
+} from '../../redux/actions/itemsActions'
 import compareItem from './compareItem'
 
 function Item(props) {

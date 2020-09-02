@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import EnemyCard from '../EnemyCard/EnemyCard'
-import { setRolls } from '../../actions/characterActions'
-import { generateClassicEnemies } from '../../actions/gameActions'
+import { setRolls } from '../../redux/actions/characterActions'
+import { generateClassicEnemies } from '../../redux/actions/gameActions'
 
 function ClassicGame(props) {
 

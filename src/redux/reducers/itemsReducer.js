@@ -1,9 +1,7 @@
-import startingItems from '../data/startingItems'
-import craftableItems from '../data/craftable_items/craftableItems'
-import sortItemsValues from '../data/sortItemsValues'
-import deepCopy from '../logic/deepCopy'
-// import EquipItem from '../data/EquipItem'
-//import DropItem from '../data/DropItem'
+import startingItems from '../../data/startingItems'
+import craftableItems from '../../data/craftable_items/craftableItems'
+import sortItemsValues from '../../data/sortItemsValues'
+import { deepCopy } from '../../shared/utils'
 import {
     ADD_ITEM_TO_INV,
     REMOVE_INV_ITEMS,
@@ -20,7 +18,7 @@ import {
     SORT_ITEMS,
     UPDATE_ITEMS,
     LOAD_STATE
-} from '../actions/types'
+} from '../types'
 
 const initialState = {
     inventoryRows: 7,
@@ -38,7 +36,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
 
-        // Add Item(s) To Inventory
+        // Add Item(s) To Inventory (always an array)
         case ADD_ITEM_TO_INV:
 
             const newInventoryItems = deepCopy(state.invItems)

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import InventoryRow from '../Inventory/InventoryRow'
 import Menu from '../Menu/Menu'
-import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../../actions/itemsActions'
+import { unselectCraftableItems, addItemToInv, removeDropsFromInv } from '../../redux/actions/itemsActions'
 import mapDrops from './mapDrops'
 import compareDrops from './compareDrops'
 import { deepCopy } from '../../shared/utils'

@@ -5,37 +5,37 @@ import {
     SET_BATTLE_STATUS,
     ITEM_OBTAINED,
     GENERATE_CLASSIC_ENEMIES,
-} from './types'
+} from '../types'
 
-// START GAME
+// Start game
 export const startGame = () => ({
     type: START_GAME
 })
 
-// END GAME
+// End game
 export const endGame = () => ({
     type: END_GAME
 })
 
-// SET CAN ATTACK
+// Set can attack
 export const setCanAttack = bool => ({
     type: SET_CAN_ATTACK,
     payload: bool
 })
 
-// SET BATTLE STATUS
+// Set battle status
 export const setBattleStatus = value => ({
     type: SET_BATTLE_STATUS,
     payload: value
 })
 
-// ITEM OBTAINED
+// Set item obtained
 export const itemObtained = item => ({
     type: ITEM_OBTAINED,
     payload: item
 }) 
 
-// GENERATE CLASSIC ENEMIES
+// Generate classic enemies
 export const generateClassicEnemies = currentLevel => ({
     type: GENERATE_CLASSIC_ENEMIES,
     payload: currentLevel

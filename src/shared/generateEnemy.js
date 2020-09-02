@@ -1,6 +1,6 @@
 import possibleEnemies from '../data/possibleEnemies'
 import levelTresholds from '../data/levelTresholds'
-import randomGenerator from './randomGenerator'
+import { randomGenerator } from './utils'
 
 export default function generateEnemy(type, enemyLevel, playerLevel, specificEnemy = null, strongStatIndex = null, dungeon = null) {
 

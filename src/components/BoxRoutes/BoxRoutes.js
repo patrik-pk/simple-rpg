@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Sidemenu from './components/Sidemenu/Sidemenu'
-import ClassicGame from './components/ClassicGame/ClassicGame'
-import Dungeon from './components/Dungeon/Dungeon'
-import Inventory from './components/Inventory/Inventory'
-import Crafting from './components/Crafting/Crafting'
-import Credits from './components/Credits/Credits'
-import LoadSave from './components/LoadSave/LoadSave'
-import NotFound from './components/NotFound/NotFound'
+import Sidemenu from '../Sidemenu/Sidemenu'
+import ClassicGame from '../ClassicGame/ClassicGame'
+import Dungeon from '../Dungeon/Dungeon'
+import Inventory from '../Inventory/Inventory'
+import Crafting from '../Crafting/Crafting'
+import Credits from '../Credits/Credits'
+import LoadSave from '../LoadSave/LoadSave'
+import NotFound from '../NotFound/NotFound'
 
 export default function BoxRoutes() {
     return (

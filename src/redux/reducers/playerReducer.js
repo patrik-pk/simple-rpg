@@ -5,8 +5,8 @@ import {
     RESET_PLAYER_DMG_TAKEN,
     UPDATE_PLAYER_STATS,
     LOAD_STATE
-} from '../actions/types'
-import calculatePlayerStats from '../shared/calculatePlayerStats'
+} from '../types'
+import calculatePlayerStats from '../../shared/calculatePlayerStats'
 
 const initialState = {
     currentHp: 300,

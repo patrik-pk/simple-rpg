@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { loadState } from '../../actions/loadActions'
+import { loadState } from '../../redux/actions/loadActions'
 import loadAllSaves from './loadAllSaves'
 import assignProperIcons from './assignProperIcons'
 import { randomGenerator } from '../../shared/utils'

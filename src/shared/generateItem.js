@@ -3,8 +3,7 @@ import possibleItems from '../data/possibleItems'
 import possibleBonuses from '../data/possibleBonuses'
 import levelTresholds from '../data/levelTresholds'
 import rarities from '../data/rarities'
-import deepCopy from '../logic/deepCopy'
-import randomGenerator from '../logic/randomGenerator'
+import { randomGenerator, deepCopy } from '../shared/utils'
 
 export default (level, destination, key, gameType, specific = {}) => {
 

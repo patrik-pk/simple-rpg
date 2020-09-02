@@ -13,9 +13,9 @@ import {
     REMOVE_DROPS_FROM_INV,
     SORT_ITEMS,
     UPDATE_ITEMS
-} from './types'
+} from '../types'
 
-// ADD ITEM TO INV - always array
+// Add items to inventory - make sure it's always an array
 export const addItemToInv = (items, gameFlow) => ({
     type: ADD_ITEM_TO_INV,
     payload: {
@@ -24,47 +24,47 @@ export const addItemToInv = (items, gameFlow) => ({
     }
 })
 
-// REMOVE INVENTORY ITEMS
+// Remove inventory items
 export const removeInvItems = items => ({
     type: REMOVE_INV_ITEMS,
     payload: items
 })
 
-// UNSELECT INVENTORY ITEMS
+// Unselect inventory items
 export const unselectInvItems = () => ({
     type: UNSELECT_INV_ITEMS
 })
 
-// SET INVENTORY ITEM ISSELECTED
+// Set inventory item isSelected
 export const setInvItemSelect = key => ({
     type: SET_INV_ITEM_SELECT,
     payload: key
 })
 
-// UNSELECT SHOP ITEMS
+// Unselect shop items
 export const unselectShopItems = () => ({
     type: UNSELECT_SHOP_ITEMS
 })
 
-// SET SHOP ITEM ISSELECTED
+// Set shop item isSelected
 export const setShopItemSelect = key => ({
     type: SET_SHOP_ITEM_SELECT,
     payload: key
 })
 
-// REROLL SHOP ITEMS
+// Reroll shop items
 export const rerollShopItems = newItems => ({
     type: REROLL_ITEMS,
     payload: newItems
 })
 
-// REMOVE SHOP ITEM
+// Remove shop item
 export const removeShopItem = item => ({
     type: REMOVE_SHOP_ITEM,
     payload: item
 })
 
-// EQUIP ITEM
+// Equip item
 export const equipItem = (selectedItem, equippedItem) => ({
     type: EQUIP_ITEM,
     payload: {
@@ -73,29 +73,29 @@ export const equipItem = (selectedItem, equippedItem) => ({
     }
 })
 
-// SET CRAFTABLE ITEM ISSELECT
+// Set craftable item isSelected
 export const setCraftableItemSelect = key => ({
     type: SET_CRAFTABLE_ITEM_SELECT,
     payload: key
 })
 
-// UNSELECT ALL CRAFTABLE ITEMS
+// Unselect all craftable items
 export const unselectCraftableItems = () => ({
     type: UNSELECT_CRAFTABLE_ITEMS,
 })
 
-// REMOVE DROPS FROM INVENTORY
+// Remove drops from inventory
 export const removeDropsFromInv = drops => ({
     type: REMOVE_DROPS_FROM_INV,
     payload: drops
 })
 
-// SORT ITEMS
+// Sort items
 export const sortItems = () => ({
     type: SORT_ITEMS
 })
 
-// UPDATE ITEMS
+// Update items
 export const updateItems = updatedItems => ({
     type: UPDATE_ITEMS,
     payload: updatedItems

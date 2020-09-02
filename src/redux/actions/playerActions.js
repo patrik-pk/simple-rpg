@@ -4,19 +4,19 @@ import {
     PLAYER_HIT,
     RESET_PLAYER_DMG_TAKEN,
     UPDATE_PLAYER_STATS
-} from './types'
+} from '../types'
 
-// RESET PLAYER
+// Reset Player
 export const resetPlayer = () => ({
     type: RESET_PLAYER
 })
 
-// PLAYER BLOCKED
+// Player Blocked
 export const playerBlocked = () => ({
     type: PLAYER_BLOCKED
 })
 
-// PLAYER HIT
+// Player Hit
 export const playerHit = (dmgDealt, didCrit) => ({
     type: PLAYER_HIT,
     payload: {
@@ -25,12 +25,12 @@ export const playerHit = (dmgDealt, didCrit) => ({
     }
 })
 
-// RESET PLAYER DAMAGE TAKEN
+// Reset Player Damage Taken
 export const resetPlayerDmgTaken = () => ({
     type: RESET_PLAYER_DMG_TAKEN
 })
 
-// UPDATE PLAYERS STATS
+// Update Player Stats
 export const updatePlayerStats = (equippedItems, currentLevel) => ({
     type: UPDATE_PLAYER_STATS,
     payload: {

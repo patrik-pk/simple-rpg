@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Stat from '../Stat/Stat'
-import { setEnemy } from '../../actions/enemyActions'
-import { resetPlayer } from '../../actions/playerActions'
-import { startGame } from '../../actions/gameActions'
+import { setEnemy } from '../../redux/actions/enemyActions'
+import { resetPlayer } from '../../redux/actions/playerActions'
+import { startGame } from '../../redux/actions/gameActions'
 import { firstLetterUpperCase } from '../../shared/utils'
 
 import { ReactComponent as Attack } from '../../resources/icons/attack.svg'

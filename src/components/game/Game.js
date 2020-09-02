@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { endGame } from '../../actions/gameActions'
+import { endGame } from '../../redux/actions/gameActions'
 import Enemy from './Enemy'
 import Player from './Player'
 import Item from '../Item/Item'

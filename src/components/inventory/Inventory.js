@@ -14,9 +14,8 @@ import {
     removeInvItems,
     equipItem,
     sortItems 
-} from '../../actions/itemsActions'
-import { setRolls, setGold } from '../../actions/characterActions'
-// import { updatePlayerStats } from '../../actions/playerActions'
+} from '../../redux/actions/itemsActions'
+import { setRolls, setGold } from '../../redux/actions/characterActions'
 import getItems from './getItems'
 import generateNewShopItems from './generateNewShopItems'
 import { firstLetterUpperCase } from '../../shared/utils'
@@ -35,7 +34,6 @@ function Inventory(props) {
         removeInvItems,
         equipItem,
         sortItems,
-        // updatePlayerStats,
         setRolls, 
         setGold 
     } = props
@@ -110,17 +108,11 @@ function Inventory(props) {
     // Equip Item
     const eqItem = () => {
         if(equipCondition) {
-
             // find the matching type, that is already equipped
-            const equipped = equippedItems.filter(item => item.name === selectedInvItems[0].name)
+            const equipped = equippedItems.find(item => item.name === selectedInvItems[0].name)
 
             // put selected item into equipped items and put the current equipped item into inventory
-            equipItem(selectedInvItems[0], equipped[0])
-
-            // items are recalculated in EventHandler.js, so it shouldn't be needed here,
-            // I will delete this later if everything runs fine
-            // // recalculate player stats - returns object with new values
-            // updatePlayerStats(equippedItems, currentLevel)
+            equipItem(selectedInvItems[0], equipped)
         }
     }
 
@@ -243,7 +235,6 @@ export default connect(mapStateToProps, {
     removeInvItems,
     equipItem,
     sortItems,
-    // updatePlayerStats,
     setRolls, 
     setGold 
 })(Inventory)

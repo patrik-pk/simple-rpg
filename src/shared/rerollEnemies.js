@@ -1,4 +1,4 @@
-import generateEnemy from '../logic/generateEnemy'
+import generateEnemy from './generateEnemy'
 import { shuffleArray } from './utils'
 
 // Reroll - generate 3 enemies with unique enemyType, with 
