@@ -1210,17 +1210,23 @@
   font-size: 14px;
 }
 
+@media (max-width: 1199.98px) {
+  .character-container .stats {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .character-container .stats {
     padding: 10px 12px;
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 
 @media (max-width: 767.98px) {
   .character-container .stats {
     padding: 5px 7px;
-    font-size: 7px;
+    font-size: 6px;
   }
 }
 

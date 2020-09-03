@@ -28,7 +28,6 @@ export default (
 
     // enemy difficulty drop amount multiplier
     let dropMult
-    console.log(enemyDifficulty)
     if(enemyDifficulty === 1) dropMult = [4, 6]
     if(enemyDifficulty === 2) dropMult = [6, 8]
     if(enemyDifficulty === 3) dropMult = [8, 10]

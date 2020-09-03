@@ -88,7 +88,6 @@ const Action = props => {
                 const { didLevelUp, currentLevel: newLevel } = reward
                 addReward(reward)
 
-                console.log(`Action ${enemyDifficulty}`)
                 const rewardItems = generateRewardItems(
                     gameType, 
                     invItems.length, 
