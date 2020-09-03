@@ -135,6 +135,14 @@
                     .item-container {
                         margin-left: 5px;
                         &:first-child { margin-left: 0; }
+
+                        @include medium {
+                            margin-left: 4px;
+                        }
+
+                        @include small {
+                            margin-left: 3px;
+                        }
                     }
                 }
     
@@ -155,6 +163,9 @@
     
         // Right (Inventory Items)
         .right {
+            @include portrait {
+                margin-left: 30px;
+            }
 
             // Inventory Items
             .inventory-items {

@@ -168,6 +168,7 @@
   .page-wrapper .content-container {
     width: 100%;
     height: 100vh;
+    border: none;
   }
 }
 
@@ -902,7 +903,7 @@
 .battle-section .game-over {
   display: none;
   position: absolute;
-  bottom: 5%;
+  bottom: 40px;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
@@ -912,10 +913,17 @@
   border: 1px white solid;
 }
 
+@media (max-width: 1199.98px) {
+  .battle-section .game-over {
+    bottom: 30px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .battle-section .game-over {
     width: 240px;
     padding: 7px;
+    bottom: 20px;
   }
 }
 
@@ -1211,7 +1219,7 @@
 @media (max-width: 767.98px) {
   .character-container .stats {
     padding: 5px 7px;
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
@@ -2521,6 +2529,18 @@
   margin-left: 0;
 }
 
+@media (max-width: 991.98px) {
+  .inventory .container .left .shop .items .item-container {
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .inventory .container .left .shop .items .item-container {
+    margin-left: 3px;
+  }
+}
+
 .inventory .container .left .shop .options {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2534,6 +2554,12 @@
 @media (max-width: 991.98px) {
   .inventory .container .left .shop .options {
     margin-top: 5px;
+  }
+}
+
+@media (max-width: 499.98px) {
+  .inventory .container .right {
+    margin-left: 30px;
   }
 }
 
@@ -2872,9 +2898,21 @@
   left: -250px !important;
 }
 
+@media (max-width: 1199.98px) {
+  .item-container.stats-left .stats {
+    left: -210px !important;
+  }
+}
+
 @media (max-width: 991.98px) {
   .item-container.stats-left .stats {
-    left: -220px !important;
+    left: -145px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .item-container.stats-left .stats {
+    left: -140px !important;
   }
 }
 

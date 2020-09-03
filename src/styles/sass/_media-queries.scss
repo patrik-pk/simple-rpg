@@ -1,4 +1,5 @@
 
+$portrait: 500px;
 $small: 576px;
 $medium: 768px;
 $large: 992px;
@@ -24,6 +25,12 @@ $extra-large: 1200px;
 
 @mixin extra-small {
     @media(max-width: #{$small - 0.02px}) {
+        @content;
+    }
+}
+
+@mixin portrait {
+    @media(max-width: #{$portrait - 0.02px}) {
         @content;
     }
 }

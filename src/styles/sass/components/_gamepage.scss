@@ -26,7 +26,7 @@
     .game-over {
         display: none;
         position: absolute;
-        bottom: 5%;
+        bottom: 40px;
         left: 50%;
         transform: translate(-50%, 0);
         width: 350px;
@@ -34,9 +34,14 @@
         background: black;
         border: 1px white solid;
 
+        @include large {
+            bottom: 30px;
+        }
+
         @include medium {
             width: 240px;
             padding: 7px;
+            bottom: 20px;
         }
 
         @include small {

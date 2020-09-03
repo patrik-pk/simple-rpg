@@ -39,8 +39,16 @@
         .stats {
             left: -250px!important;
 
+            @include large {
+                left: -210px!important;
+            }
+
             @include medium {
-                left: -220px!important;
+                left: -145px!important;
+            }
+
+            @include small {
+                left: -140px!important;
             }
         }
     }
