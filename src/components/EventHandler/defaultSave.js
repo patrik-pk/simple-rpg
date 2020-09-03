@@ -42,8 +42,8 @@ export default function defaultSave() {
         { type: 'Avian', current: 0 },
         { type: 'Dinosaur', current: 0 },
         { type: 'Insect', current: 0 },
-        { type: 'Wildlife', current: 0 },
         { type: 'Reptile', current: 0 },
+        { type: 'Wildlife', current: 0 },
     ]
 
     // Game
@@ -69,8 +69,8 @@ export default function defaultSave() {
             { name: 'avian', value: 0 },
             { name: 'dinosaur', value: 0 },
             { name: 'insect', value: 0 },
-            { name: 'wildlife', value: 0 },
             { name: 'reptile', value: 0 },
+            { name: 'wildlife', value: 0 },
         ],
         damageTaken: '',
         receivedCrit: false,

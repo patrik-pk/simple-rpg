@@ -75,17 +75,6 @@ export default [
                 },
                 iconIndexes: iconIndexes.insect
             },
-            // Wildlife
-            {
-                bonusValues: [0, 0, 0, 0, 0, 75],
-                rarity: rarities.wildlife,
-                id: 'wildlife-low',
-                neededDrops: {
-                    amount: 25,
-                    drops: ['small wildlife soul', 'soft wildlife leather']
-                },
-                iconIndexes: iconIndexes.wildlife
-            },
             // Reptile
             {
                 bonusValues: [0, 0, 0, 0, 75, 0],
@@ -96,6 +85,17 @@ export default [
                     drops: ['small reptile soul', 'soft reptile leather']
                 },
                 iconIndexes: iconIndexes.reptile
+            },
+            // Wildlife
+            {
+                bonusValues: [0, 0, 0, 0, 0, 75],
+                rarity: rarities.wildlife,
+                id: 'wildlife-low',
+                neededDrops: {
+                    amount: 25,
+                    drops: ['small wildlife soul', 'soft wildlife leather']
+                },
+                iconIndexes: iconIndexes.wildlife
             },
         ]
     },
@@ -172,17 +172,6 @@ export default [
                 },
                 iconIndexes: iconIndexes.insect
             },
-            // Wildlife
-            {
-                bonusValues: [0, 0, 0, 0, 0, 75],
-                rarity: rarities.wildlife,
-                id: 'wildlife-medium',
-                neededDrops: {
-                    amount: 25,
-                    drops: ['medium wildlife soul', 'medium wildlife leather']
-                },
-                iconIndexes: iconIndexes.wildlife
-            },
             // Reptile
             {
                 bonusValues: [0, 0, 0, 0, 75, 0],
@@ -193,6 +182,17 @@ export default [
                     drops: ['medium reptile soul', 'medium reptile leather']
                 },
                 iconIndexes: iconIndexes.reptile
+            },
+            // Wildlife
+            {
+                bonusValues: [0, 0, 0, 0, 0, 75],
+                rarity: rarities.wildlife,
+                id: 'wildlife-medium',
+                neededDrops: {
+                    amount: 25,
+                    drops: ['medium wildlife soul', 'medium wildlife leather']
+                },
+                iconIndexes: iconIndexes.wildlife
             },
         ]
     },
@@ -269,17 +269,6 @@ export default [
                 },
                 iconIndexes: iconIndexes.insect
             },
-            // Wildlife
-            {
-                bonusValues: [0, 0, 0, 0, 0, 75],
-                rarity: rarities.wildlife,
-                id: 'wildlife-high',
-                neededDrops: {
-                    amount: 25,
-                    drops: ['large wildlife soul', 'tough wildlife leather']
-                },
-                iconIndexes: iconIndexes.wildlife
-            },
             // Reptile
             {
                 bonusValues: [0, 0, 0, 0, 75, 0],
@@ -290,6 +279,17 @@ export default [
                     drops: ['large reptile soul', 'tough reptile leather']
                 },
                 iconIndexes: iconIndexes.reptile
+            },
+            // Wildlife
+            {
+                bonusValues: [0, 0, 0, 0, 0, 75],
+                rarity: rarities.wildlife,
+                id: 'wildlife-high',
+                neededDrops: {
+                    amount: 25,
+                    drops: ['large wildlife soul', 'tough wildlife leather']
+                },
+                iconIndexes: iconIndexes.wildlife
             },
         ]
     },

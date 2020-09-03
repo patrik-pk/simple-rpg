@@ -12,9 +12,9 @@ const Credits = () => {
     // Sidemenu (on the right)
     const [sideMenuActive, setSideMenuActive] = useState(0)
     const sideMenuData = [ 
-        ['Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile'],
+        ['Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Reptile', 'Wildlife'],
         [],
-        ['Type 1', 'Type 2', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile'],
+        ['Type 1', 'Type 2', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Reptile', 'Wildlife'],
         []
     ]
 

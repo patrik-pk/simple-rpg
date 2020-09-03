@@ -44,12 +44,12 @@ export default (level, destination, key, gameType, specific = {}) => {
 
 // Possible bonuses
 const possibleBonuses = [
-    'avian',
-    'dinosaur',
-    'insect',
-    'wildlife',
-    'reptile',
     'aquatic',
+    'avian',
+    'insect',
+    'dinosaur',
+    'reptile',
+    'wildlife',
 ]
 
 // Logic

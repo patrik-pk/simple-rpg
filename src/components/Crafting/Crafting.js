@@ -49,7 +49,7 @@ const Crafting = ({
 
     // Rarity Menu
     const [rarityMenuActive, setRarityMenuActive] = useState(0)
-    const rarityMenuData = ['Mythic', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Wildlife', 'Reptile']
+    const rarityMenuData = ['Mythic', 'Aquatic', 'Avian', 'Dinosaur', 'Insect', 'Reptile', 'Wildlife',]
 
     // Activate Rarity Menu
     const activateRarityMenu = index => {

@@ -19,8 +19,8 @@ export default (equippedItems, currentLevel) => {
         { name: 'avian', value: 0 },
         { name: 'dinosaur', value: 0 },
         { name: 'insect', value: 0 },
-        { name: 'wildlife', value: 0 },
         { name: 'reptile', value: 0 },
+        { name: 'wildlife', value: 0 },
     ]
 
     equippedItems.forEach(item => {

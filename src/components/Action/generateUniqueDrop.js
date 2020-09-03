@@ -3,7 +3,15 @@ import levelTresholds from '../../shared/data/levelTresholds'
 import DropItem from '../../shared/data/DropItem'
 
 // Generate unique drop, although there are only 2 different ones every time
-export default (items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, newLevel) => {
+export default (
+    items, 
+    alreadyGeneratedDrops, 
+    i, 
+    enemyDrops, 
+    invItemsLength, 
+    newLevel, 
+    enemyDifficulty
+) => {
     if (alreadyGeneratedDrops.length === enemyDrops.length) return
 
     const gameFlow = levelTresholds[newLevel].gameFlow > 1 
@@ -17,7 +25,15 @@ export default (items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, new
     alreadyGeneratedDrops.push(index)
 
     const { iconKey, name, icon, classVal, goldValue } = enemyDrops[index]
-    const randomAmount = randomGenerator(3, 7)
+
+    // enemy difficulty drop amount multiplier
+    let dropMult
+    console.log(enemyDifficulty)
+    if(enemyDifficulty === 1) dropMult = [4, 6]
+    if(enemyDifficulty === 2) dropMult = [6, 8]
+    if(enemyDifficulty === 3) dropMult = [8, 10]
+
+    const randomAmount = randomGenerator(dropMult[0], dropMult[1])
     const dropGoldValue = Math.round(randomAmount * goldValue * gameFlow)
     const classes = [classVal && classVal]
 

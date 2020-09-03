@@ -37,7 +37,7 @@ export default (currentLevel, gameFlow) => {
             const { iconKey, name, icon, classVal, goldValue } = dropItem
 
             // get random amount
-            const randomAmount = randomGenerator(3, 5)
+            const randomAmount = randomGenerator(5, 8)
 
             // get gameFlow, which has to be minimum of 1
             gameFlow = gameFlow > 1 ? gameFlow : 1

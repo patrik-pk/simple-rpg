@@ -90,20 +90,6 @@ const possibleEnemies = {
         scorpion: new EnemyType('Scorpion', 'insect', insect.scorpion.icon, 20, 25, [ins.largeSoul, ins.strongPoison]),
         millipede: new EnemyType('Millipede', 'insect', insect.millipede.icon, 25, 30, [ins.largeSoul, ins.strongPoison]),
     },
-    // Wildlife
-    wildlife: {
-        deer: new EnemyType('Deer', 'wildlife', wildlife.deer.icon, 0, 3, [wf.smallSoul, wf.softLeather]),
-        rat: new EnemyType('Rat', 'wildlife', wildlife.rat.icon, 4, 6, [wf.smallSoul, wf.softLeather]),
-        fox: new EnemyType('Fox', 'wildlife', wildlife.fox.icon, 7, 9, [wf.smallSoul, wf.softLeather]), 
-        boar: new EnemyType('Boar', 'wildlife', wildlife.boar.icon, 10, 11, [wf.mediumSoul, wf.mediumLeather]),
-        buffalo: new EnemyType('Buffalo', 'wildlife', wildlife.buffalo.icon, 12, 14, [wf.mediumSoul, wf.mediumLeather]),
-        bull: new EnemyType('Bull', 'wildlife', wildlife.bull.icon, 15, 17, [wf.mediumSoul, wf.mediumLeather]),
-        bear: new EnemyType('Bear', 'wildlife', wildlife.bear.icon, 18, 20, [wf.mediumSoul, wf.mediumLeather]),
-        lion: new EnemyType('Lion', 'wildlife', wildlife.lion.icon, 21, 23, [wf.largeSoul, wf.toughLeather]),
-        rhino: new EnemyType('Rhino', 'wildlife', wildlife.rhino.icon, 24, 26, [wf.largeSoul, wf.toughLeather]),
-        mammoth: new EnemyType('Mammoth', 'wildlife', wildlife.mammoth.icon, 27, 28, [wf.largeSoul, wf.toughLeather]),
-        tiger: new EnemyType('Tiger', 'wildlife', wildlife.tiger.icon, 29, 30, [wf.largeSoul, wf.toughLeather]),
-    },
     // Reptiles
     reptiles: {
         gecko: new EnemyType('Gecko', 'reptile', reptile.gecko.icon, 0, 3, [rt.smallSoul, rt.softLeather]), 
@@ -114,6 +100,20 @@ const possibleEnemies = {
         crocodile: new EnemyType('Crocodile', 'reptile', reptile.crocodile.icon, 17, 21, [rt.mediumSoul, rt.mediumLeather]),
         cobra: new EnemyType('Cobra', 'reptile', reptile.cobra.icon, 22, 26, [rt.largeSoul, rt.toughLeather]),
         dragon: new EnemyType('Dragon', 'reptile', reptile.dragon.icon, 27, 30, [rt.largeSoul, rt.toughLeather]),
+    },
+    // Wildlife
+    wildlife: {
+        deer: new EnemyType('Deer', 'wildlife', wildlife.deer.icon, 0, 3, [wf.smallSoul, wf.softLeather]),
+        rat: new EnemyType('Rat', 'wildlife', wildlife.rat.icon, 4, 6, [wf.smallSoul, wf.softLeather]),
+        fox: new EnemyType('Fox', 'wildlife', wildlife.fox.icon, 7, 9, [wf.smallSoul, wf.softLeather]),
+        boar: new EnemyType('Boar', 'wildlife', wildlife.boar.icon, 10, 11, [wf.mediumSoul, wf.mediumLeather]),
+        buffalo: new EnemyType('Buffalo', 'wildlife', wildlife.buffalo.icon, 12, 14, [wf.mediumSoul, wf.mediumLeather]),
+        bull: new EnemyType('Bull', 'wildlife', wildlife.bull.icon, 15, 17, [wf.mediumSoul, wf.mediumLeather]),
+        bear: new EnemyType('Bear', 'wildlife', wildlife.bear.icon, 18, 20, [wf.mediumSoul, wf.mediumLeather]),
+        lion: new EnemyType('Lion', 'wildlife', wildlife.lion.icon, 21, 23, [wf.largeSoul, wf.toughLeather]),
+        rhino: new EnemyType('Rhino', 'wildlife', wildlife.rhino.icon, 24, 26, [wf.largeSoul, wf.toughLeather]),
+        mammoth: new EnemyType('Mammoth', 'wildlife', wildlife.mammoth.icon, 27, 28, [wf.largeSoul, wf.toughLeather]),
+        tiger: new EnemyType('Tiger', 'wildlife', wildlife.tiger.icon, 29, 30, [wf.largeSoul, wf.toughLeather]),
     },
 }
 

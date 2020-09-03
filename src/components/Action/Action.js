@@ -47,8 +47,14 @@ const Action = props => {
         addItemToInv,
         addDungeon
     } = props
+    const { 
+        type: gameType, 
+        enemyType: { drops: enemyDrops }, 
+        currentHp, 
+        level: enemyLevel,
+        difficulty: enemyDifficulty 
+    } = enemy
     const { currentLevel, gameFlow } = character
-    const { type: gameType, enemyType: { drops: enemyDrops }, currentHp, level: enemyLevel } = enemy
 
     // calculate hit chance, min and max damage that can player deal (without crit)
     const chanceToHit = (100 - (dodge * hitChanceMult)).toFixed(2)
@@ -82,10 +88,12 @@ const Action = props => {
                 const { didLevelUp, currentLevel: newLevel } = reward
                 addReward(reward)
 
+                console.log(`Action ${enemyDifficulty}`)
                 const rewardItems = generateRewardItems(
                     gameType, 
                     invItems.length, 
                     enemyLevel, 
+                    enemyDifficulty,
                     enemyDrops, 
                     enemy.dungeon, 
                     dungeon, 

@@ -11,8 +11,8 @@ const sortItemsValues = [
     'Avian',
     'Dinosaur',
     'Insect',
-    'Wildlife',
     'Reptile',
+    'Wildlife',
 
     // normal items rarity
     'Legendary',
@@ -54,6 +54,14 @@ const sortItemsValues = [
     'strong poison',
     'medium poison',
     'weak poison',
+    
+    // reptile
+    'large reptile soul',
+    'medium reptile soul',
+    'small reptile soul',
+    'tough reptile leather',
+    'medium reptile leather',
+    'soft reptile leather',
 
     // wildlife
     'large wildlife soul',
@@ -62,14 +70,6 @@ const sortItemsValues = [
     'tough wildlife leather',
     'medium wildlife leather',
     'soft wildlife leather',
-
-    // reptile
-    'large reptile soul',
-    'medium reptile soul',
-    'small reptile soul',
-    'tough reptile leather',
-    'medium reptile leather',
-    'soft reptile leather',
 ]
 
 export default sortItemsValues

@@ -6,6 +6,7 @@ export default (
     gameType, 
     invItemsLength, 
     enemyLevel, 
+    enemyDifficulty,
     enemyDrops, 
     enemyDungeon, 
     dungeon, 
@@ -52,7 +53,14 @@ export default (
                 items.push(item)
             }
         }
-        else generateUniqueDrop(items, alreadyGeneratedDrops, i, enemyDrops, invItemsLength, newLevel)
+        else generateUniqueDrop(
+            items, 
+            alreadyGeneratedDrops, 
+            i, enemyDrops, 
+            invItemsLength, 
+            newLevel,
+            enemyDifficulty
+        )
     }
 
     return items

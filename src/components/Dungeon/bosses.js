@@ -46,6 +46,14 @@ const bosses = [
         boss(29, insect.millipede, 1, 'Insect'),
 
     ],
+    // Reptile
+    [
+        boss(7, reptiles.chameleon, 1, 'Reptile'),
+        boss(12, reptiles.iguana, 1, 'Reptile'),
+        boss(19, reptiles.crocodile, 0, 'Reptile'),
+        boss(26, reptiles.cobra, 1, 'Reptile'),
+        boss(35, reptiles.dragon, 1, 'Reptile'),
+    ],
     // Wildlife
     [
         boss(5, wildlife.rat, 1, 'Wildlife'),
@@ -54,14 +62,6 @@ const bosses = [
         boss(23, wildlife.lion, 0, 'Wildlife'),
         boss(30, wildlife.tiger, 0, 'Wildlife'),
 
-    ],
-    // Reptile
-    [
-        boss(7, reptiles.chameleon, 1, 'Reptile'),
-        boss(12, reptiles.iguana, 1, 'Reptile'),
-        boss(19, reptiles.crocodile, 0, 'Reptile'),
-        boss(26, reptiles.cobra, 1, 'Reptile'),
-        boss(35, reptiles.dragon, 1, 'Reptile'),
     ],
 ]
 

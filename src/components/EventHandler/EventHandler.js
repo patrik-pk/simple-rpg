@@ -17,7 +17,7 @@ const EventHandler = ({
 }) => {
 
     const [canAddRoll, setCanAddRoll] = useState(true)
-    const timer = 15
+    const timer = 10
 
     // Calculate player stats if they change
     useEffect(() => {
